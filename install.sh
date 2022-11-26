@@ -1,6 +1,6 @@
 #! /bin/bash
 
-reallyPath=$(pwd -P)
+dirPath=~/.linuxConfig
 if [[ $1 = -h || $1 = --help ]]; then
 	echo "Instal package,第一个参数跟clash订阅链接"
 fi
@@ -9,17 +9,42 @@ fi
 affirmOS() {
 	release=$(awk -F= '/ID_LIKE/{print $2}' /etc/os-release)
 
-	if [[ $release = debian ]]; then
+    if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		pacMan="apt"
 		opt="install"
-	elif [[ $release = arch ]]; then
+	elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		pacMan="pacman"
 		opt="-S"
 	fi
+    unset release
 }
 
 # 能直接安装的软件
 allInstall() {
+	echo ----------------------
+	if [[ $release = arch ]]; then
+		# 基础包
+        sudo pacman -Syu
+		sudo "$pacMan" "$opt" \
+			amd-ucode \
+			base \
+			base-devel \
+			linux \
+			linux-firmware
+		sudo "$pacMan" "$opt" \
+			clash \
+			dnsutils \
+			jdk17-openjdk \
+			python-pip \
+			viu
+
+	elif [[ $release = debian ]]; then
+		sudo "$pacMan" "$opt" \
+			bind9-utils \
+			openjdk-17-jdk \
+			python3-pip
+	fi
+
 	sudo "$pacMan" "$opt" \
 		bc \
 		git \
@@ -42,31 +67,6 @@ allInstall() {
 		zsh-syntax-highlighting
 
 	# speedtest-cli    libglig2.0-dev
-	echo ----------------------
-	if [[ $release = arch ]]; then
-		# 基础包
-		sudo "$pacMan" "$opt" \
-			amd-ucode \
-			base \
-			base-devel \
-			linux \
-			linux-firmware
-
-		sudo "$pacMan" "$opt" \
-			clash \
-			dnsutils \
-			jdk17-openjdk \
-			python-pip \
-			viu
-
-		echo ----------------------
-	elif [[ $release = debian ]]; then
-		sudo "$pacMan" "$opt" \
-			bind9-utils \
-			openjdk-17-jdk \
-			python3-pip
-
-	fi
 }
 
 yayInstall() {
@@ -76,7 +76,6 @@ yayInstall() {
 		libreoffice \
 		microsoft-edge-stable-bin \
 		yesplaymusic
-
 }
 
 # 开启服务
@@ -101,32 +100,47 @@ configForClash() {
 		sed -i 's/enhanced-mode:.*/enhanced-mode: fake-ip/' "$clash_config"
 		sed -i 's/mode:.*/mode: rule/' "$clash_config"
 	fi
+unset clash_dir clash_config
 }
 
 createClashService() {
 	# ClashReallyPath=$(type awk | awk '{print$3}')
-	clashServer=$reallyPath/clash.service
+	clashServer=$dirPath/clash.service
 	ln -s $clashServer /etc/systemd/system/clash.service
 	# sed -i "s/clashReallyPath/$ClashReallyPath/" $clashServer
 
 	sudo systemctl daemon-reload
 	sudo systemctl enable clash
 	sudo systemctl start clash
+unset clashServer
 }
 
 # 发行版
 affirmOS
-allInstall
+# allInstall
 # yayInstall
 # configForClash "$1"
 # createClashService
 # startServer
 
-# 链接配置
+unset pacMan opt
+
+# link config
 linkConfig() {
     nvimConfig=~/.config/nvim/
-	[[ -d $nvimConfig ]] && rm -rf "$nvimConfig"
-	ln -s ~/.linuxConfig/nvim "$nvimConfig"
-    ln -s ~/.linuxConfig/nvim/viml/init.vim ~/.vimrc
+	[[ -d $nvimConfig ]] && rm "$nvimConfig"
+	ln -s $dirPath/nvim "$nvimConfig"
+    ln -s $dirPath/nvim/viml/init.vim ~/.vimrc
 
+    zshConfig=~/.zshrc
+	[[ -f $zshConfig ]] && rm "$nvimConfig"
+    ln -s $dirPath/.zshrc ~/.zshrc
+
+    bashConfig=~/.zshrc
+	[[ -f $bashConfig ]] && rm "$nvimConfig"
+    ln -s $dirPath/.bashrc ~/.bashrc
+
+    unset nvimConfig zshConfig bashConfig
 }
+
+unset dirPath

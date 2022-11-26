@@ -51,7 +51,7 @@ func! InstallRely()
                 \ nodejs
                 \ npm'
                 " \ shfmt'
-    " exec 'term sudo npm install -g bash-language-server pyright'
+    exec 'term sudo npm install -g tree-sitter-cli'
     " exec 'call NvimSet()'
     " exec 'call CocInstal()'
 endfunc
