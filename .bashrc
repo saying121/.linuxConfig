@@ -63,13 +63,17 @@ PROMPT_ALTERNATIVE=twoline
 NEWLINE_BEFORE_PROMPT=yes
 # STOP KALI CONFIG VARIABLES
 
-# 确定发行版
+# 确定发行版 kali pop redhat manjaro
 if [[ `grep -c kali /etc/os-release` != 0 ]]; then
     prompt_symbol=㉿
 elif [[ `grep -c ubuntu /etc/os-release` != 0 ]]; then
     prompt_symbol=
 elif [[ `grep -c arch /etc/os-release` != 0 ]]; then
     prompt_symbol=
+elif [[ `grep -c arch /etc/os-release` != 0 ]]; then
+    prompt_symbol=
+else
+    prompt_symbol=
 fi
 
 if [ "$color_prompt" = yes ]; then

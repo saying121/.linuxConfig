@@ -104,6 +104,10 @@ elif [[ `grep -c arch /etc/os-release` != 0 ]]; then
     prompt_symbol=
     zsh_syntax=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     zsh_autosuggestions=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+else
+    prompt_symbol=
+    zsh_syntax=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    zsh_autosuggestions=/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 configure_prompt() {
