@@ -16,31 +16,38 @@ affirmOS() {
 		pacMan="pacman"
 		opt="-S"
 	fi
-	unset release
 }
 
 # 能直接安装的软件
 allInstall() {
 	if [[ $release = arch ]]; then
-		sudo pacman -Syu
-		# 基础包
-		sudo "$pacMan" "$opt" \
-			amd-ucode \
-			base \
-			base-devel \
-			linux \
-			linux-firmware
-		sudo "$pacMan" "$opt" \
+		sudo pacman -S archlinuxcn-keyring
+		if [[ $? != 0 ]]; then
+			sudo rm -rf /etc/pacman.d/gnupg
+			pacman-key --init
+			pacman-key --populate archlinux
+			pacman-key --populate archlinuxcn
+		fi
+		sudo pacman -S yay paru
+		# 中文输入法
+		sudo pacman -S \
+			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
+			fcitx5-pinyin-zhwiki fcitx5-material-color
+
+		sudo pacman -S \
 			clash \
-			dnsutils \
+			dnsutils networkmanager \
+			ntfs-3g \
 			viu
 		# 开发工具
-		sudo "$pacMan" "$opt" \
+		sudo pacman -S \
 			jdk17-openjdk \
 			python-pip
 
 	elif [[ $release = debian ]]; then
-		sudo "$pacMan" "$opt" \
+		sudo apt update && sudo apt upgrade -y
+		sudo apt install \
+			network-manager \
 			bind9-utils \
 			openjdk-17-jdk \
 			python3-pip
@@ -52,16 +59,19 @@ allInstall() {
 		mpv \
 		neofetch \
 		net-tools \
-		network-manager \
 		psmisc \
 		sysstat \
 		trash-cli \
+		sudo \
+		vi \
 		vim \
+		nano \
 		wget \
 		zsh \
 		zsh-autosuggestions \
 		zsh-syntax-highlighting \
-		bash
+		bash \
+		openssh
 
 	# 开发工具
 	sudo "$pacMan" "$opt" \
@@ -85,11 +95,11 @@ yayInstall() {
 
 # 开启服务
 startServer() {
-	sudo systemctl enable bluetooth
-	sudo systemctl start bluetooth
+	sudo systemctl enable bluetooth sshd NetworkManager
+	sudo systemctl start bluetooth sshd NetworkManager
 
 	sudo systemctl enable input-remapper
-	sudo systemctl restart input-remapper
+	sudo systemctl start input-remapper
 }
 
 configForClash() {
@@ -122,11 +132,11 @@ createClashService() {
 
 # 发行版
 affirmOS
-# allInstall
-# yayInstall
-# configForClash "$1"
-# createClashService
-# startServer
+allInstall
+yayInstall
+configForClash "$1"
+createClashService
+startServer
 
 unset pacMan opt
 
@@ -150,4 +160,4 @@ linkConfig() {
 
 linkConfig
 
-unset dirPath
+unset dirPath release

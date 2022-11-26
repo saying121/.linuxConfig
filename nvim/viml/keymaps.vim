@@ -1,4 +1,5 @@
 let mapleader=";"
+nnoremap * *N
 
 " 映射按键
 nnoremap <leader>w :w<CR>
