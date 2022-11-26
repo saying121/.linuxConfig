@@ -9,22 +9,21 @@ fi
 affirmOS() {
 	release=$(awk -F= '/ID_LIKE/{print $2}' /etc/os-release)
 
-    if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
+	if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		pacMan="apt"
 		opt="install"
 	elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		pacMan="pacman"
 		opt="-S"
 	fi
-    unset release
+	unset release
 }
 
 # 能直接安装的软件
 allInstall() {
-	echo ----------------------
 	if [[ $release = arch ]]; then
+		sudo pacman -Syu
 		# 基础包
-        sudo pacman -Syu
 		sudo "$pacMan" "$opt" \
 			amd-ucode \
 			base \
@@ -34,9 +33,11 @@ allInstall() {
 		sudo "$pacMan" "$opt" \
 			clash \
 			dnsutils \
-			jdk17-openjdk \
-			python-pip \
 			viu
+		# 开发工具
+		sudo "$pacMan" "$opt" \
+			jdk17-openjdk \
+			python-pip
 
 	elif [[ $release = debian ]]; then
 		sudo "$pacMan" "$opt" \
@@ -47,24 +48,28 @@ allInstall() {
 
 	sudo "$pacMan" "$opt" \
 		bc \
-		git \
 		man \
 		mpv \
 		neofetch \
-		neovim \
 		net-tools \
 		network-manager \
-		nodejs \
-		npm \
 		psmisc \
-		python3 \
 		sysstat \
 		trash-cli \
 		vim \
 		wget \
 		zsh \
 		zsh-autosuggestions \
-		zsh-syntax-highlighting
+		zsh-syntax-highlighting \
+		bash
+
+	# 开发工具
+	sudo "$pacMan" "$opt" \
+		neovim \
+		python3 \
+		nodejs \
+		npm \
+		git
 
 	# speedtest-cli    libglig2.0-dev
 }
@@ -100,7 +105,7 @@ configForClash() {
 		sed -i 's/enhanced-mode:.*/enhanced-mode: fake-ip/' "$clash_config"
 		sed -i 's/mode:.*/mode: rule/' "$clash_config"
 	fi
-unset clash_dir clash_config
+	unset clash_dir clash_config
 }
 
 createClashService() {
@@ -112,7 +117,7 @@ createClashService() {
 	sudo systemctl daemon-reload
 	sudo systemctl enable clash
 	sudo systemctl start clash
-unset clashServer
+	unset clashServer
 }
 
 # 发行版
@@ -127,20 +132,22 @@ unset pacMan opt
 
 # link config
 linkConfig() {
-    nvimConfig=~/.config/nvim/
+	nvimConfig=~/.config/nvim/
 	[[ -d $nvimConfig ]] && rm "$nvimConfig"
 	ln -s $dirPath/nvim "$nvimConfig"
-    ln -s $dirPath/nvim/viml/init.vim ~/.vimrc
+	ln -s $dirPath/nvim/viml/init.vim ~/.vimrc
 
-    zshConfig=~/.zshrc
-	[[ -f $zshConfig ]] && rm "$nvimConfig"
-    ln -s $dirPath/.zshrc ~/.zshrc
+	zshConfig=~/.zshrc
+	[[ -f $zshConfig ]] && rm "$zshConfig"
+	ln -s $dirPath/.zshrc ~/.zshrc
 
-    bashConfig=~/.zshrc
-	[[ -f $bashConfig ]] && rm "$nvimConfig"
-    ln -s $dirPath/.bashrc ~/.bashrc
+	bashConfig=~/.bashrc
+	[[ -f $bashConfig ]] && rm "$bashConfig"
+	ln -s $dirPath/.bashrc ~/.bashrc
 
-    unset nvimConfig zshConfig bashConfig
+	unset nvimConfig zshConfig bashConfig
 }
+
+linkConfig
 
 unset dirPath
