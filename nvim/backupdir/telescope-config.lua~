@@ -1,0 +1,54 @@
+require('telescope').load_extension('media_files')
+require 'telescope'.setup {
+    defaults = {
+        -- Default configuration for telescope goes here:
+        -- config_key = value,
+        mappings = {
+            i = {
+                -- map actions.which_key to <C-h> (default: <C-/>)
+                -- actions.which_key shows the mappings for your picker,
+                -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+                ["<C-h>"] = "which_key"
+            }
+        },
+        layout_config = {
+            vertical = { width = 0.5 }
+            -- other layout configuration here
+        },
+    },
+    pickers = {
+        -- Default configuration for builtin pickers goes here:
+        -- picker_name = {
+        --   picker_config_key = value,
+        --   ...
+        -- }
+        -- Now the picker_config_key will be applied every time you call this
+        -- builtin picker
+    },
+    extensions = {
+        -- Your extension configuration goes here:
+        -- extension_name = {
+        --   extension_config_key = value,
+        -- }
+        -- please take a look at the readme of the extension you want to configure
+        media_files = {
+            -- filetypes whitelist
+            -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+            filetypes = { "png", "webp", "jpg", "jpeg" },
+            find_cmd = "rg" -- find command (defaults to `fd`)
+        }
+    },
+}
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { noremap = true })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { noremap = true })
+vim.keymap.set('n', '<leader>bf', builtin.buffers, { noremap = true })
+vim.keymap.set('n', '<leader>od', builtin.oldfiles, { noremap = true })
+
+-- " Telescope 快捷键设置
+-- func! TeleRely()
+-- exec '!apt install ripgrep -y'
+-- endfunc
+-- nnoremap <leader>ff <Cmd>Telescope find_files<CR>
+-- nnoremap <leader>lg <Cmd>Telescope live_grep<CR>
+-- nnoremap <leader>bf <Cmd>Telescope buffers<CR>
