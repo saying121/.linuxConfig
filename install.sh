@@ -21,6 +21,7 @@ affirmOS() {
 # 能直接安装的软件
 allInstall() {
 	if [[ $release = arch ]]; then
+        sudo pacMan -syyu
 		sudo pacman -S --needed archlinuxcn-keyring
 		if [[ $? != 0 ]]; then
 			sudo rm -rf /etc/pacman.d/gnupg
@@ -32,25 +33,25 @@ allInstall() {
 		# 中文输入法
 		sudo pacman -S --needed \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
-			fcitx5-pinyin-zhwiki fcitx5-material-color
+			fcitx5-pinyin-zhwiki fcitx5-material-color \
+            ttf-hack
 
 		sudo pacman -S --needed \
-			clash \
-			dnsutils networkmanager \
+			clash dnsutils networkmanager \
 			ntfs-3g \
 			viu
 		# 开发工具
 		sudo pacman -S --needed \
-			jdk17-openjdk \
-			python-pip
+			jdk17-openjdk python-pip
 
 	elif [[ $release = debian ]]; then
 		sudo apt update && sudo apt upgrade -y
 		sudo apt install \
-			network-manager \
-			bind9-utils \
-			openjdk-17-jdk \
-			python3-pip
+			network-manager bind9-utils \
+            fonts-hack-ttf
+        # 开发工具
+		sudo apt install \
+			openjdk-17-jdk python3-pip
 	fi
 
 	sudo "$pacMan" "$opt" \
@@ -84,6 +85,7 @@ allInstall() {
 	# speedtest-cli    libglig2.0-dev
 }
 
+# aur才有的软件
 yayInstall() {
 	yay -S --needed \
 		icalingua++ \
@@ -105,7 +107,7 @@ startServer() {
 configForClash() {
 	clash_dir="/etc/clash/"
 	clash_config="$clash_dir"config.yaml
-	[[ -d $clash_dir ]] && echo "" || sudo mkdir "$clash_dir"
+	[[ -d $clash_dir ]] && echo -n "" || sudo mkdir "$clash_dir"
 
 	# $1 写clash链接
 	sudo wget -O "$clash_config" "$1"
@@ -116,6 +118,19 @@ configForClash() {
 		sed -i 's/mode:.*/mode: rule/' "$clash_config"
 	fi
 	unset clash_dir clash_config
+}
+
+configInputRemapper() {
+	remapper_dir="$HOME/.config/input-remapper"
+	remapper_config="$HOME/.config/input-remapper/config.json"
+	[[ -d $remapper_dir ]] && echo -n "" || mkdir -p "$remapper_dir"
+
+	if [[ -f $remapper_config ]]; then
+		rm $remapper_config
+	fi
+	ln -s $dirPath./inputremapperconfig.json $remapper_config
+
+	unset remapper_dir remapper_config
 }
 
 createClashService() {
@@ -137,8 +152,7 @@ yayInstall
 configForClash "$1"
 createClashService
 startServer
-
-unset pacMan opt
+configInputRemapper
 
 # link config
 linkConfig() {
@@ -157,7 +171,10 @@ linkConfig() {
 
 	unset nvimConfig zshConfig bashConfig
 }
-
 linkConfig
 
-unset dirPath release
+# 刷新字体
+fc-cache -fv
+
+unset dirPath release pacMan opt
+
