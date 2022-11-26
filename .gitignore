@@ -1,2 +1,2 @@
-undodir/*
-backupdir/*
+./nvim/undodir/*
+./nvim/backupdir/*
