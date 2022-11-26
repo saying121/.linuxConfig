@@ -14,33 +14,33 @@ affirmOS() {
 		opt="install"
 	elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		pacMan="pacman"
-		opt="-S"
+		opt="-S --needed"
 	fi
 }
 
 # 能直接安装的软件
 allInstall() {
 	if [[ $release = arch ]]; then
-		sudo pacman -S archlinuxcn-keyring
+		sudo pacman -S --needed archlinuxcn-keyring
 		if [[ $? != 0 ]]; then
 			sudo rm -rf /etc/pacman.d/gnupg
 			pacman-key --init
 			pacman-key --populate archlinux
 			pacman-key --populate archlinuxcn
 		fi
-		sudo pacman -S yay paru
+		sudo pacman -S --needed yay paru
 		# 中文输入法
-		sudo pacman -S \
+		sudo pacman -S --needed \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 			fcitx5-pinyin-zhwiki fcitx5-material-color
 
-		sudo pacman -S \
+		sudo pacman -S --needed \
 			clash \
 			dnsutils networkmanager \
 			ntfs-3g \
 			viu
 		# 开发工具
-		sudo pacman -S \
+		sudo pacman -S --needed \
 			jdk17-openjdk \
 			python-pip
 
@@ -85,7 +85,7 @@ allInstall() {
 }
 
 yayInstall() {
-	yay -S \
+	yay -S --needed \
 		icalingua++ \
 		input-remapper-git \
 		libreoffice \
