@@ -49,12 +49,11 @@ sed -i '1iServer = http://mirrors.163.com/archlinux/$repo/os/$arch' /etc/pacman.
 sed -i '1iServer = http://mirrors.aliyun.com/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorslist
 sed -i '1iServer = https://mirrors.aliyun.com/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorslist
 
-timedatectl set-up true
 pacman -Syyu
+timedatectl set-up true
 # 基础
 pacstrap /mnt \
-	base base-devel \
-	linux linux-firmware
+	base base-devel linux linux-firmware \
 genfstab -U /mnt >>/mnt/etc/fstab
 arch-chroot /mnt
 

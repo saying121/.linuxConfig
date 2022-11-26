@@ -21,7 +21,7 @@ affirmOS() {
 # 能直接安装的软件
 allInstall() {
 	if [[ $release = arch ]]; then
-        sudo pacMan -syyu
+		sudo pacMan -syyu
 		sudo pacman -S --needed archlinuxcn-keyring
 		if [[ $? != 0 ]]; then
 			sudo rm -rf /etc/pacman.d/gnupg
@@ -34,7 +34,7 @@ allInstall() {
 		sudo pacman -S --needed \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 			fcitx5-pinyin-zhwiki fcitx5-material-color \
-            ttf-hack
+			ttf-hack
 
 		sudo pacman -S --needed \
 			clash dnsutils networkmanager \
@@ -48,8 +48,8 @@ allInstall() {
 		sudo apt update && sudo apt upgrade -y
 		sudo apt install \
 			network-manager bind9-utils \
-            fonts-hack-ttf
-        # 开发工具
+			fonts-hack-ttf
+		# 开发工具
 		sudo apt install \
 			openjdk-17-jdk python3-pip
 	fi
@@ -160,5 +160,3 @@ fc-cache -fv
 unset dirPath release pacMan opt
 # link config
 ./linkConfig.sh
-
-
