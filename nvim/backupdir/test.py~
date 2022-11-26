@@ -1,4 +1,0 @@
-#! /bin/python3
-
-print(13)
-exit(1)

@@ -1,9 +1,0 @@
-#! /bin/python3
-
-import re
-
-line = "Cats are smarter than dogs"
-line2 = "www.asdf.c\nom-www"
-print(line2)
-
-print(re.findall('\w+', line2))
