@@ -45,10 +45,10 @@ set softtabstop=4    " 将连续数量的空格视作一个tab,可以一次删�
 set updatetime=100
 set writebackup    " 编辑时备份文件
 set backup        " 备份文件
-set backupdir=~/.config/nvim/backupdir     " 设置备份文件目录
+set backupdir=~/.local/share/nvim/backupdir     " 设置备份文件目录
 
 set swapfile        " 创建临时交换文件
 set updatecount=100 " 交换文件刷新方式,400字/updatetime=time
 
 set undofile        " 撤销文件
-set undodir=~/.config/nvim/undodir  " 指定撤销文件目录
+set undodir=~/.local/share/nvim/undodir  " 指定撤销文件目录

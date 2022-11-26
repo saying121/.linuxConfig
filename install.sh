@@ -154,27 +154,11 @@ createClashService
 startServer
 configInputRemapper
 
-# link config
-linkConfig() {
-	nvimConfig=~/.config/nvim/
-	[[ -d $nvimConfig ]] && rm "$nvimConfig"
-	ln -s $dirPath/nvim "$nvimConfig"
-	ln -s $dirPath/nvim/viml/init.vim ~/.vimrc
-
-	zshConfig=~/.zshrc
-	[[ -f $zshConfig ]] && rm "$zshConfig"
-	ln -s $dirPath/.zshrc ~/.zshrc
-
-	bashConfig=~/.bashrc
-	[[ -f $bashConfig ]] && rm "$bashConfig"
-	ln -s $dirPath/.bashrc ~/.bashrc
-
-	unset nvimConfig zshConfig bashConfig
-}
-linkConfig
-
 # 刷新字体
 fc-cache -fv
 
 unset dirPath release pacMan opt
+# link config
+./linkConfig.sh
+
 
