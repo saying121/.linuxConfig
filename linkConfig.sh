@@ -1,25 +1,27 @@
 #! /bin/bash
 
 linkConfig() {
-    dirPath=~/.linuxConfig
-	nvimConfig=~/.config/nvim/
-	[[ -d $nvimConfig ]] && rm "$nvimConfig"
-	ln -s $dirPath/nvim "$nvimConfig"
+	dirPath=~/.linuxConfig
 
-    [[ -f ~/.vimrc ]] && rm ~/.vimrc || ln -s $dirPath/nvim/viml/init.vim ~/.vimrc
+	nvimConfig=~/.config/nvim
+	if [[ -d $nvimConfig ]]; then
+        echo -n "有原来的nvim配置文件夹"
+    else
+        ln -s $dirPath/nvim "$nvimConfig"
+	fi
 
-	zshConfig=~/.zshrc
-	[[ -f $zshConfig ]] && rm "$zshConfig"
-	ln -s $dirPath/.zshrc ~/.zshrc
+    rm ~/.vimrc && ln -s $dirPath/nvim/viml/init.vim ~/.vimrc
 
-	bashConfig=~/.bashrc
-	[[ -f $bashConfig ]] && rm "$bashConfig"
-	ln -s $dirPath/.bashrc ~/.bashrc
+    rm ~/.zshrc && ln -s $dirPath/shells/zshrc ~/.zshrc
 
-    kittyConfig=~/.config/kitty/kitty.conf
-	[[ -f $kittyConfig ]] && rm "$kittyConfig"
-    ln -s $dirPath/kitty.conf $kittyConfig
+    rm ~/.bashrc && ln -s $dirPath/shells/bashrc ~/.bashrc
 
-	unset nvimConfig zshConfig bashConfig dirPath kittyConfig
+	kittyConfig=~/.config/kitty/kitty.conf
+	if [[ -f $kittyConfig ]]; then
+		rm "$kittyConfig"
+	fi
+	ln -s $dirPath/kitty-config/kitty.conf $kittyConfig
+
+	unset nvimConfig dirPath kittyConfig
 }
 linkConfig

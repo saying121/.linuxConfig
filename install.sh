@@ -16,6 +16,7 @@ affirmOS() {
 		pacMan="pacman"
 		opt="-S --needed"
 	fi
+
 }
 
 # 能直接安装的软件
@@ -51,36 +52,31 @@ allInstall() {
 		# 开发工具
 		sudo apt install \
 			openjdk-17-jdk python3-pip
+		# 安装input-remapper
+		sudo apt install git python3-setuptools gettext
+		git clone https://github.com/sezanzeb/input-remapper.git
+		cd input-remapper && ./scripts/build.sh
+		sudo apt install ./dist/input-remapper-1.5.0.deb
+		rm -rf ./input-remapper
 	fi
 
 	sudo "$pacMan" "$opt" \
-		bc \
-		man \
-		mpv \
+		imagemagick mpv \
 		neofetch \
-		net-tools \
-		psmisc \
-		sysstat \
-		trash-cli \
-		sudo \
-		vi \
-		vim \
-		nano \
-		wget \
-		zsh \
-		zsh-autosuggestions \
-		zsh-syntax-highlighting \
-		bash \
-        imagemagick \
-		openssh
+		bc openssh man net-tools psmisc sudo trash-cli sysstat ripgrep wget \
+		nano vi vim \
+		kitty \
+		bash zsh zsh-autosuggestions zsh-syntax-highlighting
 
 	# 开发工具
 	sudo "$pacMan" "$opt" \
 		neovim \
 		python3 \
-		nodejs \
-		npm \
-		git
+		nodejs npm \
+		git \
+		shfmt
+	sudo npm install -g npm
+    sudo npm install -g tree-sitter-cli
 
 	# speedtest-cli    libglig2.0-dev
 }
@@ -147,15 +143,61 @@ createClashService() {
 
 # 发行版
 affirmOS
-allInstall
-yayInstall
-configForClash "$1"
-createClashService
-startServer
-configInputRemapper
 
-# 刷新字体
-fc-cache -fv
+if [[ $(uname -a | grep -c WSL) != 0 ]]; then
+	if [[ $release = arch ]]; then
+		sudo pacMan -syyu
+		sudo pacman -S --needed archlinuxcn-keyring
+		if [[ $? != 0 ]]; then
+			sudo rm -rf /etc/pacman.d/gnupg
+			pacman-key --init
+			pacman-key --populate archlinux
+			pacman-key --populate archlinuxcn
+		fi
+		sudo pacman -S --needed yay paru
+
+		sudo pacman -S --needed \
+			dnsutils networkmanager
+		# 开发工具
+		sudo pacman -S --needed \
+			jdk17-openjdk python-pip
+
+	elif [[ $release = debian ]]; then
+		sudo apt update && sudo apt upgrade -y
+		sudo apt install \
+			network-manager bind9-utils
+		# 开发工具
+		sudo apt install \
+			openjdk-17-jdk python3-pip
+	fi
+
+	# 开发工具
+	sudo "$pacMan" "$opt" \
+		neovim \
+		python3 \
+		nodejs npm \
+		git \
+		shfmt
+	sudo npm install -g npm
+    sudo npm install -g tree-sitter-cli
+
+	sudo "$pacMan" "$opt" \
+		neofetch \
+		openssh \
+		bc man net-tools psmisc sudo sysstat ripgrep trash-cli wget \
+		nano vi vim \
+		bash zsh zsh-autosuggestions zsh-syntax-highlighting
+else
+	allInstall
+	yayInstall
+	configForClash "$1"
+	createClashService
+	startServer
+	configInputRemapper
+
+	# 刷新字体
+	fc-cache -fv
+fi
 
 unset dirPath release pacMan opt
 # link config
