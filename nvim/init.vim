@@ -46,9 +46,9 @@ nnoremap <F2> :call InstallRely()<CR>
 func! InstallRely()
     exec '!pip install black isort pynvim '
     exec 'PackerSync'
-    exec 'term sudo apt install -y
-                \ shfmt'
-    exec 'term sudo npm install -g tree-sitter-cli'
+    " exec 'term sudo apt install -y
+    "             \ shfmt'
+    " exec 'term sudo npm install -g tree-sitter-cli'
     " exec 'call NvimSet()'
     " exec 'call CocInstal()'
 endfunc
