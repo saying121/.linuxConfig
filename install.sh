@@ -6,31 +6,71 @@ if [[ $1 = -h || $1 = --help ]]; then
 fi
 
 # 确定发行版
-affirmOS() {
-	release=$(awk -F= '/ID_LIKE/{print $2}' /etc/os-release)
+release=$(awk -F= '/ID_LIKE/{print $2}' /etc/os-release)
 
-	if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
-		pacMan="apt"
-		opt="install"
-	elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-		pacMan="pacman"
-		opt="-S --needed"
+if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
+	pacMan="apt"
+	opt="install"
+elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
+	pacMan="pacman"
+	opt="-S --needed"
+fi
+
+# 必装
+if [[ $release = arch ]]; then
+	sudo pacMan -syyu
+	sudo pacman -S --needed archlinuxcn-keyring
+	if [[ $? != 0 ]]; then
+		sudo rm -rf /etc/pacman.d/gnupg
+		pacman-key --init
+		pacman-key --populate archlinux
+		pacman-key --populate archlinuxcn
 	fi
+	sudo pacman -S --needed yay paru
+fi
 
-}
+sudo "$pacMan" "$opt" \
+	neofetch \
+	openssh \
+	bc man net-tools psmisc sudo sysstat ripgrep trash-cli wget \
+	nano vi vim \
+	bash zsh zsh-autosuggestions zsh-syntax-highlighting
+
+# 必装开发工具
+sudo "$pacMan" "$opt" \
+	neovim \
+	python3 \
+	nodejs npm \
+	git \
+	shfmt
+
+sudo npm install -g npm
+sudo npm install -g tree-sitter-cli
+
+# 开发工具
+if [[ $release = arch ]]; then
+	sudo pacMan -syyu
+
+	sudo pacman -S --needed \
+		dnsutils networkmanager
+	sudo pacman -S --needed \
+		jdk17-openjdk python-pip
+
+elif [[ $release = debian ]]; then
+	sudo apt update && sudo apt upgrade -y
+	sudo apt install \
+		network-manager bind9-utils
+	sudo apt install \
+		openjdk-17-jdk python3-pip
+fi
+
+pip install black isort pynvim
 
 # 能直接安装的软件
 allInstall() {
 	if [[ $release = arch ]]; then
 		sudo pacMan -syyu
-		sudo pacman -S --needed archlinuxcn-keyring
-		if [[ $? != 0 ]]; then
-			sudo rm -rf /etc/pacman.d/gnupg
-			pacman-key --init
-			pacman-key --populate archlinux
-			pacman-key --populate archlinuxcn
-		fi
-		sudo pacman -S --needed yay paru
+
 		# 中文输入法
 		sudo pacman -S --needed \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
@@ -38,45 +78,25 @@ allInstall() {
 			ttf-hack
 
 		sudo pacman -S --needed \
-			clash dnsutils networkmanager \
-			ntfs-3g
-		# 开发工具
-		sudo pacman -S --needed \
-			jdk17-openjdk python-pip
+			clash ntfs-3g
 
 	elif [[ $release = debian ]]; then
 		sudo apt update && sudo apt upgrade -y
 		sudo apt install \
-			network-manager bind9-utils \
 			fonts-hack-ttf
-		# 开发工具
-		sudo apt install \
-			openjdk-17-jdk python3-pip
+
 		# 安装input-remapper
 		sudo apt install git python3-setuptools gettext
 		git clone https://github.com/sezanzeb/input-remapper.git
 		cd input-remapper && ./scripts/build.sh
 		sudo apt install ./dist/input-remapper-1.5.0.deb
-		rm -rf ./input-remapper
+        cd ..
+		rm -rf input-remapper
 	fi
 
 	sudo "$pacMan" "$opt" \
 		imagemagick mpv \
-		neofetch \
-		bc openssh man net-tools psmisc sudo trash-cli sysstat ripgrep wget \
-		nano vi vim \
-		kitty \
-		bash zsh zsh-autosuggestions zsh-syntax-highlighting
-
-	# 开发工具
-	sudo "$pacMan" "$opt" \
-		neovim \
-		python3 \
-		nodejs npm \
-		git \
-		shfmt
-	sudo npm install -g npm
-    sudo npm install -g tree-sitter-cli
+		kitty
 
 	# speedtest-cli    libglig2.0-dev
 }
@@ -141,52 +161,8 @@ createClashService() {
 	unset clashServer
 }
 
-# 发行版
-affirmOS
-
 if [[ $(uname -a | grep -c WSL) != 0 ]]; then
-	if [[ $release = arch ]]; then
-		sudo pacMan -syyu
-		sudo pacman -S --needed archlinuxcn-keyring
-		if [[ $? != 0 ]]; then
-			sudo rm -rf /etc/pacman.d/gnupg
-			pacman-key --init
-			pacman-key --populate archlinux
-			pacman-key --populate archlinuxcn
-		fi
-		sudo pacman -S --needed yay paru
-
-		sudo pacman -S --needed \
-			dnsutils networkmanager
-		# 开发工具
-		sudo pacman -S --needed \
-			jdk17-openjdk python-pip
-
-	elif [[ $release = debian ]]; then
-		sudo apt update && sudo apt upgrade -y
-		sudo apt install \
-			network-manager bind9-utils
-		# 开发工具
-		sudo apt install \
-			openjdk-17-jdk python3-pip
-	fi
-
-	# 开发工具
-	sudo "$pacMan" "$opt" \
-		neovim \
-		python3 \
-		nodejs npm \
-		git \
-		shfmt
-	sudo npm install -g npm
-    sudo npm install -g tree-sitter-cli
-
-	sudo "$pacMan" "$opt" \
-		neofetch \
-		openssh \
-		bc man net-tools psmisc sudo sysstat ripgrep trash-cli wget \
-		nano vi vim \
-		bash zsh zsh-autosuggestions zsh-syntax-highlighting
+    echo -n ""
 else
 	allInstall
 	yayInstall
