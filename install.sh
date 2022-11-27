@@ -38,8 +38,7 @@ allInstall() {
 
 		sudo pacman -S --needed \
 			clash dnsutils networkmanager \
-			ntfs-3g \
-			viu
+			ntfs-3g
 		# 开发工具
 		sudo pacman -S --needed \
 			jdk17-openjdk python-pip
@@ -72,6 +71,7 @@ allInstall() {
 		zsh-autosuggestions \
 		zsh-syntax-highlighting \
 		bash \
+        imagemagick \
 		openssh
 
 	# 开发工具
@@ -128,7 +128,7 @@ configInputRemapper() {
 	if [[ -f $remapper_config ]]; then
 		rm $remapper_config
 	fi
-	ln -s $dirPath./inputremapperconfig.json $remapper_config
+	ln -s $dirPath./input-remapper-config.json $remapper_config
 
 	unset remapper_dir remapper_config
 }
@@ -159,4 +159,4 @@ fc-cache -fv
 
 unset dirPath release pacMan opt
 # link config
-./linkConfig.sh
+~/.linuxConfig/linkConfig.sh

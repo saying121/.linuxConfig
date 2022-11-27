@@ -16,6 +16,10 @@ linkConfig() {
 	[[ -f $bashConfig ]] && rm "$bashConfig"
 	ln -s $dirPath/.bashrc ~/.bashrc
 
-	unset nvimConfig zshConfig bashConfig dirPath
+    kittyConfig=~/.config/kitty/kitty.conf
+	[[ -f $kittyConfig ]] && rm "$kittyConfig"
+    ln -s $dirPath/kitty.conf $kittyConfig
+
+	unset nvimConfig zshConfig bashConfig dirPath kittyConfig
 }
 linkConfig

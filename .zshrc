@@ -1,3 +1,5 @@
+. ~/.linuxConfig/common.sh
+
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
@@ -93,19 +95,15 @@ fi
 
 # 确定发行版
 if [[ `grep -c kali /etc/os-release` != 0 ]]; then
-    prompt_symbol=㉿
     zsh_syntax=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     zsh_autosuggestions=/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 elif [[ `grep -c ubuntu /etc/os-release` != 0 ]]; then
-    prompt_symbol=
     zsh_syntax=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     zsh_autosuggestions=/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 elif [[ `grep -c arch /etc/os-release` != 0 ]]; then
-    prompt_symbol=
     zsh_syntax=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     zsh_autosuggestions=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
-    prompt_symbol=
     zsh_syntax=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     zsh_autosuggestions=/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
@@ -233,36 +231,10 @@ precmd() {
 
 # enable color support of ls, less and man, and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    export LS_COLORS="$LS_COLORS:ow=30;44:" # fix ls color for folders with 777 permissions
-
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-    alias diff='diff --color=auto'
-    alias ip='ip --color=auto'
-
-    export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
-    export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
-    export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
-    export LESS_TERMCAP_so=$'\E[01;33m'    # begin reverse video
-    export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
-    export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
-    export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
-
     # Take advantage of $LS_COLORS for completion as well
     zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
     zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 fi
-
-# some more ls aliases
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -CF'
 
 # enable auto-suggestions based on the history
 if [ -f $zsh_autosuggestions ]; then
@@ -276,5 +248,5 @@ if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
 
-export all_proxy=http://127.0.0.1:7890
-export ALL_PROXY=$all_proxy
+alias proxy="source ~/proxy.sh"
+. ~/proxy.sh set
