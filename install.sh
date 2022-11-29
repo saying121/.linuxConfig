@@ -31,8 +31,8 @@ fi
 
 sudo "$pacMan" "$opt" \
 	neofetch figlet \
-    ranger ffmpeg \
-    htop \
+	ranger ffmpeg \
+	htop \
 	bc man net-tools psmisc sudo sysstat ripgrep trash-cli wget \
 	nano vim \
 	bash zsh zsh-autosuggestions zsh-syntax-highlighting
@@ -67,7 +67,6 @@ elif [[ $release = debian ]]; then
 		openjdk-17-jdk python3-pip
 fi
 
-
 # 能直接安装的软件
 allInstall() {
 	if [[ $release = arch ]]; then
@@ -85,7 +84,7 @@ allInstall() {
 	elif [[ $release = debian ]]; then
 		sudo apt update && sudo apt upgrade -y
 		sudo apt install \
-            openssh-* \
+			openssh-* \
 			fonts-hack-ttf
 
 		# 安装input-remapper
@@ -93,7 +92,7 @@ allInstall() {
 		git clone https://github.com/sezanzeb/input-remapper.git
 		cd input-remapper && ./scripts/build.sh
 		sudo apt install ./dist/input-remapper-1.5.0.deb
-        cd ..
+		cd ..
 		rm -rf input-remapper
 	fi
 
@@ -106,7 +105,7 @@ allInstall() {
 
 # aur才有的软件
 yayInstall() {
-    yay -Syyu
+	yay -Syyu
 	yay -S --needed \
 		icalingua++ \
 		input-remapper-git \
@@ -125,25 +124,32 @@ startServer() {
 }
 
 configForClash() {
-	clash_dir="/etc/clash/"
-	clash_config="$clash_dir"config.yaml
-	[[ -d $clash_dir ]] && echo -n "" || sudo mkdir "$clash_dir"
+	clash_dir="/etc/clash"
+	clash_config="$clash_dir"/config.yaml
+
+	if [[ -d $clash_dir ]]; then
+		echo -n ""
+	else
+		sudo mkdir "$clash_dir"
+	fi
 
 	# $1 写clash链接
 	sudo wget -O "$clash_config" "$1"
 
-	if [[ $release = arch ]]; then
-		sed -i 's/mixed-port:.*/mixed-port: 7890/' "$clash_config"
-		sed -i 's/enhanced-mode:.*/enhanced-mode: fake-ip/' "$clash_config"
-		sed -i 's/mode:.*/mode: rule/' "$clash_config"
-	fi
+	sudo sed -i 's/mixed-port:.*/mixed-port: 7890/' "$clash_config"
+	sudo sed -i 's/enhanced-mode:.*/enhanced-mode: fake-ip/' "$clash_config"
+	sudo sed -i 's/mode:.*/mode: rule/' "$clash_config"
 	unset clash_dir clash_config
 }
 
 configInputRemapper() {
 	remapper_dir="$HOME/.config/input-remapper"
 	remapper_config="$HOME/.config/input-remapper/config.json"
-	[[ -d $remapper_dir ]] && echo -n "" || mkdir -p "$remapper_dir"
+	if [[ -d $remapper_dir ]]; then
+		echo -n ""
+	else
+		mkdir -p "$remapper_dir"
+	fi
 
 	if [[ -f $remapper_config ]]; then
 		rm $remapper_config
@@ -166,7 +172,7 @@ createClashService() {
 }
 
 if [[ $(uname -a | grep -c WSL) != 0 ]]; then
-    echo -n ""
+	echo -n ""
 else
 	allInstall
 	yayInstall

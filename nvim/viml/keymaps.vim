@@ -32,8 +32,8 @@ nnoremap <leader>tc :tabclose<CR>
 nnoremap <leader>to :tabonly<CR>
 
 " 切换buffer
-nnoremap ]b :bn<CR>
-nnoremap [b :bp<CR>
+nnoremap <silent>]b :bn<CR>
+nnoremap <silent>[b :bp<CR>
 nnoremap ]B :blast<CR>
 nnoremap [B :bfirst<CR>
 
