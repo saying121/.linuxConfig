@@ -55,4 +55,4 @@ if [[ $(uname -a | grep -c WSL) != 0 ]]; then
 fi
 
 # ImageMagick must be installed for icat to work.
-alias catimg="kitty +kitten icat"
+alias icat="kitty +kitten icat"

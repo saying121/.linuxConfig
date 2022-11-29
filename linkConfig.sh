@@ -3,18 +3,34 @@
 linkConfig() {
 	dirPath=~/.linuxConfig
 
+    if [[ -d ~/.pip ]]
+    then
+        echo "有原来的pip配置，请手动操作"
+    else
+        ln -s $dirPath/pip ~/.pip
+    fi
+
 	nvimConfig=~/.config/nvim
 	if [[ -d $nvimConfig ]]; then
-        echo -n "有原来的nvim配置文件夹"
-    else
-        ln -s $dirPath/nvim "$nvimConfig"
+		echo "有原来的nvim配置文件夹,请手动操作"
+	else
+		ln -s $dirPath/nvim "$nvimConfig"
 	fi
 
-    rm ~/.vimrc && ln -s $dirPath/nvim/viml/init.vim ~/.vimrc
+	if [[ -f ~/.vimrc ]]; then
+		rm ~/.vimrc
+	fi
+	ln -s $dirPath/nvim/viml/init.vim ~/.vimrc
 
-    rm ~/.zshrc && ln -s $dirPath/shells/zshrc ~/.zshrc
+	if [[ -f ~/.zshrc ]]; then
+		rm ~/.zshrc
+	fi
+	ln -s $dirPath/shells/zshrc ~/.zshrc
 
-    rm ~/.bashrc && ln -s $dirPath/shells/bashrc ~/.bashrc
+	if [[ -f ~/.bashrc ]]; then
+		rm ~/.bashrc
+	fi
+	ln -s $dirPath/shells/bashrc ~/.bashrc
 
 	kittyConfig=~/.config/kitty/kitty.conf
 	if [[ -f $kittyConfig ]]; then

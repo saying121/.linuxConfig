@@ -30,10 +30,11 @@ if [[ $release = arch ]]; then
 fi
 
 sudo "$pacMan" "$opt" \
-	neofetch \
-	openssh \
+	neofetch figlet \
+    ranger ffmpeg \
+    htop \
 	bc man net-tools psmisc sudo sysstat ripgrep trash-cli wget \
-	nano vi vim \
+	nano vim \
 	bash zsh zsh-autosuggestions zsh-syntax-highlighting
 
 # 必装开发工具
@@ -44,8 +45,10 @@ sudo "$pacMan" "$opt" \
 	git \
 	shfmt
 
+# nvim配置
 sudo npm install -g npm
 sudo npm install -g tree-sitter-cli
+pip install black isort pynvim pipenv
 
 # 开发工具
 if [[ $release = arch ]]; then
@@ -64,7 +67,6 @@ elif [[ $release = debian ]]; then
 		openjdk-17-jdk python3-pip
 fi
 
-pip install black isort pynvim
 
 # 能直接安装的软件
 allInstall() {
@@ -78,11 +80,12 @@ allInstall() {
 			ttf-hack
 
 		sudo pacman -S --needed \
-			clash ntfs-3g
+			openssh clash ntfs-3g
 
 	elif [[ $release = debian ]]; then
 		sudo apt update && sudo apt upgrade -y
 		sudo apt install \
+            openssh-* \
 			fonts-hack-ttf
 
 		# 安装input-remapper
@@ -103,6 +106,7 @@ allInstall() {
 
 # aur才有的软件
 yayInstall() {
+    yay -Syyu
 	yay -S --needed \
 		icalingua++ \
 		input-remapper-git \

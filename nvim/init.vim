@@ -32,6 +32,11 @@ func! NvimSet()
         endif
     endif
 endfunc
+
+func! CocInstal()
+    exec 'term sudo apt install -y clangd'
+endfunc
+
 " ***********************************************************
 " 基础配置
 source $HOME/.config/nvim/viml/init.vim
@@ -44,12 +49,8 @@ lua require("init")
 " 安装依赖
 nnoremap <F2> :call InstallRely()<CR>
 func! InstallRely()
-    exec '!pip install black isort pynvim '
     exec 'PackerSync'
-    " exec 'term sudo apt install -y
-    "             \ shfmt'
-    " exec 'term sudo npm install -g tree-sitter-cli'
-    " exec 'call NvimSet()'
+    exec 'term ~/.linuxConfig/install.sh'
     " exec 'call CocInstal()'
 endfunc
 

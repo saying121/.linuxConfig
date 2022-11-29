@@ -80,6 +80,7 @@ read -p 'import your username: ' username
 useradd -m -G wheel "$username"
 passwd "$username"
 unset username
+# sed -i 's/# %whell ALL=(ALL:ALL) ALL/%whell ALL=(ALL:ALL) ALL/' /etc/sudoers
 
 # 引导和微码
 if [[ $(lscpu | grep -c AMD) != 0 ]]; then
@@ -98,7 +99,7 @@ pacman -S --needed \
 	kitty plasma packagekit-qt5 packagekit appstream-qt appstream
 
 # 中文字体
-sudo pacman -S --needed \
+pacman -S --needed \
 	adobe-source-han-serif-cn-fonts \
 	adobe-source-han-sans-cn-fonts \
 	wqy-zenhei \
@@ -111,3 +112,5 @@ sudo pacman -S --needed \
 exit
 umount -R /mnt
 echo "手动编辑visudo命令中的%wheel ALL=(ALL:ALL)ALL后重启"
+sleep 5
+EDITOR=vim visudo

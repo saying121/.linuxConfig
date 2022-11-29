@@ -7,6 +7,16 @@ nnoremap j gj
 nnoremap k gk
 set wrap
 
+" 大写h、l移动到行首、行尾非空白符号,行尾不包括换行符(包括就用$)
+nnoremap L g_
+vnoremap L g_
+nnoremap H ^
+vnoremap H ^
+
+" 选取进行缩进后还被选中
+vnoremap < <gv
+vnoremap > >gv
+
 " copy paste system clipboard
 " ^= 把值加到默认值前
 "*和"+有什么差别呢？
