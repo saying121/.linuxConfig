@@ -1,5 +1,6 @@
 let mapleader=";"
 nnoremap * *N
+nnoremap # #n
 
 " 映射按键
 nnoremap <leader>w :w<CR>
@@ -27,15 +28,15 @@ set clipboard^=unnamed          " *寄存器
 nnoremap Y  y$
 
 " 创建tab
-nnoremap <leader>tn :tabnew<CR>
-nnoremap <leader>tc :tabclose<CR>
-nnoremap <leader>to :tabonly<CR>
+nnoremap <silent><leader>tn :tabnew<CR>
+nnoremap <silent><leader>tc :tabclose<CR>
+nnoremap <silent><leader>to :tabonly<CR>
 
 " 切换buffer
 nnoremap <silent>]b :bn<CR>
 nnoremap <silent>[b :bp<CR>
-nnoremap ]B :blast<CR>
-nnoremap [B :bfirst<CR>
+nnoremap <silent>]B :blast<CR>
+nnoremap <silent>[B :bfirst<CR>
 
 " 切换窗口
 nnoremap <A-h> <C-w>h

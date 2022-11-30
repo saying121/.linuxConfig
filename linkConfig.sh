@@ -39,6 +39,12 @@ linkConfig() {
 	fi
 	ln -s $dirPath/shells/bashrc ~/.bashrc
     echo "链接了.bashrc"
+    if [[ -d ~/.local/shells ]]
+    then
+        echo -n ""
+    else
+        mkdir ~/.local/shells
+    fi
 
 	kittyConfig=~/.config/kitty/kitty.conf
 	if [[ -f $kittyConfig ]]; then

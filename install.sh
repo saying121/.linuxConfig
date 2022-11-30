@@ -97,7 +97,7 @@ allInstall() {
 		rm -rf input-remapper
 	fi
 
-	sudo "$pacMan" "$opt" \
+	sudo $pacMan \
 		imagemagick mpv \
 		kitty
 
@@ -124,24 +124,6 @@ startServer() {
 	sudo systemctl start input-remapper
 }
 
-configForClash() {
-	clash_dir="/etc/clash"
-	clash_config="$clash_dir"/config.yaml
-
-	if [[ -d $clash_dir ]]; then
-		echo -n ""
-	else
-		sudo mkdir "$clash_dir"
-	fi
-
-	# $1 写clash链接
-	sudo wget -O "$clash_config" "$1"
-
-	sudo sed -i 's/mixed-port:.*/mixed-port: 7890/' "$clash_config"
-	sudo sed -i 's/enhanced-mode:.*/enhanced-mode: fake-ip/' "$clash_config"
-	sudo sed -i 's/mode:.*/mode: rule/' "$clash_config"
-	unset clash_dir clash_config
-}
 
 configInputRemapper() {
 	remapper_dir="$HOME/.config/input-remapper"
@@ -160,30 +142,17 @@ configInputRemapper() {
 	unset remapper_dir remapper_config
 }
 
-createClashService() {
-	# ClashReallyPath=$(type awk | awk '{print$3}')
-	clashServer=$dirPath/clash.service
-	ln -s $clashServer /etc/systemd/system/clash.service
-	# sed -i "s/clashReallyPath/$ClashReallyPath/" $clashServer
-
-	sudo systemctl daemon-reload
-	sudo systemctl enable clash
-	sudo systemctl start clash
-	unset clashServer
-}
-
 if [[ $(uname -a | grep -c WSL) != 0 ]]; then
 	echo -n ""
 else
 	allInstall
 	yayInstall
-	configForClash "$1"
-	createClashService
 	startServer
 	configInputRemapper
+    $dirPath/configClash.sh
 
 	# 刷新字体
 	fc-cache -fv
 fi
 
-unset dirPath release pacMan opt
+unset dirPath release pacMan
