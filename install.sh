@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# link config
+~/.linuxConfig/linkConfig.sh
+
 dirPath=~/.linuxConfig
 if [[ $1 = -h || $1 = --help ]]; then
 	echo "Instal package,第一个参数跟clash订阅链接"
@@ -9,16 +12,14 @@ fi
 release=$(awk -F= '/ID_LIKE/{print $2}' /etc/os-release)
 
 if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
-	pacMan="apt"
-	opt="install"
+	pacMan="apt install"
 elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-	pacMan="pacman"
-	opt="-S --needed"
+	pacMan="pacman -S --needed"
 fi
 
 # 必装
 if [[ $release = arch ]]; then
-	sudo pacMan -syyu
+	sudo pacman -syyu
 	sudo pacman -S --needed archlinuxcn-keyring
 	if [[ $? != 0 ]]; then
 		sudo rm -rf /etc/pacman.d/gnupg
@@ -29,16 +30,16 @@ if [[ $release = arch ]]; then
 	sudo pacman -S --needed yay paru
 fi
 
-sudo "$pacMan" "$opt" \
+sudo $pacMan \
 	neofetch figlet \
 	ranger ffmpeg \
 	htop \
-	bc man net-tools psmisc sudo sysstat ripgrep trash-cli wget \
+	unzip bc man net-tools psmisc sudo sysstat ripgrep trash-cli wget \
 	nano vim \
 	bash zsh zsh-autosuggestions zsh-syntax-highlighting
 
 # 必装开发工具
-sudo "$pacMan" "$opt" \
+sudo $pacMan \
 	neovim \
 	python3 \
 	nodejs npm \
@@ -46,31 +47,31 @@ sudo "$pacMan" "$opt" \
 	shfmt
 
 # nvim配置
-sudo npm install -g npm
+sudo npm install -g npm neovim
 sudo npm install -g tree-sitter-cli
 pip install black isort pynvim pipenv
 
 # 开发工具
 if [[ $release = arch ]]; then
-	sudo pacMan -syyu
+	sudo pacman -syyu
 
 	sudo pacman -S --needed \
-		dnsutils networkmanager
+		dnsutils networkmanager fd
 	sudo pacman -S --needed \
-		jdk17-openjdk python-pip
+		jdk17-openjdk python-pip go
 
 elif [[ $release = debian ]]; then
 	sudo apt update && sudo apt upgrade -y
 	sudo apt install \
-		network-manager bind9-utils
+		network-manager bind9-utils fd-find
 	sudo apt install \
-		openjdk-17-jdk python3-pip
+		openjdk-17-jdk python3-pip golang-go
 fi
 
 # 能直接安装的软件
 allInstall() {
 	if [[ $release = arch ]]; then
-		sudo pacMan -syyu
+		sudo pacman -syyu
 
 		# 中文输入法
 		sudo pacman -S --needed \
@@ -186,5 +187,3 @@ else
 fi
 
 unset dirPath release pacMan opt
-# link config
-~/.linuxConfig/linkConfig.sh

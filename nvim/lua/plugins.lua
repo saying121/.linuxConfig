@@ -1,4 +1,4 @@
-local packer = require("packer")
+local packer = require('packer')
 packer.startup({
     function(use)
         use 'steelsojka/pears.nvim'
@@ -7,13 +7,13 @@ packer.startup({
             config = function() require('aerial').setup() end
         }
         use {
-            "LintaoAmons/scratch.nvim",
-            tag = "v0.2.0" -- use tag for stability, or without this to have latest fixed and functions
+            'LintaoAmons/scratch.nvim',
+            tag = 'v0.2.0' -- use tag for stability, or without this to have latest fixed and functions
         }
         use 'adelarsq/image_preview.nvim'
         use 'mfussenegger/nvim-dap'
-        use 'ravenxrz/DAPInstall.nvim'
-        use 'rcarriga/nvim-dap-ui' --左边
+        -- use 'ravenxrz/DAPInstall.nvim'
+        use 'rcarriga/nvim-dap-ui'
         use 'theHamsta/nvim-dap-virtual-text'
         use 'voldikss/vim-floaterm'
         use {
@@ -33,7 +33,7 @@ packer.startup({
         use 'neovim/nvim-lspconfig'
         use {
             'williamboman/mason.nvim',
-            "williamboman/mason-lspconfig.nvim",
+            'williamboman/mason-lspconfig.nvim',
         }
         use 'hrsh7th/cmp-nvim-lsp'
         use 'hrsh7th/nvim-cmp'
