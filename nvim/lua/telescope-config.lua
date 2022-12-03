@@ -1,4 +1,5 @@
 require('telescope').load_extension('media_files')
+require('telescope').load_extension('file_browser')
 require 'telescope'.setup {
     defaults = {
         -- Default configuration for telescope goes here:
@@ -36,7 +37,20 @@ require 'telescope'.setup {
             -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
             filetypes = { "png", "webp", "jpg", "jpeg" },
             find_cmd = "rg" -- find command (defaults to `fd`)
-        }
+        },
+        file_browser = {
+            theme = "ivy",
+            -- disables netrw and use telescope-file-browser in its place
+            hijack_netrw = true,
+            -- mappings = {
+            --   ["i"] = {
+            --     -- your custom insert mode mappings
+            --   },
+            --   ["n"] = {
+            --     -- your custom normal mode mappings
+            --   },
+            -- },
+        },
     },
 }
 local builtin = require('telescope.builtin')

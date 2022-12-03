@@ -33,16 +33,46 @@ require 'lspconfig'.jsonls.setup {
     flags = lsp.lsp_flags,
 }
 
-require 'lspconfig'.pyright.setup {
+-- require 'lspconfig'.pyright.setup {
+--     capabilities = capabilities,
+--     on_attach = lsp.on_attach,
+--     flags = lsp.lsp_flags,
+-- }
+
+require 'lspconfig'.pylsp.setup {
+    cmd = { 'pylsp' },
+    settings = {
+        pylsp = {
+            plugins = {
+                autopep8 = {
+                    enabled = false,
+                },
+                jedi = {
+                    auto_import_moduls = { 'numpy', 'math' },
+                },
+                -- 不提示格式
+                pycodestyle = {
+                    enabled = false,
+                },
+                rope_autoimport = {
+                    enabled = true,
+                    memory = true,
+                },
+                yapf = {
+                    enabled = false,
+                }
+            }
+        }
+    },
     capabilities = capabilities,
     on_attach = lsp.on_attach,
     flags = lsp.lsp_flags,
 }
 
--- require 'lspconfig'.pylsp.setup {
---     capabilities = capabilities,
---     on_attach = lsp.on_attach,
---     flags = lsp.lsp_flags,
+-- require 'lspconfig'.jedi_language_server.setup{
+--     capabilities=capabilities,
+--     on_attach=lsp.on_attach,
+--     flags=lsp.lsp_flags,
 -- }
 
 require 'lspconfig'.rust_analyzer.setup {

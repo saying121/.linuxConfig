@@ -28,6 +28,23 @@ if [[ $release = arch ]]; then
 		pacman-key --populate archlinuxcn
 	fi
 	sudo pacman -S --needed yay paru
+	# 配置clash
+	$dirPath/configClash.sh
+
+	# 开发工具
+	sudo pacman -syyu
+
+	sudo pacman -S --needed \
+		dnsutils networkmanager fd
+	sudo pacman -S --needed \
+		jdk17-openjdk python-pip go
+
+elif [[ $release = debian ]]; then
+	sudo apt update && sudo apt upgrade -y
+	sudo apt install \
+		network-manager bind9-utils fd-find
+	sudo apt install \
+		openjdk-17-jdk python3-pip golang-go
 fi
 
 sudo $pacMan \
@@ -49,24 +66,8 @@ sudo $pacMan \
 # nvim配置
 sudo npm install -g npm neovim
 sudo npm install -g tree-sitter-cli
-pip install black isort pynvim pipenv
-
-# 开发工具
-if [[ $release = arch ]]; then
-	sudo pacman -syyu
-
-	sudo pacman -S --needed \
-		dnsutils networkmanager fd
-	sudo pacman -S --needed \
-		jdk17-openjdk python-pip go
-
-elif [[ $release = debian ]]; then
-	sudo apt update && sudo apt upgrade -y
-	sudo apt install \
-		network-manager bind9-utils fd-find
-	sudo apt install \
-		openjdk-17-jdk python3-pip golang-go
-fi
+pip3 install black isort pynvim pipenv
+pip3 install pylsp-rope
 
 # 能直接安装的软件
 allInstall() {
@@ -98,8 +99,7 @@ allInstall() {
 	fi
 
 	sudo $pacMan \
-		imagemagick mpv \
-		kitty
+		imagemagick kitty mpv
 
 	# speedtest-cli    libglig2.0-dev
 }
@@ -123,7 +123,6 @@ startServer() {
 	sudo systemctl enable input-remapper
 	sudo systemctl start input-remapper
 }
-
 
 configInputRemapper() {
 	remapper_dir="$HOME/.config/input-remapper"
@@ -149,8 +148,6 @@ else
 	yayInstall
 	startServer
 	configInputRemapper
-    $dirPath/configClash.sh
-
 	# 刷新字体
 	fc-cache -fv
 fi

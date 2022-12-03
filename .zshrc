@@ -1,1 +1,0 @@
-/home/saying/.linuxConfig/shells/zshrc~/.zshrc

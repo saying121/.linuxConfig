@@ -10,12 +10,14 @@ local db = require('dashboard')
 --   --
 db.custom_center = {
     { icon = '  ', desc = 'New File                    ', shortcut = '', action = 'DashboardNewFile' },
-    { icon = '  ', desc = 'Recently lastest session    ', shortcut = '', action = 'SessionLoad' },
+    -- { icon = '  ', desc = 'Recently lastest session    ', shortcut = '', action = 'SessionLoad' },
+    -- { icon = '  ', desc = 'Change Head                 ', shortcut = '',
+    --     action = 'FloatermNew echo "输入数字"; read num; sed -i "s/^db.custom_header = .*/db.custom_header = head$num/" ~/.linuxConfig/nvim/lua/surface/dashboard-config.lua'; FloatermKill},
     { icon = '  ', desc = 'Recently opened files       ', shortcut = '', action = 'Telescope oldfiles' },
-    { icon = '  ', desc = 'Find File                   ', shortcut = '',
-        action = 'Telescope find_files find_command=rg,--hidden,--files' },
+    -- { icon = '  ', desc = 'Find File                   ', shortcut = '',
+    --     action = 'Telescope find_files find_command=rg,--hidden,--files' },
     -- { icon = '  ', desc = 'Find Word                   ', shortcut = '', action = 'Telescope live_grep' },
-    { icon = '  ', desc = 'File Browser                 ', shortcut = '',
+    { icon = '  ', desc = 'File Browser                ', shortcut = '',
         action = 'FloatermNew --height=0.8 --width=0.8 ranger' },
     { icon = 'ﮮ  ', desc = 'Update plugs                ', shortcut = '', action = 'PackerSync' },
     { icon = '  ', desc = 'Edit config                 ', shortcut = '', action = 'e $MYVIMRC' },

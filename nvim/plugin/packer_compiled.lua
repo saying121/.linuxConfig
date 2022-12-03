@@ -80,11 +80,8 @@ _G.packer_plugins = {
     url = "https://github.com/numToStr/Comment.nvim"
   },
   LuaSnip = {
-    after = { "friendly-snippets" },
-    load_after = {},
     loaded = true,
-    needs_bufread = true,
-    path = "/home/saying/.local/share/nvim/site/pack/packer/opt/LuaSnip",
+    path = "/home/saying/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["aerial.nvim"] = {
@@ -99,19 +96,13 @@ _G.packer_plugins = {
     url = "https://github.com/averms/black-nvim"
   },
   ["cmp-buffer"] = {
-    after_files = { "/home/saying/.local/share/nvim/site/pack/packer/opt/cmp-buffer/after/plugin/cmp_buffer.lua" },
-    load_after = {},
     loaded = true,
-    needs_bufread = false,
-    path = "/home/saying/.local/share/nvim/site/pack/packer/opt/cmp-buffer",
+    path = "/home/saying/.local/share/nvim/site/pack/packer/start/cmp-buffer",
     url = "https://github.com/hrsh7th/cmp-buffer"
   },
   ["cmp-cmdline"] = {
-    after_files = { "/home/saying/.local/share/nvim/site/pack/packer/opt/cmp-cmdline/after/plugin/cmp_cmdline.lua" },
-    load_after = {},
     loaded = true,
-    needs_bufread = false,
-    path = "/home/saying/.local/share/nvim/site/pack/packer/opt/cmp-cmdline",
+    path = "/home/saying/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
     url = "https://github.com/hrsh7th/cmp-cmdline"
   },
   ["cmp-nvim-lsp"] = {
@@ -120,25 +111,24 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
   ["cmp-path"] = {
-    after_files = { "/home/saying/.local/share/nvim/site/pack/packer/opt/cmp-path/after/plugin/cmp_path.lua" },
-    load_after = {},
     loaded = true,
-    needs_bufread = false,
-    path = "/home/saying/.local/share/nvim/site/pack/packer/opt/cmp-path",
+    path = "/home/saying/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
   ["cmp-spell"] = {
-    after_files = { "/home/saying/.local/share/nvim/site/pack/packer/opt/cmp-spell/after/plugin/cmp-spell.lua" },
-    load_after = {},
     loaded = true,
-    needs_bufread = false,
-    path = "/home/saying/.local/share/nvim/site/pack/packer/opt/cmp-spell",
+    path = "/home/saying/.local/share/nvim/site/pack/packer/start/cmp-spell",
     url = "https://github.com/f3fora/cmp-spell"
   },
   ["dashboard-nvim"] = {
     loaded = true,
     path = "/home/saying/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
     url = "https://github.com/glepnir/dashboard-nvim"
+  },
+  ["flit.nvim"] = {
+    loaded = true,
+    path = "/home/saying/.local/share/nvim/site/pack/packer/start/flit.nvim",
+    url = "https://github.com/ggandor/flit.nvim"
   },
   ["friendly-snippets"] = {
     load_after = {},
@@ -161,6 +151,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/saying/.local/share/nvim/site/pack/packer/start/isort.nvim",
     url = "https://github.com/stsewd/isort.nvim"
+  },
+  ["leap.nvim"] = {
+    loaded = true,
+    path = "/home/saying/.local/share/nvim/site/pack/packer/start/leap.nvim",
+    url = "https://github.com/ggandor/leap.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
@@ -201,6 +196,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/saying/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-notify"] = {
+    loaded = true,
+    path = "/home/saying/.local/share/nvim/site/pack/packer/start/nvim-notify",
+    url = "https://github.com/rcarriga/nvim-notify"
   },
   ["nvim-transparent"] = {
     loaded = true,
@@ -257,6 +257,11 @@ _G.packer_plugins = {
     path = "/home/saying/.local/share/nvim/site/pack/packer/start/scratch.nvim",
     url = "https://github.com/LintaoAmons/scratch.nvim"
   },
+  sniprun = {
+    loaded = true,
+    path = "/home/saying/.local/share/nvim/site/pack/packer/start/sniprun",
+    url = "https://github.com/michaelb/sniprun"
+  },
   ["telescope-file-browser.nvim"] = {
     loaded = true,
     path = "/home/saying/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
@@ -287,11 +292,6 @@ _G.packer_plugins = {
     path = "/home/saying/.local/share/nvim/site/pack/packer/start/vim-floaterm",
     url = "https://github.com/voldikss/vim-floaterm"
   },
-  ["vim-interestingwords"] = {
-    loaded = true,
-    path = "/home/saying/.local/share/nvim/site/pack/packer/start/vim-interestingwords",
-    url = "https://github.com/lfv89/vim-interestingwords"
-  },
   ["vim-shfmt"] = {
     loaded = false,
     needs_bufread = false,
@@ -318,13 +318,8 @@ try_loadstring("\27LJ\2\n4\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K
 time([[Config for aerial.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
-vim.cmd [[ packadd nvim-cmp ]]
 vim.cmd [[ packadd LuaSnip ]]
 vim.cmd [[ packadd friendly-snippets ]]
-vim.cmd [[ packadd cmp-buffer ]]
-vim.cmd [[ packadd cmp-spell ]]
-vim.cmd [[ packadd cmp-cmdline ]]
-vim.cmd [[ packadd cmp-path ]]
 time([[Sequenced loading]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]

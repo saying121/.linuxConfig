@@ -1,7 +1,10 @@
 local packer = require('packer')
 packer.startup({
     function(use)
-        use 'steelsojka/pears.nvim'
+        use 'rcarriga/nvim-notify'
+        use 'ggandor/flit.nvim'
+        use 'ggandor/leap.nvim'
+        use {'michaelb/sniprun',run='./install.sh'}
         use {
             'stevearc/aerial.nvim',
             config = function() require('aerial').setup() end
@@ -11,10 +14,11 @@ packer.startup({
             tag = 'v0.2.0' -- use tag for stability, or without this to have latest fixed and functions
         }
         use 'adelarsq/image_preview.nvim'
-        use 'mfussenegger/nvim-dap'
-        -- use 'ravenxrz/DAPInstall.nvim'
-        use 'rcarriga/nvim-dap-ui'
-        use 'theHamsta/nvim-dap-virtual-text'
+        use {
+            'mfussenegger/nvim-dap',
+            'rcarriga/nvim-dap-ui',
+            'theHamsta/nvim-dap-virtual-text',
+        }
         use 'voldikss/vim-floaterm'
         use {
             'nvim-tree/nvim-tree.lua',
@@ -23,46 +27,33 @@ packer.startup({
             },
             tag = 'nightly' -- optional, updated every week. (see issue #1193)
         }
-        use 'nvim-telescope/telescope-media-files.nvim'
-        use 'nvim-telescope/telescope-file-browser.nvim'
         use 'ahmedkhalf/project.nvim'
         use {
-            'nvim-telescope/telescope.nvim', tag = '0.1.0',
-            --依赖 apt install ripgrep
+            'nvim-telescope/telescope.nvim', tag = '0.1.0', --依赖 apt install ripgrep
+            'nvim-telescope/telescope-file-browser.nvim',
+            'nvim-telescope/telescope-media-files.nvim',
         }
-        use 'neovim/nvim-lspconfig'
         use {
+            'neovim/nvim-lspconfig',
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
         }
-        use 'hrsh7th/cmp-nvim-lsp'
-        use 'hrsh7th/nvim-cmp'
+        use {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/nvim-cmp',
+        }
         use {
             'hrsh7th/cmp-cmdline',
-            after = 'nvim-cmp'
-        }
-        use {
-            'hrsh7th/cmp-buffer',
-            after = 'nvim-cmp'
-        }
-        use {
             'hrsh7th/cmp-path',
-            after = 'nvim-cmp'
-        }
-        use {
             'f3fora/cmp-spell',
-            after = 'nvim-cmp'
-        }
-        use {
+            'hrsh7th/cmp-buffer',
             'L3MON4D3/LuaSnip',
-            after = 'nvim-cmp'
+            after = 'nvim-cmp',
         }
-        use {
-            'rafamadriz/friendly-snippets',
-            after = 'LuaSnip'
-        }
+        use { 'rafamadriz/friendly-snippets', after = 'LuaSnip' }
         -- use 'hrsh7th/cmp-vsnip'
         -- use 'hrsh7th/vim-vsnip'
+
         -- use {
         --     'neoclide/coc.nvim',
         --     branch = 'release'
@@ -73,33 +64,29 @@ packer.startup({
         }
         use 'wookayin/vim-autoimport' --导入包
         use {
-            'stsewd/isort.nvim',
-            run = ':UpdateRemotePlugins',
+            'stsewd/isort.nvim', run = ':UpdateRemotePlugins',
+            'averms/black-nvim',
         }
-        use 'averms/black-nvim'
-        -- use {
-        --     'fisadev/vim-isort',
-        --     ft={'python'}
-        -- }
-        use 'p00f/nvim-ts-rainbow'
         use {
-            'nvim-treesitter/nvim-treesitter',
-            run = ':TSUpdate'
+            'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',
+            'p00f/nvim-ts-rainbow',
         }
-        -- use 'itchyny/vim-cursorword'
-        use 'glepnir/dashboard-nvim'
         use 'nvim-lua/popup.nvim'
-        use 'lfv89/vim-interestingwords'
+        -- use 'itchyny/vim-cursorword'
+        -- use 'lfv89/vim-interestingwords'
         use 'nvim-lua/plenary.nvim'
         use {
-            'EdenEast/nightfox.nvim',
-            run = ':NightfoxCompile',
+            'EdenEast/nightfox.nvim', run = ':NightfoxCompile',
+            'folke/tokyonight.nvim',
+            'xiyaowong/nvim-transparent',
+            'lukas-reineke/indent-blankline.nvim',
+            'glepnir/dashboard-nvim',
         }
-        use 'folke/tokyonight.nvim'
-        use 'xiyaowong/nvim-transparent'
-        use 'numToStr/Comment.nvim'
-        use 'tpope/vim-surround'
-        use 'lukas-reineke/indent-blankline.nvim'
+        use {
+            'steelsojka/pears.nvim',
+            'numToStr/Comment.nvim',
+            'tpope/vim-surround',
+        }
         use 'voldikss/vim-translator'
         use 'wbthomason/packer.nvim'
     end,

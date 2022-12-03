@@ -16,6 +16,7 @@ sudo wget -O "$clash_config" "$1"
 sudo sed -i 's/^mixed-port:.*/mixed-port: 7890/' "$clash_config"
 sudo sed -i 's/enhanced-mode:.*/enhanced-mode: fake-ip/' "$clash_config"
 sudo sed -i 's/^mode:.*/mode: rule/' "$clash_config"
+sudo sed -i 's/^allow-lan:.*/allow-lan: true/' "$clash_config"
 unset clash_dir clash_config
 
 createClashService() {

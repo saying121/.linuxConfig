@@ -1,11 +1,16 @@
 let mapleader=";"
 nnoremap * *N
+vnoremap * *N
 nnoremap # #n
+vnoremap # #n
+nnoremap ,, ggVG
 
 " 映射按键
 nnoremap <leader>w :w<CR>
 nnoremap j gj
 nnoremap k gk
+nnoremap $ g$
+nnoremap 0 g0
 set wrap
 
 " 大写h、l移动到行首、行尾非空白符号,行尾不包括换行符(包括就用$)

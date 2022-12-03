@@ -59,4 +59,4 @@ function FoldConfig()
     set foldmethod=expr
     set foldexpr=nvim_treesitter#foldexpr()
 endfunction
-autocmd BufAdd,BufEnter,BufNew,BufNewFile,BufWinEnter * :call FoldConfig()
+autocmd BufAdd,BufEnter,BufNewFile,BufWinEnter * :call FoldConfig()
