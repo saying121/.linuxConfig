@@ -95,6 +95,16 @@ _G.packer_plugins = {
     path = "/home/saying/.local/share/nvim/site/pack/packer/start/black-nvim",
     url = "https://github.com/averms/black-nvim"
   },
+  ["cellular-automaton.nvim"] = {
+    loaded = true,
+    path = "/home/saying/.local/share/nvim/site/pack/packer/start/cellular-automaton.nvim",
+    url = "https://github.com/eandrju/cellular-automaton.nvim"
+  },
+  ["chatgpt.nvim"] = {
+    loaded = true,
+    path = "/home/saying/.local/share/nvim/site/pack/packer/start/chatgpt.nvim",
+    url = "https://github.com/terror/chatgpt.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/saying/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -203,11 +213,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/saying/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
-  },
-  ["nvim-notify"] = {
-    loaded = true,
-    path = "/home/saying/.local/share/nvim/site/pack/packer/start/nvim-notify",
-    url = "https://github.com/rcarriga/nvim-notify"
   },
   ["nvim-transparent"] = {
     loaded = true,
@@ -336,8 +341,8 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType sh ++once lua require("packer.load")({'vim-shfmt'}, { ft = "sh" }, _G.packer_plugins)]]
 vim.cmd [[au FileType markdown ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType sh ++once lua require("packer.load")({'vim-shfmt'}, { ft = "sh" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 

@@ -1,5 +1,8 @@
 #! /bin/bash
 
+if [[ $1 = -h || $1 = --help ]]; then
+	echo "Instal package,第一个参数跟clash订阅链接"
+fi
 dirPath=~/.linuxConfig
 clash_dir="/etc/clash"
 clash_config="$clash_dir"/config.yaml

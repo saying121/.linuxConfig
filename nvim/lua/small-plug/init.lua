@@ -1,8 +1,10 @@
 -- 快速注释
-require'small-plug.comment-nvim'
+require 'small-plug.comment-nvim'
 -- 自动括号
-require'small-plug.pears-config'
+require 'small-plug.pears-config'
 -- 光标移动
-require'small-plug.leap-config'
+require 'small-plug.leap-and-flit'
 -- 片段测试
-require'small-plug.sniprun-config'
+require 'small-plug.sniprun-config'
+-- 动画
+require 'small-plug.cellular-automaton'

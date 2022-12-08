@@ -2,11 +2,16 @@ local packer = require('packer')
 packer.startup({
     function(use)
         use {
+            'terror/chatgpt.nvim',
+            run = 'pip3 install -r requirements.txt'
+        }
+        use 'eandrju/cellular-automaton.nvim'
+        use {
             'iamcco/markdown-preview.nvim', run = 'cd app && npm install',
             setup = function() vim.g.mkdp_filetypes = { 'markdown' } end,
             ft = { 'markdown' },
         }
-        use 'rcarriga/nvim-notify'
+        -- use 'rcarriga/nvim-notify'
         use 'ggandor/flit.nvim'
         use 'ggandor/leap.nvim'
         use { 'michaelb/sniprun', run = './install.sh' }
@@ -28,7 +33,7 @@ packer.startup({
         use {
             'nvim-tree/nvim-tree.lua',
             requires = {
-                'nvim-tree/nvim-web-devicons', -- optional, for file icons
+                'nvim-tree/nvim-web-devicons', -- file icons
             },
             tag = 'nightly' -- optional, updated every week. (see issue #1193)
         }

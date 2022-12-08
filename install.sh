@@ -4,9 +4,6 @@
 ~/.linuxConfig/linkConfig.sh
 
 dirPath=~/.linuxConfig
-if [[ $1 = -h || $1 = --help ]]; then
-	echo "Instal package,第一个参数跟clash订阅链接"
-fi
 
 # 确定发行版
 release=$(awk -F= '/ID_LIKE/{print $2}' /etc/os-release)
@@ -28,7 +25,7 @@ if [[ $release = arch ]]; then
 		pacman-key --populate archlinuxcn
 	fi
 	sudo pacman -S --needed yay paru
-	# 配置clash
+	# 调用关于clash的脚本，配置clash
 	$dirPath/configClash.sh
 
 	# 开发工具
@@ -37,7 +34,7 @@ if [[ $release = arch ]]; then
 	sudo pacman -S --needed \
 		dnsutils networkmanager fd
 	sudo pacman -S --needed \
-		jdk17-openjdk python-pip go
+		jdk17-openjdk python-pip go clash
 
 elif [[ $release = debian ]]; then
 	sudo apt update && sudo apt upgrade -y
@@ -64,10 +61,17 @@ sudo $pacMan \
 	shfmt
 
 # nvim配置
+if [[ -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
+	echo 'packer.nvim已安装'
+else
+	git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+		~/.local/share/nvim/site/pack/packer/start/packer.nvim
+fi
 sudo npm install -g npm neovim
 sudo npm install -g tree-sitter-cli
 pip3 install black isort pynvim pipenv
 pip3 install pylsp-rope
+nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 # 能直接安装的软件
 allInstall() {
@@ -78,10 +82,10 @@ allInstall() {
 		sudo pacman -S --needed \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 			fcitx5-pinyin-zhwiki fcitx5-material-color \
-			ttf-hack
+			ttf-hack nerd-fonts-hack
 
 		sudo pacman -S --needed \
-			openssh clash ntfs-3g
+			openssh ntfs-3g
 
 	elif [[ $release = debian ]]; then
 		sudo apt update && sudo apt upgrade -y
@@ -100,7 +104,10 @@ allInstall() {
 
 	sudo $pacMan \
 		imagemagick kitty mpv
+	# tmux
 
+	# tmux 插件管理器
+	# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	# speedtest-cli    libglig2.0-dev
 }
 
@@ -112,7 +119,8 @@ yayInstall() {
 		input-remapper-git \
 		libreoffice \
 		microsoft-edge-stable-bin \
-		yesplaymusic
+		yesplaymusic \
+		ldr-translate-qt
 }
 
 # 开启服务

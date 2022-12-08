@@ -43,7 +43,7 @@ set softtabstop=4    " 将连续数量的空格视作一个tab,可以一次删�
 " set noexpandtab        " 不要用空格符代表制表符
 
 " 临时文件
-set updatetime=100
+set updatetime=10
 set writebackup    " 编辑时备份文件
 set backup        " 备份文件
 set backupdir=~/.local/share/nvim/backupdir     " 设置备份文件目录

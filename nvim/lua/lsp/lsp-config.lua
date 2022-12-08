@@ -51,7 +51,7 @@ M.on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
     pcall(vim.cmd, [[
-    nnoremap <silent><space>fc :call FormatCode()<CR>:w<CR>
+    nnoremap <silent><space>f :call FormatCode()<CR>:w<CR>
 
     func! FormatCode()
     if &filetype=='python'
@@ -64,25 +64,25 @@ M.on_attach = function(client, bufnr)
     endif
     endfunc
 ]]   )
+end
 
-    if client.server_capabilities.document_highlight then
-        -- vim.cmd('augroup LspHighlight')
-        -- vim.cmd('autocmd!')
-        -- vim.cmd('autocmd <buffer> CursorHold lua vim.lsp.buf.document_highlight()')
-        -- vim.cmd('autocmd <buffer> CursorMoved lua vim.lsp.buf.clear_references()')
-        -- vim.cmd('augroup END')
-        pcall(vim.cmd,
-            [[
+-- if client.server_capabilities.document_highlight then
+-- vim.cmd('augroup LspHighlight')
+-- vim.cmd('autocmd!')
+-- vim.cmd('autocmd <buffer> CursorHold lua vim.lsp.buf.document_highlight()')
+-- vim.cmd('autocmd <buffer> CursorMoved lua vim.lsp.buf.clear_references()')
+-- vim.cmd('augroup END')
+pcall(vim.cmd,
+    [[
             augroup LspHighlight
             autocmd!
-                autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()
-                autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+                autocmd CursorHold  *.py,*.lua,*.java,*.c,*.cpp lua vim.lsp.buf.document_highlight()
+                autocmd CursorHoldI *.py,*.lua,*.java,*.c,*.cpp lua vim.lsp.buf.document_highlight()
+                autocmd CursorMoved *.py,*.lua,*.java,*.c,*.cpp lua vim.lsp.buf.clear_references()
             augroup END
             ]]
-        )
-    end
-end
+)
+-- end
 
 M.lsp_flags = {
     -- This is the default in Nvim 0.7+

@@ -8,18 +8,22 @@ function! StatuslineGit()
     return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
-function! Linux()
-    if system("grep -c kali /etc/os-release")>=1
+function! LinuxRelease()
+    if has('win')
+        let l:prompy_symbol=' '
+    elseif has('win')
+        let l:prompy_symbol=' '
+    elseif system("grep -c kali /etc/os-release")>=1
         let l:prompy_symbol=' '
-    elseif system("grep -c ubuntu /etc/os-release")>=1
-        let l:prompy_symbol=' '
     elseif system("grep -c arch /etc/os-release")>=1
         let l:prompy_symbol=' '
-    elseif system("grep -c suse/etc/os-release")>=1
+    elseif system("grep -c ubuntu /etc/os-release")>=1
+        let l:prompy_symbol=' '
+    elseif system("grep -c suse /etc/os-release")>=1
         let l:prompy_symbol=' '
-    elseif system("grep -c manjaro/etc/os-release")>=1
+    elseif system("grep -c manjaro /etc/os-release")>=1
         let l:prompy_symbol=' '
-    elseif system("grep -c pop/etc/os-release")>=1
+    elseif system("grep -c pop /etc/os-release")>=1
         let l:prompy_symbol=' '
     else
         let l:prompy_symbol=' '
@@ -29,33 +33,33 @@ endfunction
 
 func! FileType()
     if &filetype=='c'
-        let l:prompy_symbol=' '
+        let l:prompy_symbol='  '
     elseif &filetype=='cpp'
-        let l:prompy_symbol='ﭱ '
+        let l:prompy_symbol='ﭱ  '
     elseif &filetype=='java'
-        let l:prompy_symbol=' '
+        let l:prompy_symbol='  '
     elseif &filetype=='javascript'
-        let l:prompy_symbol=' '
+        let l:prompy_symbol='  '
     elseif &filetype=='html'
-        let l:prompy_symbol=''
+        let l:prompy_symbol='  '
     elseif &filetype=='json'
-        let l:prompy_symbol=''
+        let l:prompy_symbol='  '
     elseif &filetype=='sh'
-        let l:prompy_symbol=' '
+        let l:prompy_symbol='  '
     elseif &filetype=='python'
-        let l:prompy_symbol=' '
+        let l:prompy_symbol='  '
     elseif &filetype=='lua'
-        let l:prompy_symbol=''
+        let l:prompy_symbol='  '
     elseif &filetype=='go'
-        let l:prompy_symbol=''
+        let l:prompy_symbol='  '
     elseif &filetype=='vim'
-        let l:prompy_symbol=''
+        let l:prompy_symbol='  '
     elseif &filetype=='markdown'
-        let l:prompy_symbol=' '
-    elseif &filetype=='text'
-        let l:prompy_symbol=''
+        let l:prompy_symbol='  '
+    elseif &filetype=='txt'
+        let l:prompy_symbol='  '
     else
-        let l:prompy_symbol=&filetype
+        return '[' .. &filetype .. ']'
     endif
     return prompy_symbol
 endfunc
@@ -66,9 +70,9 @@ set statusline=%1*\%{StatuslineGit()}
 set statusline+=%2*\%<%.50F\                "显示文件名和文件路径 (%<应该可以去掉)
 " set statusline+=%7*\%{StatusDiagnostic()}\
 " set statusline+=%=%3*\\|%O[%b]%y%m%r%h%w\ %*        "显示文件类型及文件状态
-set statusline+=%=%3*\\|%O[%b]\[%{FileType()}\]%m%r%h%w\%*        "显示文件类型及文件状态
+set statusline+=%=%3*\\|%O[%b]%m%{FileType()}%r%h%w\%*        "显示文件类型及文件状态
 " set statusline+=%4*\%{&ff}\[%{&fenc}]\%*   "显示系统，文件编码类型
-set statusline+=%{Linux()}
+set statusline+=%{LinuxRelease()}
 set statusline+=%4*\ \[%{&fenc}]\%*   "显示系统，文件编码类型
 set statusline+=%5*\ row:%l/%L\|col:%c\ %*   "显示光标所在行和列
 set statusline+=%6*\%3p%%\%*                "显示光标前文本所占总文本的比例

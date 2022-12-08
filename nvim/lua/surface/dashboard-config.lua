@@ -7,9 +7,15 @@ local db = require('dashboard')
 -- db.preview_file_height = 14
 -- db.preview_file_width = 100
 
+pcall(vim.cmd[[
+function! Rain()
+    exec ':CellularAutomaton game_of_life'
+    normal i<esc>
+endfunction
+]])
 --   --
 db.custom_center = {
-    { icon = '  ', desc = 'New File                    ', shortcut = '', action = 'DashboardNewFile' },
+    { icon = '  ', desc = 'Animations                  ', shortcut = '', action = 'call Rain()' },
     -- { icon = '  ', desc = 'Recently lastest session    ', shortcut = '', action = 'SessionLoad' },
     -- { icon = '  ', desc = 'Change Head                 ', shortcut = '',
     --     action = 'FloatermNew echo "输入数字"; read num; sed -i "s/^db.custom_header = .*/db.custom_header = head$num/" ~/.linuxConfig/nvim/lua/surface/dashboard-config.lua'; FloatermKill},
