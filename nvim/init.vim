@@ -12,10 +12,3 @@ func! InstallRely()
     exec 'PackerSync'
     exec 'term ~/.linuxConfig/install.sh'
 endfunc
-
-" 代码折叠
-function FoldConfig()
-    set foldmethod=expr
-    set foldexpr=nvim_treesitter#foldexpr()
-endfunction
-autocmd BufAdd,BufEnter,BufNewFile,BufWinEnter * :call FoldConfig()

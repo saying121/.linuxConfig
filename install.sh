@@ -73,6 +73,8 @@ pip3 install black isort pynvim pipenv
 pip3 install pylsp-rope
 nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
+# **********************************************************************************************************
+
 # 能直接安装的软件
 allInstall() {
 	if [[ $release = arch ]]; then
@@ -100,6 +102,7 @@ allInstall() {
 		sudo apt install ./dist/input-remapper-1.5.0.deb
 		cd ..
 		rm -rf input-remapper
+
 	fi
 
 	sudo $pacMan \

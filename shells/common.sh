@@ -60,3 +60,5 @@ fi
 
 # ImageMagick must be installed for icat to work.
 alias icat="kitty +kitten icat"
+
+alias clashconf="~/.linuxConfig/configClash.sh"

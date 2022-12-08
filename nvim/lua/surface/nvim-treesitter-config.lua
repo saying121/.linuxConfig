@@ -44,3 +44,11 @@ require 'nvim-treesitter.configs'.setup {
         -- termcolors = {} -- table of colour name strings
     }
 }
+pcall(vim.cmd, [[
+    " 代码折叠
+    function FoldConfig()
+        set foldmethod=expr
+        set foldexpr=nvim_treesitter#foldexpr()
+    endfunction
+    autocmd BufAdd,BufEnter,BufNewFile,BufWinEnter * :call FoldConfig()
+]])
