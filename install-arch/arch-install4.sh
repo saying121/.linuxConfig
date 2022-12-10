@@ -2,7 +2,8 @@
 
 # kde桌面，终端
 pacman -S --needed \
-	kitty plasma packagekit-qt5 packagekit appstream-qt appstream
+	kitty plasma packagekit-qt5 packagekit appstream-qt appstream \
+    networkmanager wget
 
 # 中文字体
 pacman -S --needed \
@@ -13,7 +14,15 @@ pacman -S --needed \
 	noto-fonts-cjk \
 	noto-fonts-emoji \
 	noto-fonts-extra \
-	ttf-dejavu
+	ttf-hack tf-dejavu
 
+echo '
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+SDL_IM_MODULE=fcitx
+GLFW_IM_MODULE=ibus' >> /etc/environment
+
+systemctl enable sddm NetworkManager
 echo 'exit 后执行 umount -R /mnt'
 echo "手动编辑visudo命令中的%wheel ALL=(ALL:ALL)ALL后重启"

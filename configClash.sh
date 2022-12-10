@@ -2,7 +2,7 @@
 
 if [[ --help =~ $1 ]]; then
 	echo "第一个参数跟clash订阅链接"
-    exit 0
+#    exit 0
 fi
 dirPath=~/.linuxConfig
 clash_dir="/etc/clash"
@@ -15,8 +15,9 @@ else
 fi
 
 # $1 写clash链接
-sudo wget -O "$clash_config" "$1"
-
+if [[ -n $1 ]]; then
+	sudo wget -O "$clash_config" "$1"
+fi
 sudo sed -i 's/^mixed-port:.*/mixed-port: 7890/' "$clash_config"
 sudo sed -i 's/enhanced-mode:.*/enhanced-mode: fake-ip/' "$clash_config"
 sudo sed -i 's/^mode:.*/mode: rule/' "$clash_config"
@@ -29,7 +30,7 @@ createClashService() {
 	if [[ -f $clashServer ]]; then
 		echo "已有clash服务"
 	else
-		sudo ln -s $clashServer /etc/systemd/system/clash.service
+		sudo mv $clashServer /etc/systemd/system/clash.service
 	fi
 	# sed -i "s/clashReallyPath/$ClashReallyPath/" $clashServer
 

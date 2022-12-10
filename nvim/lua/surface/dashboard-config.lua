@@ -94,7 +94,7 @@ local head3 = {
     " .`                                 `/. ",
 }
 
-db.custom_header = head2
+db.custom_header = head3
 
 local footer1 = {
     [[..............................................................................]],

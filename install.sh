@@ -5,17 +5,29 @@
 
 dirPath=~/.linuxConfig
 
-# 确定发行版
-release=$(awk -F= '/ID_LIKE/{print $2}' /etc/os-release)
-
 if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	pacMan="apt install"
 elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	pacMan="pacman -S --needed"
 fi
 
+	sudo pacman -S --needed archlinuxcn-keyring
+	if [[ $? != 0 ]]; then
+		sudo rm -rf /etc/pacman.d/gnupg
+		pacman-key --init
+		pacman-key --populate archlinux
+		pacman-key --populate archlinuxcn
+	fi
+	sudo pacman -S --needed yay paru
+	# 开发工具
+	sudo pacman -syyu
+
+	sudo pacman -S --needed \
+		dnsutils networkmanager fd tree
+	sudo pacman -S --needed \
+		jdk17-openjdk python-pip go clash
 # 必装
-if [[ $release = arch ]]; then
+if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	sudo pacman -syyu
 	sudo pacman -S --needed archlinuxcn-keyring
 	if [[ $? != 0 ]]; then
@@ -26,7 +38,7 @@ if [[ $release = arch ]]; then
 	fi
 	sudo pacman -S --needed yay paru
 	# 调用关于clash的脚本，配置clash
-	$dirPath/configClash.sh
+	# $dirPath/configClash.sh
 
 	# 开发工具
 	sudo pacman -syyu
@@ -36,7 +48,7 @@ if [[ $release = arch ]]; then
 	sudo pacman -S --needed \
 		jdk17-openjdk python-pip go clash
 
-elif [[ $release = debian ]]; then
+elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	sudo apt update && sudo apt upgrade -y
 	sudo apt install \
 		network-manager bind9-utils fd-find
@@ -77,19 +89,21 @@ nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 # 能直接安装的软件
 allInstall() {
-	if [[ $release = arch ]]; then
+	if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		sudo pacman -syyu
 
 		# 中文输入法
 		sudo pacman -S --needed \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 			fcitx5-pinyin-zhwiki fcitx5-material-color \
-			ttf-hack nerd-fonts-hack
+			nerd-fonts-hack
 
 		sudo pacman -S --needed \
 			openssh ntfs-3g
 
-	elif [[ $release = debian ]]; then
+        # 蓝牙耳机
+        sudo pacman -S pulseaudio-bluetooth pulsemixer
+	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		sudo apt update && sudo apt upgrade -y
 		sudo apt install \
 			openssh-* \
@@ -106,7 +120,8 @@ allInstall() {
 	fi
 
 	sudo $pacMan \
-		imagemagick kitty mpv
+		imagemagick kitty mpv flameshot xclip \
+        steam
 	# tmux
 
 	# tmux 插件管理器
@@ -123,7 +138,8 @@ yayInstall() {
 		libreoffice \
 		microsoft-edge-stable-bin \
 		yesplaymusic \
-		ldr-translate-qt
+		ldr-translate-qt \
+        vim-fcit
 }
 
 # 开启服务
@@ -133,6 +149,8 @@ startServer() {
 
 	sudo systemctl enable input-remapper
 	sudo systemctl start input-remapper
+
+	sudo systemctl enable sddm
 }
 
 configInputRemapper() {
@@ -163,4 +181,4 @@ else
 	fc-cache -fv
 fi
 
-unset dirPath release pacMan
+unset dirPath pacMan
