@@ -70,7 +70,13 @@ ZSH_CUSTOM=$ZSH/custom
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git web-search command-not-found)
+plugins=(git gitignore git-open
+    web-search
+    command-not-found
+    sudo
+    cp
+    extract
+    colored-man-pages)
 
 source $ZSH/oh-my-zsh.sh
 

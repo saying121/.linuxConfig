@@ -36,3 +36,8 @@ augroup File
     autocmd BufNewFile *.sh silent 0r ~/.config/nvim/viml/template/shell.txt | normal G
     autocmd BufNewFile *.py silent 0r ~/.config/nvim/viml/template/python3.txt| normal G
 augroup END
+" 自动展开markdown文件
+augroup markdown
+    autocmd!
+    autocmd VimEnter *.md normal zA
+augroup END

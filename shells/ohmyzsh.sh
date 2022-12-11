@@ -13,6 +13,10 @@ ln -s ~/.linuxConfig/shells/.zshrc ~/.zshrc
 # 安装web-search
 git clone https://github.com/lesonky/web-search.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/web-search
 
+# 安装git-open
+sudo npm install --global git-open
+git clone https://github.com/paulirish/git-open.git $ZSH_CUSTOM/plugins/git-open
+
 if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	# 启用command-not-found
 	sudo pacman -S pkgfile

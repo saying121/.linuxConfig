@@ -62,3 +62,5 @@ fi
 alias icat="kitty +kitten icat"
 
 alias clashconf="~/.linuxConfig/configClash.sh"
+alias clashrestart="sudo systemctl restart clash.service"
+alias clashstatus="systemctl status clash.service"
