@@ -7,8 +7,8 @@ lua require("init")
 " ***********************************************************
 
 " 安装依赖
-nnoremap <F2> :call InstallRely()<CR>
+" nnoremap <F2> :call InstallRely()<CR>
 func! InstallRely()
     exec 'PackerSync'
-    exec 'term ~/.linuxConfig/install.sh'
+    " exec 'term ~/.linuxConfig/install.sh'
 endfunc

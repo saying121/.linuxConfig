@@ -12,11 +12,11 @@ locale-gen
 echo 'LANG=en_US.UTF-8' >>/etc/locale.conf
 
 sed -i 's/#Color/Color/' /etc/pacman.conf
-echo '[multilib]' >>/etc/pacman.conf
-echo 'Include = /etc/pacman.d/mirrorlist' >>/etc/pacman.conf
-echo '[archlinuxcn]' >>/etc/pacman.conf
-echo 'Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch' >>/etc/pacman.conf
-echo 'Server = http://mirrors.163.com/archlinux-cn/$arch' >>/etc/pacman.conf
+echo '[multilib]
+Include = /etc/pacman.d/mirrorlist
+[archlinuxcn]
+Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+Server = http://mirrors.163.com/archlinux-cn/$arch' >>/etc/pacman.conf
 
 echo "root's passwd"
 passwd

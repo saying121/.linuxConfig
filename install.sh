@@ -11,24 +11,9 @@ elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	pacMan="pacman -S --needed"
 fi
 
-	sudo pacman -S --needed archlinuxcn-keyring
-	if [[ $? != 0 ]]; then
-		sudo rm -rf /etc/pacman.d/gnupg
-		pacman-key --init
-		pacman-key --populate archlinux
-		pacman-key --populate archlinuxcn
-	fi
-	sudo pacman -S --needed yay paru
-	# 开发工具
-	sudo pacman -syyu
-
-	sudo pacman -S --needed \
-		dnsutils networkmanager fd tree
-	sudo pacman -S --needed \
-		jdk17-openjdk python-pip go clash
 # 必装
 if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-	sudo pacman -syyu
+	sudo pacman -syu
 	sudo pacman -S --needed archlinuxcn-keyring
 	if [[ $? != 0 ]]; then
 		sudo rm -rf /etc/pacman.d/gnupg
@@ -41,24 +26,24 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	# $dirPath/configClash.sh
 
 	# 开发工具
-	sudo pacman -syyu
+	sudo pacman -syu
 
 	sudo pacman -S --needed \
-		dnsutils networkmanager fd
+		dnsutils networkmanager fd tree p7zip
 	sudo pacman -S --needed \
 		jdk17-openjdk python-pip go clash
 
 elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	sudo apt update && sudo apt upgrade -y
 	sudo apt install \
-		network-manager bind9-utils fd-find
+		network-manager bind9-utils fd-find p7zip-full
 	sudo apt install \
 		openjdk-17-jdk python3-pip golang-go
 fi
 
 sudo $pacMan \
 	neofetch figlet \
-	ranger ffmpeg \
+	dolphin ranger ffmpeg stardict \
 	htop \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep trash-cli wget \
 	nano vim \
@@ -90,19 +75,19 @@ nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 # 能直接安装的软件
 allInstall() {
 	if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-		sudo pacman -syyu
+		sudo pacman -syu
 
 		# 中文输入法
 		sudo pacman -S --needed \
-			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
+			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl vim-fcit \
 			fcitx5-pinyin-zhwiki fcitx5-material-color \
 			nerd-fonts-hack
 
 		sudo pacman -S --needed \
-			openssh ntfs-3g
+			openssh ntfs-3g xorg-xmodmap
 
-        # 蓝牙耳机
-        sudo pacman -S pulseaudio-bluetooth pulsemixer
+		# 蓝牙耳机
+		sudo pacman -S pulseaudio-bluetooth pulsemixer
 	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		sudo apt update && sudo apt upgrade -y
 		sudo apt install \
@@ -121,7 +106,7 @@ allInstall() {
 
 	sudo $pacMan \
 		imagemagick kitty mpv flameshot xclip \
-        steam
+		steam
 	# tmux
 
 	# tmux 插件管理器
@@ -131,15 +116,15 @@ allInstall() {
 
 # aur才有的软件
 yayInstall() {
-	yay -Syyu
+	yay -Syu
 	yay -S --needed \
 		icalingua++ \
 		input-remapper-git \
 		libreoffice \
-		microsoft-edge-stable-bin \
-		yesplaymusic \
+		microsoft-edge-stable-bin visual-studio-code-bin intellij-idea-ultimate-edition \
+		yesplaymusic netease-cloud-music \
 		ldr-translate-qt \
-        vim-fcit
+		xnviewmp
 }
 
 # 开启服务
@@ -154,12 +139,12 @@ startServer() {
 }
 
 configInputRemapper() {
-	remapper_dir="$HOME/.config/input-remapper"
-	remapper_config="$HOME/.config/input-remapper/config.json"
+	remapper_dir=$HOME/.config/input-remapper
+	remapper_config=$HOME/.config/input-remapper/config.json
 	if [[ -d $remapper_dir ]]; then
 		echo -n ""
 	else
-		mkdir -p "$remapper_dir"
+		mkdir -p $remapper_dir
 	fi
 
 	if [[ -f $remapper_config ]]; then
@@ -177,6 +162,7 @@ else
 	yayInstall
 	startServer
 	configInputRemapper
+	~/.linuxConfig/shells/ohmyzsh.sh
 	# 刷新字体
 	fc-cache -fv
 fi

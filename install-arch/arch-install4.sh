@@ -16,6 +16,7 @@ pacman -S --needed \
 	noto-fonts-extra \
 	ttf-hack tf-dejavu
 
+# fcitx5的设置
 echo '
 GTK_IM_MODULE=fcitx
 QT_IM_MODULE=fcitx
@@ -24,5 +25,6 @@ SDL_IM_MODULE=fcitx
 GLFW_IM_MODULE=ibus' >> /etc/environment
 
 systemctl enable sddm NetworkManager
+systemctl start sddm NetworkManager
 echo 'exit 后执行 umount -R /mnt'
 echo "手动编辑visudo命令中的%wheel ALL=(ALL:ALL)ALL后重启"

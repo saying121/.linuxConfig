@@ -29,7 +29,7 @@ linkConfig() {
 		rm ~/.zshrc
 		echo "删除了原.zshrc"
 	fi
-	ln -s $dirPath/shells/zshrc ~/.zshrc
+	ln -s $dirPath/shells/.zshrc ~/.zshrc
 	echo "链接了.zshrc"
 
 	if [[ -f ~/.bashrc ]]; then
@@ -55,14 +55,24 @@ linkConfig() {
 	unset nvimConfig dirPath kittyConfig
 }
 linkConfig
-# 配置触摸板
-if [[ -d /etc/X11/xorg.conf.d/ ]]; then
-	echo -n ''
+
+if [[ $(uname -a | grep -c WSL) != 0 ]]; then
+	echo -n ""
 else
-	mkdir -p /etc/X11/xorg.conf.d/
-fi
-if [[ -f /etc/X11/xorg.conf.d/20-touchpad.conf ]]; then
-	echo '已有触模板配置'
-else
-	mv ~/.linuxConfig/desktop/20-touchpad.conf /etc/X11/xorg.conf.d/
+	# 键盘映射
+	if [[ -f ~/.Xmodmap ]]; then
+		rm ~/.Xmodmap
+	fi
+	ln -s ~/.linuxConfig/desktop/Xmodmap ~/.Xmodmap
+	# 配置触摸板
+	if [[ -d /etc/X11/xorg.conf.d/ ]]; then
+		echo -n ''
+	else
+		sudo mkdir -p /etc/X11/xorg.conf.d/
+	fi
+	if [[ -f /etc/X11/xorg.conf.d/20-touchpad.conf ]]; then
+		echo '已有触模板配置'
+	else
+		sudo cp ~/.linuxConfig/desktop/20-touchpad.conf /etc/X11/xorg.conf.d/
+	fi
 fi
