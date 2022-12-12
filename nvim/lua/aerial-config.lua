@@ -78,4 +78,4 @@ require('aerial').setup({
     highlight_on_jump = 300,
 })
 -- You probably also want to set a keymap to toggle aerial
-vim.keymap.set('n', '<space>a', '<cmd>AerialToggle!<CR>', { silent = true, noremap = true })
+vim.keymap.set('n', '<space>z', '<cmd>AerialToggle!<CR>', { silent = true, noremap = true })

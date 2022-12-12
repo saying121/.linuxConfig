@@ -2,6 +2,7 @@ require 'lsp.cmp'
 -- require('lsp.lsp-installer')
 require 'lsp.mason-config'
 require 'lsp.mason-lsp-config'
+require 'lsp.mason-dap'
 -- require('lsp.lsp-config')
 local lsp = require 'lsp.lsp-config'
 
@@ -93,7 +94,7 @@ require 'lspconfig'.sumneko_lua.setup {
     flags = lsp.lsp_flags,
 }
 
-require 'lspconfig'.sqls.setup {
+require 'lspconfig'.sqlls.setup {
     capabilities = capabilities,
     on_attach = lsp.on_attach,
     flags = lsp.lsp_flags,

@@ -75,4 +75,5 @@ else
 	else
 		sudo cp ~/.linuxConfig/desktop/20-touchpad.conf /etc/X11/xorg.conf.d/
 	fi
+    ~/.linuxConfig/configs/links.sh
 fi

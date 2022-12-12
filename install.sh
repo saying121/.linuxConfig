@@ -66,6 +66,7 @@ else
 fi
 sudo npm install -g npm neovim
 sudo npm install -g tree-sitter-cli
+sudo npm i -g sql-language-server
 pip3 install black isort pynvim pipenv
 pip3 install pylsp-rope
 nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
@@ -77,17 +78,18 @@ allInstall() {
 	if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		sudo pacman -syu
 
-		# 中文输入法
+		# 中文输入法,支持vim+寄存器的clip
 		sudo pacman -S --needed \
-			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl vim-fcit \
-			fcitx5-pinyin-zhwiki fcitx5-material-color \
+			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
+			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcit xclip \
 			nerd-fonts-hack
 
 		sudo pacman -S --needed \
-			openssh ntfs-3g xorg-xmodmap
+			openssh ntfs-3g xorg-xmodmap \
+            ueberzug ffmpegthumbnailer pdftoppm
 
 		# 蓝牙耳机
-		sudo pacman -S pulseaudio-bluetooth pulsemixer
+		sudo pacman -S --needed pulseaudio-bluetooth pulsemixer
 	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		sudo apt update && sudo apt upgrade -y
 		sudo apt install \
@@ -105,7 +107,7 @@ allInstall() {
 	fi
 
 	sudo $pacMan \
-		imagemagick kitty mpv flameshot xclip \
+		imagemagick kitty mpv flameshot \
 		steam
 	# tmux
 
@@ -124,7 +126,8 @@ yayInstall() {
 		microsoft-edge-stable-bin visual-studio-code-bin intellij-idea-ultimate-edition \
 		yesplaymusic netease-cloud-music \
 		ldr-translate-qt \
-		xnviewmp
+		xnviewmp \
+        epub-thumbnailer-git fontpreview
 }
 
 # 开启服务
@@ -155,9 +158,8 @@ configInputRemapper() {
 	unset remapper_dir remapper_config
 }
 
-if [[ $(uname -a | grep -c WSL) != 0 ]]; then
-	echo -n ""
-else
+# 不是WLS再进行
+if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	allInstall
 	yayInstall
 	startServer

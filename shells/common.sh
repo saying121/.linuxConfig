@@ -30,8 +30,6 @@ alias lal='ls -al'
 alias lla='ls -al'
 alias l='ls -CF'
 
-# 自己的
-alias clashconf='~/.linuxConfig/configClash.sh'
 
 # 确定发行版 kali㉿  redhat ;
 if [[ $(grep -c kali /etc/os-release) != 0 ]]; then
@@ -52,15 +50,19 @@ fi
 
 export all_proxy=http://127.0.0.1:7890
 export ALL_PROXY=$all_proxy
+export EDITOR='nvim'
 
 if [[ $(grep -c debian /etc/os-release) != 0  ]]; then
 	alias proxy="source ~/.linuxConfig/shells/proxy.sh"
 	. ~/.linuxConfig/shells/proxy.sh set
 fi
 
+# 自己的alias
 # ImageMagick must be installed for icat to work.
 alias icat="kitty +kitten icat"
 
-alias clashconf="~/.linuxConfig/configClash.sh"
-alias clashrestart="sudo systemctl restart clash.service"
-alias clashstatus="systemctl status clash.service"
+alias clhconf="~/.linuxConfig/configClash.sh"
+alias clhres="sudo systemctl restart clash.service"
+alias clhsts="systemctl status clash.service"
+
+alias rm="rm -i"

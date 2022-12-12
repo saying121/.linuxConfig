@@ -61,4 +61,4 @@ nnoremap <M-t> :terminal<CR>A
 tnoremap <M-t> exit<CR>
 
 nnoremap <silent><BackSpace> :noh<CR>
-nnoremap <space>s :source $MYVIMRC<CR>
+" nnoremap <space>s :source $MYVIMRC<CR>

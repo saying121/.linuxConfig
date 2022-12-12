@@ -1,3 +1,6 @@
+" nmap <C-s> <Plug>MarkdownPreview
+" nmap <M-s> <Plug>MarkdownPreviewStop
+nnoremap <C-p> <Plug>MarkdownPreviewToggle
 " set to 1, nvim will open the preview window after entering the markdown buffer
 " default: 0
 let g:mkdp_auto_start = 0
@@ -35,6 +38,8 @@ let g:mkdp_open_ip = '127.0.0.1'
 " invalid: `/path/with\\ space/xxx`
 " default: ''
 let g:mkdp_browser = ''
+" for WSL,目前看不加也能用edge
+" let g:mkdp_path_to_edge_chrome="/mnt/c/Prog"
 
 " set to 1, echo preview page url in command line when open preview page
 " default is 0
@@ -96,7 +101,3 @@ let g:mkdp_filetypes = ['markdown']
 " set default theme (dark or light)
 " By default the theme is define according to the preferences of the system
 let g:mkdp_theme = 'dark'
-
-" nmap <C-s> <Plug>MarkdownPreview
-" nmap <M-s> <Plug>MarkdownPreviewStop
-nnoremap <C-p> <Plug>MarkdownPreviewToggle

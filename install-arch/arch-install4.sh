@@ -14,7 +14,7 @@ pacman -S --needed \
 	noto-fonts-cjk \
 	noto-fonts-emoji \
 	noto-fonts-extra \
-	ttf-hack tf-dejavu
+	tf-dejavu
 
 # fcitx5的设置
 echo '

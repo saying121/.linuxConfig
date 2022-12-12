@@ -37,7 +37,6 @@ packer.startup({
             },
             tag = 'nightly' -- optional, updated every week. (see issue #1193)
         }
-        use 'ahmedkhalf/project.nvim'
         use {
             'nvim-telescope/telescope.nvim', tag = '0.1.0', --依赖 apt install ripgrep
             'nvim-telescope/telescope-file-browser.nvim',
@@ -47,6 +46,7 @@ packer.startup({
             'neovim/nvim-lspconfig',
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
+            'jayp0521/mason-nvim-dap.nvim',
         }
         use {
             'hrsh7th/cmp-nvim-lsp',

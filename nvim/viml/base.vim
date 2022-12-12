@@ -1,4 +1,5 @@
 " 出现CONVERSION ERROR就输入指令:w ++enc=utf-8 强制转码
+filetype plugin indent on
 set ttimeout ttimeoutlen=10    " 设置切换模式的延迟时间
 set undofile
 set history=100

@@ -8,6 +8,7 @@ require 'mason-lspconfig'.setup({
         "jdtls",
         "jsonls",
         "pyright",
+        "pylsp",
         -- "sqls",
         "sumneko_lua",
         "vimls",

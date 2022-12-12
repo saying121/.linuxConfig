@@ -55,10 +55,14 @@ require 'telescope'.setup {
 }
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { noremap = true })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { noremap = true })
+vim.keymap.set('n', '<leader>fw', builtin.live_grep, { noremap = true })
 vim.keymap.set('n', '<leader>bf', builtin.buffers, { noremap = true })
 vim.keymap.set('n', '<leader>go', builtin.oldfiles, { noremap = true })
-
+vim.keymap.set('n', '<space>a', builtin.treesitter, { noremap = true })
+vim.keymap.set('n', '<space>ll', builtin.diagnostics, { noremap = true })
+-- 不知道为啥报错
+-- vim.keymap.set('n', '<space>m', <cmd>lua require'telescope'.extensions.media_files, { noremap = true })
+vim.cmd('nnoremap <space>m :Telescope media_files<CR>')
 -- " Telescope 快捷键设置
 -- func! TeleRely()
 -- exec '!apt install ripgrep -y'

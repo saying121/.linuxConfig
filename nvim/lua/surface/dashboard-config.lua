@@ -25,7 +25,7 @@ db.custom_center = {
     -- { icon = '  ', desc = 'Find Word                   ', shortcut = '', action = 'Telescope live_grep' },
     { icon = '  ', desc = 'File Browser                ', shortcut = '',
         action = 'FloatermNew --height=0.8 --width=0.8 ranger' },
-    { icon = 'ﮮ  ', desc = 'Update plugs                ', shortcut = '', action = 'PackerSync' },
+    { icon = 'ﮮ  ', desc = 'Media Files                 ', shortcut = '', action = 'Telescope media_files' },
     { icon = '  ', desc = 'Edit config                 ', shortcut = '', action = 'e $MYVIMRC' },
     { icon = '  ', desc = 'Exit                        ', shortcut = '', action = 'q' },
 }
