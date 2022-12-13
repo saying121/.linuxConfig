@@ -1,5 +1,6 @@
-require('telescope').load_extension('media_files')
-require('telescope').load_extension('file_browser')
+require 'telescope'.load_extension('media_files')
+require 'telescope'.load_extension('file_browser')
+
 require 'telescope'.setup {
     defaults = {
         -- Default configuration for telescope goes here:
@@ -60,13 +61,4 @@ vim.keymap.set('n', '<leader>bf', builtin.buffers, { noremap = true })
 vim.keymap.set('n', '<leader>go', builtin.oldfiles, { noremap = true })
 vim.keymap.set('n', '<space>a', builtin.treesitter, { noremap = true })
 vim.keymap.set('n', '<space>ll', builtin.diagnostics, { noremap = true })
--- 不知道为啥报错
--- vim.keymap.set('n', '<space>m', <cmd>lua require'telescope'.extensions.media_files, { noremap = true })
 vim.cmd('nnoremap <space>m :Telescope media_files<CR>')
--- " Telescope 快捷键设置
--- func! TeleRely()
--- exec '!apt install ripgrep -y'
--- endfunc
--- nnoremap <leader>ff <Cmd>Telescope find_files<CR>
--- nnoremap <leader>lg <Cmd>Telescope live_grep<CR>
--- nnoremap <leader>bf <Cmd>Telescope buffers<CR>

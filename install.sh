@@ -3,8 +3,6 @@
 # link config
 ~/.linuxConfig/linkConfig.sh
 
-dirPath=~/.linuxConfig
-
 if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	pacMan="apt install"
 elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
@@ -132,30 +130,11 @@ yayInstall() {
 
 # 开启服务
 startServer() {
-	sudo systemctl enable bluetooth sshd NetworkManager
+	sudo systemctl enable bluetooth sshd NetworkManager sddm
 	sudo systemctl start bluetooth sshd NetworkManager
 
 	sudo systemctl enable input-remapper
 	sudo systemctl start input-remapper
-
-	sudo systemctl enable sddm
-}
-
-configInputRemapper() {
-	remapper_dir=$HOME/.config/input-remapper
-	remapper_config=$HOME/.config/input-remapper/config.json
-	if [[ -d $remapper_dir ]]; then
-		echo -n ""
-	else
-		mkdir -p $remapper_dir
-	fi
-
-	if [[ -f $remapper_config ]]; then
-		rm $remapper_config
-	fi
-	ln -s $dirPath./input-remapper-config.json $remapper_config
-
-	unset remapper_dir remapper_config
 }
 
 # 不是WLS再进行
@@ -163,10 +142,9 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	allInstall
 	yayInstall
 	startServer
-	configInputRemapper
 	~/.linuxConfig/shells/ohmyzsh.sh
 	# 刷新字体
 	fc-cache -fv
 fi
 
-unset dirPath pacMan
+unset pacMan

@@ -3,7 +3,7 @@
 # kde桌面，终端
 pacman -S --needed \
 	kitty plasma packagekit-qt5 packagekit appstream-qt appstream \
-    networkmanager wget
+    networkmanager wget sddm
 
 # 中文字体
 pacman -S --needed \

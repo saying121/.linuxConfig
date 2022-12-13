@@ -57,9 +57,9 @@ packer.startup({
             'hrsh7th/cmp-path',
             'f3fora/cmp-spell',
             'hrsh7th/cmp-buffer',
-            'L3MON4D3/LuaSnip',
             after = 'nvim-cmp',
         }
+        use 'L3MON4D3/LuaSnip'
         use { 'rafamadriz/friendly-snippets', after = 'LuaSnip' }
         -- use 'hrsh7th/cmp-vsnip'
         -- use 'hrsh7th/vim-vsnip'
