@@ -6,7 +6,6 @@ require 'aerial-config'
 require 'image-preview'
 
 require 'nvim-tree-config'
-require 'project-nvim'
 
 -- 小插件
 require 'small-plug'
