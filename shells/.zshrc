@@ -82,7 +82,9 @@ plugins=(
     history-substring-search
 )
 
-source $ZSH/oh-my-zsh.sh
+if [[ -d $ZSH ]]; then
+    source $ZSH/oh-my-zsh.sh
+fi
 
 # User configuration
 

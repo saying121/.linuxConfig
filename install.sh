@@ -41,7 +41,7 @@ fi
 
 sudo $pacMan \
 	neofetch figlet \
-	dolphin ranger ffmpeg stardict \
+	ranger ffmpeg stardict \
 	htop \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep trash-cli wget \
 	nano vim \
@@ -80,12 +80,14 @@ allInstall() {
 		sudo pacman -S --needed \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcit xclip \
-			nerd-fonts-hack
+			nerd-fonts-hack \
+			numlockx
 
 		sudo pacman -S --needed \
 			openssh ntfs-3g xorg-xmodmap \
-            ueberzug ffmpegthumbnailer pdftoppm
-
+			ueberzug ffmpegthumbnailer pdftoppm dolphin
+        # sddm主题的依赖
+		sudo pacman -S gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机
 		sudo pacman -S --needed pulseaudio-bluetooth pulsemixer
 	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
@@ -125,7 +127,8 @@ yayInstall() {
 		yesplaymusic netease-cloud-music \
 		ldr-translate-qt \
 		xnviewmp \
-        epub-thumbnailer-git fontpreview
+		epub-thumbnailer-git fontpreview \
+		sddm-theme-aerial-git
 }
 
 # 开启服务
