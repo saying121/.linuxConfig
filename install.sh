@@ -107,7 +107,7 @@ allInstall() {
 
 	sudo $pacMan \
 		imagemagick kitty mpv flameshot \
-        nerd-fonts-hack \
+		nerd-fonts-hack \
 		steam rofi
 	# tmux
 
@@ -147,10 +147,12 @@ startServer() {
 # 不是WLS再进行
 if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	allInstall
-	yayInstall
+	if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
+		yayInstall
+	fi
 	startServer
 	~/.linuxConfig/shells/ohmyzsh.sh
-    ~/.linuxConfig/rofi/install-rofi-theme.sh
+	~/.linuxConfig/rofi/install-rofi-theme.sh
 	# 刷新字体
 	fc-cache -fv
 fi
