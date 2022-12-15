@@ -30,7 +30,6 @@ alias lal='ls -al'
 alias lla='ls -al'
 alias l='ls -CF'
 
-
 # 确定发行版 kali㉿  redhat ;
 if [[ $(grep -c kali /etc/os-release) != 0 ]]; then
 	prompt_symbol=" "
@@ -52,9 +51,11 @@ export all_proxy=http://127.0.0.1:7890
 export ALL_PROXY=$all_proxy
 export EDITOR='nvim'
 
-if [[ $(grep -c debian /etc/os-release) != 0  ]]; then
-	alias proxy="source ~/.linuxConfig/shells/proxy.sh"
-	. ~/.linuxConfig/shells/proxy.sh set
+if [[ $(uname -a | grep -c WSL) != 0 ]]; then
+	if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
+		alias proxy="source ~/.linuxConfig/shells/proxy.sh"
+		. ~/.linuxConfig/shells/proxy.sh set
+	fi
 fi
 
 # 自己的alias
