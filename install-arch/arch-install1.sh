@@ -8,7 +8,7 @@ sed -i '1iServer = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch' /etc/pac
 sed -i '1iServer = http://mirrors.163.com/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorslist
 
 pacman -Syyu
-timedatectl set-up true
+timedatectl set-ntp true
 # 基础
 pacstrap /mnt \
 	base base-devel linux linux-firmware

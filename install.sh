@@ -80,13 +80,12 @@ allInstall() {
 		sudo pacman -S --needed \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcit xclip \
-			nerd-fonts-hack \
 			numlockx
 
 		sudo pacman -S --needed \
-			openssh ntfs-3g xorg-xmodmap \
+			openssh ntfs-3g \
 			ueberzug ffmpegthumbnailer pdftoppm dolphin
-        # sddm主题的依赖
+		# sddm主题的依赖
 		sudo pacman -S gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机
 		sudo pacman -S --needed pulseaudio-bluetooth pulsemixer
@@ -108,7 +107,8 @@ allInstall() {
 
 	sudo $pacMan \
 		imagemagick kitty mpv flameshot \
-		steam
+        nerd-fonts-hack \
+		steam rofi
 	# tmux
 
 	# tmux 插件管理器
@@ -128,7 +128,8 @@ yayInstall() {
 		ldr-translate-qt \
 		xnviewmp \
 		epub-thumbnailer-git fontpreview \
-		sddm-theme-aerial-git
+		sddm-theme-aerial-git \
+		ruby-fusuma
 }
 
 # 开启服务
@@ -138,6 +139,9 @@ startServer() {
 
 	sudo systemctl enable input-remapper
 	sudo systemctl start input-remapper
+	# 把自己添加到input组
+	sudo gpasswd -a $USER input
+	newgrp input
 }
 
 # 不是WLS再进行
@@ -146,6 +150,7 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	yayInstall
 	startServer
 	~/.linuxConfig/shells/ohmyzsh.sh
+    ~/.linuxConfig/rofi/install-rofi-theme.sh
 	# 刷新字体
 	fc-cache -fv
 fi

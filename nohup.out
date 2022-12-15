@@ -1,0 +1,101 @@
+I, [2022-12-15T12:56:07.564308 #30666]  INFO -- : reload config: /home/saying/.config/fusuma/config.yml
+I, [2022-12-15T12:56:07.593861 #30666]  INFO -- : ---------------------------------------------
+I, [2022-12-15T12:56:07.594070 #30666]  INFO -- : Fusuma: 2.4.1
+I, [2022-12-15T12:56:07.595045 #30666]  INFO -- : libinput: 1.22.0
+I, [2022-12-15T12:56:07.595108 #30666]  INFO -- : ruby 3.0.4p208
+I, [2022-12-15T12:56:07.595676 #30666]  INFO -- : OS: Linux 6.0.12-arch1-1 #1 SMP PREEMPT_DYNAMIC Thu, 08 Dec 2022 11:03:38 +0000
+I, [2022-12-15T12:56:07.596522 #30666]  INFO -- : Distribution: Arch Linux \r (\l)
+I, [2022-12-15T12:56:07.600805 #30666]  INFO -- : Desktop session: plasma x11
+I, [2022-12-15T12:56:07.600862 #30666]  INFO -- : ---------------------------------------------
+I, [2022-12-15T12:56:07.600896 #30666]  INFO -- : Enabled Plugins: 
+I, [2022-12-15T12:56:07.601021 #30666]  INFO -- :   Fusuma::Plugin::Buffers::GestureBuffer
+I, [2022-12-15T12:56:07.601205 #30666]  INFO -- :   Fusuma::Plugin::Buffers::TimerBuffer
+I, [2022-12-15T12:56:07.601222 #30666]  INFO -- :   Fusuma::Plugin::Detectors::HoldDetector
+I, [2022-12-15T12:56:07.601236 #30666]  INFO -- :   Fusuma::Plugin::Detectors::PinchDetector
+I, [2022-12-15T12:56:07.601250 #30666]  INFO -- :   Fusuma::Plugin::Detectors::RotateDetector
+I, [2022-12-15T12:56:07.601264 #30666]  INFO -- :   Fusuma::Plugin::Detectors::SwipeDetector
+I, [2022-12-15T12:56:07.601278 #30666]  INFO -- :   Fusuma::Plugin::Events::Records::ContextRecord
+I, [2022-12-15T12:56:07.601292 #30666]  INFO -- :   Fusuma::Plugin::Events::Records::GestureRecord
+I, [2022-12-15T12:56:07.601306 #30666]  INFO -- :   Fusuma::Plugin::Events::Records::IndexRecord
+I, [2022-12-15T12:56:07.601320 #30666]  INFO -- :   Fusuma::Plugin::Events::Records::TextRecord
+I, [2022-12-15T12:56:07.601334 #30666]  INFO -- :   Fusuma::Plugin::Executors::CommandExecutor
+I, [2022-12-15T12:56:07.601348 #30666]  INFO -- :   Fusuma::Plugin::Filters::LibinputDeviceFilter
+I, [2022-12-15T12:56:07.601362 #30666]  INFO -- :   Fusuma::Plugin::Inputs::LibinputCommandInput
+I, [2022-12-15T12:56:07.601376 #30666]  INFO -- :   Fusuma::Plugin::Inputs::TimerInput
+I, [2022-12-15T12:56:07.601390 #30666]  INFO -- :   Fusuma::Plugin::Parsers::LibinputGestureParser
+I, [2022-12-15T12:56:07.601405 #30666]  INFO -- : ---------------------------------------------
+Failed to open /dev/input/event3 (Permission denied)
+Failed to open /dev/input/event8 (Permission denied)
+Failed to open /dev/input/event4 (Permission denied)
+Failed to open /dev/input/event0 (Permission denied)
+Failed to open /dev/input/event2 (Permission denied)
+Failed to open /dev/input/event1 (Permission denied)
+Failed to open /dev/input/event15 (Permission denied)
+Failed to open /dev/input/event16 (Permission denied)
+Failed to open /dev/input/event17 (Permission denied)
+Failed to open /dev/input/event18 (Permission denied)
+Failed to open /dev/input/event14 (Permission denied)
+Failed to open /dev/input/event13 (Permission denied)
+Failed to open /dev/input/event6 (Permission denied)
+Failed to open /dev/input/event7 (Permission denied)
+Failed to open /dev/input/event19 (Permission denied)
+Failed to open /dev/input/event10 (Permission denied)
+Failed to open /dev/input/event11 (Permission denied)
+Failed to open /dev/input/event12 (Permission denied)
+Failed to open /dev/input/event5 (Permission denied)
+Failed to open /dev/input/event9 (Permission denied)
+Failed to open /dev/input/event20 (Permission denied)
+Failed to open /dev/input/event21 (Permission denied)
+Expected device added events on startup but got none. Maybe you don't have the right permissions?
+I, [2022-12-15T12:56:15.134386 #30681]  INFO -- : reload config: /home/saying/.config/fusuma/config.yml
+I, [2022-12-15T12:56:15.163825 #30681]  INFO -- : ---------------------------------------------
+I, [2022-12-15T12:56:15.164033 #30681]  INFO -- : Fusuma: 2.4.1
+I, [2022-12-15T12:56:15.164980 #30681]  INFO -- : libinput: 1.22.0
+I, [2022-12-15T12:56:15.165024 #30681]  INFO -- : ruby 3.0.4p208
+I, [2022-12-15T12:56:15.165508 #30681]  INFO -- : OS: Linux 6.0.12-arch1-1 #1 SMP PREEMPT_DYNAMIC Thu, 08 Dec 2022 11:03:38 +0000
+I, [2022-12-15T12:56:15.166506 #30681]  INFO -- : Distribution: Arch Linux \r (\l)
+I, [2022-12-15T12:56:15.168422 #30681]  INFO -- : Desktop session: plasma x11
+I, [2022-12-15T12:56:15.168459 #30681]  INFO -- : ---------------------------------------------
+I, [2022-12-15T12:56:15.168474 #30681]  INFO -- : Enabled Plugins: 
+I, [2022-12-15T12:56:15.168556 #30681]  INFO -- :   Fusuma::Plugin::Buffers::GestureBuffer
+I, [2022-12-15T12:56:15.168680 #30681]  INFO -- :   Fusuma::Plugin::Buffers::TimerBuffer
+I, [2022-12-15T12:56:15.168691 #30681]  INFO -- :   Fusuma::Plugin::Detectors::HoldDetector
+I, [2022-12-15T12:56:15.168700 #30681]  INFO -- :   Fusuma::Plugin::Detectors::PinchDetector
+I, [2022-12-15T12:56:15.168709 #30681]  INFO -- :   Fusuma::Plugin::Detectors::RotateDetector
+I, [2022-12-15T12:56:15.168718 #30681]  INFO -- :   Fusuma::Plugin::Detectors::SwipeDetector
+I, [2022-12-15T12:56:15.168726 #30681]  INFO -- :   Fusuma::Plugin::Events::Records::ContextRecord
+I, [2022-12-15T12:56:15.168735 #30681]  INFO -- :   Fusuma::Plugin::Events::Records::GestureRecord
+I, [2022-12-15T12:56:15.168744 #30681]  INFO -- :   Fusuma::Plugin::Events::Records::IndexRecord
+I, [2022-12-15T12:56:15.168753 #30681]  INFO -- :   Fusuma::Plugin::Events::Records::TextRecord
+I, [2022-12-15T12:56:15.168761 #30681]  INFO -- :   Fusuma::Plugin::Executors::CommandExecutor
+I, [2022-12-15T12:56:15.168770 #30681]  INFO -- :   Fusuma::Plugin::Filters::LibinputDeviceFilter
+I, [2022-12-15T12:56:15.168779 #30681]  INFO -- :   Fusuma::Plugin::Inputs::LibinputCommandInput
+I, [2022-12-15T12:56:15.168787 #30681]  INFO -- :   Fusuma::Plugin::Inputs::TimerInput
+I, [2022-12-15T12:56:15.168796 #30681]  INFO -- :   Fusuma::Plugin::Parsers::LibinputGestureParser
+I, [2022-12-15T12:56:15.168806 #30681]  INFO -- : ---------------------------------------------
+Failed to open /dev/input/event3 (Permission denied)
+Failed to open /dev/input/event8 (Permission denied)
+Failed to open /dev/input/event4 (Permission denied)
+Failed to open /dev/input/event0 (Permission denied)
+Failed to open /dev/input/event2 (Permission denied)
+Failed to open /dev/input/event1 (Permission denied)
+Failed to open /dev/input/event15 (Permission denied)
+Failed to open /dev/input/event16 (Permission denied)
+Failed to open /dev/input/event17 (Permission denied)
+Failed to open /dev/input/event18 (Permission denied)
+Failed to open /dev/input/event14 (Permission denied)
+Failed to open /dev/input/event13 (Permission denied)
+Failed to open /dev/input/event6 (Permission denied)
+Failed to open /dev/input/event7 (Permission denied)
+Failed to open /dev/input/event19 (Permission denied)
+Failed to open /dev/input/event10 (Permission denied)
+Failed to open /dev/input/event11 (Permission denied)
+Failed to open /dev/input/event12 (Permission denied)
+Failed to open /dev/input/event5 (Permission denied)
+Failed to open /dev/input/event9 (Permission denied)
+Failed to open /dev/input/event20 (Permission denied)
+Failed to open /dev/input/event21 (Permission denied)
+Expected device added events on startup but got none. Maybe you don't have the right permissions?
+Fusuma::Plugin::Inputs::TimerInput: end of file reached
+Send SIGKILL to fusuma processes
+stop process: fusuma/plugin/inputs/libinput_command_input
