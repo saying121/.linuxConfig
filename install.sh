@@ -43,7 +43,7 @@ sudo $pacMan \
 	neofetch figlet \
 	ranger ffmpeg stardict \
 	htop \
-	unzip bc man net-tools psmisc sudo sysstat ripgrep trash-cli wget \
+	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
 	nano vim \
 	bash zsh zsh-autosuggestions zsh-syntax-highlighting
 
@@ -87,11 +87,16 @@ allInstall() {
 			openssh ntfs-3g \
 			ueberzug ffmpegthumbnailer pdftoppm dolphin \
 			w3m djvutxt calibre transmission-cli mediainf odt2txt \
-			jupyter-nbconvert fontforge openscad drawio-desktop-bin
+			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
+			pandoc xdg-utils youtube-dl
 		# sddm主题的依赖
 		sudo pacman -S gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机
 		sudo pacman -S --needed pulseaudio-bluetooth pulsemixer
+		# ranger fzf
+		git clone https://github.com/MuXiu1997/ranger-fzf-filter.git ~/.config/ranger/plugins/ranger_fzf_filter
+		git clone https://github.com/cdump/ranger-devicons2 ~/.config/ranger/plugins/devicons2
+
 	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		sudo apt update && sudo apt upgrade -y
 		sudo apt install \

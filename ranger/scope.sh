@@ -288,6 +288,11 @@ handle_mime() {
 		catdoc -- "${FILE_PATH}" && exit 5
 		exit 1
 		;;
+	#Doc stuff
+	doc)
+		/usr/bin/catdoc <"${FILE_PATH}" && exit 5
+		exit 1
+		;;
 
 	## DOCX, ePub, FB2 (using markdown)
 	## You might want to remove "|epub" and/or "|fb2" below if you have

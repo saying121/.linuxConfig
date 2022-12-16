@@ -6,13 +6,15 @@ augroup CursorLine
     autocmd InsertEnter,WinLeave * set nocursorline
 augroup END
 
-" 恢复光标位置
 augroup RecoverCursor
     autocmd!
+    " 恢复光标位置
     autocmd BufReadPost *
                 \ if line("'\"") > 1 && line("'\"") <= line("$") |
                 \   exe "normal! g`\"" |
                 \ endif
+    " 光标修改
+    autocmd VimLeave * set guicursor=n:ver50-ncvCursor
 augroup END
 
 " 写入自动删除行末空格

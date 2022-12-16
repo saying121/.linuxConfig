@@ -58,6 +58,7 @@ M.on_attach = function(client, bufnr)
     if &filetype=='python'
         exec ':Isort'
         exec ':call Black()'
+        exec ':w'
     elseif &filetype=='sh'
         exec ':Shfmt'
     else

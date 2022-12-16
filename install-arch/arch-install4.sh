@@ -2,8 +2,8 @@
 
 # kde桌面，终端
 pacman -S --needed \
-	kitty plasma packagekit-qt5 packagekit appstream-qt appstream \
-    networkmanager wget sddm
+	xorg kitty plasma packagekit-qt5 packagekit appstream-qt appstream \
+	networkmanager wget sddm
 
 # 中文字体
 pacman -S --needed \
@@ -22,7 +22,7 @@ GTK_IM_MODULE=fcitx
 QT_IM_MODULE=fcitx
 XMODIFIERS=@im=fcitx
 SDL_IM_MODULE=fcitx
-GLFW_IM_MODULE=ibus' >> /etc/environment
+GLFW_IM_MODULE=ibus' >>/etc/environment
 
 systemctl enable sddm NetworkManager
 systemctl start sddm NetworkManager
