@@ -7,7 +7,7 @@ fi
 if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	sudo sudo apt install maim dunst viewnior
 fi
-# rofi theme
+# install rofi theme
 git clone --depth=1 https://github.com/adi1090x/rofi.git
 cd rofi
 chmod +x setup.sh

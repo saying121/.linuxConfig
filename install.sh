@@ -80,11 +80,14 @@ allInstall() {
 		sudo pacman -S --needed \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcit xclip \
+			nerd-fonts-hack \
 			numlockx
 
 		sudo pacman -S --needed \
 			openssh ntfs-3g \
-			ueberzug ffmpegthumbnailer pdftoppm dolphin
+			ueberzug ffmpegthumbnailer pdftoppm dolphin \
+			w3m djvutxt calibre transmission-cli mediainf odt2txt \
+			jupyter-nbconvert fontforge openscad drawio-desktop-bin
 		# sddm主题的依赖
 		sudo pacman -S gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机
@@ -93,7 +96,8 @@ allInstall() {
 		sudo apt update && sudo apt upgrade -y
 		sudo apt install \
 			openssh-* \
-			fonts-hack-ttf
+			ttf-hack-nerd
+		# fonts-hack-ttf
 
 		# 安装input-remapper
 		sudo apt install git python3-setuptools gettext
@@ -107,7 +111,6 @@ allInstall() {
 
 	sudo $pacMan \
 		imagemagick kitty mpv flameshot \
-		nerd-fonts-hack \
 		steam rofi
 	# tmux
 

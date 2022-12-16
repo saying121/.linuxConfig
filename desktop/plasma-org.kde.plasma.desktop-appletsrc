@@ -6,8 +6,8 @@ wheel:Vertical;NoModifier=org.kde.switchdesktop
 RightButton;NoModifier=org.kde.contextmenu
 
 [Containments][1]
-ItemGeometries-1920x1080=Applet-57:64,64,224,192,0;Applet-84:1552,80,288,144,0;
-ItemGeometriesHorizontal=Applet-57:64,64,224,192,0;Applet-84:1552,80,288,144,0;
+ItemGeometries-1920x1080=Applet-57:80,64,224,160,0;Applet-84:1552,80,288,144,0;
+ItemGeometriesHorizontal=Applet-57:80,64,224,160,0;Applet-84:1552,80,288,144,0;
 activityId=6bd44b2b-eb81-46b0-a93a-86b1e71ae8ad
 formfactor=0
 immutability=1
@@ -355,7 +355,7 @@ immutability=1
 plugin=org.kde.plasma.clipboard
 
 [Containments][8][Applets][17][Configuration]
-PreloadWeight=95
+PreloadWeight=100
 
 [Containments][8][Applets][20]
 immutability=1
@@ -389,13 +389,17 @@ PreloadWeight=39
 immutability=1
 plugin=org.kde.plasma.keyboardindicator
 
+[Containments][8][Applets][92]
+immutability=1
+plugin=touchpad
+
 [Containments][8][ConfigDialog]
 DialogHeight=660
 DialogWidth=880
 
 [Containments][8][General]
-extraItems=org.kde.plasma.mediacontroller,org.kde.plasma.bluetooth,org.kde.plasma.keyboardindicator,org.kde.plasma.battery,org.kde.plasma.notifications,org.kde.plasma.networkmanagement,org.kde.plasma.manage-inputmethod,org.kde.plasma.keyboardlayout,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.volume,org.kde.plasma.nightcolorcontrol,org.kde.plasma.clipboard
-hiddenItems=chrome_status_icon_1,flameshot,88080828,qBittorrent,星际译王
+extraItems=org.kde.plasma.mediacontroller,org.kde.plasma.bluetooth,org.kde.plasma.keyboardindicator,org.kde.plasma.battery,org.kde.plasma.notifications,org.kde.plasma.networkmanagement,org.kde.plasma.manage-inputmethod,org.kde.plasma.keyboardlayout,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.volume,org.kde.plasma.nightcolorcontrol,org.kde.plasma.clipboard,touchpad
+hiddenItems=chrome_status_icon_1,flameshot,88080828,qBittorrent,星际译王,GoldenDict,main.py,touchpad,org.kde.plasma.clipboard,org.kde.plasma.nightcolorcontrol,org.kde.plasma.manage-inputmethod,org.kde.plasma.bluetooth,org.kde.plasma.volume,org.kde.plasma.keyboardlayout,org.kde.plasma.keyboardindicator,Fcitx
 knownItems=org.kde.plasma.mediacontroller,org.kde.plasma.bluetooth,org.kde.plasma.keyboardindicator,org.kde.plasma.battery,org.kde.plasma.notifications,org.kde.plasma.networkmanagement,org.kde.plasma.manage-inputmethod,org.kde.plasma.keyboardlayout,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.volume,org.kde.plasma.nightcolorcontrol,org.kde.plasma.clipboard
 
 [Containments][8][Shortcuts]

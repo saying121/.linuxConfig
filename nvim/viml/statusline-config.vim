@@ -9,9 +9,9 @@ function! StatuslineGit()
 endfunction
 
 function! LinuxRelease()
-    if has('win')
+    if has('win32')
         let l:prompy_symbol=' '
-    elseif has('win')
+    elseif has('mac')
         let l:prompy_symbol=' '
     elseif system("grep -c kali /etc/os-release")>=1
         let l:prompy_symbol=' '
@@ -72,13 +72,14 @@ set statusline+=%2*\%<%.50F\                "显示文件名和文件路径 (%<�
 " set statusline+=%=%3*\\|%O[%b]%y%m%r%h%w\ %*        "显示文件类型及文件状态
 set statusline+=%=%3*\\|%O[%b]%m%{FileType()}%r%h%w\%*        "显示文件类型及文件状态
 " set statusline+=%4*\%{&ff}\[%{&fenc}]\%*   "显示系统，文件编码类型
-set statusline+=%{LinuxRelease()}
-set statusline+=%4*\ \[%{&fenc}]\%*   "显示系统，文件编码类型
+set statusline+=%8*%{LinuxRelease()}%*
+set statusline+=%4*\[%{&fenc}]\%*   "显示系统，文件编码类型
 set statusline+=%5*\ row:%l/%L\|col:%c\ %*   "显示光标所在行和列
 set statusline+=%6*\%3p%%\%*                "显示光标前文本所占总文本的比例
 hi User1 guifg=Olivedrab
 hi User2 guifg=blue
 " hi User7 guifg=red
+hi User8 guifg=Turquoise
 hi User3 guifg=Turquoise
 hi User4 guifg=Darkgray
 hi User5 guifg=Cyan
