@@ -26,18 +26,12 @@ fi
 # sudo sed -i 's/^allow-lan:.*/allow-lan: true/' $clash_config
 unset clash_dir clash_config
 
-if [[ -f /etc/systemd/system/clash.service ]]; then
-	echo '已有clash服务'
-else
+if [[ ! -f /etc/systemd/system/clash.service ]]; then
 	sudo cp ~/.linuxConfig/clash.service /etc/systemd/system/clash.service
 fi
 
-# 确认clash路径
-if [[ $(type clash) =~ /usr/bin/clash ]]; then
-	sudo sed -i 's#ExecStart=.* -f#ExecStart=/usr/bin/clash -f#' /etc/systemd/system/clash.service
-elif [[ $(type clash) =~ /snap/bin/clash ]]; then
-	sudo sed -i 's#ExecStart=.* -f#ExecStart=/snap/bin/clash -f#' /etc/systemd/system/clash.service
-fi
+# clash路径
+sudo sed -i "s#ExecStart=.* -f#ExecStart=$(where clash) -f#" /etc/systemd/system/clash.service
 
 sudo systemctl daemon-reload
 sudo systemctl enable clash

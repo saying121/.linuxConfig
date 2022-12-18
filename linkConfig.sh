@@ -55,22 +55,37 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	# 应用配置
 	~/.linuxConfig/configs/links.sh
 	# 桌面配置
-	~/.linuxConfig/desktop/links.sh
+	~/.linuxConfig/kde/links.sh
 	# keymap
 	if [[ -d ~/.config/input-remapper ]]; then
 		# echo '有原来的配置目录，请手动操作'
 		rm -rf ~/.config/input-remapper
 	fi
 	ln -s ~/.linuxConfig/input-remapper ~/.config/input-remapper
-    # 触摸板手势
+	# 触摸板手势
 	if [[ ! -d ~/.config/fusuma ]]; then
 		ln -s ~/.linuxConfig/fusuma ~/.config/fusuma
 	fi
-    # i3
+	# i3
 	if [[ -d ~/.config/i3 ]]; then
-        rm -rf ~/.config/i3
-    fi
+		rm -rf ~/.config/i3
+	fi
 	if [[ ! -d ~/.config/i3 ]]; then
 		ln -s ~/.linuxConfig/i3 ~/.config/i3
+	fi
+
+	if [[ -d ~/.config/polybar ]]; then
+		rm -rf ~/.config/polybar
+	fi
+	if [[ ! -d ~/.config/polybar ]]; then
+		ln -s ~/.linuxConfig/polybar ~/.config/polybar
+	fi
+
+	# ranger
+	if [[ -d ~/.config/ranger ]]; then
+		rm -rf ~/.config/ranger
+	fi
+	if [[ ! -d ~/.config/ranger ]]; then
+		ln -s ~/.linuxConfig/ranger ~/.config/ranger
 	fi
 fi

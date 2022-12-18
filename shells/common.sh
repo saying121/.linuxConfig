@@ -67,3 +67,13 @@ alias clhres="sudo systemctl restart clash.service"
 alias clhsts="systemctl status clash.service"
 
 alias rm="rm -i"
+
+# avoid open nested ranger instances
+ranger() {
+	if [ -z "$RANGER_LEVEL" ]; then
+		/usr/bin/ranger "$@"
+	else
+		exit
+	fi
+}
+# if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi

@@ -7,6 +7,9 @@ if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	pacMan="apt install"
 elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	pacMan="pacman -S --needed"
+else
+	echo 'Can not use'
+	exit 0
 fi
 
 # 必装
@@ -84,7 +87,7 @@ allInstall() {
 			numlockx
 
 		sudo pacman -S --needed \
-			openssh ntfs-3g \
+			openssh ntfs-3g firewalld \
 			ueberzug ffmpegthumbnailer pdftoppm dolphin \
 			w3m djvutxt calibre transmission-cli mediainf odt2txt \
 			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
@@ -94,8 +97,11 @@ allInstall() {
 		# 蓝牙耳机
 		sudo pacman -S --needed pulseaudio-bluetooth pulsemixer
 		# ranger fzf
-		git clone https://github.com/MuXiu1997/ranger-fzf-filter.git ~/.config/ranger/plugins/ranger_fzf_filter
-		git clone https://github.com/cdump/ranger-devicons2 ~/.config/ranger/plugins/devicons2
+		if [[ ! -d ~/.linuxConfig/ranger/plugins/ranger_fzf_filter ]]; then
+			git clone https://github.com/MuXiu1997/ranger-fzf-filter.git ~/.config/ranger/plugins/ranger_fzf_filter
+		elif [[ ! -d ~/.linuxConfig/ranger/plugins/devicons2 ]]; then
+			git clone https://github.com/cdump/ranger-devicons2 ~/.config/ranger/plugins/devicons2
+		fi
 
 	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		sudo apt update && sudo apt upgrade -y
@@ -116,7 +122,7 @@ allInstall() {
 
 	sudo $pacMan \
 		imagemagick kitty mpv flameshot \
-		steam rofi
+		steam rofi goldendict
 	# tmux
 
 	# tmux 插件管理器
@@ -137,7 +143,10 @@ yayInstall() {
 		xnviewmp \
 		epub-thumbnailer-git fontpreview \
 		sddm-theme-aerial-git \
-		ruby-fusuma
+		ruby-fusuma \
+		archlinux-tweak-tool-git \
+		ldr-translate-qt \
+		kwin-scripts-krohnkite-git
 }
 
 # 开启服务
@@ -147,6 +156,8 @@ startServer() {
 
 	sudo systemctl enable input-remapper
 	sudo systemctl start input-remapper
+
+	sudo systemctl enable firewalld
 	# 把自己添加到input组
 	sudo gpasswd -a $USER input
 	newgrp input
