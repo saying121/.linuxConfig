@@ -15,9 +15,12 @@ ln -s ~/.linuxConfig/nvim/viml/init.vim ~/.vimrc && echo "链接了.vimrc"
 
 rm ~/.zshrc
 ln -s ~/.linuxConfig/shells/.zshrc ~/.zshrc && echo "链接了.zshrc"
+source ~/.zshrc
 
 rm ~/.bashrc
 ln -s ~/.linuxConfig/shells/bashrc ~/.bashrc && echo "链接了.bashrc"
+source ~/.bashrc
+
 if [[ ! -d ~/.local/shells ]]; then
 	mkdir ~/.local/shells
 fi

@@ -2,7 +2,7 @@
 
 if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	sudo pacman -S --needed xorg xorg-xinit xorg-server \
-		i3-gaps polybar picom feh
+		i3-wm polybar picom feh
     sudo pacman -Rs i3status
 fi
 

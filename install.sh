@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # link config
 ~/.linuxConfig/linkConfig.sh
@@ -15,8 +15,9 @@ fi
 # 必装
 if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	sudo pacman -syu
-	sudo pacman -S --needed archlinuxcn-keyring
-	if [[ $? != 0 ]]; then
+	# sudo pacman -S --needed archlinuxcn-keyring
+	# if [[ $? != 0 ]]; then
+	if [[ ! $(sudo pacman -S --needed archlinuxcn-keyring) ]]; then
 		sudo rm -rf /etc/pacman.d/gnupg
 		pacman-key --init
 		pacman-key --populate archlinux
@@ -24,45 +25,32 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	fi
 	sudo pacman -S --needed yay paru
 	# 调用关于clash的脚本，配置clash
-	# $dirPath/configClash.sh
+	~/.linuxConfig/configClash.sh
 
 	# 开发工具
 	sudo pacman -syu
 
-	sudo pacman -S --needed \
-		dnsutils networkmanager fd tree p7zip
-	sudo pacman -S --needed \
-		jdk17-openjdk python-pip go clash \
-		tldr
+	sudo pacman -S --needed dnsutils networkmanager fd tree p7zip \
+		jdk17-openjdk python-pip go clash tldr
 
 elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	sudo apt update && sudo apt upgrade -y
-	sudo apt install \
-		network-manager bind9-utils fd-find p7zip-full
-	sudo apt install \
-		openjdk-17-jdk python3-pip golang-go
+	sudo apt install network-manager bind9-utils fd-find p7zip-full
+	sudo apt install openjdk-17-jdk python3-pip golang-go
 fi
 
 sudo $pacMan \
-	neofetch figlet \
-	ranger ffmpeg stardict \
-	htop \
+	neofetch figlet ranger ffmpeg htop stardict \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
-	nano vim \
-	bash zsh zsh-autosuggestions zsh-syntax-highlighting
+	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting
 
 # 必装开发工具
 sudo $pacMan \
-	neovim \
-	python3 \
-	nodejs npm \
-	git \
-	shfmt
+	neovim git shfmt \
+	python3 nodejs npm \
 
 # nvim配置
-if [[ -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
-	echo 'packer.nvim已安装'
-else
+if [[ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
 	git clone --depth 1 https://github.com/wbthomason/packer.nvim \
 		~/.local/share/nvim/site/pack/packer/start/packer.nvim
 fi
@@ -75,24 +63,22 @@ nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 # **********************************************************************************************************
 
-# 能直接安装的软件
 allInstall() {
 	if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		sudo pacman -syu
-
 		# 中文输入法,支持vim+寄存器的clip
 		sudo pacman -S --needed \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
-			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcit xclip \
+			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcit xclip fcitx5-table-other \
 			nerd-fonts-hack \
-			numlockx
 
 		sudo pacman -S --needed \
+			pacman-contrib \
 			openssh ntfs-3g firewalld \
 			ueberzug ffmpegthumbnailer pdftoppm dolphin \
 			w3m djvutxt calibre transmission-cli mediainf odt2txt \
 			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
-			pandoc xdg-utils youtube-dl
+			pandoc xdg-utils youtube-dl numlockx
 		# sddm主题的依赖
 		sudo pacman -S gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机
@@ -118,7 +104,6 @@ allInstall() {
 		sudo apt install ./dist/input-remapper-1.5.0.deb
 		cd ..
 		rm -rf input-remapper
-
 	fi
 
 	sudo $pacMan \
@@ -138,18 +123,13 @@ yayInstall() {
 	yay -Syu
 	yay -S --needed \
 		icalingua++ \
-		input-remapper-git \
-		libreoffice \
 		microsoft-edge-stable-bin visual-studio-code-bin intellij-idea-ultimate-edition \
+		libreoffice input-remapper-git \
 		yesplaymusic netease-cloud-music \
 		ldr-translate-qt \
-		xnviewmp \
-		epub-thumbnailer-git fontpreview \
-		sddm-theme-aerial-git \
-		ruby-fusuma \
-		archlinux-tweak-tool-git \
-		ldr-translate-qt \
-		kwin-scripts-krohnkite-git
+		xnviewmp epub-thumbnailer-git fontpreview \
+		sddm-theme-aerial-git ruby-fusuma \
+		archlinux-tweak-tool-git kwin-scripts-krohnkite-git
 }
 
 # 开启服务

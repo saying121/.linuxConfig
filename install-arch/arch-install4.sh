@@ -1,12 +1,12 @@
 #! /bin/bash
 
 # kde桌面，终端
-pacman -S --needed \
+sudo pacman -S --needed \
 	xorg kitty plasma packagekit-qt5 packagekit appstream-qt appstream \
 	networkmanager wget sddm
 
 # 中文字体
-pacman -S --needed \
+sudo pacman -S --needed \
 	adobe-source-han-serif-cn-fonts \
 	adobe-source-han-sans-cn-fonts \
 	wqy-zenhei \
@@ -15,6 +15,10 @@ pacman -S --needed \
 	noto-fonts-emoji \
 	noto-fonts-extra \
 	tf-dejavu
+
+sudo pacman -S --needed \
+	fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
+	fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcit xclip
 
 # fcitx5的设置
 echo '
@@ -25,6 +29,6 @@ SDL_IM_MODULE=fcitx
 GLFW_IM_MODULE=ibus' >>/etc/environment
 
 systemctl enable sddm NetworkManager
-systemctl start sddm NetworkManager
+# systemctl start sddm NetworkManager
 echo 'exit 后执行 umount -R /mnt'
-echo "手动编辑visudo命令中的%wheel ALL=(ALL:ALL)ALL后重启"
+echo "Manual edit visudo command's %wheel ALL=(ALL:ALL)ALL"

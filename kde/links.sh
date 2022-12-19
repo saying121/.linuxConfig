@@ -1,23 +1,13 @@
 #!/bin/bash
 
-# 桌面
-rm -f ~/.config/plasma-localerc
-ln -s ~/.linuxConfig/kde/plasma-localerc ~/.config/plasma-localerc
+if [[ ! -d ~/.config/konsave ]]
+then
+    mkdir -p ~/.config/konsave
+fi
+rm ~/.config/konsave/conf.yaml
+ln -s ~/.linuxConfig/kde/konsave-conf.yaml ~/.config/konsave/conf.yaml
 
-rm -rf ~/.config/plasma-org.kde.plasma.desktop-appletsrc
-ln -s ~/.linuxConfig/kde/plasma-org.kde.plasma.desktop-appletsrc ~/.config/plasma-org.kde.plasma.desktop-appletsrc
-
-rm ~/.config/kdeglobals
-ln -s ~/.linuxConfig/kde/kdeglobals ~/.config/kdeglobals
-
-rm ~/.config/kglobalshortcutsrc
-ln -s ~/.linuxConfig/kde/kglobalshortcutsrc ~/.config/kglobalshortcutsrc
-
-rm ~/.config/krunnerrc
-ln -s ~/.linuxConfig/kde/krunnerrc ~/.config/krunnerrc
-
-rm ~/.config/kwinrc
-ln -s ~/.linuxConfig/kde/kwinrc ~/.config/kwinrc
+~/.local/bin/konsave -i ~/.linuxConfig/kde/kdeConfig1.knsv
 
 # 判断有没有touchpad
 if [[ $(xinput list | grep "[tT]ouchpad" -c ) != 0 ]]; then
@@ -38,5 +28,5 @@ fi
 if [[ -f /etc/sddm.conf.d/kde_settings.conf ]]; then
 	echo '已有sddm配置'
 else
-	cp ~/.linuxConfig/kde/kde_settings.conf /etc/sddm.conf.d/
+	sudo cp ~/.linuxConfig/kde/kde_settings.conf /etc/sddm.conf.d/
 fi
