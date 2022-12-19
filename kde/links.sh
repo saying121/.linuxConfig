@@ -1,15 +1,24 @@
-#! /bin/bash
+#!/bin/bash
 
 # 桌面
-if [[ -f ~/.config/plasma-localerc ]]; then
-	rm -f ~/.config/plasma-localerc
-fi
+rm -f ~/.config/plasma-localerc
 ln -s ~/.linuxConfig/kde/plasma-localerc ~/.config/plasma-localerc
 
-if [[ -f ~/.config/plasma-org.kde.plasma.desktop-appletsrc ]]; then
-	rm -rf ~/.config/plasma-org.kde.plasma.desktop-appletsrc
-fi
+rm -rf ~/.config/plasma-org.kde.plasma.desktop-appletsrc
 ln -s ~/.linuxConfig/kde/plasma-org.kde.plasma.desktop-appletsrc ~/.config/plasma-org.kde.plasma.desktop-appletsrc
+
+rm ~/.config/kdeglobals
+ln -s ~/.linuxConfig/kde/kdeglobals ~/.config/kdeglobals
+
+rm ~/.config/kglobalshortcutsrc
+ln -s ~/.linuxConfig/kde/kglobalshortcutsrc ~/.config/kglobalshortcutsrc
+
+rm ~/.config/krunnerrc
+ln -s ~/.linuxConfig/kde/krunnerrc ~/.config/krunnerrc
+
+rm ~/.config/kwinrc
+ln -s ~/.linuxConfig/kde/kwinrc ~/.config/kwinrc
+
 # 判断有没有touchpad
 if [[ $(xinput list | grep "[tT]ouchpad" -c ) != 0 ]]; then
 	# 配置触摸板

@@ -50,6 +50,7 @@ fi
 export all_proxy=http://127.0.0.1:7890
 export ALL_PROXY=$all_proxy
 export EDITOR='nvim'
+export PATH=~/.local/bin:$PATH
 
 if [[ $(uname -a | grep -c WSL) != 0 ]]; then
 	if [[ $(grep -c debian /etc/os-release) != 0 ]]; then

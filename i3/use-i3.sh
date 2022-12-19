@@ -7,8 +7,8 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 fi
 
 mkdir -p ~/.config/systemd/user
-if [[ ! -f ~/.linuxConfig/plasma-i3.service ]]; then
-	cp ~/.linuxConfig/plasma-i3.service ~/.config/systemd/user/plasma-i3.service
+if [[ ! -f ~/.config/systemd/user/plasma-i3.service ]]; then
+	cp ~/.linuxConfig/custom-services/plasma-i3.service ~/.config/systemd/user/plasma-i3.service
 fi
 
 

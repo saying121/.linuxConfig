@@ -206,7 +206,7 @@ immutability=1
 plugin=org.kde.plasma.minimizeall
 
 [Containments][2][Applets][91][Configuration]
-PreloadWeight=55
+PreloadWeight=60
 
 [Containments][2][Applets][91][Configuration][ConfigDialog]
 DialogHeight=660
@@ -320,7 +320,7 @@ immutability=1
 plugin=org.kde.plasma.mediacontroller
 
 [Containments][61][Applets][90][Configuration]
-PreloadWeight=42
+PreloadWeight=34
 
 [Containments][61][Configuration]
 PreloadWeight=42
@@ -421,7 +421,7 @@ immutability=1
 plugin=org.kde.plasma.mediacontroller
 
 [Containments][8][Applets][23][Configuration]
-PreloadWeight=39
+PreloadWeight=31
 
 [Containments][8][Applets][9]
 immutability=1

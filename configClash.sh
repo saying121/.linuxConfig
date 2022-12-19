@@ -27,7 +27,7 @@ fi
 unset clash_dir clash_config
 
 if [[ ! -f /etc/systemd/system/clash.service ]]; then
-	sudo cp ~/.linuxConfig/clash.service /etc/systemd/system/clash.service
+	sudo cp ~/.linuxConfig/custom-services/clash.service /etc/systemd/system/clash.service
 fi
 
 # clash路径

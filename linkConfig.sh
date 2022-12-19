@@ -1,91 +1,60 @@
-#! /bin/bash
+#!/bin/bash
 
 if [[ ! -d ~/.config ]]; then
 	mkdir ~/.config
 fi
 
-linkConfig() {
-	if [[ -d ~/.pip ]]; then
-		rm -rf ~/.pip
-	fi
-	ln -s ~/.linuxConfig/pip ~/.pip
-	echo "链接pip配置成功"
+rm -rf ~/.pip
+ln -s ~/.linuxConfig/pip ~/.pip && echo "链接pip配置成功"
 
-	if [[ -d ~/.config/nvim ]]; then
-		rm -rf ~/.config/nvim
-	fi
-	ln -s ~/.linuxConfig/nvim ~/.config/nvim
-	echo "链接nvim配置成功"
+rm -rf ~/.config/nvim
+ln -s ~/.linuxConfig/nvim ~/.config/nvim && echo "链接nvim配置成功"
 
-	if [[ -f ~/.vimrc ]]; then
-		rm ~/.vimrc
-	fi
-	ln -s ~/.linuxConfig/nvim/viml/init.vim ~/.vimrc
-	echo "链接了.vimrc"
+rm ~/.vimrc
+ln -s ~/.linuxConfig/nvim/viml/init.vim ~/.vimrc && echo "链接了.vimrc"
 
-	if [[ -f ~/.zshrc ]]; then
-		rm ~/.zshrc
-	fi
-	ln -s ~/.linuxConfig/shells/.zshrc ~/.zshrc
-	echo "链接了.zshrc"
+rm ~/.zshrc
+ln -s ~/.linuxConfig/shells/.zshrc ~/.zshrc && echo "链接了.zshrc"
 
-	if [[ -f ~/.bashrc ]]; then
-		rm ~/.bashrc
-	fi
-	ln -s ~/.linuxConfig/shells/bashrc ~/.bashrc
-	echo "链接了.bashrc"
-	if [[ -d ~/.local/shells ]]; then
-		echo -n ""
-	else
-		mkdir ~/.local/shells
-	fi
-
-	kittyConfig=~/.config/kitty/kitty.conf
-	if [[ -f $kittyConfig ]]; then
-		rm "$kittyConfig"
-	fi
-	ln -s ~/.linuxConfig/kitty-config/kitty.conf $kittyConfig
-	echo "链接了kitty配置"
-
-	unset kittyConfig
-}
-linkConfig
+rm ~/.bashrc
+ln -s ~/.linuxConfig/shells/bashrc ~/.bashrc && echo "链接了.bashrc"
+if [[ ! -d ~/.local/shells ]]; then
+	mkdir ~/.local/shells
+fi
 
 if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
-	# 应用配置
-	~/.linuxConfig/configs/links.sh
+	# kitty
+	rm ~/.config/kitty/kitty.conf
+	ln -s ~/.linuxConfig/kitty-config/kitty.conf ~/.config/kitty/kitty.conf
+
+	# flameshot
+	if [[ ! -d ~/.config/flameshot ]]; then
+		mkdir -p ~/.config/flameshot
+	fi
+	rm ~/.config/flameshot/flameshot.ini
+	ln -s ~/.linuxConfig/configs/flameshot.ini ~/.config/flameshot/flameshot.ini
+
 	# 桌面配置
 	~/.linuxConfig/kde/links.sh
+
 	# keymap
-	if [[ -d ~/.config/input-remapper ]]; then
-		# echo '有原来的配置目录，请手动操作'
-		rm -rf ~/.config/input-remapper
-	fi
+	rm -rf ~/.config/input-remapper
 	ln -s ~/.linuxConfig/input-remapper ~/.config/input-remapper
+
 	# 触摸板手势
+	rm -rf ~/.config/fusuma
 	if [[ ! -d ~/.config/fusuma ]]; then
 		ln -s ~/.linuxConfig/fusuma ~/.config/fusuma
 	fi
-	# i3
-	if [[ -d ~/.config/i3 ]]; then
-		rm -rf ~/.config/i3
-	fi
-	if [[ ! -d ~/.config/i3 ]]; then
-		ln -s ~/.linuxConfig/i3 ~/.config/i3
-	fi
 
-	if [[ -d ~/.config/polybar ]]; then
-		rm -rf ~/.config/polybar
-	fi
-	if [[ ! -d ~/.config/polybar ]]; then
-		ln -s ~/.linuxConfig/polybar ~/.config/polybar
-	fi
+	# i3
+	rm -rf ~/.config/i3
+	ln -s ~/.linuxConfig/i3 ~/.config/i3
+
+	rm -rf ~/.config/polybar
+	ln -s ~/.linuxConfig/polybar ~/.config/polybar
 
 	# ranger
-	if [[ -d ~/.config/ranger ]]; then
-		rm -rf ~/.config/ranger
-	fi
-	if [[ ! -d ~/.config/ranger ]]; then
-		ln -s ~/.linuxConfig/ranger ~/.config/ranger
-	fi
+	rm -rf ~/.config/ranger
+	ln -s ~/.linuxConfig/ranger ~/.config/ranger
 fi

@@ -1,9 +1,0 @@
-[Containments][2][Applets][7][Configuration]
-PreloadWeight=75
-
-[Containments][8]
-popupHeight=528
-popupWidth=528
-
-[Containments][8][Applets][15][Configuration]
-PreloadWeight=75

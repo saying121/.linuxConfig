@@ -32,7 +32,8 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	sudo pacman -S --needed \
 		dnsutils networkmanager fd tree p7zip
 	sudo pacman -S --needed \
-		jdk17-openjdk python-pip go clash
+		jdk17-openjdk python-pip go clash \
+		tldr
 
 elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	sudo apt update && sudo apt upgrade -y
@@ -124,6 +125,8 @@ allInstall() {
 		imagemagick kitty mpv flameshot \
 		steam rofi goldendict
 	# tmux
+
+	python -m pip install konsave
 
 	# tmux 插件管理器
 	# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
