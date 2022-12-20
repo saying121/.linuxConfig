@@ -1,0 +1,9 @@
+[Containments][2][ConfigDialog]
+DialogHeight=93
+DialogWidth=1920
+
+[Containments][8][Applets][10][Configuration]
+PreloadWeight=55
+
+[Containments][8][Applets][23][Configuration]
+PreloadWeight=60

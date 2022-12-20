@@ -15,11 +15,11 @@ ln -s ~/.linuxConfig/nvim/viml/init.vim ~/.vimrc && echo "链接了.vimrc"
 
 rm ~/.zshrc
 ln -s ~/.linuxConfig/shells/.zshrc ~/.zshrc && echo "链接了.zshrc"
-source ~/.zshrc
+# source ~/.zshrc
 
 rm ~/.bashrc
 ln -s ~/.linuxConfig/shells/bashrc ~/.bashrc && echo "链接了.bashrc"
-source ~/.bashrc
+# source ~/.bashrc
 
 if [[ ! -d ~/.local/shells ]]; then
 	mkdir ~/.local/shells
@@ -54,10 +54,20 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	rm -rf ~/.config/i3
 	ln -s ~/.linuxConfig/i3 ~/.config/i3
 
-	rm -rf ~/.config/polybar
-	ln -s ~/.linuxConfig/polybar ~/.config/polybar
-
 	# ranger
 	rm -rf ~/.config/ranger
 	ln -s ~/.linuxConfig/ranger ~/.config/ranger
+
+    # 语言
+    rm -rf ~/.xprofile
+    ln -s ~/.linuxConfig/xprofile ~/.xprofile
+
+    # 输入法
+    rm -rf ~/.config/fcitx
+    ln -s ~/.linuxConfig/fcitxs-config/fcitx ~/.config/fcitx
+    rm -rf ~/.config/fcitx5
+    ln -s ~/.linuxConfig/fcitxs-config/fcitx5 ~/.config/fcitx5
+
+    # polybar
+    cat ~/.linuxConfig/mpd/mpd.conf | sudo tee /etc/mpd.conf
 fi

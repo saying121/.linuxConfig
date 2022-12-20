@@ -2,7 +2,7 @@
 
 # 截图
 if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-	sudo pacman -S --need maim dunst viewnior
+	sudo pacman -S --need maim dunst viewnior alsa-utils
 fi
 if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	sudo sudo apt install maim dunst viewnior
