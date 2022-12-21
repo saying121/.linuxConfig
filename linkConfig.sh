@@ -37,8 +37,12 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	rm ~/.config/flameshot/flameshot.ini
 	ln -s ~/.linuxConfig/configs/flameshot.ini ~/.config/flameshot/flameshot.ini
 
-	# 桌面配置
-	~/.linuxConfig/kde/links.sh
+	# konsave config
+	if [[ ! -d ~/.config/konsave ]]; then
+		mkdir -p ~/.config/konsave
+	fi
+	rm ~/.config/konsave/conf.yaml
+	ln -s ~/.linuxConfig/kde/konsave-conf.yaml ~/.config/konsave/conf.yaml
 
 	# keymap
 	rm -rf ~/.config/input-remapper
@@ -58,16 +62,17 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	rm -rf ~/.config/ranger
 	ln -s ~/.linuxConfig/ranger ~/.config/ranger
 
-    # 语言
-    rm -rf ~/.xprofile
-    ln -s ~/.linuxConfig/xprofile ~/.xprofile
+	# 语言
+	rm -rf ~/.xprofile
+	ln -s ~/.linuxConfig/xprofile ~/.xprofile
 
-    # 输入法
-    rm -rf ~/.config/fcitx
-    ln -s ~/.linuxConfig/fcitxs-config/fcitx ~/.config/fcitx
-    rm -rf ~/.config/fcitx5
-    ln -s ~/.linuxConfig/fcitxs-config/fcitx5 ~/.config/fcitx5
+	# 输入法
+	rm -rf ~/.config/fcitx
+	ln -s ~/.linuxConfig/fcitxs-config/fcitx ~/.config/fcitx
+	rm -rf ~/.config/fcitx5
+	ln -s ~/.linuxConfig/fcitxs-config/fcitx5 ~/.config/fcitx5
 
-    # polybar
-    cat ~/.linuxConfig/mpd/mpd.conf | sudo tee /etc/mpd.conf
+	# polybar
+	# cat ~/.linuxConfig/mpd/mpd.conf | sudo tee /etc/mpd.conf
+
 fi

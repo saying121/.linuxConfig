@@ -30,4 +30,4 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	pkgfile makepkg
 fi
 
-source ~/.zshrc
+source $HOME/.zshrc

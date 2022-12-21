@@ -13,8 +13,9 @@ augroup RecoverCursor
                 \ if line("'\"") > 1 && line("'\"") <= line("$") |
                 \   exe "normal! g`\"" |
                 \ endif
-    " 光标修改
-    autocmd VimLeave * set guicursor=n:ver50-ncvCursor
+    " 光标修改二选一
+    " autocmd VimLeave * set guicursor=n:ver50-ncvCursor
+    autocmd VimLeave * set guicursor=a:ver1
 augroup END
 
 " 写入自动删除行末空格

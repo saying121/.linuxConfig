@@ -1,16 +1,10 @@
 #!/bin/bash
 
-if [[ ! -d ~/.config/konsave ]]
-then
-    mkdir -p ~/.config/konsave
-fi
-rm ~/.config/konsave/conf.yaml
-ln -s ~/.linuxConfig/kde/konsave-conf.yaml ~/.config/konsave/conf.yaml
-
+# 导入默认配置
 ~/.local/bin/konsave -i ~/.linuxConfig/kde/kdeConfig1.knsv
 
 # 判断有没有touchpad
-if [[ $(xinput list | grep "[tT]ouchpad" -c ) != 0 ]]; then
+if [[ $(xinput list | grep "[tT]ouchpad" -c) != 0 ]]; then
 	# 配置触摸板
 	if [[ ! -d /etc/X11/xorg.conf.d ]]; then
 		sudo mkdir -p /etc/X11/xorg.conf.d/
@@ -21,6 +15,7 @@ if [[ $(xinput list | grep "[tT]ouchpad" -c ) != 0 ]]; then
 		sudo cp ~/.linuxConfig/kde/20-touchpad.conf /etc/X11/xorg.conf.d/
 	fi
 fi
+
 # sddm
 if [[ ! -d /etc/sddm.conf.d/ ]]; then
 	mkdir -p /etc/sddm.conf.d
@@ -30,3 +25,8 @@ if [[ -f /etc/sddm.conf.d/kde_settings.conf ]]; then
 else
 	sudo cp ~/.linuxConfig/kde/kde_settings.conf /etc/sddm.conf.d/
 fi
+
+# 桌面配置
+# 默认
+~/.local/bin/konsave -i ~/.linuxConfig/kde/kdeConfig1.knsv
+~/.local/bin/konsave -a ~/.linuxConfig/kde/kdeConfig1.knsv

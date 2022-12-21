@@ -1,14 +1,11 @@
 个人应用配置
-包括以下：
 
-(neo)nvim
+先运行~/.linuxConfig/configClash.sh 后跟 clash链接, 来连接github
 
-zsh
+正常用就运行~/.linuxConfig/install.sh
 
-bash
+kde+i3就接着运行 ~/.linuxConfig/i3/use-i3.sh
 
-input-remapper
+换回kde运行 ~/.linuxConfig/i3/use-kwin.sh
 
-
-安装arch时把仓库拷贝到u盘
-clash链接:
+kde+i3+wallpaper运行 ~/.linuxConfig/kde/wallpaper-engine-kde-plugin.sh

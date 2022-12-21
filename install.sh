@@ -47,7 +47,7 @@ sudo $pacMan \
 # 必装开发工具
 sudo $pacMan \
 	neovim git shfmt \
-	python3 nodejs npm \
+	python3 nodejs npm
 
 # nvim配置
 if [[ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
@@ -70,7 +70,7 @@ allInstall() {
 		sudo pacman -S --needed \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcit xclip fcitx5-table-other \
-			nerd-fonts-hack \
+			nerd-fonts-hack
 
 		sudo pacman -S --needed \
 			pacman-contrib \
@@ -89,6 +89,7 @@ allInstall() {
 		elif [[ ! -d ~/.linuxConfig/ranger/plugins/devicons2 ]]; then
 			git clone https://github.com/cdump/ranger-devicons2 ~/.config/ranger/plugins/devicons2
 		fi
+		sudo pacman -S --needed xorg xorg-xinit xorg-server picom feh polybar calc python-pywal network-manager-applet
 
 	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		sudo apt update && sudo apt upgrade -y
@@ -129,7 +130,8 @@ yayInstall() {
 		ldr-translate-qt \
 		xnviewmp epub-thumbnailer-git fontpreview \
 		sddm-theme-aerial-git ruby-fusuma \
-		archlinux-tweak-tool-git kwin-scripts-krohnkite-git
+		archlinux-tweak-tool-git kwin-scripts-krohnkite-git \
+		i3-gaps-kde-git networkmanager-dmenu-git copyq networkmanager-dmenu-bluetoothfix-git
 }
 
 # 开启服务
