@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# 找个空目录执行
 sudo pacman -S --needed extra-cmake-modules plasma-framework gst-libav \
 base-devel mpv python-websockets qt5-declarative qt5-websockets qt5-webchannel vulkan-headers cmake
 
@@ -26,8 +27,8 @@ sudo make install
 cd ..
 # rm -rf wallpaper-engine-kde-plugin
 
-~/.local/bin/konsave -i ~/.linuxConfig/kde/kde+i3wm+wallpaper-engine-kde-plugin.knsv
-~/.local/bin/konsave -a ~/.linuxConfig/kde/kde+i3wm+wallpaper-engine-kde-plugin.knsv
+~/.local/bin/konsave -i ~/.linuxConfig/kde/kdei3wallpaper.knsv
+~/.local/bin/konsave -a ~/.linuxConfig/kde/kdei3wallpaper.knsv
 
 # Uninstall
 # remove files that list in wallpaper-engine-kde-plugin/build/install_manifest.txt

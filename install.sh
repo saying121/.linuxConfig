@@ -23,15 +23,14 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		pacman-key --populate archlinux
 		pacman-key --populate archlinuxcn
 	fi
+	sudo pacman -syu
 	sudo pacman -S --needed yay paru
 	# 调用关于clash的脚本，配置clash
 	~/.linuxConfig/configClash.sh
-
 	# 开发工具
-	sudo pacman -syu
 
 	sudo pacman -S --needed dnsutils networkmanager fd tree p7zip \
-		jdk17-openjdk python-pip go clash tldr
+		jdk17-openjdk python-pip go clash
 
 elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	sudo apt update && sudo apt upgrade -y
@@ -49,13 +48,14 @@ sudo $pacMan \
 	neovim git shfmt \
 	python3 nodejs npm
 
+sudo npm i -g tldr npm-check-updates
 # nvim配置
 if [[ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
 	git clone --depth 1 https://github.com/wbthomason/packer.nvim \
 		~/.local/share/nvim/site/pack/packer/start/packer.nvim
 fi
 sudo npm install -g npm neovim
-sudo npm install -g tree-sitter-cli
+# sudo npm install -g tree-sitter-cli
 sudo npm i -g sql-language-server
 pip3 install black isort pynvim pipenv
 pip3 install pylsp-rope
@@ -73,14 +73,15 @@ allInstall() {
 			nerd-fonts-hack
 
 		sudo pacman -S --needed \
-			pacman-contrib \
+			pacman-contrib powerpill reflector \
 			openssh ntfs-3g firewalld \
 			ueberzug ffmpegthumbnailer pdftoppm dolphin \
 			w3m djvutxt calibre transmission-cli mediainf odt2txt \
 			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
-			pandoc xdg-utils youtube-dl numlockx
+			pandoc xdg-utils youtube-dl numlockx rsync \
+linux-firmware-qlogic
 		# sddm主题的依赖
-		sudo pacman -S gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
+		sudo pacman -S --needed gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机
 		sudo pacman -S --needed pulseaudio-bluetooth pulsemixer
 		# ranger fzf
@@ -89,6 +90,7 @@ allInstall() {
 		elif [[ ! -d ~/.linuxConfig/ranger/plugins/devicons2 ]]; then
 			git clone https://github.com/cdump/ranger-devicons2 ~/.config/ranger/plugins/devicons2
 		fi
+
 		sudo pacman -S --needed xorg xorg-xinit xorg-server picom feh polybar calc python-pywal network-manager-applet
 
 	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then

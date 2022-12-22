@@ -26,16 +26,19 @@ if [[ ! -d ~/.local/shells ]]; then
 fi
 
 if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
-	# kitty
-	rm ~/.config/kitty/kitty.conf
-	ln -s ~/.linuxConfig/kitty-config/kitty.conf ~/.config/kitty/kitty.conf
-
 	# flameshot
 	if [[ ! -d ~/.config/flameshot ]]; then
 		mkdir -p ~/.config/flameshot
 	fi
 	rm ~/.config/flameshot/flameshot.ini
 	ln -s ~/.linuxConfig/configs/flameshot.ini ~/.config/flameshot/flameshot.ini
+    # tldr
+    rm ~/.tldrrc
+    ln -s ~/.linuxConfig/configs/tldrrc ~/.tldrrc
+
+	# kitty
+	rm ~/.config/kitty/kitty.conf
+	ln -s ~/.linuxConfig/kitty-config/kitty.conf ~/.config/kitty/kitty.conf
 
 	# konsave config
 	if [[ ! -d ~/.config/konsave ]]; then

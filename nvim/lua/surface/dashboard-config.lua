@@ -7,7 +7,7 @@ local db = require('dashboard')
 -- db.preview_file_height = 14
 -- db.preview_file_width = 100
 
-pcall(vim.cmd[[
+pcall(vim.cmd [[
 function! Rain()
     exec ':CellularAutomaton game_of_life'
     normal i<esc>
@@ -48,7 +48,39 @@ local head1 = {
     "⣿⣿⣿⣿⢹⣿⣿⢮⣚⡛⠒⠛⢛⣋⣶⣿⣿⣿⣿⣿⣟⣱⠿⣿⣿⠟⣡⣺⢿            ⣿⣿⣿⣶⣶⣮⣥⣒⠲⢮⣝⡿⣿⣿⡆⣿⡿⠃⠄⠄⠄⠄⠄⠄⠄⣠⣴⣿⣿⣿                                         ",
 }
 
-local head2 = {
+local pegasus_symbol = {
+    [[                                                               _,-='`> ]],
+    [[                                                        _,.-='`        ]],
+    [[                                                  _,.='`               ]],
+    [[                                            _,-='`  >      _       >   ]],
+    [[                         _.,_          _,-'`\      >                   ]],
+    [[                     _.-'`-  `'-._,.-'`     /_      >              >   ]],
+    [[               _.-'`` <>-  -<    /       .-'_>       >    -            ]],
+    [[              /~o    ,       \  |      ,'  _  >  -    >           >    ]],
+    [[              (.-,   `    _   \_ \     \  _  >  _     >    -           ]],
+    [[                (_,--=--'`  ,`/   \    | _  >         >         >      ]],
+    [[               .-'       _,' /    /    / _ >     -   >    -            ]],
+    [[              /             '    /    / - >         >        >         ]],
+    [[       .-=-. /              ___./   .'  >          >     >             ]],
+    [[      /     Y               ````   /  >          >   >                 ]],
+    [[    .' _/\   \                   ,'  >    >   >    ,-===--.            ]],
+    [[  /`  /   \   `-              ,-`  >   >  ,>_    ,'        `\          ]],
+    [[  (   >  : \              ..-'   >  > _,>`   `--'            \         ]],
+    [[   \ / ) L\ \             `\   >_,.--'             ,-'"'\    |         ]],
+    [[    `-./ (_\ \_____         `-'                  <'    _/    /         ]],
+    [[      (   :\\.```                                 \ ,-'     /          ]],
+    [[       `\_;_> `-.-~`'-_             ---._          Y  __,.-'           ]],
+    [[                       `'-...__  __,.-=- \         \ (_,-':            ]],
+    [[                             _.`\_      ._>._       `-._='             ]],
+    [[                            <     `-._   \   `'-._     `;              ]],
+    [[                            L _<`-.       \       `'-.   \             ]],
+    [[                            \~ /   `-._  .'           `\  \            ]],
+    [[                             \/        `'               L  \_          ]],
+    [[                                                        \   ;`'-.      ]],
+    [[                                                         \___\,.       ]],
+}
+
+local kali = {
     "..............                                   ",
     "            ..,;:ccc,.                           ",
     "          ......''';lxO.                         ",
@@ -72,7 +104,7 @@ local head2 = {
     "                                             .   ",
 }
 
-local head3 = {
+local arch = {
     "                   -`                   ",
     "                  .o+`                  ",
     "                 `ooo/                  ",
@@ -94,7 +126,13 @@ local head3 = {
     " .`                                 `/. ",
 }
 
-db.custom_header = head3
+if os.execute('grep -c arch /etc/os-release > /dev/null') then
+    db.custom_header = arch
+elseif os.execute('grep -c kali /etc/os-release > /dev/null') then
+    db.custom_header = kali
+else
+    db.custom_header = pegasus_symbol
+end
 
 local footer1 = {
     [[..............................................................................]],
