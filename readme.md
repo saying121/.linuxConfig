@@ -4,6 +4,9 @@
 
 先运行~/.linuxConfig/configClash.sh 后跟 clash链接，来连接github
 
+## 如果要使用本配置，执行,包含ranger的插件
+    git clone --recursive https://github.com/saying121/.linuxConfig.git ~/.linuxConfig
+
 ## 安装完成后
 
     # 正常用就运行保含常用的软件什么的
