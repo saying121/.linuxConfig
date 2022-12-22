@@ -1,3 +1,0 @@
-[submodule "ranger/ranger_fzf_filter"]
-	path = ranger/ranger_fzf_filter
-	url = https://github.com/MuXiu1997/ranger-fzf-filter
