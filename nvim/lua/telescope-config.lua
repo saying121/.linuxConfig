@@ -1,6 +1,3 @@
-require 'telescope'.load_extension('media_files')
-require 'telescope'.load_extension('file_browser')
-
 require 'telescope'.setup {
     defaults = {
         -- Default configuration for telescope goes here:
@@ -61,4 +58,3 @@ vim.keymap.set('n', '<leader>bf', builtin.buffers, { noremap = true })
 vim.keymap.set('n', '<leader>go', builtin.oldfiles, { noremap = true })
 vim.keymap.set('n', '<space>a', builtin.treesitter, { noremap = true })
 vim.keymap.set('n', '<space>ll', builtin.diagnostics, { noremap = true })
-vim.cmd('nnoremap <space>m :Telescope media_files<CR>')

@@ -17,3 +17,4 @@ require 'lsp'
 require 'dap-config'
 
 require 'telescope-config'
+require 'project-nvim'

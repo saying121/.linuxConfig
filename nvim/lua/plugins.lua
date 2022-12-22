@@ -38,9 +38,8 @@ packer.startup({
             tag = 'nightly' -- optional, updated every week. (see issue #1193)
         }
         use {
-            'nvim-telescope/telescope.nvim', tag = '0.1.0', --依赖 apt install ripgrep
-            'nvim-telescope/telescope-file-browser.nvim',
-            'nvim-telescope/telescope-media-files.nvim',
+            'nvim-telescope/telescope.nvim', tag = '0.1.0',
+            "ahmedkhalf/project.nvim",
         }
         use {
             'neovim/nvim-lspconfig',
@@ -83,7 +82,6 @@ packer.startup({
         }
         use 'nvim-lua/popup.nvim'
         -- use 'itchyny/vim-cursorword'
-        -- use 'lfv89/vim-interestingwords'
         use 'nvim-lua/plenary.nvim'
         use {
             'EdenEast/nightfox.nvim', run = ':NightfoxCompile',

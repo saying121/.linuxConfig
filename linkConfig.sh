@@ -25,6 +25,10 @@ if [[ ! -d ~/.local/shells ]]; then
 	mkdir ~/.local/shells
 fi
 
+# ranger
+rm -rf ~/.config/ranger
+ln -s ~/.linuxConfig/ranger ~/.config/ranger
+
 if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	# flameshot
 	if [[ ! -d ~/.config/flameshot ]]; then
@@ -32,9 +36,9 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	fi
 	rm ~/.config/flameshot/flameshot.ini
 	ln -s ~/.linuxConfig/configs/flameshot.ini ~/.config/flameshot/flameshot.ini
-    # tldr
-    rm ~/.tldrrc
-    ln -s ~/.linuxConfig/configs/tldrrc ~/.tldrrc
+	# tldr
+	rm ~/.tldrrc
+	ln -s ~/.linuxConfig/configs/tldrrc ~/.tldrrc
 
 	# kitty
 	rm ~/.config/kitty/kitty.conf
@@ -60,10 +64,6 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	# i3
 	rm -rf ~/.config/i3
 	ln -s ~/.linuxConfig/i3 ~/.config/i3
-
-	# ranger
-	rm -rf ~/.config/ranger
-	ln -s ~/.linuxConfig/ranger ~/.config/ranger
 
 	# 语言
 	rm -rf ~/.xprofile
