@@ -84,12 +84,6 @@ linux-firmware-qlogic
 		sudo pacman -S --needed gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机
 		sudo pacman -S --needed pulseaudio-bluetooth pulsemixer
-		# ranger fzf
-		if [[ ! -d ~/.linuxConfig/ranger/plugins/ranger_fzf_filter ]]; then
-			git clone https://github.com/MuXiu1997/ranger-fzf-filter.git ~/.config/ranger/plugins/ranger_fzf_filter
-		elif [[ ! -d ~/.linuxConfig/ranger/plugins/devicons2 ]]; then
-			git clone https://github.com/cdump/ranger-devicons2 ~/.config/ranger/plugins/devicons2
-		fi
 
 		sudo pacman -S --needed xorg xorg-xinit xorg-server picom feh polybar calc python-pywal network-manager-applet
 
