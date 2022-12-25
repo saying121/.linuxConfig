@@ -33,31 +33,31 @@ endfunction
 
 func! FileType()
     if &filetype=='c'
-        let l:prompy_symbol='  '
+        let l:prompy_symbol=' '
     elseif &filetype=='cpp'
-        let l:prompy_symbol='ﭱ  '
+        let l:prompy_symbol='ﭱ '
     elseif &filetype=='java'
-        let l:prompy_symbol='  '
+        let l:prompy_symbol=' '
     elseif &filetype=='javascript'
-        let l:prompy_symbol='  '
+        let l:prompy_symbol=' '
     elseif &filetype=='html'
-        let l:prompy_symbol='  '
+        let l:prompy_symbol=' '
     elseif &filetype=='json'
-        let l:prompy_symbol='  '
+        let l:prompy_symbol=' '
     elseif &filetype=='sh'
-        let l:prompy_symbol='  '
+        let l:prompy_symbol=' '
     elseif &filetype=='python'
-        let l:prompy_symbol='  '
+        let l:prompy_symbol=' '
     elseif &filetype=='lua'
-        let l:prompy_symbol='  '
+        let l:prompy_symbol=' '
     elseif &filetype=='go'
-        let l:prompy_symbol='  '
+        let l:prompy_symbol=' '
     elseif &filetype=='vim'
-        let l:prompy_symbol='  '
+        let l:prompy_symbol=' '
     elseif &filetype=='markdown'
-        let l:prompy_symbol='  '
+        let l:prompy_symbol=' '
     elseif &filetype=='txt'
-        let l:prompy_symbol='  '
+        let l:prompy_symbol=' '
     else
         return '[' .. &filetype .. ']'
     endif
@@ -79,7 +79,7 @@ set statusline+=%6*\%3p%%\%*                "显示光标前文本所占总文�
 hi User1 guifg=Olivedrab
 hi User2 guifg=blue
 " hi User7 guifg=red
-hi User8 guifg=Turquoise
+hi User8 guifg=beige
 hi User3 guifg=Turquoise
 hi User4 guifg=Darkgray
 hi User5 guifg=Cyan

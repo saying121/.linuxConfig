@@ -54,6 +54,10 @@ if [[ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
 	git clone --depth 1 https://github.com/wbthomason/packer.nvim \
 		~/.local/share/nvim/site/pack/packer/start/packer.nvim
 fi
+if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 sudo npm install -g npm neovim
 # sudo npm install -g tree-sitter-cli
 sudo npm i -g sql-language-server
@@ -79,7 +83,7 @@ allInstall() {
 			w3m djvutxt calibre transmission-cli mediainf odt2txt \
 			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
 			pandoc xdg-utils youtube-dl numlockx rsync \
-linux-firmware-qlogic
+			linux-firmware-qlogic
 		# sddm主题的依赖
 		sudo pacman -S --needed gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机
