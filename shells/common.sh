@@ -53,10 +53,10 @@ export EDITOR='nvim'
 export PATH=~/.local/bin:$PATH
 
 if [[ $(uname -a | grep -c WSL) != 0 ]]; then
-	if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
+	# if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		alias proxy="source ~/.linuxConfig/shells/proxy.sh"
 		. ~/.linuxConfig/shells/proxy.sh set
-	fi
+	# fi
 fi
 
 # 自己的alias
@@ -67,7 +67,7 @@ alias clhconf="~/.linuxConfig/configClash.sh"
 alias clhres="sudo systemctl restart clash.service"
 alias clhsts="systemctl status clash.service"
 
-alias rm="rm -i"
+alias rm="trash"
 
 # avoid open nested ranger instances
 ranger() {

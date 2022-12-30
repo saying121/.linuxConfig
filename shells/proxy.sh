@@ -1,6 +1,7 @@
 #!/bin/sh
 hostip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
-wslip=$(hostname -I | awk '{print $1}')
+# wslip=$(hostname -I | awk '{print $1}')
+wslip=$(ip address show eth0|grep 'scope global'|awk '{print $2}'|awk -F/ '{print $1}')
 port=7890
 
 PROXY_HTTP="http://${hostip}:${port}"
