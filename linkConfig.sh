@@ -29,6 +29,10 @@ fi
 rm -rf ~/.config/ranger
 ln -s ~/.linuxConfig/ranger ~/.config/ranger
 
+# tldr
+rm ~/.tldrrc
+ln -s ~/.linuxConfig/configs/tldrrc ~/.tldrrc
+
 if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	# flameshot
 	if [[ ! -d ~/.config/flameshot ]]; then
@@ -36,10 +40,6 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	fi
 	rm ~/.config/flameshot/flameshot.ini
 	ln -s ~/.linuxConfig/configs/flameshot.ini ~/.config/flameshot/flameshot.ini
-	# tldr
-	rm ~/.tldrrc
-	ln -s ~/.linuxConfig/configs/tldrrc ~/.tldrrc
-
 	# kitty
 	rm ~/.config/kitty/kitty.conf
 	ln -s ~/.linuxConfig/kitty-config/kitty.conf ~/.config/kitty/kitty.conf

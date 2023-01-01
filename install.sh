@@ -48,7 +48,7 @@ sudo $pacMan neovim git \
 	python3 nodejs npm \
     shfmt shellcheck
 
-sudo npm i -g tldr npm-check-updates awk-language-server bash-language-server
+sudo npm i -g npm-check-updates awk-language-server bash-language-server
 # nvim配置
 if [[ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
 	git clone --depth 1 https://github.com/wbthomason/packer.nvim \
@@ -61,7 +61,7 @@ fi
 sudo npm install -g npm neovim
 # sudo npm install -g tree-sitter-cli
 sudo npm i -g sql-language-server
-pip3 install black isort pynvim pipenv
+pip3 install black isort pynvim pipenv tldr
 pip3 install pylsp-rope
 nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
