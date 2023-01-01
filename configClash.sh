@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 if [[ $(grep -c arch /etc/os-release) != 0 && ! $(type clash) =~ clash ]]; then
 	sudo pacman -S --need clash
@@ -31,7 +31,7 @@ if [[ ! -f /etc/systemd/system/clash.service ]]; then
 fi
 
 # clash路径
-sudo sed -i "s#ExecStart=.* -f#ExecStart=$(where clash) -f#" /etc/systemd/system/clash.service
+sudo sed -i "s#ExecStart=.* -f#ExecStart=$(which clash) -f#" /etc/systemd/system/clash.service
 
 sudo systemctl daemon-reload
 sudo systemctl enable clash

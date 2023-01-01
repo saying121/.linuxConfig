@@ -23,6 +23,11 @@ if [[ ! -d ~/.oh-my-zsh/custom/plugins/git-open ]]; then
 	git clone https://github.com/paulirish/git-open.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/git-open
 fi
 
+# 安装fzf-tab
+if [[ ! -d ~/.oh-my-zsh/custom/plugins/fzf-tab ]]; then
+	git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+fi
+
 # 启用command-not-found
 if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	sudo pacman -S --needed pkgfile

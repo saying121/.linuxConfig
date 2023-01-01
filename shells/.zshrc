@@ -80,6 +80,7 @@ plugins=(
     extract
     colored-man-pages
     history-substring-search
+    fzf-tab
 )
 
 if [[ -d $ZSH ]]; then
@@ -89,6 +90,7 @@ fi
 # User configuration
 
 source ~/.linuxConfig/shells/zshrc
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
