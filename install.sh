@@ -157,6 +157,7 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	startServer
 	~/.linuxConfig/shells/ohmyzsh.sh
 	~/.linuxConfig/rofi/install-rofi-theme.sh
+	~/.linuxConfig/i3/polybar/install-polybar-theme.sh
 	# 刷新字体
 	fc-cache -fv
 fi
