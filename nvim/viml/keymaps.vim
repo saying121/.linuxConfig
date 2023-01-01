@@ -6,6 +6,7 @@ vnoremap # #n
 nnoremap ,, ggVG
 
 " 映射按键
+nnoremap ` %
 nnoremap <leader>w :w<CR>
 nnoremap j gj
 nnoremap k gk

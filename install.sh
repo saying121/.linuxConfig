@@ -44,11 +44,11 @@ sudo $pacMan \
 	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting
 
 # 必装开发工具
-sudo $pacMan \
-	neovim git shfmt \
-	python3 nodejs npm
+sudo $pacMan neovim git \
+	python3 nodejs npm \
+    shfmt shellcheck
 
-sudo npm i -g tldr npm-check-updates
+sudo npm i -g tldr npm-check-updates awk-language-server bash-language-server
 # nvim配置
 if [[ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
 	git clone --depth 1 https://github.com/wbthomason/packer.nvim \

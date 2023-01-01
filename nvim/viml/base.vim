@@ -5,7 +5,7 @@ set undofile
 set history=100
 set mouse=a            " 鼠标可用
 set autochdir
-set smartcase
+set smartcase           " 搜索智能大小写
 
 " 编码设置
 set fileencodings=utf-8,gb2312,gbk,gb18030,cp936    " 检测文件编码，将fileencoding设置为最终编码
