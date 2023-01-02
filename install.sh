@@ -78,7 +78,7 @@ allInstall() {
 		# 中文输入法,支持vim+寄存器的clip
 		sudo pacman -S --needed \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
-			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcit xclip fcitx5-table-other \
+			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip fcitx5-table-other \
 			nerd-fonts-hack
 
 		sudo pacman -S --needed \
