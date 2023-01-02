@@ -46,9 +46,14 @@ sudo $pacMan \
 # 必装开发工具
 sudo $pacMan neovim git \
 	python3 nodejs npm \
-    shfmt shellcheck
+	shfmt shellcheck
+
+# 安装oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+~/.linuxConfig/shells/ohmyzsh.sh
 
 sudo npm i -g npm-check-updates awk-language-server bash-language-server
+
 # nvim配置
 if [[ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
 	git clone --depth 1 https://github.com/wbthomason/packer.nvim \
@@ -155,7 +160,6 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 		yayInstall
 	fi
 	startServer
-	~/.linuxConfig/shells/ohmyzsh.sh
 	~/.linuxConfig/rofi/install-rofi-theme.sh
 	~/.linuxConfig/i3/polybar/install-polybar-theme.sh
 	# 刷新字体

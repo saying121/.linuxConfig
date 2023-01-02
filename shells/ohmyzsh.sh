@@ -1,7 +1,4 @@
-#! /bin/bash
-
-# 安装oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+#!/bin/bash
 
 # 安装web-search
 if [[ ! -d ~/.oh-my-zsh/custom/plugins/web-search ]]; then
@@ -34,5 +31,3 @@ if [[ -f ~/.zshrc ]]; then
 	rm ~/.zshrc
 fi
 ln -s ~/.linuxConfig/shells/.zshrc ~/.zshrc
-
-source $HOME/.zshrc
