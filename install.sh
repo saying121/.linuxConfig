@@ -41,7 +41,7 @@ fi
 sudo $pacMan \
 	neofetch figlet ranger ffmpeg htop stardict \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
-	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting
+	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa
 
 # 必装开发工具
 sudo $pacMan neovim git \
