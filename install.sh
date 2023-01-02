@@ -14,7 +14,7 @@ fi
 
 # 必装
 if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-	sudo pacman -syu
+	sudo pacman -Syu
 	# sudo pacman -S --needed archlinuxcn-keyring
 	# if [[ $? != 0 ]]; then
 	if [[ ! $(sudo pacman -S --needed archlinuxcn-keyring) ]]; then
@@ -23,30 +23,26 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		pacman-key --populate archlinux
 		pacman-key --populate archlinuxcn
 	fi
-	sudo pacman -syu
+	sudo pacman -Syu
 	sudo pacman -S --needed yay paru
 	# 调用关于clash的脚本，配置clash
 	~/.linuxConfig/configClash.sh
 	# 开发工具
-
 	sudo pacman -S --needed dnsutils networkmanager fd tree p7zip \
 		jdk17-openjdk python-pip go clash
 
 elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	sudo apt update && sudo apt upgrade -y
-	sudo apt install network-manager bind9-utils fd-find p7zip-full
-	sudo apt install openjdk-17-jdk python3-pip golang-go
+	sudo apt install network-manager bind9-utils fd-find p7zip-full \
+	openjdk-17-jdk python3-pip golang-go
 fi
 
-sudo $pacMan \
-	neofetch figlet ranger ffmpeg htop stardict \
+sudo $pacMan neofetch figlet ranger ffmpeg htop stardict \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
 	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa
 
 # 必装开发工具
-sudo $pacMan neovim git \
-	python3 nodejs npm \
-	shfmt shellcheck
+sudo $pacMan neovim git python3 nodejs npm shfmt shellcheck
 
 # 安装oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -79,28 +75,20 @@ allInstall() {
 		sudo pacman -S --needed \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip fcitx5-table-other \
-			nerd-fonts-hack
-
-		sudo pacman -S --needed \
+			nerd-fonts-hack \
 			pacman-contrib powerpill reflector \
-			openssh ntfs-3g firewalld \
-			ueberzug ffmpegthumbnailer pdftoppm dolphin \
+			openssh ntfs-3g firewalld ueberzug ffmpegthumbnailer pdftoppm dolphin \
 			w3m djvutxt calibre transmission-cli mediainf odt2txt \
 			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
-			pandoc xdg-utils youtube-dl numlockx rsync \
-			linux-firmware-qlogic
+			pandoc xdg-utils youtube-dl numlockx rsync linux-firmware-qlogic
 		# sddm主题的依赖
 		sudo pacman -S --needed gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机
-		sudo pacman -S --needed pulseaudio-bluetooth pulsemixer
-
-		sudo pacman -S --needed xorg xorg-xinit xorg-server picom feh polybar calc python-pywal network-manager-applet
+		sudo pacman -S --needed pulseaudio-bluetooth pulsemixer \
+            xorg xorg-xinit xorg-server picom feh polybar calc python-pywal network-manager-applet
 
 	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
-		sudo apt update && sudo apt upgrade -y
-		sudo apt install \
-			openssh-* \
-			ttf-hack-nerd
+		sudo apt install openssh-* ttf-hack-nerd
 		# fonts-hack-ttf
 
 		# 安装input-remapper
@@ -112,9 +100,7 @@ allInstall() {
 		rm -rf input-remapper
 	fi
 
-	sudo $pacMan \
-		imagemagick kitty mpv flameshot \
-		steam rofi goldendict
+	sudo $pacMan imagemagick kitty mpv flameshot steam rofi goldendict
 	# tmux
 
 	python -m pip install konsave
@@ -127,16 +113,14 @@ allInstall() {
 # aur才有的软件
 yayInstall() {
 	yay -Syu
-	yay -S --needed \
-		icalingua++ \
+	yay -S --needed icalingua++ \
 		microsoft-edge-stable-bin visual-studio-code-bin intellij-idea-ultimate-edition \
 		libreoffice input-remapper-git \
 		yesplaymusic netease-cloud-music \
-		ldr-translate-qt \
-		xnviewmp epub-thumbnailer-git fontpreview \
+		ldr-translate-qt xnviewmp epub-thumbnailer-git fontpreview \
 		sddm-theme-aerial-git ruby-fusuma \
-		archlinux-tweak-tool-git kwin-scripts-krohnkite-git \
-		i3-gaps-kde-git networkmanager-dmenu-git copyq networkmanager-dmenu-bluetoothfix-git
+		archlinux-tweak-tool-git kwin-scripts-krohnkite-git i3-gaps-kde-git \
+        networkmanager-dmenu-git copyq networkmanager-dmenu-bluetoothfix-git
 }
 
 # 开启服务
