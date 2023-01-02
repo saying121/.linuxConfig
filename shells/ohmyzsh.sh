@@ -3,15 +3,6 @@
 # 安装oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# 移除oh-my-zsh生成的.zshrc,重新链接.zshrc
-if [[ -f ~/.zshrc.pre-oh-my-zsh ]]; then
-	rm ~/.zshrc.pre-oh-my-zsh
-fi
-if [[ -f ~/.zshrc ]]; then
-	rm ~/.zshrc
-fi
-ln -s ~/.linuxConfig/shells/.zshrc ~/.zshrc
-
 # 安装web-search
 if [[ ! -d ~/.oh-my-zsh/custom/plugins/web-search ]]; then
 	git clone https://github.com/lesonky/web-search.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/web-search
@@ -34,5 +25,14 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	sudo pkgfile -u
 	pkgfile makepkg
 fi
+
+# 移除oh-my-zsh生成的.zshrc,重新链接.zshrc
+if [[ -f ~/.zshrc.pre-oh-my-zsh ]]; then
+	rm ~/.zshrc.pre-oh-my-zsh
+fi
+if [[ -f ~/.zshrc ]]; then
+	rm ~/.zshrc
+fi
+ln -s ~/.linuxConfig/shells/.zshrc ~/.zshrc
 
 source $HOME/.zshrc
