@@ -34,7 +34,7 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	sudo apt update && sudo apt upgrade -y
 	sudo apt install network-manager bind9-utils fd-find p7zip-full \
-	openjdk-17-jdk python3-pip golang-go
+		openjdk-17-jdk python3-pip golang-go
 fi
 
 sudo $pacMan neofetch figlet ranger ffmpeg htop stardict \
@@ -48,8 +48,6 @@ sudo $pacMan neovim git python3 nodejs npm shfmt shellcheck
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ~/.linuxConfig/shells/ohmyzsh.sh
 
-sudo npm i -g npm-check-updates awk-language-server bash-language-server
-
 # nvim配置
 if [[ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
 	git clone --depth 1 https://github.com/wbthomason/packer.nvim \
@@ -59,11 +57,9 @@ if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
-sudo npm install -g npm neovim
 # sudo npm install -g tree-sitter-cli
-sudo npm i -g sql-language-server
-pip3 install black isort pynvim pipenv tldr
-pip3 install pylsp-rope
+sudo npm i -g npm-check-updates awk-language-server bash-language-server npm neovim sql-language-server
+pip3 install black isort pynvim pipenv tldr pylsp-rope
 nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 # **********************************************************************************************************
@@ -85,7 +81,7 @@ allInstall() {
 		sudo pacman -S --needed gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机
 		sudo pacman -S --needed pulseaudio-bluetooth pulsemixer \
-            xorg xorg-xinit xorg-server picom feh polybar calc python-pywal network-manager-applet
+			xorg xorg-xinit xorg-server picom feh polybar calc python-pywal network-manager-applet
 
 	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		sudo apt install openssh-* ttf-hack-nerd
@@ -120,7 +116,7 @@ yayInstall() {
 		ldr-translate-qt xnviewmp epub-thumbnailer-git fontpreview \
 		sddm-theme-aerial-git ruby-fusuma \
 		archlinux-tweak-tool-git kwin-scripts-krohnkite-git i3-gaps-kde-git \
-        networkmanager-dmenu-git copyq networkmanager-dmenu-bluetoothfix-git
+		networkmanager-dmenu-git copyq networkmanager-dmenu-bluetoothfix-git
 }
 
 # 开启服务
