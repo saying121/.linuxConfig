@@ -15,6 +15,22 @@ sudo pacman -S --needed \
 	fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 	fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcit xclip
 
+# fcitx5的设置
+if [[ $(grep -c fcitx /etc/environment) = 0 ]]; then
+	echo '
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+SDL_IM_MODULE=fcitx
+GLFW_IM_MODULE=ibus' | sudo tee -a /etc/environment
+fi
+
+if [[ $(grep -c Mila /etc/hosts) = 0 ]]; then
+	echo '127.0.0.1   localhost
+::1         localhost
+127.0.1.1   Mila' | sudo tee -a /etc/hosts
+fi
+
 systemctl enable sddm NetworkManager
 # 手动start
 # systemctl start sddm NetworkManager
