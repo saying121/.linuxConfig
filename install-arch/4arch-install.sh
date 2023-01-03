@@ -13,7 +13,7 @@ sudo pacman -S --needed adobe-source-han-serif-cn-fonts \
 
 sudo pacman -S --needed \
 	fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
-	fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcit xclip
+	fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip
 
 # fcitx5的设置
 if [[ $(grep -c fcitx /etc/environment) = 0 ]]; then
