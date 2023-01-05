@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'Change mirrors and link network before run the script.'
+echo 'Change mirrors and link network before run the script.yes/no'
 
 read -r answer
 if [[ ! $answer = yes ]]; then

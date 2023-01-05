@@ -37,25 +37,22 @@ elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		openjdk-17-jdk python3-pip golang-go
 fi
 
-sudo $pacMan neofetch figlet ranger ffmpeg htop stardict \
+sudo $pacMan neofetch figlet ranger ffmpeg htop \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
-	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa
-
-# 必装开发工具
-sudo $pacMan neovim git python3 nodejs npm shfmt shellcheck
+	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa \
+	neovim git python3 nodejs npm shfmt shellcheck
 
 # 安装oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# omz plug
 ~/.linuxConfig/shells/ohmyzsh.sh
 
 # nvim配置
 if [[ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
-	git clone --depth 1 https://github.com/wbthomason/packer.nvim \
-		~/.local/share/nvim/site/pack/packer/start/packer.nvim
+	git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 fi
 if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
-	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 # sudo npm install -g tree-sitter-cli
 sudo npm i -g npm-check-updates awk-language-server bash-language-server npm neovim sql-language-server
@@ -70,8 +67,7 @@ allInstall() {
 		# 中文输入法,支持vim+寄存器的clip
 		sudo pacman -S --needed \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
-			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip fcitx5-table-other \
-			nerd-fonts-hack \
+			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip fcitx5-table-other nerd-fonts-hack \
 			pacman-contrib powerpill reflector \
 			openssh ntfs-3g firewalld ueberzug ffmpegthumbnailer pdftoppm dolphin \
 			w3m djvutxt calibre transmission-cli mediainf odt2txt \
@@ -85,7 +81,6 @@ allInstall() {
 
 	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		sudo apt install openssh-* ttf-hack-nerd
-		# fonts-hack-ttf
 
 		# 安装input-remapper
 		sudo apt install git python3-setuptools gettext
@@ -111,8 +106,7 @@ yayInstall() {
 	yay -Syu
 	yay -S --needed icalingua++ \
 		microsoft-edge-stable-bin visual-studio-code-bin intellij-idea-ultimate-edition \
-		libreoffice input-remapper-git \
-		yesplaymusic netease-cloud-music \
+		input-remapper-git yesplaymusic netease-cloud-music \
 		ldr-translate-qt xnviewmp epub-thumbnailer-git fontpreview \
 		sddm-theme-aerial-git ruby-fusuma \
 		archlinux-tweak-tool-git kwin-scripts-krohnkite-git i3-gaps-kde-git \
@@ -142,6 +136,7 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	startServer
 	~/.linuxConfig/rofi/install-rofi-theme.sh
 	~/.linuxConfig/i3/polybar/install-polybar-theme.sh
+    ~/.linuxConfig/kde/wallpaper-engine-kde-plugin.sh
 	# 刷新字体
 	fc-cache -fv
 fi

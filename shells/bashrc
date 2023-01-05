@@ -1,3 +1,4 @@
+# vim:fileencoding=utf-8:ft=sh
 . ~/.linuxConfig/shells/common.sh
 
 # ~/.bashrc: executed by bash(1) for non-login shells.

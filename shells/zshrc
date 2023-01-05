@@ -1,3 +1,4 @@
+# vim:fileencoding=utf-8:ft=sh
 . ~/.linuxConfig/shells/common.sh
 
 # ~/.zshrc file for zsh interactive shells.

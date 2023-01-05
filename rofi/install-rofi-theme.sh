@@ -8,8 +8,8 @@ if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	sudo sudo apt install maim dunst viewnior
 fi
 # install rofi theme
-git clone --depth=1 https://github.com/adi1090x/rofi.git
 theme() {
+	git clone --depth=1 https://github.com/adi1090x/rofi.git
 	if [[ -d ./rofi ]]; then
 		cd rofi || return
 		chmod +x setup.sh
@@ -18,4 +18,6 @@ theme() {
 		rm -rf rofi
 	fi
 }
-theme
+if [[ ! -d ~/.config/rofi/scripts ]]; then
+	theme
+fi

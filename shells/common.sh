@@ -1,3 +1,4 @@
+# vim:fileencoding=utf-8:ft=sh
 # 自带的
 # enable color support of ls, less and man, and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
