@@ -52,3 +52,12 @@ pcall(vim.cmd, [[
     endfunction
     autocmd BufAdd,BufEnter,BufNewFile,BufWinEnter * :call FoldConfig()
 ]])
+
+-- 缩进线
+vim.opt.termguicolors = true
+
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    show_current_context = true,
+    show_current_context_start = true,
+}

@@ -48,16 +48,21 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 ~/.linuxConfig/shells/ohmyzsh.sh
 
 # nvim配置
-if [[ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
-	git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+if [[ ! -d ~/.local/share/nvim/lazy/lazy.nvim ]]; then
+	git clone --filter=blob:none https://github.com/folke/lazy.nvim.git --branch=stable ~/.local/share/nvim/lazy/lazy.nvim
 fi
+# if [[ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
+# 	git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+# fi
 if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 # sudo npm install -g tree-sitter-cli
 sudo npm i -g npm-check-updates awk-language-server bash-language-server npm neovim sql-language-server
 pip3 install black isort pynvim pipenv tldr pylsp-rope
-nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+# nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+# nvim --headless "+Lazy! sync" +qa
+nvim "+Lazy! sync" +qa
 
 # **********************************************************************************************************
 
@@ -136,7 +141,7 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	startServer
 	~/.linuxConfig/rofi/install-rofi-theme.sh
 	~/.linuxConfig/i3/polybar/install-polybar-theme.sh
-    ~/.linuxConfig/kde/wallpaper-engine-kde-plugin.sh
+	~/.linuxConfig/kde/wallpaper-engine-kde-plugin.sh
 	# 刷新字体
 	fc-cache -fv
 fi

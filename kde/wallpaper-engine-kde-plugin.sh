@@ -1,5 +1,8 @@
 #!/bin/bash
 
+if [[ -d ~/.local/share/plasma/wallpapers/com.github.casout.wallpaperEngineKde ]]; then
+	exit 0
+fi
 # 找个空目录执行
 sudo pacman -S --needed extra-cmake-modules plasma-framework gst-libav \
 	base-devel mpv python-websockets qt5-declarative qt5-websockets qt5-webchannel vulkan-headers cmake
@@ -25,7 +28,7 @@ make install_pkg
 sudo make install
 
 cd ..
-if [[ -d wallpaper-engine-kde-plugin ]]; then
+if [[ -d ./wallpaper-engine-kde-plugin ]]; then
 	rm -rf wallpaper-engine-kde-plugin
 fi
 

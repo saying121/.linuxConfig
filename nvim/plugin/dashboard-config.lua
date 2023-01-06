@@ -1,4 +1,4 @@
-local home = os.getenv('HOME')
+-- local home = os.getenv('HOME')
 local db = require('dashboard')
 
 -- db.preview_command = 'ueberzug'
@@ -126,12 +126,12 @@ local arch = {
     " .`                                 `/. ",
 }
 
+db.custom_header = pegasus_symbol
 if os.execute('grep -c arch /etc/os-release > /dev/null') then
     db.custom_header = arch
-elseif os.execute('grep -c kali /etc/os-release > /dev/null') then
+end
+if os.execute('grep -c kali /etc/os-release > /dev/null') then
     db.custom_header = kali
-else
-    db.custom_header = pegasus_symbol
 end
 
 local footer1 = {

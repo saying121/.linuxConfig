@@ -80,7 +80,7 @@ alias clhconf="~/.linuxConfig/configClash.sh"
 alias clhres="sudo systemctl restart clash.service"
 alias clhsts="systemctl status clash.service"
 
-alias rm="trash"
+alias rm="gio trash"
 
 # avoid open nested ranger instances
 ranger() {

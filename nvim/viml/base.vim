@@ -18,7 +18,7 @@ set fileformats=unix,dos,mac        " 识别文件格式
 
 " 显示设置
 set termguicolors
-set listchars=eol:
+set listchars=eol:,tab:>>
 set number            " 显示行号
 set relativenumber
 syntax on            " 当前缓冲区中高亮

@@ -1,4 +1,8 @@
-require 'plugins'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+vim.opt.rtp:prepend(lazypath)
+
+-- require 'plugins'
+require 'lazy-config'
 
 -- 大纲
 require 'aerial-config'
@@ -9,8 +13,6 @@ require 'nvim-tree-config'
 
 -- 小插件
 require 'small-plug'
--- 外表
-require 'surface'
 
 require 'lsp'
 -- 调试
