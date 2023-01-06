@@ -12,4 +12,4 @@ source $HOME/.config/nvim/viml/init.vim
 lua require("init")
 
 " 安装依赖
-nnoremap <F2> :PackerSync<CR>
+nnoremap <F2> :Lazy sync<CR>

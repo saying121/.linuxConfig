@@ -1,3 +1,6 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+vim.opt.rtp:prepend(lazypath)
+
 require 'lazy'.setup({
     {
         'terror/chatgpt.nvim',
@@ -6,7 +9,6 @@ require 'lazy'.setup({
     'eandrju/cellular-automaton.nvim',
     {
         'iamcco/markdown-preview.nvim', build = 'cd app && npm install',
-        init = function() vim.g.mkdp_filetypes = { 'markdown' } end,
         ft = { 'markdown' },
     },
     --  'rcarriga/nvim-notify'
@@ -73,13 +75,17 @@ require 'lazy'.setup({
     { 'averms/black-nvim', ft = 'python' },
     {
         'nvim-treesitter/nvim-treesitter', build = ':TSUpdate',
-        'p00f/nvim-ts-rainbow',
+        dependencies = {
+            'p00f/nvim-ts-rainbow',
+        }
     },
     'nvim-lua/popup.nvim',
     --  'itchyny/vim-cursorword'
     'nvim-lua/plenary.nvim',
     {
         'EdenEast/nightfox.nvim', build = ':NightfoxCompile',
+    },
+    {
         'folke/tokyonight.nvim',
         'xiyaowong/nvim-transparent',
         'lukas-reineke/indent-blankline.nvim',

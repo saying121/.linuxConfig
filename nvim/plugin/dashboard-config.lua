@@ -126,13 +126,14 @@ local arch = {
     " .`                                 `/. ",
 }
 
-db.custom_header = pegasus_symbol
-if os.execute('grep -c arch /etc/os-release > /dev/null') then
-    db.custom_header = arch
-end
 if os.execute('grep -c kali /etc/os-release > /dev/null') then
     db.custom_header = kali
+elseif os.execute('grep -c arch /etc/os-release > /dev/null') then
+    db.custom_header = arch
+else
+    db.custom_header = pegasus_symbol
 end
+
 
 local footer1 = {
     [[..............................................................................]],
