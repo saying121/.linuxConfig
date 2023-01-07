@@ -29,12 +29,12 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	~/.linuxConfig/configClash.sh
 	# 开发工具
 	sudo pacman -S --needed dnsutils networkmanager fd tree p7zip \
-		jdk17-openjdk python-pip go clash
+		jdk17-openjdk python-pip go clash rust
 
 elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	sudo apt update && sudo apt upgrade -y
 	sudo apt install network-manager bind9-utils fd-find p7zip-full \
-		openjdk-17-jdk python3-pip golang-go
+		openjdk-17-jdk python3-pip golang-go cargo rust-all
 fi
 
 sudo $pacMan neofetch figlet ranger ffmpeg htop \
@@ -59,7 +59,7 @@ if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
 fi
 # sudo npm install -g tree-sitter-cli
 sudo npm i -g npm-check-updates awk-language-server bash-language-server npm neovim sql-language-server
-pip3 install black isort pynvim pipenv tldr pylsp-rope
+pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy
 # nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 # nvim --headless "+Lazy! sync" +qa
 nvim "+Lazy! sync" +qa

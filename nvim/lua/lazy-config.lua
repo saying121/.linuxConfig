@@ -2,6 +2,8 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.opt.rtp:prepend(lazypath)
 
 require 'lazy'.setup({
+    { 'turbio/bracey.vim', build = 'npm install --prefix server', ft = 'html' },
+    'jose-elias-alvarez/null-ls.nvim',
     {
         'terror/chatgpt.nvim',
         build = 'pip3 install -r requirements.txt'
@@ -64,15 +66,10 @@ require 'lazy'.setup({
     --     'neoclide/coc.nvim',
     --     branch = 'release'
     -- }
-    {
-        'z0mbix/vim-shfmt',
-        ft = 'sh'
-    },
+    -- { 'z0mbix/vim-shfmt', ft = 'sh' },
     'wookayin/vim-autoimport', --导入包
-    {
-        'stsewd/isort.nvim', build = ':UpdateRemotePlugins', ft = 'python'
-    },
-    { 'averms/black-nvim', ft = 'python' },
+    -- { 'stsewd/isort.nvim', build = ':UpdateRemotePlugins', ft = 'python' },
+    -- { 'averms/black-nvim', ft = 'python' },
     {
         'nvim-treesitter/nvim-treesitter', build = ':TSUpdate',
         dependencies = {

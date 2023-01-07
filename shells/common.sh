@@ -51,8 +51,9 @@ fi
 export all_proxy=http://127.0.0.1:7890
 export ALL_PROXY=$all_proxy
 export EDITOR='nvim'
-export PATH=~/.local/bin:$PATH
-
+export PATH=~/.cargo/bin:~/.local/bin:$PATH
+# wsl
+export PATH=/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application:$PATH
 if [[ $(uname -a | grep -c WSL) != 0 ]]; then
 	# if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		alias proxy="source ~/.linuxConfig/shells/proxy.sh"

@@ -1,3 +1,4 @@
+require 'lsp.null-ls-config'
 require 'lsp.cmp'
 -- require('lsp.lsp-installer')
 require 'lsp.mason-config'

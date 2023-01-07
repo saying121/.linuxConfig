@@ -42,6 +42,7 @@ require("dapui").setup({
         {
             elements = {
                 "repl",
+                -- "term",
                 "console",
             },
             size = 0.25, -- 25% of total lines
@@ -78,3 +79,8 @@ require("dapui").setup({
         max_value_lines = 100, -- Can be integer or nil.
     }
 })
+
+local opts = { noremap = true, silent = true }
+local dapui = require 'dapui'
+vim.keymap.set('v', '<space>e', dapui.eval, opts)
+vim.keymap.set('n', '<space>e', dapui.eval, opts)
