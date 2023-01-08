@@ -62,6 +62,9 @@ sudo npm i -g npm-check-updates awk-language-server bash-language-server npm neo
 pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy
 # nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 # nvim --headless "+Lazy! sync" +qa
+
+# 给nvim 预览html插件需要低版本npm
+sudo npm i -g npm@6
 nvim "+Lazy! sync" +qa
 
 # **********************************************************************************************************

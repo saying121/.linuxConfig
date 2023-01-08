@@ -11,6 +11,7 @@ Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch' | sudo tee /etc/pa
 
 # 配置pacman.conf
 sudo sed -i 's/^#Color/Color/' /etc/pacman.conf
+sudo sed -i 's/^#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf
 
 sudo sed -i "s/^#\[multilib\]/\[multilib\]/" /etc/pacman.conf
 

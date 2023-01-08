@@ -1,98 +1,122 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.opt.rtp:prepend(lazypath)
 
-require 'lazy'.setup({
-    { 'turbio/bracey.vim', build = 'npm install --prefix server', ft = 'html' },
-    'jose-elias-alvarez/null-ls.nvim',
-    {
-        'terror/chatgpt.nvim',
-        build = 'pip3 install -r requirements.txt'
+require 'lazy'.setup('plugins', {
+    root = vim.fn.stdpath("data") .. "/lazy", -- directory where plugins will be installed
+    defaults = {
+        lazy = false, -- should plugins be lazy-loaded?
+        version = nil,
+        -- version = "*", -- enable this to try installing the latest stable versions of plugins
     },
-    'eandrju/cellular-automaton.nvim',
-    {
-        'iamcco/markdown-preview.nvim', build = 'cd app && npm install',
-        ft = { 'markdown' },
+    -- leave nil when passing the spec as the first argument to setup()
+    -- spec = nil, ---@type LazySpec
+    lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json", -- lockfile generated after running update.
+    concurrency = nil, ---@type number limit the maximum amount of concurrent tasks
+    git = {
+        -- defaults for the `Lazy log` command
+        -- log = { "-10" }, -- show the last 10 commits
+        log = { "--since=3 days ago" }, -- show commits from the last 3 days
+        timeout = 120, -- kill processes that take more than 2 minutes
+        url_format = "https://github.com/%s.git",
     },
-    --  'rcarriga/nvim-notify'
-    'ggandor/flit.nvim',
-    'ggandor/leap.nvim',
-    { 'michaelb/sniprun', build = './install.sh' },
-    'stevearc/aerial.nvim',
-    {
-        'LintaoAmons/scratch.nvim',
-        version = 'v0.2.0' --  tag for stability, or without this to have latest fixed and functions
+    dev = {
+        -- directory where you store your local plugin projects
+        path = "~/projects",
+        ---@type string[] plugins that match these patterns will use your local versions instead of being fetched from GitHub
+        patterns = {}, -- For example {"folke"}
     },
-    'adelarsq/image_preview.nvim',
-    {
-        'mfussenegger/nvim-dap',
-        'rcarriga/nvim-dap-ui',
-        'theHamsta/nvim-dap-virtual-text',
+    install = {
+        -- install missing plugins on startup. This doesn't increase startup time.
+        missing = true,
+        -- try to load one of these colorschemes when starting an installation during startup
+        colorscheme = { "habamax" },
     },
-    'voldikss/vim-floaterm',
-    {
-        'nvim-tree/nvim-tree.lua',
-        dependencies = {
-            'nvim-tree/nvim-web-devicons', -- file icons
-        },
-        version = 'nightly' -- optional, updated every week. (see issue #1193)
-    },
-    {
-        'nvim-telescope/telescope.nvim', version = '0.1.0',
-        "ahmedkhalf/project.nvim",
-    },
-    {
-        'neovim/nvim-lspconfig',
-        'williamboman/mason.nvim',
-        'williamboman/mason-lspconfig.nvim',
-        'jayp0521/mason-nvim-dap.nvim',
-    },
-    {
-        'hrsh7th/nvim-cmp',
-        event = "InsertEnter",
-        dependencies = {
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-cmdline',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-buffer',
-            'f3fora/cmp-spell',
-            'L3MON4D3/LuaSnip',
-            'rafamadriz/friendly-snippets',
-        }
-    },
-    --  'hrsh7th/cmp-vsnip'
-    --  'hrsh7th/vim-vsnip'
+    ui = {
+        -- a number <1 is a percentage., >1 is a fixed size
+        size = { width = 0.8, height = 0.8 },
+        -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
+        border = "none",
+        -- leave nil, to automatically select a browser depending on your OS.
+        -- If you want to use a specific browser, you can define it here
+        browser = nil, ---@type string?
+        throttle = 20, -- how frequently should the ui process render events
+        custom_keys = {
+            -- you can define custom key maps here.
+            -- To disable one of the defaults, set it to false
 
-    --  {
-    --     'neoclide/coc.nvim',
-    --     branch = 'release'
-    -- }
-    -- { 'z0mbix/vim-shfmt', ft = 'sh' },
-    'wookayin/vim-autoimport', --导入包
-    -- { 'stsewd/isort.nvim', build = ':UpdateRemotePlugins', ft = 'python' },
-    -- { 'averms/black-nvim', ft = 'python' },
-    {
-        'nvim-treesitter/nvim-treesitter', build = ':TSUpdate',
-        dependencies = {
-            'p00f/nvim-ts-rainbow',
-        }
+            -- open lazygit log
+            ["<localleader>l"] = function(plugin)
+                require("lazy.util").float_term({ "lazygit", "log" }, {
+                    cwd = plugin.dir,
+                })
+            end,
+
+            -- open a terminal for the plugin dir
+            ["<localleader>t"] = function(plugin)
+                require("lazy.util").float_term(nil, {
+                    cwd = plugin.dir,
+                })
+            end,
+        },
     },
-    'nvim-lua/popup.nvim',
-    --  'itchyny/vim-cursorword'
-    'nvim-lua/plenary.nvim',
-    {
-        'EdenEast/nightfox.nvim', build = ':NightfoxCompile',
+    diff = {
+        -- diff command <d> can be one of:
+        -- * browser: opens the github compare view. Note that this is always mapped to <K> as well,
+        --   so you can have a different command for diff <d>
+        -- * git: will run git diff and open a buffer with filetype git
+        -- * terminal_git: will open a pseudo terminal with git diff
+        -- * diffview.nvim: will open Diffview to show the diff
+        cmd = "git",
     },
-    {
-        'folke/tokyonight.nvim',
-        'xiyaowong/nvim-transparent',
-        'lukas-reineke/indent-blankline.nvim',
-        'glepnir/dashboard-nvim',
+    checker = {
+        -- automatically check for plugin updates
+        enabled = false,
+        concurrency = nil, ---@type number? set to 1 to check for updates very slowly
+        notify = true, -- get a notification when new updates are found
+        frequency = 3600, -- check for updates every hour
     },
-    {
-        'steelsojka/pears.nvim',
-        'numToStr/Comment.nvim',
-        'tpope/vim-surround',
+    change_detection = {
+        -- automatically check for config file changes and reload the ui
+        enabled = true,
+        notify = true, -- get a notification when changes are found
     },
-    'voldikss/vim-translator',
-    'folke/lazy.nvim'
+    performance = {
+        cache = {
+            enabled = true,
+            path = vim.fn.stdpath("cache") .. "/lazy/cache",
+            -- Once one of the following events triggers, caching will be disabled.
+            -- To cache all modules, set this to `{}`, but that is not recommended.
+            -- The default is to disable on:
+            --  * VimEnter: not useful to cache anything else beyond startup
+            --  * BufReadPre: this will be triggered early when opening a file from the command line directly
+            disable_events = { "UIEnter", "BufReadPre" },
+            ttl = 3600 * 24 * 5, -- keep unused modules for up to 5 days
+        },
+        reset_packpath = true, -- reset the package path to improve startup time
+        rtp = {
+            reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
+            ---@type string[]
+            paths = {}, -- add any custom paths here that you want to indluce in the rtp
+            ---@type string[] list any plugins you want to disable here
+            disabled_plugins = {
+                -- "gzip",
+                -- "matchit",
+                -- "matchparen",
+                -- "netrwPlugin",
+                -- "tarPlugin",
+                -- "tohtml",
+                -- "tutor",
+                -- "zipPlugin",
+            },
+        },
+    },
+    -- lazy can generate helptags from the headings in markdown readme files,
+    -- so :help works even for plugins that don't have vim docs.
+    -- when the readme opens with :help it will be correctly displayed as markdown
+    readme = {
+        root = vim.fn.stdpath("state") .. "/lazy/readme",
+        files = { "README.md", "lua/**/README.md" },
+        -- only generate markdown helptags for plugins that dont have docs
+        skip_if_doc_exists = true,
+    },
 })
