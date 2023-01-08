@@ -40,7 +40,10 @@ fi
 sudo $pacMan neofetch figlet ranger ffmpeg htop \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
 	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa \
-	neovim git python3 nodejs npm shfmt shellcheck
+	neovim git python3 nodejs npm shfmt shellcheck lolcat
+
+# 拉取ranger插件
+git submodule update --init --recursive
 
 # 安装oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -99,7 +102,7 @@ allInstall() {
 		rm -rf input-remapper
 	fi
 
-	sudo $pacMan imagemagick kitty mpv flameshot steam rofi goldendict
+	sudo $pacMan imagemagick kitty mpv flameshot steam rofi goldendict terminology
 	# tmux
 
 	python -m pip install konsave

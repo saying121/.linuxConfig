@@ -12,6 +12,11 @@
 ## 如果要使用本配置，执行下面代码，包含ranger的插件
     $ git clone --recursive https://github.com/saying121/.linuxConfig.git ~/.linuxConfig
 
+####  也可以执行
+    $ git clone https://github.com/saying121/.linuxConfig.git ~/.linuxConfig
+    # 然后拉子自模块
+    $ git submodule update --init --recursive
+
 ## clone完成后
 
     # 正常用就运行，包含常用的软件什么的,会安装wallpaper engine

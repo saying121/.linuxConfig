@@ -1,29 +1,37 @@
 local dash = vim.fn.stdpath('config') .. '/dashboard'
 local db = require('dashboard')
 
-if os.execute('grep -c kali /etc/os-release > /dev/null') then
-    prev = 'kali'
-    db.preview_file_height = 20
-    db.preview_file_width = 70
-    db.preview_command = 'cat|lolcat -F 0.3'
+if os.execute('pacman -Qs xorg | grep -c xorg') then
+    -- lua5.1随机数有bug
+    rand = math.random(1, 2)
+    if rand == 1 then
+        db.preview_file_path = dash .. '/tuzi.png'
+        db.preview_command = 'ueberzug'
+        db.preview_file_height = 20
+        db.preview_file_width = 60
+    end
+    if rand == 2 then
+        db.preview_file_path = dash .. '/lucy.jpg'
+        db.preview_command = 'ueberzug'
+        db.preview_file_height = 20
+        db.preview_file_width = 24
+    end
 elseif os.execute('grep -c arch /etc/os-release > /dev/null') then
-    prev = 'arch'
+    db.preview_file_path = dash .. '/arch.cat'
     db.preview_file_height = 20
     db.preview_file_width = 39
     db.preview_command = 'cat|lolcat -F 0.3'
+elseif os.execute('grep -c kali /etc/os-release > /dev/null') then
+    db.preview_file_path = dash .. '/kali.cat'
+    db.preview_file_height = 20
+    db.preview_file_width = 70
+    db.preview_command = 'cat|lolcat -F 0.3'
 else
-    prev = 'pegasus_symbol'
+    db.preview_file_path = dash .. '/pegasus_symbol.cat'
     db.preview_command = 'cat|lolcat -F 0.3'
     db.preview_file_height = 20
     db.preview_file_width = 70
 end
-
-
-db.preview_file_path = dash .. '/' .. prev .. '.cat'
--- if
--- db.preview_file_path = dash .. '/arnor-lucy3.jpg'
--- db.preview_command = 'ueberzug'
--- db.preview_command = 'kitty +kitten icat'
 
 pcall(vim.cmd [[
 function! Rain()

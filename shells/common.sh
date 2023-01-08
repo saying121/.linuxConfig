@@ -48,8 +48,11 @@ else
 	prompt_symbol=" "
 fi
 
-export all_proxy=http://127.0.0.1:7890
-export ALL_PROXY=$all_proxy
+export ALL_PROXY=http://127.0.0.1:7890
+export HTTPS_PROXY=http://127.0.0.1:7890
+export HTTP_PROXY=http://127.0.0.1:7890
+export NO_PROXY=baidu.com,qq.com
+
 export EDITOR='nvim'
 export PATH=~/.cargo/bin:~/.local/bin:$PATH
 # wsl
@@ -76,6 +79,7 @@ export TLDR_DOWNLOAD_CACHE_LOCATION="https://tldr-pages.github.io/assets/tldr.zi
 # 自己的alias
 # ImageMagick must be installed for icat to work.
 alias icat="kitty +kitten icat"
+alias ueber="~/.linuxConfig/ueber.sh"
 
 alias clhconf="~/.linuxConfig/configClash.sh"
 alias clhres="sudo systemctl restart clash.service"
