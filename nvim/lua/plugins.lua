@@ -3,7 +3,13 @@ return {
         'terror/chatgpt.nvim',
         build = 'pip3 install -r requirements.txt'
     },
-    'eandrju/cellular-automaton.nvim',
+    {
+        'eandrju/cellular-automaton.nvim',
+        lazy = true,
+        keys = {
+            { "<leader>ra", "<cmd>CellularAutomaton make_it_rain<cr>", desc = 'rain' },
+        },
+    },
     {
         'turbio/bracey.vim',
         build = 'npm install --prefix server',
@@ -62,6 +68,7 @@ return {
         'williamboman/mason.nvim',
         dependencies = {
             'williamboman/mason-lspconfig.nvim',
+            "jayp0521/mason-null-ls.nvim",
             'jayp0521/mason-nvim-dap.nvim',
         },
     },
@@ -107,12 +114,16 @@ return {
         priority = 1000,
         cond = true,
     },
+    {
+        'glepnir/dashboard-nvim',
+        lazy = true,
+        ft = 'dashboard',
+    },
     'wookayin/vim-autoimport', --导入包
     'nvim-lua/popup.nvim',
     'nvim-lua/plenary.nvim',
     'voldikss/vim-floaterm',
     'xiyaowong/nvim-transparent',
-    'glepnir/dashboard-nvim',
     'steelsojka/pears.nvim',
     'numToStr/Comment.nvim',
     'tpope/vim-surround',

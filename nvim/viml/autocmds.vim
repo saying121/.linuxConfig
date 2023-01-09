@@ -38,6 +38,7 @@ augroup File
     autocmd BufWritePost *.sh,*py silent !chmod +x %
     autocmd BufNewFile *.sh silent 0r ~/.config/nvim/viml/template/shell.txt | normal G
     autocmd BufNewFile *.py silent 0r ~/.config/nvim/viml/template/python3.txt| normal G
+    autocmd BufNewFile *.html silent 0r ~/.config/nvim/viml/template/html.txt| normal Gdd8G
 augroup END
 " 自动展开文件
 augroup markdown

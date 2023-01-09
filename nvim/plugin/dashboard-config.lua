@@ -16,29 +16,24 @@ if os.execute('pacman -Qs xorg | grep -c xorg') then
         db.preview_file_height = 20
         db.preview_file_width = 24
     end
-elseif os.execute('grep -c arch /etc/os-release > /dev/null') then
-    db.preview_file_path = dash .. '/arch.cat'
-    db.preview_file_height = 20
-    db.preview_file_width = 39
-    db.preview_command = 'cat|lolcat -F 0.3'
-elseif os.execute('grep -c kali /etc/os-release > /dev/null') then
-    db.preview_file_path = dash .. '/kali.cat'
-    db.preview_file_height = 20
-    db.preview_file_width = 70
-    db.preview_command = 'cat|lolcat -F 0.3'
-else
-    db.preview_file_path = dash .. '/pegasus_symbol.cat'
-    db.preview_command = 'cat|lolcat -F 0.3'
-    db.preview_file_height = 20
-    db.preview_file_width = 70
 end
+-- elseif os.execute('grep -c arch /etc/os-release > /dev/null') then
+--     db.preview_file_path = dash .. '/arch.cat'
+--     db.preview_file_height = 20
+--     db.preview_file_width = 39
+--     db.preview_command = 'cat|lolcat -f 0.3'
+-- elseif os.execute('grep -c kali /etc/os-release > /dev/null') then
+--     db.preview_file_path = dash .. '/kali.cat'
+--     db.preview_file_height = 20
+--     db.preview_file_width = 70
+--     db.preview_command = 'cat|lolcat -f 0.3'
+-- else
+--     db.preview_file_path = dash .. '/pegasus_symbol.cat'
+--     db.preview_command = 'cat|lolcat -f 0.3'
+--     db.preview_file_height = 20
+--     db.preview_file_width = 70
+-- end
 
-pcall(vim.cmd [[
-function! Rain()
-    exec ':CellularAutomaton game_of_life'
-    normal i<esc>
-endfunction
-]])
 --   --
 db.custom_center = {
     -- { icon = '  ', desc = 'Animations                  ', shortcut = '|', action = 'call Rain()' },

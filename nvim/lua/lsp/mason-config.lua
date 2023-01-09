@@ -45,21 +45,12 @@ require 'mason'.setup({
     providers = {
         "mason.providers.registry-api",
     },
+})
 
-    ui = {
-        -- Whether to automatically check for new versions when opening the :Mason window.
-        check_outdated_packages_on_open = true,
-
-        -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
-        border = "none",
-
-        icons = {
-            -- The list icon to use for installed packages.
-            package_installed = "✓",
-            -- The list icon to use for packages that are installing, or queued for installation.
-            package_pending = "➜",
-            -- The list icon to use for packages that are not installed.
-            package_uninstalled = "✗",
-        },
-    },
+require 'mason-lspconfig'.setup({
+    ensure_installed = { "awk_ls", "html", "bashls", "jdtls", "jsonls", "pyright", "pylsp", "sumneko_lua", "vimls", "yamlls", "tsserver", },
+    -- Can either be:
+    --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
+    --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
+    automatic_installation = true,
 })

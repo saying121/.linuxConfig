@@ -1,3 +1,4 @@
+vim.keymap.set("n","<leader>ra","<cmd>CellularAutomaton make_it_rain<CR>")
 local config1 = {
     fps = 50,
     name = 'snake',

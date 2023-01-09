@@ -32,6 +32,9 @@ ln -s ~/.linuxConfig/ranger ~/.config/ranger
 # tldr
 rm ~/.tldrrc
 ln -s ~/.linuxConfig/configs/tldrrc ~/.tldrrc
+# npm
+rm ~/.npmrc
+ln -s ~/.linuxConfig/configs/npmrc ~/.npmrc
 
 if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	# flameshot

@@ -52,20 +52,6 @@ M.on_attach = function(client, bufnr)
     vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
     vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
     vim.keymap.set("n", "<space>f", vim.lsp.buf.format, bufopts)
-    --     pcall(vim.cmd, [[
-    --     func! FormatCode()
-    --     if &filetype=='python'
-    --         exec 'Isort'
-    --         exec 'lua vim.lsp.buf.format()'
-    --     elseif &filetype=='sh'
-    --         exec 'Shfmt'
-    --     else
-    --         exec 'lua vim.lsp.buf.format()'
-    --     endif
-    --     endfunc
-    --
-    --     nnoremap <silent><space>f :call FormatCode()<CR>:w<CR>
-    -- ]]   )
 end
 
 -- if client.server_capabilities.document_highlight then

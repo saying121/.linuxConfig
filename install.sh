@@ -40,7 +40,7 @@ fi
 sudo $pacMan neofetch figlet ranger ffmpeg htop \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
 	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa \
-	neovim git python3 nodejs npm shfmt shellcheck lolcat
+	neovim git python3 nodejs npm shfmt shellcheck lolcat luarocks composer
 
 # 拉取ranger插件
 git submodule update --init --recursive
@@ -62,7 +62,8 @@ if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
 fi
 # sudo npm install -g tree-sitter-cli
 sudo npm i -g npm-check-updates awk-language-server bash-language-server npm neovim sql-language-server
-pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy
+sudo npm install --save-dev --save-exact prettier
+pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy vim-vint
 # nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 # nvim --headless "+Lazy! sync" +qa
 
@@ -121,7 +122,8 @@ yayInstall() {
 		ldr-translate-qt xnviewmp epub-thumbnailer-git fontpreview \
 		sddm-theme-aerial-git ruby-fusuma \
 		archlinux-tweak-tool-git kwin-scripts-krohnkite-git i3-gaps-kde-git \
-		networkmanager-dmenu-git copyq networkmanager-dmenu-bluetoothfix-git
+		networkmanager-dmenu-git copyq networkmanager-dmenu-bluetoothfix-git \
+        wps-office-cn
 }
 
 # 开启服务
