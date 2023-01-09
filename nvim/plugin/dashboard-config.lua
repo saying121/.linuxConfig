@@ -1,7 +1,7 @@
 local dash = vim.fn.stdpath('config') .. '/dashboard'
 local db = require('dashboard')
 
-if os.execute('pacman -Qs xorg | grep -c xorg') then
+-- if os.execute('pacman -Qs xorg | grep -c xorg') then
     -- lua5.1随机数有bug
     rand = math.random(1, 2)
     if rand == 1 then
@@ -16,7 +16,7 @@ if os.execute('pacman -Qs xorg | grep -c xorg') then
         db.preview_file_height = 20
         db.preview_file_width = 24
     end
-end
+-- end
 -- elseif os.execute('grep -c arch /etc/os-release > /dev/null') then
 --     db.preview_file_path = dash .. '/arch.cat'
 --     db.preview_file_height = 20

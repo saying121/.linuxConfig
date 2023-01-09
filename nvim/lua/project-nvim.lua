@@ -10,8 +10,8 @@ require("nvim-tree").setup({
 require 'telescope'.load_extension('projects')
 -- require 'telescope'.extensions.projects.projects {}
 
--- vim.keymap.set('n', '<space>p', <CMD>Telescope projects, { noremap = true })
-vim.cmd('nnoremap <space>p :Telescope projects<CR>')
+vim.api.nvim_set_keymap('n', '<space>p', '<CMD>Telescope projects<cr>', { noremap = true })
+-- vim.cmd('nnoremap <space>p :Telescope projects<CR>')
 
 require 'project_nvim'.setup {
     -- Manual mode doesn't automatically change your root directory, so you have

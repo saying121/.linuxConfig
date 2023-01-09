@@ -7,7 +7,8 @@
     for_window [title="Arbeitsfläche — Plasma"] kill; floating enable; border none
 
   # Compositor (Animations, Shadows, Transparency)
-  exec --no-startup-id picom -cCFb
+  # exec --no-startup-id picom -cCFb
+  exec_always --no-startup-id picom --config ~/.config/i3/picom/picom.conf -b --experimental-backends
 
 # >>> Window rules <<<
   # >>> Avoid tiling Plasma popups, dropdown windows, etc. <<<
@@ -44,8 +45,7 @@ for_window [class="kinfocenter"] floating enable
     for_window [title="win7"] floating enable; border none
     for_window [class="(?i).*nextcloud.*"] floating disable
 
-    # ldr 兰译
-    for_window [class="main.py"] floating enable;
+    for_window [class="main.py"] floating enable; # ldr 兰译
     for_window [class="GoldenDict"] floating enable;
     for_window [class="QQ"] floating enable;
 
@@ -62,8 +62,7 @@ for_window [class="kinfocenter"] floating enable
 
 default_border pixel 3
 hide_edge_borders smart # none|vertical|horizontal|both|smart
-# 窗口边框设置2像素
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 3 # 窗口边框设置n像素
 new_window 1pixel # 去除标题栏
 gaps inner 3 # 窗口之间缝隙
 
@@ -73,7 +72,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh --hack
 exec_always --no-startup-id numlockx on # 开启小键盘
 # exec_always feh --bg-scale "path_to_wallpaper" # 设置壁纸
 exec --no-startup-id dunst & # 桌面通知
-exec --no-startup-id copyq & # 剪切板管理器
+# exec --no-startup-id copyq & # 剪切板管理器
 exec --no-startup-id fcitx5 & # fcitx5 输入法
 # win键
 set $mod Mod4
@@ -83,7 +82,8 @@ floating_modifier Mod4
 
 # bindsym $mod+c exec Klipper
 bindsym $mod+Shift+f exec kitty -e ranger
-bindsym $mod+d exec ~/.linuxConfig/rofi/launcher.sh
+# Mod1是alt
+bindsym Mod1+space exec ~/.linuxConfig/rofi/launcher.sh
 bindsym $mod+Shift+s exec ~/.linuxConfig/i3/flameshot-i3.sh
 bindsym $mod+x exec --no-startup-id polybar-msg cmd toggle # 设置快捷键来显示隐藏 polybar
 
@@ -186,7 +186,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout splith
-# bindsym $mod+q layout splitv
+bindsym $mod+d layout splitv
 bindsym $mod+w layout tabbed
 bindsym $mod+t layout toggle
 
@@ -246,6 +246,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 # using plasma's logout screen instead of i3's
+# 注销界面
 bindsym $mod+Shift+e exec --no-startup-id qdbus-qt5 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
 
 # resize window (you can also use the mouse for that)
@@ -281,6 +282,5 @@ bindsym $mod+r mode "resize"
 #         status_command i3status
 # }
 
-exec_always --no-startup-id picom --config ~/.config/i3/picom/picom.conf -b --experimental-backends
 
 # feh --bg-fill --no-fehbg --randomize ~/Pictures/wallpaper.jpg

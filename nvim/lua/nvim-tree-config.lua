@@ -39,7 +39,6 @@ require("nvim-tree").setup({
     },
 })
 
--- nnoremap <leader>e :NvimTreeToggle<CR>
 vim.api.nvim_set_keymap(
     "n",
     "<leader>e",

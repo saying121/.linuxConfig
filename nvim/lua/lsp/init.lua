@@ -1,8 +1,7 @@
 require 'lsp.cmp'
 local lsp = require 'lsp.lsp-config'
 require 'lsp.mason-config'
-require 'lsp.mason-nvim-dap'
-require 'lsp.mason-null-ls-config'
+require 'lsp.null-ls-config'
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = require('cmp_nvim_lsp').default_capabilities()

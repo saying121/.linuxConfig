@@ -1,4 +1,4 @@
-vim.keymap.set("n","<leader>ra","<cmd>CellularAutomaton make_it_rain<CR>")
+vim.api.nvim_set_keymap("n","<leader>ra","<cmd>CellularAutomaton make_it_rain<CR>",{ silent = true, noremap = true })
 local config1 = {
     fps = 50,
     name = 'snake',

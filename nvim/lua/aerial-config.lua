@@ -1,3 +1,6 @@
+vim.defer_fn(function()
+vim.fn.system("sleep 1s")
+end,2000)
 require('aerial').setup({
     -- optionally use on_attach to set keymaps when aerial has attached to a buffer
     -- on_attach = function(bufnr)
@@ -78,4 +81,4 @@ require('aerial').setup({
     highlight_on_jump = 300,
 })
 -- You probably also want to set a keymap to toggle aerial
-vim.keymap.set('n', '<space>z', '<cmd>AerialToggle!<CR>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<space>z', '<cmd>AerialToggle!<CR>', { silent = true, noremap = true })

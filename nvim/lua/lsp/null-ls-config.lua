@@ -32,11 +32,3 @@ require("null-ls").setup({
         end
     end,
 })
-
-require("mason-null-ls").setup({
-    ensure_installed = {
-        'isort', 'black', 'vint', 'prettier', 'shfmt', 'sql_formatter'
-    },
-    automatic_installation = true,
-    automatic_setup = false,
-})

@@ -1,10 +1,7 @@
--- require 'plugins'
 require 'lazy-config'
 
 -- 大纲
 require 'aerial-config'
-
-require 'image-preview'
 
 require 'nvim-tree-config'
 

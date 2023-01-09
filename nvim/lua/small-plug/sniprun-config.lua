@@ -24,8 +24,8 @@ require 'sniprun'.setup({
     },
 })
 local opts = { noremap = true, silent = true }
-vim.keymap.set('v', 'r', '<Plug>SnipRun<CR>', opts)
-vim.keymap.set('n', '<space>,', '<Plug>SnipClose<CR>', opts)
+vim.api.nvim_set_keymap('v', '<leader>r', '<Plug>SnipRun<CR>', opts)
+vim.api.nvim_set_keymap('n', '<space>,', '<Plug>SnipClose<CR>', opts)
 vim.cmd('augroup sniprun')
 vim.cmd('autocmd!')
 vim.cmd('autocmd TermOpen * setlocal nonu')

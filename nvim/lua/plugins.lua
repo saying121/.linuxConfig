@@ -1,6 +1,7 @@
 return {
     {
         'terror/chatgpt.nvim',
+        lazy = true,
         build = 'pip3 install -r requirements.txt'
     },
     {
@@ -12,12 +13,13 @@ return {
     },
     {
         'turbio/bracey.vim',
+        lazy = true,
         build = 'npm install --prefix server',
         ft = { 'html' },
     },
-    'adelarsq/image_preview.nvim',
     {
         'iamcco/markdown-preview.nvim',
+        lazy = true,
         build = 'cd app && npm install',
         ft = { 'markdown' },
     },
@@ -31,6 +33,7 @@ return {
     {
         'michaelb/sniprun',
         build = './install.sh',
+        lazy = true,
     },
     'stevearc/aerial.nvim',
     {
@@ -46,6 +49,7 @@ return {
     },
     {
         'nvim-tree/nvim-tree.lua',
+        lazy = true,
         dependencies = {
             'nvim-tree/nvim-web-devicons', -- file icons
         },
@@ -53,6 +57,7 @@ return {
     },
     {
         'nvim-telescope/telescope.nvim',
+        lazy = true,
         dependencies = {
             "ahmedkhalf/project.nvim",
         },
@@ -60,12 +65,14 @@ return {
     },
     {
         'neovim/nvim-lspconfig',
+        priority = 1000,
         dependencies = {
             'jose-elias-alvarez/null-ls.nvim',
         },
     },
     {
         'williamboman/mason.nvim',
+        lazy = true,
         dependencies = {
             'williamboman/mason-lspconfig.nvim',
             "jayp0521/mason-null-ls.nvim",
@@ -74,6 +81,7 @@ return {
     },
     {
         'hrsh7th/nvim-cmp',
+        lazy = true,
         event = "InsertEnter",
         dependencies = {
             'hrsh7th/cmp-nvim-lsp',
@@ -85,8 +93,6 @@ return {
             'rafamadriz/friendly-snippets',
         },
     },
-    --  'hrsh7th/cmp-vsnip'
-    --  'hrsh7th/vim-vsnip'
 
     --  {
     --     'neoclide/coc.nvim',
@@ -104,9 +110,8 @@ return {
     {
         'EdenEast/nightfox.nvim',
         build = ':NightfoxCompile',
-        -- priority = 1000,
+        priority = 1000,
         -- lazy = true,
-        -- enabled = false,
         cond = false,
     },
     {
