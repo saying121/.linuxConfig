@@ -72,20 +72,20 @@ ZSH_CUSTOM=$ZSH/custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git gitignore git-open
-    command-not-found sudo
-    web-search
-    cp
-    z
-    vscode
-    extract
-    colored-man-pages
-    history-substring-search
-    fzf-tab
+	git gitignore git-open
+	command-not-found sudo
+	web-search
+	cp
+	z
+	vscode
+	extract
+	colored-man-pages
+	history-substring-search
+	fzf-tab
 )
 
 if [[ -d $ZSH ]]; then
-    source $ZSH/oh-my-zsh.sh
+	source $ZSH/oh-my-zsh.sh
 fi
 
 # User configuration

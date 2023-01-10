@@ -6,7 +6,7 @@ return {
     },
     {
         'eandrju/cellular-automaton.nvim',
-        lazy = true,
+        -- lazy = true,
         keys = {
             { "<leader>ra", "<cmd>CellularAutomaton make_it_rain<cr>", desc = 'rain' },
         },
@@ -34,6 +34,9 @@ return {
         'michaelb/sniprun',
         build = './install.sh',
         lazy = true,
+        keys = {
+            { '<leader>r', '<Plug>SnipRun', 'v', desc = 'unit test' }
+        },
     },
     'stevearc/aerial.nvim',
     {
@@ -97,7 +100,7 @@ return {
     --  {
     --     'neoclide/coc.nvim',
     --     branch = 'release'
-    -- }
+    -- },
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
@@ -134,9 +137,9 @@ return {
     'tpope/vim-surround',
     {
         'voldikss/vim-translator',
-        -- keys = {
-        --     { "<A-y>", "<Plug>TranslateW", desc = 'translate' },
-        -- },
+        keys = {
+            { "<leader>y", "<Plug>TranslateW", desc = 'translate' },
+        },
     },
     'folke/lazy.nvim',
 }

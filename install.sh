@@ -6,7 +6,7 @@
 if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	pacMan="apt install"
 elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-	pacMan="pacman -S --needed"
+	pacMan="pacman -S --needed --noconfirm"
 else
 	echo 'Can not use'
 	exit 0
@@ -17,18 +17,18 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	sudo pacman -Syu
 	# sudo pacman -S --needed archlinuxcn-keyring
 	# if [[ $? != 0 ]]; then
-	if [[ ! $(sudo pacman -S --needed archlinuxcn-keyring) ]]; then
+	if ! sudo pacman -S --needed --noconfirm archlinuxcn-keyring; then
 		sudo rm -rf /etc/pacman.d/gnupg
 		pacman-key --init
 		pacman-key --populate archlinux
 		pacman-key --populate archlinuxcn
 	fi
 	sudo pacman -Syu
-	sudo pacman -S --needed yay paru
+	sudo pacman -S --needed --noconfirm yay paru
 	# 调用关于clash的脚本，配置clash
 	~/.linuxConfig/configClash.sh
 	# 开发工具
-	sudo pacman -S --needed dnsutils networkmanager fd tree p7zip \
+	sudo pacman -S --needed --noconfirm dnsutils networkmanager fd tree p7zip \
 		jdk17-openjdk python-pip go clash rust
 
 elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
@@ -77,22 +77,22 @@ allInstall() {
 	if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		sudo pacman -syu
 		# 中文输入法,支持vim+寄存器的clip
-		sudo pacman -S --needed \
+		sudo pacman -S --needed --noconfirm \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip fcitx5-table-other nerd-fonts-hack \
 			pacman-contrib powerpill reflector \
 			openssh ntfs-3g firewalld ueberzug ffmpegthumbnailer pdftoppm dolphin \
 			w3m djvutxt calibre transmission-cli mediainf odt2txt \
 			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
-			pandoc xdg-utils youtube-dl numlockx rsync linux-firmware-qlogic
+			pandoc xdg-utils youtube-dl numlockx rsync linux-firmware-qlogic arch-install-scripts
 		# sddm主题的依赖
-		sudo pacman -S --needed gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
+		sudo pacman -S --needed --noconfirm gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机
-		sudo pacman -S --needed pulseaudio-bluetooth pulsemixer \
+		sudo pacman -S --needed --noconfirm pulseaudio-bluetooth pulsemixer \
 			xorg xorg-xinit xorg-server picom feh polybar calc python-pywal network-manager-applet
 
 		# wallpaper-engine-kde-plugin requirement
-		sudo pacman -S --needed extra-cmake-modules plasma-framework gst-libav \
+		sudo pacman -S --needed --noconfirm extra-cmake-modules plasma-framework gst-libav \
 			base-devel mpv python-websockets qt5-declarative qt5-websockets qt5-webchannel vulkan-headers cmake
 
 	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
@@ -153,7 +153,7 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	startServer
 	~/.linuxConfig/rofi/install-rofi-theme.sh
 	~/.linuxConfig/i3/polybar/install-polybar-theme.sh
-    ~/.linuxConfig/i3/use-i3.sh
+	~/.linuxConfig/kde/use-i3.sh
 	# 刷新字体
 	fc-cache -fv
 fi
