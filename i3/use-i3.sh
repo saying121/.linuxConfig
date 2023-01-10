@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # 应用另一个kde配置
-~/.local/bin/konsave -i ~/.linuxConfig/i3/kde+i3wm.knsv
-~/.local/bin/konsave -a ~/.linuxConfig/i3/kde+i3wm.knsv
+~/.local/bin/konsave -i ~/.linuxConfig/kde/kdei3wallpaper.knsv
+~/.local/bin/konsave -a ~/.linuxConfig/kde/kdei3wallpaper.knsv
 
 if [[ ! -d ~/.config/systemd/user ]]; then
 	mkdir -p ~/.config/systemd/user

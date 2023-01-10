@@ -1,6 +1,3 @@
-vim.defer_fn(function()
-vim.fn.system("sleep 1s")
-end,2000)
 require('aerial').setup({
     -- optionally use on_attach to set keymaps when aerial has attached to a buffer
     -- on_attach = function(bufnr)

@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 " 当前行高亮
 set cursorline
 augroup CursorLine
@@ -22,10 +24,9 @@ augroup END
 augroup blank
     autocmd!
     autocmd BufWrite * :%s/\s\+$//e
-    " autocmd BufWrite *.vim  :%s/\s\+$//e
 augroup END
 
-" 自动创建代码块
+" 自动创建视图
 " augroup views
 "     autocmd!
 "     autocmd BufWrite * mkview
@@ -35,11 +36,14 @@ augroup END
 
 augroup File
     autocmd!
-    autocmd BufWritePost *.sh,*py silent !chmod +x %
+    autocmd BufWritePost *.sh,*.py,*.lua silent !chmod +x %
+    " 读取模板
     autocmd BufNewFile *.sh silent 0r ~/.config/nvim/viml/template/shell.txt | normal G
     autocmd BufNewFile *.py silent 0r ~/.config/nvim/viml/template/python3.txt| normal G
     autocmd BufNewFile *.html silent 0r ~/.config/nvim/viml/template/html.txt| normal Gdd8G
+    autocmd BufNewFile *.vim silent 0r ~/.config/nvim/viml/template/vim.txt| normal G
 augroup END
+
 " 自动展开文件
 augroup markdown
     autocmd!

@@ -1,4 +1,5 @@
-let mapleader=";"
+scriptencoding utf-8
+let mapleader=';'
 nnoremap * *N
 vnoremap * *N
 nnoremap # #n

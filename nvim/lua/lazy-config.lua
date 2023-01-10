@@ -70,15 +70,16 @@ require 'lazy'.setup('plugins', {
     },
     checker = {
         -- automatically check for plugin updates
-        enabled = false,
+        enabled = true,
         concurrency = nil, ---@type number? set to 1 to check for updates very slowly
-        notify = true, -- get a notification when new updates are found
-        frequency = 3600, -- check for updates every hour
+        notify = false, -- get a notification when new updates are found
+        -- frequency = 3600, -- check for updates every hour
+        frequency = 640800, -- check for updates every week
     },
     change_detection = {
         -- automatically check for config file changes and reload the ui
         enabled = true,
-        notify = true, -- get a notification when changes are found
+        notify = false, -- get a notification when changes are found
     },
     performance = {
         cache = {
@@ -99,14 +100,14 @@ require 'lazy'.setup('plugins', {
             paths = {}, -- add any custom paths here that you want to indluce in the rtp
             ---@type string[] list any plugins you want to disable here
             disabled_plugins = {
-                -- "gzip",
-                -- "matchit",
-                -- "matchparen",
-                -- "netrwPlugin",
-                -- "tarPlugin",
-                -- "tohtml",
-                -- "tutor",
-                -- "zipPlugin",
+                "gzip",
+                "matchit",
+                "matchparen",
+                "netrwPlugin",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "zipPlugin",
             },
         },
     },

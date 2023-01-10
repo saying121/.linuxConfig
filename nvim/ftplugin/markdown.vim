@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " nmap <C-s> <Plug>MarkdownPreview
 " nmap <M-s> <Plug>MarkdownPreviewStop
 nnoremap <buffer> <silent><c-p> :MarkdownPreviewToggle<cr>

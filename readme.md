@@ -19,7 +19,7 @@
 
 ## clone完成后
 
-    # 正常用就运行，包含常用的软件什么的,会安装wallpaper engine
+    # 正常用就运行，包含常用的软件
     $ ~/.linuxConfig/install.sh
 
     # kde+i3就运行
@@ -27,7 +27,7 @@
 
     # 换回kwin运行，有kwin平铺脚本，可在窗口管理关闭
     $ ~/.linuxConfig/i3/use-kwin.sh
-    # 切换配置有些问题，因为配置经常会变，默认为wallpaperkdei3的配置，默认没有问题
+    # 切换配置有些问题，因为配置经常会变，默认为i3的配置，默认没有问题
 
 
 ### 切换配置
@@ -37,5 +37,5 @@
     # 列出配置选项
     $ konsave -l
 
-    # 导入配置
+    # 应用配置
     $ konsave -a profile

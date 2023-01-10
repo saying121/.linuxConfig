@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " 基本设置
 source ~/.config/nvim/viml/base.vim
 

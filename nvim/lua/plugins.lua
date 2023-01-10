@@ -132,6 +132,11 @@ return {
     'steelsojka/pears.nvim',
     'numToStr/Comment.nvim',
     'tpope/vim-surround',
-    'voldikss/vim-translator',
+    {
+        'voldikss/vim-translator',
+        -- keys = {
+        --     { "<A-y>", "<Plug>TranslateW", desc = 'translate' },
+        -- },
+    },
     'folke/lazy.nvim',
 }

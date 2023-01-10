@@ -40,7 +40,7 @@ fi
 sudo $pacMan neofetch figlet ranger ffmpeg htop \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
 	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa \
-	neovim git python3 nodejs npm shfmt shellcheck lolcat luarocks composer
+	neovim git python3 nodejs npm shfmt shellcheck lolcat luarocks composer eslint
 
 # 拉取ranger插件
 git submodule update --init --recursive
@@ -91,6 +91,10 @@ allInstall() {
 		sudo pacman -S --needed pulseaudio-bluetooth pulsemixer \
 			xorg xorg-xinit xorg-server picom feh polybar calc python-pywal network-manager-applet
 
+		# wallpaper-engine-kde-plugin requirement
+		sudo pacman -S --needed extra-cmake-modules plasma-framework gst-libav \
+			base-devel mpv python-websockets qt5-declarative qt5-websockets qt5-webchannel vulkan-headers cmake
+
 	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		sudo apt install openssh-* ttf-hack-nerd
 
@@ -121,9 +125,9 @@ yayInstall() {
 		input-remapper-git yesplaymusic netease-cloud-music \
 		ldr-translate-qt xnviewmp epub-thumbnailer-git fontpreview \
 		sddm-theme-aerial-git ruby-fusuma \
-		archlinux-tweak-tool-git kwin-scripts-krohnkite-git i3-gaps-kde-git \
+		archlinux-tweak-tool-git i3-gaps-kde-git \
 		networkmanager-dmenu-git copyq networkmanager-dmenu-bluetoothfix-git \
-        wps-office-cn
+		wps-office-cn plasma5-wallpapers-wallpaper-engine
 }
 
 # 开启服务
@@ -149,7 +153,7 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	startServer
 	~/.linuxConfig/rofi/install-rofi-theme.sh
 	~/.linuxConfig/i3/polybar/install-polybar-theme.sh
-	~/.linuxConfig/kde/wallpaper-engine-kde-plugin.sh
+    ~/.linuxConfig/i3/use-i3.sh
 	# 刷新字体
 	fc-cache -fv
 fi

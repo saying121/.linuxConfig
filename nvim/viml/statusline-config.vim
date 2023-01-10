@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " 状态栏
 function! GitBranch()
     return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
@@ -13,17 +14,17 @@ function! LinuxRelease()
         let l:prompy_symbol=' '
     elseif has('mac')
         let l:prompy_symbol=' '
-    elseif system("grep -c kali /etc/os-release")>=1
+    elseif system('grep -c kali /etc/os-release')>=1
         let l:prompy_symbol=' '
-    elseif system("grep -c arch /etc/os-release")>=1
+    elseif system('grep -c arch /etc/os-release')>=1
         let l:prompy_symbol=' '
-    elseif system("grep -c ubuntu /etc/os-release")>=1
+    elseif system('grep -c ubuntu /etc/os-release')>=1
         let l:prompy_symbol=' '
-    elseif system("grep -c suse /etc/os-release")>=1
+    elseif system('grep -c suse /etc/os-release')>=1
         let l:prompy_symbol=' '
-    elseif system("grep -c manjaro /etc/os-release")>=1
+    elseif system('grep -c manjaro /etc/os-release')>=1
         let l:prompy_symbol=' '
-    elseif system("grep -c pop /etc/os-release")>=1
+    elseif system('grep -c pop /etc/os-release')>=1
         let l:prompy_symbol=' '
     else
         let l:prompy_symbol=' '
@@ -32,34 +33,34 @@ function! LinuxRelease()
 endfunction
 
 func! FileType()
-    if &filetype=='c'
+    if &filetype==#'c'
         let l:prompy_symbol=' '
-    elseif &filetype=='cpp'
+    elseif &filetype==#'cpp'
         let l:prompy_symbol='ﭱ '
-    elseif &filetype=='java'
+    elseif &filetype==#'java'
         let l:prompy_symbol=' '
-    elseif &filetype=='javascript'
+    elseif &filetype==#'javascript'
         let l:prompy_symbol=' '
-    elseif &filetype=='html'
+    elseif &filetype==#'html'
         let l:prompy_symbol=' '
-    elseif &filetype=='json'
+    elseif &filetype==#'json'
         let l:prompy_symbol=' '
-    elseif &filetype=='sh'
+    elseif &filetype==#'sh'
         let l:prompy_symbol=' '
-    elseif &filetype=='python'
+    elseif &filetype==#'python'
         let l:prompy_symbol=' '
-    elseif &filetype=='lua'
+    elseif &filetype==#'lua'
         let l:prompy_symbol=' '
-    elseif &filetype=='go'
+    elseif &filetype==#'go'
         let l:prompy_symbol=' '
-    elseif &filetype=='vim'
+    elseif &filetype==#'vim'
         let l:prompy_symbol=' '
-    elseif &filetype=='markdown'
+    elseif &filetype==#'markdown'
         let l:prompy_symbol=' '
-    elseif &filetype=='txt'
+    elseif &filetype==#'txt'
         let l:prompy_symbol=' '
     else
-        return '[' .. &filetype .. ']'
+        return '[' . &filetype . ']'
     endif
     return prompy_symbol
 endfunc
