@@ -1,44 +1,20 @@
-local dash = vim.fn.stdpath('config') .. '/dashboard'
 local db = require('dashboard')
 
--- if os.execute('pacman -Qs xorg | grep -c xorg') then
+local dash = vim.fn.stdpath('config') .. '/dashboard'
+local dbtable = {
+    { path = dash .. '/tuzi.png', command = 'ueberzug', height = 20, width = 60 },
+    { path = dash .. '/lucy.jpg', command = 'ueberzug', height = 20, width = 24 },
+    { path = dash .. '/arch.cat', command = 'cat | lolcat -F 0.3', height = 20, width = 39 },
+    { path = dash .. '/kali.cat', command = 'cat | lolcat -F 0.3', height = 20, width = 70 },
+}
+
 -- lua5.1随机数有bug,用viml实现
--- 0到n-1的随机数
-local rand = vim.api.nvim_eval('rand()%4')
--- rand = math.random(1, 2)
-if rand == 0 then
-    db.preview_file_path = dash .. '/tuzi.png'
-    db.preview_command = 'ueberzug'
-    db.preview_file_height = 20
-    db.preview_file_width = 60
-end
-if rand == 1 then
-    db.preview_file_path = dash .. '/lucy.jpg'
-    db.preview_command = 'ueberzug'
-    db.preview_file_height = 20
-    db.preview_file_width = 24
-end
--- end
--- elseif os.execute('grep -c arch /etc/os-release > /dev/null') then
-if rand == 2 then
-    db.preview_file_path = dash .. '/arch.cat'
-    db.preview_file_height = 20
-    db.preview_file_width = 39
-    db.preview_command = 'cat | lolcat -F 0.3'
-end
--- elseif os.execute('grep -c kali /etc/os-release > /dev/null') then
-if rand == 3 then
-    db.preview_file_path = dash .. '/kali.cat'
-    db.preview_file_height = 20
-    db.preview_file_width = 70
-    db.preview_command = 'cat | lolcat -F 0.3'
-end
--- else
---     db.preview_file_path = dash .. '/pegasus_symbol.cat'
---     db.preview_command = 'cat|lolcat -F 0.3'
---     db.preview_file_height = 20
---     db.preview_file_width = 70
--- end
+-- 0 到 dbtable长度-1的随机数;lua 从1索引再加1
+local rand = vim.api.nvim_eval('rand()') % #dbtable + 1
+db.preview_file_path = dbtable[rand]['path']
+db.preview_command = dbtable[rand]['command']
+db.preview_file_height = dbtable[rand]['height']
+db.preview_file_width = dbtable[rand]['width']
 
 --   --
 db.custom_center = {

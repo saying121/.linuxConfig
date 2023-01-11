@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo systemctl stop reflector.service
 sudo pacman -S --needed pacman-contrib
 
 # 修改/etc/pacman.d/mirrorlist,直接在文件开始插入中国源

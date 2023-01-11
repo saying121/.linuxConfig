@@ -111,6 +111,14 @@
         "1,58,1+1,57,1": [
             "Return",
             "keyboard"
+        ],
+        "1,58,1+1,16,1": [
+            "KEY_LEFTCTRL+w",
+            "keyboard"
+        ],
+        "1,58,1+1,20,1": [
+            "Alt_L+d",
+            "keyboard"
         ]
     }
 }

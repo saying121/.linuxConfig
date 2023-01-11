@@ -55,6 +55,7 @@ export NO_PROXY=baidu.com,qq.com
 
 export EDITOR='nvim'
 export PATH=~/.cargo/bin:~/.local/bin:$PATH
+export PATH=~/.local/share/nvim/mason/bin:$PATH
 # wsl
 export PATH=/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application:$PATH
 if [[ $(uname -a | grep -c WSL) != 0 ]]; then
