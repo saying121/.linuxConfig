@@ -10,73 +10,82 @@ function! StatuslineGit()
 endfunction
 
 function! LinuxRelease()
-    if has('win32')
-        let l:prompy_symbol=' '
-    elseif has('mac')
-        let l:prompy_symbol=' '
-    elseif system('grep -c kali /etc/os-release')>=1
-        let l:prompy_symbol=' '
-    elseif system('grep -c arch /etc/os-release')>=1
-        let l:prompy_symbol=' '
-    elseif system('grep -c ubuntu /etc/os-release')>=1
-        let l:prompy_symbol=' '
-    elseif system('grep -c suse /etc/os-release')>=1
-        let l:prompy_symbol=' '
-    elseif system('grep -c manjaro /etc/os-release')>=1
-        let l:prompy_symbol=' '
-    elseif system('grep -c pop /etc/os-release')>=1
-        let l:prompy_symbol=' '
+    let l:releases={
+                \'arch':' ',
+                \'kali':' ',
+                \'ubuntu':' ',
+                \'suse':' ',
+                \'manjaro ':' ',
+                \'pop':' ',
+                \}
+    let l:key=system("awk -F= '/^ID/{print $2}' </etc/os-release")
+    " 貌似获取的key后面多了什么值，切割来获取纯净的字符串
+    let l:key=split(key)[0]
+    if has_key(releases, key)
+        let l:prompy_symbol=releases[key]
+        return prompy_symbol
     else
         let l:prompy_symbol=' '
+        return prompy_symbol
     endif
-    return prompy_symbol
+    if has('win32')
+        let l:prompy_symbol=' '
+        return prompy_symbol
+    elseif has('mac')
+        let l:prompy_symbol=' '
+        return prompy_symbol
+    endif
 endfunction
 
 func! FileType()
-    if &filetype==#'c'
-        let l:prompy_symbol=' '
-    elseif &filetype==#'cpp'
-        let l:prompy_symbol='ﭱ '
-    elseif &filetype==#'java'
-        let l:prompy_symbol=' '
-    elseif &filetype==#'javascript'
-        let l:prompy_symbol=' '
-    elseif &filetype==#'html'
-        let l:prompy_symbol=' '
-    elseif &filetype==#'json'
-        let l:prompy_symbol=' '
-    elseif &filetype==#'sh'
-        let l:prompy_symbol=' '
-    elseif &filetype==#'python'
-        let l:prompy_symbol=' '
-    elseif &filetype==#'lua'
-        let l:prompy_symbol=' '
-    elseif &filetype==#'go'
-        let l:prompy_symbol=' '
-    elseif &filetype==#'vim'
-        let l:prompy_symbol=' '
-    elseif &filetype==#'markdown'
-        let l:prompy_symbol=' '
-    elseif &filetype==#'txt'
-        let l:prompy_symbol=' '
+    let l:filetypes = {
+                \'c':' ',
+                \'cpp':'ﭱ ',
+                \'java':' ',
+                \'javascript':' ',
+                \'html':' ',
+                \'json':' ',
+                \'sh':' ',
+                \'python':' ',
+                \'lua':' ',
+                \'go':' ',
+                \'vim':' ',
+                \'markdown':' ',
+                \'txt':' ',
+                \'log':' ',
+                \}
+    if has_key(filetypes, &filetype)
+        let l:prompy_symbol=filetypes[&filetype]
+        return prompy_symbol
     else
         return '[' . &filetype . ']'
     endif
-    return prompy_symbol
 endfunc
 
+" lua =vim.lsp.get_active_clients()
+lua << EOF
+function _G.getlsp()
+    local name = vim.lsp.get_active_clients()[1]['name']
+    local name='%f'
+    return name
+end
+function _G.statusline()
+    return 1234333
+end
+EOF
+
 " set statusline=%<%F%=%y%m%r%h%w%{&ff}\[%{&fenc}]0x%02B@%040h#%n\(%3l/%3L,%3c\|%3v\)%3p%%
-set laststatus=2                            "显示状态栏信息
-set statusline=%1*\%{StatuslineGit()}
+set laststatus=3                            "显示状态栏信息
+set statusline+=%1*\%{StatuslineGit()}
 set statusline+=%2*\%<%.50F\                "显示文件名和文件路径 (%<应该可以去掉)
 " set statusline+=%7*\%{StatusDiagnostic()}\
-" set statusline+=%=%3*\\|%O[%b]%y%m%r%h%w\ %*        "显示文件类型及文件状态
+" set statusline+=%{!v:lua.statusline()}
+" set statusline+=%{!v:lua.getlsp()}
 set statusline+=%=%3*\\|%O[%b]%m%{FileType()}%r%h%w\%*        "显示文件类型及文件状态
-" set statusline+=%4*\%{&ff}\[%{&fenc}]\%*   "显示系统，文件编码类型
-set statusline+=%8*%{LinuxRelease()}%*
-set statusline+=%4*\[%{&fenc}]\%*   "显示系统，文件编码类型
+set statusline+=%8*%{LinuxRelease()}%*      "显示系统
+set statusline+=%4*\[%{&fenc}]\%*   "文件编码
 set statusline+=%5*\ row:%l/%L\|col:%c\ %*   "显示光标所在行和列
-set statusline+=%6*\%3p%%\%*                "显示光标前文本所占总文本的比例
+" set statusline+=%6*\%3p%%\%*                "显示光标前文本所占总文本的比例
 hi User1 guifg=Olivedrab
 hi User2 guifg=blue
 " hi User7 guifg=red

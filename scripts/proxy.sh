@@ -1,4 +1,5 @@
 #!/bin/sh
+# shellcheck disable=2002,2086
 hostip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
 # wslip=$(hostname -I | awk '{print $1}')
 wslip=$(ip address show eth0|grep 'scope global'|awk '{print $2}'|awk -F/ '{print $1}')

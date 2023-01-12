@@ -2,6 +2,7 @@
 # 自带的
 # enable color support of ls, less and man, and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
+	# shellcheck disable=2015
 	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 	export LS_COLORS="$LS_COLORS:ow=30;44:" # fix ls color for folders with 777 permissions
 
@@ -45,6 +46,7 @@ elif [[ $(grep -c manjaro /etc/os-release) != 0 ]]; then
 elif [[ $(grep -c pop /etc/os-release) != 0 ]]; then
 	prompt_symbol=" "
 else
+	# shellcheck disable=2034
 	prompt_symbol=" "
 fi
 
@@ -60,8 +62,9 @@ export PATH=~/.local/share/nvim/mason/bin:$PATH
 export PATH=/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application:$PATH
 if [[ $(uname -a | grep -c WSL) != 0 ]]; then
 	# if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
-		alias proxy="source ~/.linuxConfig/shells/proxy.sh"
-		. ~/.linuxConfig/shells/proxy.sh set
+		alias proxy="source ~/.linuxConfig/scripts/proxy.sh"
+		# shellcheck disable=1090
+		. ~/.linuxConfig/scripts/proxy.sh set
 	# fi
 fi
 
@@ -82,7 +85,7 @@ export TLDR_DOWNLOAD_CACHE_LOCATION="https://tldr-pages.github.io/assets/tldr.zi
 alias icat="kitty +kitten icat"
 alias ueber="~/.linuxConfig/ueber.sh"
 
-alias clhconf="~/.linuxConfig/configClash.sh"
+alias clhconf="~/.linuxConfig/scripts/configClash.sh"
 alias clhres="sudo systemctl restart clash.service"
 alias clhsts="systemctl status clash.service"
 

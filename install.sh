@@ -26,7 +26,7 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	sudo pacman -Syu
 	sudo pacman -S --needed --noconfirm yay paru
 	# 调用关于clash的脚本，配置clash
-	~/.linuxConfig/configClash.sh
+	~/.linuxConfig/scripts/configClash.sh
 	# 开发工具
 	sudo pacman -S --needed --noconfirm dnsutils networkmanager fd tree p7zip \
 		jdk17-openjdk python-pip go clash rust

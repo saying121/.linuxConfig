@@ -5,9 +5,9 @@ local M = {
         { '<leader>ff', mode = 'n', desc = 'find file' },
         { '<leader>fw', mode = 'n', desc = 'find word' },
         { '<leader>bf', mode = 'n', desc = 'find in buffer ' },
-        { '<leader>go', mode = 'n', desc = '' },
+        { '<leader>go', mode = 'n', desc = 'list oldfiles' },
+        { '<sapce>ll', mode = 'n', desc = 'list diagnostics' },
         { '<space>a', mode = 'n', desc = '' },
-        { '<leader>ll', mode = 'n', desc = '' },
     },
     dependencies = {
         'ahmedkhalf/project.nvim',

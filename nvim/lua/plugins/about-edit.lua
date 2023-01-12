@@ -10,14 +10,21 @@ local M = {
     {
         'numToStr/Comment.nvim',
         keys = {
-            { 'gc',mode ={'n','v'} },
-            { 'gb',mode ={'n','v'} },
+            { 'gc', mode = { 'n', 'v' } },
+            { 'gb', mode = { 'n', 'v' } },
         },
         config = function()
             require 'Comment'.setup()
         end
     },
-    'tpope/vim-surround',
+    {
+        'tpope/vim-surround',
+        keys = {
+            { 'y',mode='n' },
+            { 'd',mode='n' },
+            { 'c',mode='n' },
+        },
+    },
 }
 
 return M
