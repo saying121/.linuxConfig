@@ -7,7 +7,7 @@
 ## 先运行
 
     # 后跟 clash订阅链接，来连接github
-    ~/.linuxConfig/configClash.sh
+    ~/.linuxConfig/scripts/configClash.sh
 
 ## 如果要使用本配置，执行下面代码，包含ranger的插件
     $ git clone --recursive https://github.com/saying121/.linuxConfig.git ~/.linuxConfig

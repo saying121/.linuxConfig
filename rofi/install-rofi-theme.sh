@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # 截图
 if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
@@ -21,3 +21,8 @@ theme() {
 if [[ ! -d ~/.config/rofi/scripts ]]; then
 	theme
 fi
+
+# 让该用户在以root身份运行时还能找到图片
+dir="$HOME/.config/rofi/launchers/type-6"
+theme='style-7'
+sed -i "s#\".*/.config/rofi/images/g.png#\"$HOME/.config/rofi/images/g.png#" "$dir"/$theme.rasi

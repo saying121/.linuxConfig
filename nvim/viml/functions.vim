@@ -66,8 +66,8 @@ func! CompileGcc()
     endif
 endfunc
 
-nnoremap <silent><leader>s :call CheckChineseMark()<CR>:w<CR>
-vnoremap <silent><leader>s :call CheckChineseMark()<CR>:w<CR>
+" nnoremap <silent><leader>s :call CheckChineseMark()<CR>:w<CR>
+" vnoremap <silent><leader>s :call CheckChineseMark()<CR>:w<CR>
 function! CheckChineseMark()
     "依次检查
     if search('。')

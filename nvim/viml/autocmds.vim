@@ -44,7 +44,7 @@ augroup File
     autocmd BufNewFile *.vim silent 0r ~/.config/nvim/viml/template/vim.txt| normal G
 augroup END
 
-" 自动展开文件
+" 自动展开fold
 augroup markdown
     autocmd!
     autocmd VimEnter,BufReadPost * normal zR

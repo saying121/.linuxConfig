@@ -39,6 +39,7 @@ dap.configurations.python = { -- launch exe
         request = "launch",
         name = "Launch file",
         program = "${file}", -- This configuration will launch the current file if used.
+        console="integratedTerminal",
         -- args = function()
         --     local input = vim.fn.input("Input args: ")
         --     return require("user.dap.dap-util").str2argtable(input)

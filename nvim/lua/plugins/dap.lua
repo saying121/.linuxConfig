@@ -4,50 +4,63 @@ local M = {
     keys = {
         { '<space>b', mode = 'n' },
         { '<space>B', mode = 'n' },
+        { '<leader>tb', mode = 'n' },
+        { '<leader>cb', mode = 'n' },
+        { '<leader>cl', mode = 'n' },
+    },
+    cmd = {
+        'PBToggleBreakpoint',
+        'PBClearAllBreakpoints',
+        'PBSetConditionalBreakpoint',
     },
     config = function()
+        -- 对各个语言的配置
+        require 'dap-conf.python'
 
         vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
         -- vim.fn.sign_define('DapStopped', { text = '⭐️', texthl = '', linehl = '', numhl = '' })
 
         local dap = require 'dap'
         local opts = { noremap = true, silent = true }
+        vim.keymap.set('n', '<space>b', dap.toggle_breakpoint, opts)
         vim.keymap.set('n', '<space>B',
             "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
-        vim.keymap.set('n', '<space>b', dap.toggle_breakpoint, opts)
 
-        vim.keymap.set('n', '<F5>', dap.continue, opts)
-        vim.keymap.set('n', '<F6>', dap.step_over, opts)
-        vim.keymap.set('n', '<F7>', dap.step_into, opts)
-        vim.keymap.set('n', '<F8>', dap.step_out, opts)
-
-        vim.keymap.set("n", "<F9>", dap.terminate, opts)
+        vim.keymap.set({ 'n', 'i', 't' }, '<F5>', dap.continue, opts)
+        vim.keymap.set({ 'n', 'i', 't' }, '<F6>', dap.step_over, opts)
+        vim.keymap.set({ 'n', 'i', 't' }, '<F7>', dap.step_into, opts)
+        vim.keymap.set({ 'n', 'i', 't' }, '<F8>', dap.step_out, opts)
+        vim.keymap.set({ 'n', 'i', 't' }, "<F9>", dap.terminate, opts)
 
         vim.keymap.set('n', '<space>lp',
             "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
         vim.keymap.set('n', '<space>dr', dap.repl.open, opts)
         vim.keymap.set('n', '<space>dl', dap.run_last, opts)
 
-        -- 自动开启ui
+        vim.keymap.set({ 'n', 't' }, '<space>cl', require 'dapui'.close, opts)
+        vim.keymap.set('n', '<space>op', require 'dapui'.open, opts)
+
         -- local function config_dapui()
         -- dapui config
         local dap, dapui = require("dap"), require("dapui")
+        -- 自动开启ui
         dap.listeners.after.event_initialized["dapui_config"] = function()
             dapui.open()
             vim.api.nvim_command("DapVirtualTextEnable")
             --dapui.close("tray")
         end
+        -- 自动关闭ui
         dap.listeners.before.event_terminated["dapui_config"] = function()
             vim.api.nvim_command("DapVirtualTextEnable")
-            dapui.close()
+            -- dapui.close()
         end
         dap.listeners.before.event_exited["dapui_config"] = function()
             vim.api.nvim_command("DapVirtualTextEnable")
-            dapui.close()
+            -- dapui.close()
         end
         dap.listeners.before.disconnect["dapui_config"] = function()
             vim.api.nvim_command("DapVirtualTextEnable")
-            dapui.close()
+            -- dapui.close()
         end
         -- TODO wait dap-ui for fix terminal layout
         -- the "30" of "30vsplit: doesn't work
@@ -62,8 +75,12 @@ local M = {
             'rcarriga/nvim-dap-ui',
             config = function()
 
+                local opts = { noremap = true, silent = true }
+                local dapui = require 'dapui'
+                vim.keymap.set('v', '<space>e', dapui.eval, opts)
+                vim.keymap.set('n', '<space>e', dapui.eval, opts)
+
                 require("dapui").setup({
-                    icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
                     mappings = {
                         -- Use a table to apply multiple mappings
                         expand = { "<CR>", "<2-LeftMouse>" },
@@ -106,7 +123,6 @@ local M = {
                         {
                             elements = {
                                 "repl",
-                                -- "term",
                                 "console",
                             },
                             size = 0.25, -- 25% of total lines
@@ -118,16 +134,6 @@ local M = {
                         enabled = true,
                         -- Display controls in this element
                         element = "repl",
-                        icons = {
-                            pause = "",
-                            play = "",
-                            step_into = "",
-                            step_over = "",
-                            step_out = "",
-                            step_back = "",
-                            run_last = "↻",
-                            terminate = "□",
-                        },
                     },
                     floating = {
                         max_height = nil, -- These can be integers or a float between 0 and 1.
@@ -143,11 +149,6 @@ local M = {
                         max_value_lines = 100, -- Can be integer or nil.
                     }
                 })
-
-                local opts = { noremap = true, silent = true }
-                local dapui = require 'dapui'
-                vim.keymap.set('v', '<space>e', dapui.eval, opts)
-                vim.keymap.set('n', '<space>e', dapui.eval, opts)
 
             end,
         },
@@ -177,4 +178,5 @@ local M = {
         },
     },
 }
+
 return M

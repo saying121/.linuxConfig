@@ -22,8 +22,7 @@ set termguicolors
 set listchars=eol:,tab:>>
 set number            " 显示行号
 set relativenumber
-syntax on            " 当前缓冲区中高亮
-syntax enable        " 语法高亮
+syntax off        " 语法高亮，用tree sitter高亮
 set hlsearch        " 搜索结果高亮
 set incsearch        " 搜索输入时动态高亮
 set showmatch        " 高亮显示匹配括号

@@ -20,9 +20,11 @@ local M = {
     {
         'tpope/vim-surround',
         keys = {
-            { 'y',mode='n' },
-            { 'd',mode='n' },
-            { 'c',mode='n' },
+            { 'ys', mode = 'n' },
+            { 'yS', mode = 'n' },
+            { 'ds', mode = 'n' },
+            { 'cs', mode = 'n' },
+            { 'S', mode = 'v' },
         },
     },
 }

@@ -7,7 +7,7 @@ vnoremap # #n
 nnoremap ,, ggVG
 
 " 映射按键
-nnoremap <space>c :cclose<CR>
+nnoremap <space>cc :cclose<CR>
 nnoremap ` %
 vnoremap ` %
 nnoremap <leader>w :w<CR>
@@ -29,7 +29,7 @@ vnoremap > >gv
 
 " copy paste system clipboard
 " ^= 把值加到默认值前
-"*和"+有什么差别呢？
+"*和"+有什么差别呢?
 "* 是在系统剪切板中表示选择的内容
 "+ 是在系统剪切板中表示选择后Ctrl+c复制的内容
 set clipboard^=unnamed          " *寄存器
@@ -53,7 +53,7 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 " tnoremap <Esc> <C-\><C-n>
-tnoremap Q <C-\><C-n>
+tnoremap <C-e> <C-\><C-n>
 
 " 调整窗口大小
 nnoremap <M-,> <C-W><
