@@ -1,12 +1,12 @@
 local M = {
-        'williamboman/mason.nvim',
-        lazy = true,
-        cmd = 'Mason',
-        dependencies = {
-            'williamboman/mason-lspconfig.nvim',
-            'jayp0521/mason-null-ls.nvim',
-            'jayp0521/mason-nvim-dap.nvim',
-        },
+    'williamboman/mason.nvim',
+    lazy = true,
+    cmd = 'Mason',
+    dependencies = {
+        'williamboman/mason-lspconfig.nvim',
+        'jayp0521/mason-null-ls.nvim',
+        'jayp0521/mason-nvim-dap.nvim',
+    },
 }
 function M.config()
 
@@ -43,7 +43,8 @@ function M.config()
     })
 
     require 'mason-lspconfig'.setup({
-        ensure_installed = { "awk_ls", "html", "bashls", "jdtls", "jsonls", "pylsp", "sumneko_lua", "vimls", "yamlls",
+        ensure_installed = { "awk_ls", "html", "bashls", "jdtls", "jsonls", "pylsp", "jedi_language_server",
+            "sumneko_lua", "vimls", "yamlls",
             "tsserver", },
         -- Can either be:
         --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.

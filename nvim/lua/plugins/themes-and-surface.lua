@@ -69,9 +69,6 @@ return {
                 groups = {},
             })
 
-            -- 分割线
-            -- require('colorful-winsep').setup({ })
-
         end
     },
     {
@@ -84,7 +81,7 @@ return {
             vim.cmd.colorscheme('tokyonight')
             require("tokyonight").setup({
                 style = "night",
-                -- transparent=true,
+                transparent=true,
                 terminal_colors = true,
                 -- Background styles. Can be "dark", "transparent" or "normal"
                 styles = {

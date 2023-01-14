@@ -6,10 +6,6 @@ exec --no-startup-id wmctrl -c Plasma
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
 for_window [title="Arbeitsfläche — Plasma"] kill; floating enable; border none
 
-# Compositor (Animations, Shadows, Transparency)
-# exec --no-startup-id picom -cCFb
-exec_always --no-startup-id picom --config ~/.config/i3/picom/picom.conf -b --experimental-backends
-
 # >>> Window rules <<<
 # >>> Avoid tiling Plasma popups, dropdown windows, etc. <<<
 # For the first time, manually resize them, i3 will remember the setting for floating windows
@@ -45,25 +41,8 @@ for_window [class="kinfocenter"] floating enable
 for_window [title="win7"] floating enable; border none
 for_window [class="(?i).*nextcloud.*"] floating disable
 
-for_window [class="main.py"] floating enable; # ldr 兰译
-for_window [class="XnView"] floating enable;
-for_window [class="GoldenDict"] floating enable;
-for_window [class="Viewnior"] floating enable; # 图片查看
-for_window [class="dolphin"] floating enable,move position center
-
-
-for_window [class="QQ"] floating enable,move container to workspace 4
-for_window [class="微信"] floating enable,move container to workspace 4
-bindsym $mod+q [class="QQ"] focus
-
-bindsym Mod1+w [class="微信"] focus
-
-bindsym $mod+Return exec kitty
-bindsym Mod1+t [class="kitty"] focus
-bindsym $mod+Shift+f exec kitty ranger
-bindsym $mod+Shift+t exec kitty htop
-for_window [title="ranger"] floating enable, move position center
-
+# ---------------------------------------------------------------------------
+# 窗口规则
 
 default_border pixel 3
 hide_edge_borders smart # none|vertical|horizontal|both|smart
@@ -71,31 +50,50 @@ for_window [class="^.*"] border pixel 3 # 窗口边框设置n像素
 new_window 1pixel # 去除标题栏
 gaps inner 3 # 窗口之间缝隙
 gaps outer 0
-focus_follows_mouse no # 鼠标点击才改变焦点
 
-# polybar栏
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh --hack
+for_window [class="Engrampa"] floating enable;
+for_window [class="main.py"] floating enable; # ldr 兰译
+for_window [class="XnView"] floating enable;
+for_window [class="GoldenDict"] floating enable;
+for_window [class="Viewnior"] floating enable; # 图片查看
+for_window [class="dolphin"] floating enable,move position center
 
-exec_always --no-startup-id numlockx on # 开启小键盘
-# exec_always feh --bg-scale "path_to_wallpaper" # 设置壁纸
-exec --no-startup-id dunst & # 桌面通知
-# exec --no-startup-id copyq & # 剪切板管理器
-exec --no-startup-id fcitx5 & # fcitx5 输入法
 # win键
 set $mod Mod4
+for_window [class="QQ"] floating enable,move container to workspace 4
+bindsym $mod+q [class="QQ"] focus
+for_window [class="weixin"] floating enable,move container to workspace 4
+bindsym Mod1+w [class="weixin"] focus
 
-floating_modifier Mod4
-
+# kitty terminal
+bindsym $mod+Return exec kitty
+bindsym Mod1+Ctrl+t exec kitty
+bindsym $mod+Shift+f exec kitty ranger
+bindsym $mod+Shift+t exec kitty htop
+bindsym Mod1+t [class="kitty"] focus
+for_window [title="ranger"] floating enable, move position center
 
 # bindsym $mod+c exec Klipper
 
 # Mod1是alt
 bindsym Mod1+space exec ~/.linuxConfig/rofi/launcher.sh
-# root身份运行rofi
-bindsym Ctrl+Mod1+space exec ~/.linuxConfig/rofi/rofiasroot.sh
-
-bindsym $mod+Shift+s exec ~/.linuxConfig/i3/flameshot-i3.sh
+# bindsym Ctrl+a exec ~/.config/rofi/launchers/type-1/launcher.sh
+bindsym Ctrl+Mod1+space exec ~/.linuxConfig/rofi/rofiasroot.sh # root身份运行rofi
+bindsym $mod+Shift+s exec ~/.linuxConfig/i3/flameshot-i3.sh # 截图
 bindsym $mod+x exec --no-startup-id polybar-msg cmd toggle # 设置快捷键来显示隐藏 polybar
+focus_follows_mouse no # 鼠标点击才改变焦点
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh --hack # polybar栏
+exec_always --no-startup-id numlockx on # 开启小键盘
+exec --no-startup-id dunst & # 桌面通知
+exec --no-startup-id fcitx5 & # fcitx5 输入法
+# Compositor (Animations, Shadows, Transparency)
+# exec --no-startup-id picom -cCFb
+exec_always --no-startup-id picom --config ~/.config/i3/picom/picom.conf -b --experimental-backends
+# exec_always feh --bg-scale "path_to_wallpaper" # 设置壁纸
+# feh --bg-fill --no-fehbg --randomize ~/Pictures/wallpaper.jpg
+# exec --no-startup-id copyq & # 剪切板管理器
+
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -118,8 +116,7 @@ font pango:monospace 8
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-# 纯i3wm再开启
-# exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet 纯i3wm再开启
 
 # Use pactl to adjust volume in PulseAudio.
 # set $refresh_i3status killall -SIGUSR1 i3status
@@ -149,16 +146,11 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 # tiling_drag modifier titlebar
 
-# start a terminal
-# bindsym $mod+Return exec i3-sensible-terminal
-
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec --no-startup-id dmenu_run
-# A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+# bindsym $mod+n exec dmenu_run
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
@@ -314,13 +306,3 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
-mode "move" {
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+m mode "default"
-}
-
-bindsym $mod+m mode "move"
-# feh --bg-fill --no-fehbg --randomize ~/Pictures/wallpaper.jpg

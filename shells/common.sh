@@ -56,6 +56,9 @@ export HTTP_PROXY=http://127.0.0.1:7890
 export NO_PROXY=baidu.com,qq.com
 
 export EDITOR='nvim'
+# export TERM='kitty'
+export ECORE_IMF_MODULE="xim"
+export XMODIFIERS="@im=none"
 export PATH=~/.cargo/bin:~/.local/bin:$PATH
 export PATH=~/.local/share/nvim/mason/bin:$PATH
 # wsl

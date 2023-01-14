@@ -47,6 +47,9 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	rm ~/.config/kitty/kitty.conf
 	ln -s ~/.linuxConfig/kitty-config/kitty.conf ~/.config/kitty/kitty.conf
 
+	# terminology
+	rm -rf ~/.config/terminology
+	ln -s ~/.linuxConfig/terminology ~/.config/terminology
 	# konsave config
 	if [[ ! -d ~/.config/konsave ]]; then
 		mkdir -p ~/.config/konsave

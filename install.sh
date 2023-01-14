@@ -63,7 +63,7 @@ fi
 # sudo npm install -g tree-sitter-cli
 sudo npm i -g npm-check-updates awk-language-server bash-language-server npm neovim sql-language-server
 sudo npm install --save-dev --save-exact prettier
-pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy vim-vint
+pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy vim-vint jedi_language_server
 # nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 # nvim --headless "+Lazy! sync" +qa
 

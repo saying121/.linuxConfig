@@ -10,6 +10,7 @@ local dbtable = {
 
 -- lua5.1随机数有bug,用viml实现
 -- 0 到 dbtable长度-1的随机数;lua 从1索引再加1
+-- local rand = math.random(1,#dbtable)
 local rand = vim.api.nvim_eval('rand()') % #dbtable + 1
 db.preview_file_path = dbtable[rand]['path']
 db.preview_command = dbtable[rand]['command']

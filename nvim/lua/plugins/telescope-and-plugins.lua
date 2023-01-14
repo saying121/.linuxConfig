@@ -9,6 +9,9 @@ local M = {
         { '<sapce>ll', mode = 'n', desc = 'list diagnostics' },
         { '<space>a', mode = 'n', desc = '' },
     },
+    ft = {
+        'dashboard'
+    },
     dependencies = {
         'ahmedkhalf/project.nvim',
         keys = {

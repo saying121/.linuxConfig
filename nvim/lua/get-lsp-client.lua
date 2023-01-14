@@ -7,5 +7,5 @@ function LspInfos.getlsp()
 end
 
 local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap('n', '<leader>ll', ':lua LspInfos.getlsp()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>ls', ':lua =vim.lsp.get_active_clients()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>ls', ':lua LspInfos.getlsp()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>ll', ':lua =vim.lsp.get_active_clients()<CR>', opts)

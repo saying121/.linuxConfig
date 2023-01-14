@@ -31,3 +31,7 @@ cat ~/.linuxConfig/i3/polybar/hack-user_modules.ini >~/.config/polybar/hack/user
 
 # rm ~/.config/polybar/hack/config.ini
 cat ~/.linuxConfig/i3/polybar/hack-config.ini >~/.config/polybar/hack/config.ini
+
+echo '#!/usr/bin/env bash
+
+~/.linuxConfig/rofi/launcher.sh ' >~/.config/polybar/hack/scripts/launcher.sh
