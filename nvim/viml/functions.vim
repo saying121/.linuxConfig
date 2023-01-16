@@ -1,7 +1,7 @@
 scriptencoding utf-8
 
 " F4编译运行
-nnoremap <silent><F4> :call CompileRunGcc()<CR>
+" nnoremap <silent><F1> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
     w
     setlocal splitright
@@ -37,7 +37,7 @@ func! CompileRunGcc()
 endfunc
 
 " F3编译
-nnoremap <silent><F3> :call CompileGcc()<CR>
+" nnoremap <silent><F3> :call CompileGcc()<CR>
 func! CompileGcc()
     exec 'w'
     if &filetype==#'c'

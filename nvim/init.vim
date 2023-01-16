@@ -4,7 +4,7 @@ scriptencoding utf-8
 source $HOME/.config/nvim/viml/init.vim
 
 " 加载插件
-lua require("init")
+lua require 'lazy-config'
+lua require 'init'
 
-" 安装依赖
 nnoremap <F2> :Lazy sync<CR>

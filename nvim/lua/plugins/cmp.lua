@@ -3,7 +3,9 @@ local M = {
     lazy = true,
     event = 'InsertEnter',
     keys = {
-        { ':' },
+        { ':', mode = { 'n', 'v', 't' } },
+        { '/', mode = { 'n', 'v', 't' } },
+        { '?', mode = { 'n', 'v', 't' } },
     },
     dependencies = {
         'hrsh7th/cmp-cmdline',
@@ -12,6 +14,7 @@ local M = {
         'f3fora/cmp-spell',
         'L3MON4D3/LuaSnip',
         'rafamadriz/friendly-snippets',
+        'davidmh/cmp-nerdfonts',
     },
 }
 
@@ -93,6 +96,7 @@ function M.config()
             { name = 'luasnip' }, -- For luasnip users.
             { name = 'spell' },
             { name = 'path' },
+            { name = 'nerdfonts' },
             -- { name = 'vsnip' }, -- For vsnip users.
             -- { name = 'ultisnips' }, -- For ultisnips users.
             -- { name = 'snippy' }, -- For snippy users.

@@ -13,9 +13,10 @@ end
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<space>g", vim.diagnostic.open_float, opts)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+local keymap = vim.keymap.set
+keymap("n", "<space>g", vim.diagnostic.open_float, opts)
+keymap("n", "[d", vim.diagnostic.goto_prev, opts)
+keymap("n", "]d", vim.diagnostic.goto_next, opts)
 -- 换到telescope
 -- vim.keymap.set('n', '<space>ll', vim.diagnostic.setloclist, opts)
 -- 边框
@@ -51,24 +52,25 @@ M.on_attach = function(client, bufnr)
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-    vim.keymap.set("n", "<c-k>", vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-    vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-    vim.keymap.set("n", "<space>wl", function()
+    local keymap = vim.keymap.set
+    keymap("n", "gD", vim.lsp.buf.declaration, bufopts)
+    keymap("n", "gd", vim.lsp.buf.definition, bufopts)
+    keymap("n", "gi", vim.lsp.buf.implementation, bufopts)
+    keymap("n", "gr", vim.lsp.buf.references, bufopts)
+    keymap("n", "K", vim.lsp.buf.hover, bufopts)
+    keymap("n", "<c-k>", vim.lsp.buf.signature_help, bufopts)
+    keymap("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+    keymap("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+    keymap("n", "<space>wl", function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, bufopts)
-    vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
-    vim.keymap.set("n", "<M-cr>", vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set("n", "<space>f", function()
+    keymap("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+    keymap("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+    keymap("n", "<M-cr>", vim.lsp.buf.code_action, bufopts)
+    keymap("n", "<space>f", function()
         vim.lsp.buf.format { async = true }
     end, bufopts)
-    vim.keymap.set("v", "<space>f", vim.lsp.buf.range_formatting, bufopts)
+    keymap("v", "<space>f", vim.lsp.buf.range_formatting, bufopts)
 
     -- Find the clients capabilities
     local cap = client.server_capabilities

@@ -1,15 +1,4 @@
 return {
-    {
-        'skywind3000/asynctasks.vim',
-        dependencies = {
-            'skywind3000/asyncrun.vim',
-        }
-    },
-    {
-        'terror/chatgpt.nvim',
-        lazy = true,
-        build = 'pip3 install -r requirements.txt'
-    },
     --  'rcarriga/nvim-notify'
 
     --  {

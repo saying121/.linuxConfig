@@ -104,10 +104,6 @@
             "Control_L+z",
             "keyboard"
         ],
-        "1,58,1": [
-            "if_single(key(KEY_CAPSLOCK), , timeout=100)",
-            "keyboard"
-        ],
         "1,58,1+1,57,1": [
             "Return",
             "keyboard"
@@ -118,6 +114,10 @@
         ],
         "1,58,1+1,20,1": [
             "Alt_L+d",
+            "keyboard"
+        ],
+        "1,58,1": [
+            "if_single(key(KEY_CAPSLOCK), , timeout=150)",
             "keyboard"
         ]
     }

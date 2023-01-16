@@ -22,23 +22,23 @@ local M = {
 
         local dap = require 'dap'
         local opts = { noremap = true, silent = true }
-        vim.keymap.set('n', '<space>b', dap.toggle_breakpoint, opts)
-        vim.keymap.set('n', '<space>B',
-            "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
+        local keymap = vim.keymap.set
+        keymap('n', '<space>b', dap.toggle_breakpoint, opts)
+        keymap('n', '<space>B', "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
 
-        vim.keymap.set({ 'n', 'i', 't' }, '<F5>', dap.continue, opts)
-        vim.keymap.set({ 'n', 'i', 't' }, '<F6>', dap.step_over, opts)
-        vim.keymap.set({ 'n', 'i', 't' }, '<F7>', dap.step_into, opts)
-        vim.keymap.set({ 'n', 'i', 't' }, '<F8>', dap.step_out, opts)
-        vim.keymap.set({ 'n', 'i', 't' }, "<F9>", dap.terminate, opts)
+        keymap({ 'n', 'i', 't' }, '<F5>', dap.continue, opts)
+        keymap({ 'n', 'i', 't' }, '<F6>', dap.step_over, opts)
+        keymap({ 'n', 'i', 't' }, '<F7>', dap.step_into, opts)
+        keymap({ 'n', 'i', 't' }, '<F8>', dap.step_out, opts)
+        keymap({ 'n', 'i', 't' }, "<F9>", dap.terminate, opts)
 
-        vim.keymap.set('n', '<space>lp',
+        keymap('n', '<space>lp',
             "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
-        vim.keymap.set('n', '<space>dr', dap.repl.open, opts)
-        vim.keymap.set('n', '<space>dl', dap.run_last, opts)
+        keymap('n', '<space>dr', dap.repl.open, opts)
+        keymap('n', '<space>dl', dap.run_last, opts)
 
-        vim.keymap.set({ 'n', 't' }, '<space>cl', require 'dapui'.close, opts)
-        vim.keymap.set('n', '<space>op', require 'dapui'.open, opts)
+        keymap({ 'n', 't' }, '<space>cl', require 'dapui'.close, opts)
+        keymap('n', '<space>op', require 'dapui'.open, opts)
 
         -- local function config_dapui()
         -- dapui config

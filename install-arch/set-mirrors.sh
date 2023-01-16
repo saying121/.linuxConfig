@@ -1,9 +1,12 @@
 #!/bin/bash
 
-sudo systemctl stop reflector.service
 sudo pacman -S --needed pacman-contrib
 
-# 修改/etc/pacman.d/mirrorlist,直接在文件开始插入中国源
+# 不让刷新镜像列表
+sudo systemctl stop reflector.service
+sudo systemctl disable reflector.service
+
+# 修改/etc/pacman.d/mirrorlist，插入中国源
 echo 'Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 Server = http://mirrors.163.com/archlinux/$repo/os/$arch

@@ -8,7 +8,7 @@ local M = {
 
 function M.config()
     local opts = { noremap = true, silent = true }
-    vim.keymap.set("n", "<M-C-n>", function() require("scratch").scratch() end,opts)
+    vim.keymap.set("n", "<M-C-n>", function() require("scratch").scratch() end, opts)
     require("scratch").setup {
         scratch_file_dir = vim.fn.stdpath("cache") .. "/scratch.nvim", -- Where the scratch files will be saved
         filetypes = { "json", "xml", "go", "lua", "js", "py", "sh" }, -- filetypes to select from

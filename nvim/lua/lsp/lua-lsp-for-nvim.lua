@@ -3,6 +3,7 @@
 
 local library = {}
 
+---@diagnostic disable-next-line: missing-parameter
 local path = vim.split(package.path, ";")
 
 -- this is the ONLY correct way to setup your path

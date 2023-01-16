@@ -1,11 +1,13 @@
 local M = {
     {
+        -- 括号
         'steelsojka/pears.nvim',
-        event = 'InsertEnter',
-        -- 不知道为啥不能设置
-        -- config = function()
-        --     require 'pears'.setup()
-        -- end
+        -- 不能设置
+        -- lazy = true,
+        -- event = 'InsertEnter',
+        config = function()
+            require 'pears'.setup()
+        end
     },
     {
         'numToStr/Comment.nvim',
