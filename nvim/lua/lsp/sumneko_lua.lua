@@ -6,16 +6,23 @@ require 'lspconfig'.sumneko_lua.setup {
     flags = lsp.lsp_flags,
     settings = {
         Lua = {
+            runtime = {
+                version = "LuaJIT",
+            },
             diagnostics = {
-                globals = { 'vim' }
-            }
+                globals = {
+                    'vim',
+                },
+            },
+            workspace = {
+                checkThirdParty = false,
+                library = vim.api.nvim_get_runtime_file("", true),
+                -- maxPreload=2000,
+                preloadFileSize = 10000,
+            },
+            telemetry = {
+                enable = false
+            },
         }
     },
 }
--- return{
---         Lua = {
---             diagnostics = {
---                 globals = { 'vim' }
---             }
---         }
---     }

@@ -9,16 +9,20 @@ return {
                 -- extra_groups = all,
                 exclude = {}, -- table: groups you don't want to clear
             })
+            -- 上面设置true，但是只有编辑区域透明，添加自动命令就没问题
+            vim.cmd [[augroup transparent]]
+            vim.cmd [[autocmd!]]
+            -- 透明后加入状态栏让状态栏有颜色
+            vim.cmd [[autocmd UIENTER,VimEnter * :TransparentEnable | source ~/.config/nvim/viml/statusline-config.vim]]
+            vim.cmd [[augroup END]]
 
         end
     },
     {
         'lukas-reineke/indent-blankline.nvim',
         config = function()
-
             -- 缩进线
             vim.opt.termguicolors = true
-
             require("indent_blankline").setup {
                 space_char_blankline = " ",
                 show_current_context = true,
@@ -30,9 +34,8 @@ return {
     {
         'EdenEast/nightfox.nvim',
         build = ':NightfoxCompile',
-        priority = 1000,
-        -- lazy = true,
-        cond = false,
+        -- priority = 1000,
+        lazy = true,
         config = function()
 
             require('nightfox').setup({
@@ -81,7 +84,7 @@ return {
             vim.cmd.colorscheme('tokyonight')
             require("tokyonight").setup({
                 style = "night",
-                transparent=true,
+                transparent = true,
                 terminal_colors = true,
                 -- Background styles. Can be "dark", "transparent" or "normal"
                 styles = {

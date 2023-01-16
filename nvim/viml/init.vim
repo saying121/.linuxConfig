@@ -6,8 +6,6 @@ source ~/.config/nvim/viml/keymaps.vim
 
 source ~/.config/nvim/viml/functions.vim
 
-source ~/.config/nvim/viml/statusline-config.vim
-
 source ~/.config/nvim/viml/autocmds.vim
 
 " ----------------------
@@ -22,5 +20,8 @@ Plug 'tpope/vim-commentary'
 call plug#end()
 
 colorscheme nightfox
+" nvim的要在设置透明后再source才有颜色,而且不会出现两截状态栏
+source ~/.config/nvim/viml/statusline-config.vim
+set laststatus=2                            "显示状态栏信息
 
 endif

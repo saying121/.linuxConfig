@@ -1,3 +1,5 @@
+-- lua =vim.lsp.get_active_clients()
+
 LspInfos = {}
 function LspInfos.getlsp()
     for i = 1, #vim.lsp.get_active_clients(), 1 do

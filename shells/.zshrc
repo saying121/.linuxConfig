@@ -1,3 +1,4 @@
+# shellcheck disable=2034
 # vim:fileencoding=utf-8:ft=sh
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -71,6 +72,7 @@ ZSH_CUSTOM=$ZSH/custom
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+# shellcheck disable=2034
 plugins=(
 	git gitignore git-open
 	command-not-found sudo
@@ -79,18 +81,20 @@ plugins=(
 	z
 	vscode
 	extract
-	colored-man-pages
 	history-substring-search
 	fzf-tab
 )
+# colored-man-pages
 
 if [[ -d $ZSH ]]; then
+	# shellcheck disable=1091,2086
 	source $ZSH/oh-my-zsh.sh
 fi
 
 # User configuration
 
-source ~/.linuxConfig/shells/zshrc
+# shellcheck disable=2086
+source $HOME/.linuxConfig/shells/zshrc
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

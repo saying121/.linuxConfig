@@ -71,7 +71,8 @@ bindsym Mod1+Ctrl+t exec kitty
 bindsym $mod+Shift+f exec kitty ranger
 bindsym $mod+Shift+t exec kitty htop
 bindsym Mod1+t [class="kitty"] focus
-for_window [title="ranger"] floating enable, move position center
+# 进入ranger目录都会浮动，6
+# for_window [title="ranger"] floating enable, move position center
 
 # bindsym $mod+c exec Klipper
 
@@ -85,6 +86,7 @@ focus_follows_mouse no # 鼠标点击才改变焦点
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh --hack # polybar栏
 exec_always --no-startup-id numlockx on # 开启小键盘
+exec_always --no-startup-id fusuma # 触摸板
 exec --no-startup-id dunst & # 桌面通知
 exec --no-startup-id fcitx5 & # fcitx5 输入法
 # Compositor (Animations, Shadows, Transparency)
@@ -141,6 +143,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+# floating_modifier button2
+bindsym $mod+button3 floating toggle
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.

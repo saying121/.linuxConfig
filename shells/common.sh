@@ -32,23 +32,24 @@ alias lal='ls -al'
 alias lla='ls -al'
 alias l='ls -CF'
 
-# 确定发行版 kali㉿  redhat ;
-if [[ $(grep -c kali /etc/os-release) != 0 ]]; then
-	prompt_symbol=" "
-elif [[ $(grep -c ubuntu /etc/os-release) != 0 ]]; then
-	prompt_symbol=" "
-elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-	prompt_symbol=" "
-elif [[ $(grep -c suse /etc/os-release) != 0 ]]; then
-	prompt_symbol=" "
-elif [[ $(grep -c manjaro /etc/os-release) != 0 ]]; then
-	prompt_symbol=" "
-elif [[ $(grep -c pop /etc/os-release) != 0 ]]; then
-	prompt_symbol=" "
+# 确定发行版 kali㉿
+declare -A releaseDic
+releaseDic=(
+	[arch]=" "
+	[kali]=" "
+	[ubuntu]=" "
+	[suse]=" "
+	[manjaro]=" "
+	[pop]=" "
+)
+index=$(awk -F= '/^ID/{print $2}' </etc/os-release)
+if [[ -n ${releaseDic[$index]} ]]; then
+	prompt_symbol=${releaseDic[$index]}
 else
 	# shellcheck disable=2034
 	prompt_symbol=" "
 fi
+unset releaseDic
 
 export ALL_PROXY=http://127.0.0.1:7890
 export HTTPS_PROXY=http://127.0.0.1:7890
@@ -57,31 +58,19 @@ export NO_PROXY=baidu.com,qq.com
 
 export EDITOR='nvim'
 # export TERM='kitty'
+# input method
 export ECORE_IMF_MODULE="xim"
 export XMODIFIERS="@im=none"
+
 export PATH=~/.cargo/bin:~/.local/bin:$PATH
 export PATH=~/.local/share/nvim/mason/bin:$PATH
 # wsl
 export PATH=/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application:$PATH
 if [[ $(uname -a | grep -c WSL) != 0 ]]; then
-	# if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
-		alias proxy="source ~/.linuxConfig/scripts/proxy.sh"
-		# shellcheck disable=1090
-		. ~/.linuxConfig/scripts/proxy.sh set
-	# fi
+	alias proxy="source ~/.linuxConfig/scripts/proxy.sh"
+	# shellcheck disable=1090
+	. ~/.linuxConfig/scripts/proxy.sh set
 fi
-
-# config tldr
-export TLDR_COLOR_NAME="cyan"
-export TLDR_COLOR_DESCRIPTION="white"
-export TLDR_COLOR_EXAMPLE="green"
-export TLDR_COLOR_COMMAND="red"
-export TLDR_COLOR_PARAMETER="white"
-export TLDR_LANGUAGE="zh"
-export TLDR_CACHE_ENABLED=1
-export TLDR_CACHE_MAX_AGE=720
-export TLDR_PAGES_SOURCE_LOCATION="https://raw.githubusercontent.com/tldr-pages/tldr/main/pages"
-export TLDR_DOWNLOAD_CACHE_LOCATION="https://tldr-pages.github.io/assets/tldr.zip"
 
 # 自己的alias
 # ImageMagick must be installed for icat to work.
@@ -103,3 +92,15 @@ ranger() {
 	fi
 }
 # if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
+
+# config tldr
+export TLDR_COLOR_NAME="cyan"
+export TLDR_COLOR_DESCRIPTION="white"
+export TLDR_COLOR_EXAMPLE="green"
+export TLDR_COLOR_COMMAND="red"
+export TLDR_COLOR_PARAMETER="white"
+export TLDR_LANGUAGE="zh"
+export TLDR_CACHE_ENABLED=1
+export TLDR_CACHE_MAX_AGE=720
+export TLDR_PAGES_SOURCE_LOCATION="https://raw.githubusercontent.com/tldr-pages/tldr/main/pages"
+export TLDR_DOWNLOAD_CACHE_LOCATION="https://tldr-pages.github.io/assets/tldr.zip"

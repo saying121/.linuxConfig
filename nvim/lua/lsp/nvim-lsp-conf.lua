@@ -1,14 +1,5 @@
 local M = {}
 
-local config = {
-    virtual_text = false,
-    -- signs = {
-    --     active = signs,
-    -- },
-    update_in_insert = true,
-    underling = true,
-}
-vim.diagnostic.config(config)
 
 local signs = {
     { name = "DiagnosticSignError", text = " " },
@@ -27,7 +18,30 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 -- 换到telescope
 -- vim.keymap.set('n', '<space>ll', vim.diagnostic.setloclist, opts)
+-- 边框
+local _border = "single"
 
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover, {
+    border = _border
+}
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+    vim.lsp.handlers.signature_help, {
+    border = _border
+}
+)
+
+vim.diagnostic.config({
+    virtual_text = false,
+    -- signs = {
+    --     active = signs,
+    -- },
+    update_in_insert = true,
+    underling = true,
+    float = { border = "single" }
+})
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 M.on_attach = function(client, bufnr)

@@ -3,9 +3,9 @@ scriptencoding utf-8
 " F4编译运行
 nnoremap <silent><F4> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
-    w
+    exec 'w'
     setlocal splitright
-    60vsplit
+    15vsplit
     if &filetype==#'c'
         if !isdirectory('cbuild')
             execute '! mkdir cbuild'

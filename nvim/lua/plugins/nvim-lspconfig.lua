@@ -80,6 +80,7 @@ function M.config()
     require 'lsp.rust_analyzer'
     require 'lsp.sqlls'
     require 'lsp.sumneko_lua'
+    -- require 'lspconfig'.sumneko_lua.setup(require("lsp.lua-lsp-for-nvim"))
     require 'lsp.tsserver'
     require 'lsp.vimls'
     require 'lsp.yamlls'

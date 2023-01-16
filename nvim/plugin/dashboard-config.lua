@@ -1,4 +1,5 @@
 local db = require('dashboard')
+db.hide_statusline=true
 
 local dash = vim.fn.stdpath('config') .. '/dashboard'
 local dbtable = {
@@ -12,6 +13,7 @@ local dbtable = {
 -- 0 到 dbtable长度-1的随机数;lua 从1索引再加1
 -- local rand = math.random(1,#dbtable)
 local rand = vim.api.nvim_eval('rand()') % #dbtable + 1
+-- local rand = math.random(1, #dbtable)
 db.preview_file_path = dbtable[rand]['path']
 db.preview_command = dbtable[rand]['command']
 db.preview_file_height = dbtable[rand]['height']

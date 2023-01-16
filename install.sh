@@ -40,7 +40,7 @@ fi
 sudo $pacMan neofetch figlet ranger ffmpeg htop \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
 	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa \
-	neovim git python3 nodejs npm shfmt shellcheck lolcat luarocks composer eslint
+	neovim git python3 nodejs npm shfmt shellcheck lolcat luarocks composer eslint cronie
 
 # 拉取ranger插件
 git submodule update --init --recursive
@@ -84,7 +84,8 @@ allInstall() {
 			openssh ntfs-3g firewalld ueberzug ffmpegthumbnailer pdftoppm dolphin \
 			w3m djvutxt calibre transmission-cli mediainf odt2txt \
 			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
-			pandoc xdg-utils youtube-dl numlockx rsync linux-firmware-qlogic arch-install-scripts
+			pandoc xdg-utils youtube-dl numlockx rsync linux-firmware-qlogic arch-install-scripts \
+			gimagereader-qt tesseract-data-eng tesseract-data-chi_sim
 		# sddm主题的依赖
 		sudo pacman -S --needed --noconfirm gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机
@@ -125,9 +126,10 @@ yayInstall() {
 		input-remapper-git yesplaymusic netease-cloud-music \
 		ldr-translate-qt xnviewmp epub-thumbnailer-git fontpreview \
 		sddm-theme-aerial-git ruby-fusuma \
-		archlinux-tweak-tool-git i3-gaps-kde-git \
+		i3-gaps-kde-git \
 		networkmanager-dmenu-git copyq networkmanager-dmenu-bluetoothfix-git \
 		wps-office-cn plasma5-wallpapers-wallpaper-engine
+	# archlinux-tweak-tool-git
 }
 
 # 开启服务
