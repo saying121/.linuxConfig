@@ -8,7 +8,7 @@ local M = {
 
         require 'nvim-treesitter.configs'.setup {
             ensure_installed = {
-                "bash", "c", "html", "java", "javascript", "json", "lua", "python", "sql", "vim", "markdown"
+                "bash", "c", "java", "lua", "python", "vim",
             },
             sync_install = true,
             auto_install = true,
@@ -22,7 +22,6 @@ local M = {
                 }
             },
             indent = {
-                -- enable = true
                 enable = false
             },
             highlight = {
@@ -35,6 +34,7 @@ local M = {
                 -- disable = { "c", "rust" },
 
                 -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+                ---@diagnostic disable-next-line: unused-local
                 disable = function(lang, buf)
                     local max_filesize = 100 * 1024 -- 100 KB
                     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
@@ -49,20 +49,10 @@ local M = {
                 -- Instead of true it can also be a list of languages
                 additional_vim_regex_highlighting = false,
             },
-            rainbow = {
-                enable = false,
-                -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-                extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-                max_file_lines = nil, -- Do not enable for files with more than n lines, int
-                -- colors = {}, -- table of hex strings
-                -- termcolors = {} -- table of colour name strings
-            }
         }
 
-        -- vim.opt.foldmethod     = 'expr'
-        -- vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
         ---WORKAROUND
-        vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
+        vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter', 'BufWritePost' }, {
             group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
             callback = function()
                 vim.opt.foldmethod = 'expr'
@@ -73,4 +63,5 @@ local M = {
 
     end
 }
+
 return M

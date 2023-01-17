@@ -12,13 +12,13 @@ for _, sign in ipairs(signs) do
 end
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap = true, silent = true }
+local theopts = { noremap = true, silent = true }
 local keymap = vim.keymap.set
-keymap("n", "<space>g", vim.diagnostic.open_float, opts)
-keymap("n", "[d", vim.diagnostic.goto_prev, opts)
-keymap("n", "]d", vim.diagnostic.goto_next, opts)
+keymap("n", "<space>g", vim.diagnostic.open_float, theopts)
+keymap("n", "[d", vim.diagnostic.goto_prev, theopts)
+keymap("n", "]d", vim.diagnostic.goto_next, theopts)
 -- 换到telescope
--- vim.keymap.set('n', '<space>ll', vim.diagnostic.setloclist, opts)
+keymap('n', '<space>ll', vim.diagnostic.setloclist, theopts)
 -- 边框
 local _border = "single"
 
@@ -52,7 +52,7 @@ M.on_attach = function(client, bufnr)
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    local keymap = vim.keymap.set
+    -- local keymap = vim.keymap.set
     keymap("n", "gD", vim.lsp.buf.declaration, bufopts)
     keymap("n", "gd", vim.lsp.buf.definition, bufopts)
     keymap("n", "gi", vim.lsp.buf.implementation, bufopts)
@@ -70,8 +70,25 @@ M.on_attach = function(client, bufnr)
     keymap("n", "<space>f", function()
         vim.lsp.buf.format { async = true }
     end, bufopts)
-    keymap("v", "<space>f", vim.lsp.buf.range_formatting, bufopts)
 
+    -- function format_range_operator()
+    --     local old_func = vim.go.operatorfunc
+    --     _G.op_func_formatting = function()
+    --         local opts = {
+    --             range = {
+    --                 ['start'] = vim.api.nvim_buf_get_mark(0, '['),
+    --                 ['end'] = vim.api.nvim_buf_get_mark(0, ']'),
+    --             }
+    --         }
+    --         vim.lsp.buf.format(opts)
+    --         vim.go.operatorfunc = old_func
+    --         _G.op_func_formatting = nil
+    --     end
+    --     vim.go.operatorfunc = 'v:lua.op_func_formatting'
+    --     vim.api.nvim_feedkeys('g@', 'n', false)
+    -- end
+    --
+    -- vim.keymap.set("n", "<space>f", "<Cmd>lua format_range_operator()<Cr>")
     -- Find the clients capabilities
     local cap = client.server_capabilities
     -- Only highlight if compatible with the language

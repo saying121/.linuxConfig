@@ -2,12 +2,12 @@ local M = {
     'nvim-telescope/telescope.nvim',
     lazy = true,
     keys = {
-        { '<leader>ff', mode = 'n', desc = 'find file' },
-        { '<leader>fw', mode = 'n', desc = 'find word' },
-        { '<leader>bf', mode = 'n', desc = 'find in buffer ' },
-        { '<leader>go', mode = 'n', desc = 'list oldfiles' },
-        { '<sapce>ll', mode = 'n', desc = 'list diagnostics' },
-        { '<space>a', mode = 'n', desc = '' },
+        { '<leader>ff', mode = 'n' },
+        { '<leader>fw', mode = 'n' },
+        { '<leader>bf', mode = 'n' },
+        { '<leader>go', mode = 'n' },
+        -- { '<sapce>l', mode = 'n'},
+        { '<space>a', mode = 'n' },
     },
     ft = {
         'dashboard',
@@ -135,7 +135,7 @@ function M.config()
     keymap('n', '<leader>bf', builtin.buffers, opts)
     keymap('n', '<leader>go', builtin.oldfiles, opts)
     keymap('n', '<space>a', builtin.treesitter, opts)
-    keymap('n', '<space>ll', builtin.diagnostics, opts)
+    -- keymap('n', '<space>ll', builtin.diagnostics, opts)
 
 end
 

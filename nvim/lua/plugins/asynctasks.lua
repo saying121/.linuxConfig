@@ -4,6 +4,10 @@ return {
     dependencies = {
         'skywind3000/asyncrun.vim',
     },
+    keys = {
+        { '<F4>' },
+        { '<F3>' },
+    },
     config = function()
         vim.g.asyncrun_open = 6
         -- quickfix	伪终端	默认值，使用 quickfix 窗口模拟终端，输出不匹配 errorformat。

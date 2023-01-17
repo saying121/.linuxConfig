@@ -9,6 +9,9 @@ require 'lspconfig'.sumneko_lua.setup {
             runtime = {
                 version = "LuaJIT",
             },
+            completion = {
+                callSnippet = "Both"
+            },
             diagnostics = {
                 globals = {
                     'vim',

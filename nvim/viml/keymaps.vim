@@ -7,7 +7,7 @@ vnoremap # #n
 nnoremap ,, ggVG
 
 " 映射按键
-nnoremap <space>cc :cclose<CR>
+nnoremap <silent><space>cc :cclose<CR>
 nnoremap ` %
 vnoremap ` %
 nnoremap <leader>w :w<CR>

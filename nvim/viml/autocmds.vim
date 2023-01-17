@@ -40,7 +40,7 @@ augroup File
     " 读取模板
     autocmd BufNewFile *.sh silent 0r ~/.config/nvim/viml/template/shell.txt | normal G
     autocmd BufNewFile *.py silent 0r ~/.config/nvim/viml/template/python3.txt| normal G
-    autocmd BufNewFile *.html silent 0r ~/.config/nvim/viml/template/html.txt| normal Gdd8G
+    autocmd BufNewFile *.html silent 0r ~/.config/nvim/viml/template/html.txt| normal Gdd4G16|
     autocmd BufNewFile *.vim silent 0r ~/.config/nvim/viml/template/vim.txt| normal G
 augroup END
 

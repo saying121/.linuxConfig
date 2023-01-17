@@ -12,7 +12,14 @@ local M = {
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-buffer',
         'f3fora/cmp-spell',
-        'L3MON4D3/LuaSnip',
+        -- 'SirVer/ultisnips',
+        {
+            'L3MON4D3/LuaSnip',
+            config = function()
+                require("luasnip.loaders.from_vscode").lazy_load()
+            end
+        },
+        'saadparwaiz1/cmp_luasnip',
         'rafamadriz/friendly-snippets',
         'davidmh/cmp-nerdfonts',
     },
@@ -48,16 +55,13 @@ function M.config()
         TypeParameter = "",
     }
 
-    local cmp = require 'cmp'
+    require("luasnip.loaders.from_vscode").lazy_load()
 
+    local cmp = require 'cmp'
     cmp.setup({
         snippet = {
-            -- REQUIRED - you must specify a snippet engine
             expand = function(args)
-                -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
                 require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-                require('luasnip').filetype_extend("ruby", { "rails" }) --For friendly-snippets
-                -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
                 -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
             end,
         },
@@ -73,8 +77,9 @@ function M.config()
                     nvim_lsp = "[LSP]",
                     buffer = "[Buf]",
                     path = "[Path]",
-                    spell = "[spell]",
                     luasnip = "[LuaSnip]",
+                    -- ultisnips = "[Ultisnips]",
+                    spell = "[spell]",
                     nvim_lua = "[Lua]",
                     latex_symbols = "[Latex]",
                 })[entry.source.name]
@@ -90,17 +95,16 @@ function M.config()
             ['<C-e>'] = cmp.mapping.abort(),
             ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
-        sources = cmp.config.sources {
+        sources = cmp.config.sources({
             { name = 'nvim_lsp' },
-            { name = 'buffer' },
             { name = 'luasnip' }, -- For luasnip users.
-            { name = 'spell' },
-            { name = 'path' },
-            { name = 'nerdfonts' },
-            -- { name = 'vsnip' }, -- For vsnip users.
             -- { name = 'ultisnips' }, -- For ultisnips users.
-            -- { name = 'snippy' }, -- For snippy users.
-        },
+            { name = 'path' },
+            { name = 'buffer' },
+        }, {
+            { name = 'spell' },
+            { name = 'nerdfonts' },
+        }),
         experimental = {
             ghost_text = true
         },
@@ -115,7 +119,6 @@ function M.config()
         })
     })
 
-    -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
@@ -123,7 +126,6 @@ function M.config()
         }
     })
 
-    -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({

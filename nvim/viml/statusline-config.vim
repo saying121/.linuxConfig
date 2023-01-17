@@ -42,20 +42,22 @@ endfunction
 " source ~/.config/nvim/viml/file-icons.vim
 func! FileType()
     let l:filetypes = {
-                \ 'c'        :' ',
-                \ 'cpp'      :'ﭱ ',
-                \ 'java'     :' ',
-                \ 'javascript':' ',
-                \ 'html'     :' ',
-                \ 'json'     :' ',
-                \ 'sh'       :' ',
-                \ 'python'   :' ',
-                \ 'lua'      :' ',
-                \ 'go'       :' ',
-                \ 'vim'      :' ',
-                \ 'markdown' :' ',
-                \ 'txt'      :' ',
-                \ 'log'      :' ',
+                \ 'c'               :' ',
+                \ 'cpp'             :'ﭱ ',
+                \ 'java'            :' ',
+                \ 'javascript'      :' ',
+                \ 'html'            :' ',
+                \ 'json'            :' ',
+                \ 'sh'              :' ',
+                \ 'python'          :' ',
+                \ 'lua'             :' ',
+                \ 'go'              :' ',
+                \ 'vim'             :' ',
+                \ 'markdown'        :' ',
+                \ 'txt'             :' ',
+                \ 'text'            :' ',
+                \ 'log'             :' ',
+                \ 'help'            :' ',
                 \}
 
     if has_key(filetypes, &filetype)
@@ -73,10 +75,11 @@ set laststatus=3                            "显示状态栏信息
 "     autocmd BufReadPre,BufEnter,BufAdd,FileReadPre,BufNew dashboard setlocal laststatus=0
 " augroup END
 
+
 set statusline=%1*\%{StatuslineGit()}
 set statusline+=%2*\%<%.50F\                "显示文件名和文件路径 (%<应该可以去掉)
-" set statusline+=%=%3*\\|%O[%b]%m%{FileType()}%r%h%w\%*        "显示文件类型及文件状态
-set statusline+=%=%3*\%m%{FileType()}%r%h%w\%*        "显示文件类型及文件状态
+" set statusline+=%=%3*\\|%O[%b]%m%{FileType()}%r%w\%*        "显示文件类型及文件状态
+set statusline+=%=%3*\%m%{FileType()}%r%w\%*        "显示文件类型及文件状态
 set statusline+=%8*%{LinuxRelease()}%*      "显示系统
 set statusline+=%4*\[%{&fenc}]\%*   "文件编码
 set statusline+=%5*\ row:%l/%L\|col:%c\ %*   "显示光标所在行和列

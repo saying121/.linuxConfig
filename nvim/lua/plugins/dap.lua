@@ -5,7 +5,7 @@ local M = {
         { '<space>b', mode = 'n' },
         { '<space>B', mode = 'n' },
         { '<leader>tb', mode = 'n' },
-        { '<leader>cb', mode = 'n' },
+        { '<leader>sc', mode = 'n' },
         { '<leader>cl', mode = 'n' },
     },
     cmd = {
@@ -18,31 +18,29 @@ local M = {
         require 'dap-conf.python'
 
         vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
-        -- vim.fn.sign_define('DapStopped', { text = '⭐️', texthl = '', linehl = '', numhl = '' })
+        vim.fn.sign_define('DapStopped', { text = '⭐️', texthl = '', linehl = '', numhl = '' })
 
-        local dap = require 'dap'
+        local dap, dapui = require("dap"), require("dapui")
         local opts = { noremap = true, silent = true }
         local keymap = vim.keymap.set
+
         keymap('n', '<space>b', dap.toggle_breakpoint, opts)
         keymap('n', '<space>B', "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
 
         keymap({ 'n', 'i', 't' }, '<F5>', dap.continue, opts)
-        keymap({ 'n', 'i', 't' }, '<F6>', dap.step_over, opts)
-        keymap({ 'n', 'i', 't' }, '<F7>', dap.step_into, opts)
+        keymap({ 'n', 'i', 't' }, '<F6>', dap.step_into, opts)
+        keymap({ 'n', 'i', 't' }, '<F7>', dap.step_over, opts)
         keymap({ 'n', 'i', 't' }, '<F8>', dap.step_out, opts)
-        keymap({ 'n', 'i', 't' }, "<F9>", dap.terminate, opts)
+        keymap({ 'n', 'i', 't' }, '<F9>', dap.step_back, opts)
+        keymap({ 'n', 'i', 't' }, '<F10>', dap.run_last, opts)
+        keymap({ 'n', 'i', 't' }, "<F11>", dap.terminate, opts)
 
         keymap('n', '<space>lp',
             "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
         keymap('n', '<space>dr', dap.repl.open, opts)
         keymap('n', '<space>dl', dap.run_last, opts)
 
-        keymap({ 'n', 't' }, '<space>cl', require 'dapui'.close, opts)
-        keymap('n', '<space>op', require 'dapui'.open, opts)
-
-        -- local function config_dapui()
         -- dapui config
-        local dap, dapui = require("dap"), require("dapui")
         -- 自动开启ui
         dap.listeners.after.event_initialized["dapui_config"] = function()
             dapui.open()
@@ -63,11 +61,10 @@ local M = {
             -- dapui.close()
         end
         -- TODO wait dap-ui for fix terminal layout
-        -- the "30" of "30vsplit: doesn't work
         dap.defaults.fallback.terminal_win_cmd = '30vsplit new' -- this will be override by dapui
-        dap.defaults.python.terminal_win_cmd = 'belowright new'
-        -- end
-        dap.defaults.fallback.focus_terminal = true
+        dap.defaults.python.terminal_win_cmd = 'set splitright | 50vsplit new'
+        dap.defaults.fallback.focus_terminal = false
+        dap.defaults.fallback.force_external_terminal = false
 
     end,
     dependencies = {
@@ -77,8 +74,11 @@ local M = {
 
                 local opts = { noremap = true, silent = true }
                 local dapui = require 'dapui'
-                vim.keymap.set('v', '<space>e', dapui.eval, opts)
-                vim.keymap.set('n', '<space>e', dapui.eval, opts)
+                local keymap = vim.keymap.set
+                keymap('v', '<space>e', dapui.eval, opts)
+                keymap('n', '<space>e', dapui.eval, opts)
+
+                keymap({ 'n', 't' }, '<space>dt', dapui.toggle, opts)
 
                 require("dapui").setup({
                     mappings = {
@@ -123,9 +123,10 @@ local M = {
                         {
                             elements = {
                                 "repl",
-                                "console",
+                                -- "console",
+                                -- "dap-terminal",
                             },
-                            size = 0.25, -- 25% of total lines
+                            size = 0.25, -- 25% falseof total lines
                             position = "bottom",
                         },
                     },
@@ -134,11 +135,21 @@ local M = {
                         enabled = true,
                         -- Display controls in this element
                         element = "repl",
+                        icons = {
+                            pause = "",
+                            play = "",
+                            step_into = "",
+                            step_over = "",
+                            step_out = "",
+                            step_back = "",
+                            run_last = "",
+                            terminate = "",
+                        },
                     },
                     floating = {
                         max_height = nil, -- These can be integers or a float between 0 and 1.
                         max_width = nil, -- Floats will be treated as percentage of your screen.
-                        border = "single", -- Border style. Can be "single", "double" or "rounded"
+                        border = "rounded", -- Border style. Can be "single", "double" or "rounded"
                         mappings = {
                             close = { "q", "<Esc>" },
                         },
@@ -157,7 +168,7 @@ local M = {
             config = function()
 
                 require("nvim-dap-virtual-text").setup {
-                    enabled = true, -- enable this plugin (the default)
+                    enabled = true,
                     enabled_commands = true, -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
                     highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
                     highlight_new_as_changed = false, -- highlight new variables in the same way as changed variables (if highlight_changed_variables)

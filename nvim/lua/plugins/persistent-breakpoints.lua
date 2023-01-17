@@ -4,7 +4,7 @@ local M = {
         { '<space>b', mode = 'n' },
         { '<space>B', mode = 'n' },
         { '<leader>tb', mode = 'n' },
-        { '<leader>cb', mode = 'n' },
+        { '<leader>sc', mode = 'n' },
         { '<leader>cl', mode = 'n' },
     },
     cmd = {
@@ -24,7 +24,7 @@ local M = {
         local keymap = vim.api.nvim_set_keymap
         -- Save breakpoints to file automatically.
         keymap("n", "<leader>tb", "<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<cr>", opts)
-        keymap("n", "<leader>cb", "<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<cr>", opts)
+        keymap("n", "<leader>sc", "<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<cr>", opts)
         keymap("n", "<leader>cl", "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>", opts)
     end,
 }
