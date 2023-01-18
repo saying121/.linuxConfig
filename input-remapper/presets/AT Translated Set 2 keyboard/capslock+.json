@@ -1,5 +1,9 @@
 {
     "mapping": {
+        "1,58,1": [
+            "if_single(key(KEY_CAPSLOCK), None, timeout=150)",
+            "keyboard"
+        ],
         "1,58,1+1,18,1": [
             "Up",
             "keyboard"
@@ -116,8 +120,48 @@
             "Alt_L+d",
             "keyboard"
         ],
-        "1,58,1": [
-            "if_single(key(KEY_CAPSLOCK), , timeout=150)",
+        "1,57,1+1,30,1": [
+            "1",
+            "keyboard"
+        ],
+        "1,57,1+1,31,1": [
+            "2",
+            "keyboard"
+        ],
+        "1,57,1+1,32,1": [
+            "3",
+            "keyboard"
+        ],
+        "1,57,1+1,33,1": [
+            "4",
+            "keyboard"
+        ],
+        "1,57,1+1,34,1": [
+            "5",
+            "keyboard"
+        ],
+        "1,57,1+1,35,1": [
+            "6",
+            "keyboard"
+        ],
+        "1,57,1+1,36,1": [
+            "7",
+            "keyboard"
+        ],
+        "1,57,1+1,37,1": [
+            "8",
+            "keyboard"
+        ],
+        "1,57,1+1,38,1": [
+            "9",
+            "keyboard"
+        ],
+        "1,57,1+1,39,1": [
+            "0",
+            "keyboard"
+        ],
+        "1,57,1": [
+            "if_single(key(KEY_SPACE), None, timeout=200)",
             "keyboard"
         ]
     }
