@@ -32,7 +32,7 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	fi
 	ln -sf ~/.linuxConfig/configs/flameshot.ini ~/.config/flameshot/flameshot.ini
 	# kitty
-	ln -sf ~/.linuxConfig/kitty-config/kitty.conf ~/.config/kitty/kitty.conf
+	ln -sf ~/.linuxConfig/kitty ~/.config
 	# terminology
 	ln -sf ~/.linuxConfig/terminology ~/.config
 	# konsave config

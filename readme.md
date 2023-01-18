@@ -39,3 +39,4 @@
 
     # 应用配置
     $ konsave -a profile
+

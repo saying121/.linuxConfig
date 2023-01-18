@@ -7,6 +7,7 @@ sudo systemctl stop reflector.service
 sudo systemctl disable reflector.service
 
 # 修改/etc/pacman.d/mirrorlist，插入中国源
+# shellcheck disable=2016
 echo 'Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 Server = http://mirrors.163.com/archlinux/$repo/os/$arch
@@ -20,6 +21,7 @@ sudo sed -i 's/^#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf
 sudo sed -i "s/^#\[multilib\]/\[multilib\]/" /etc/pacman.conf
 
 if [[ $(grep "\[archlinuxcn\]" -c /etc/pacman.conf) = 0 ]]; then
+	# shellcheck disable=2016
 	echo '
 [archlinuxcn]
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
