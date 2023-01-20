@@ -1,8 +1,8 @@
 return {
     'wlh320/rime-ls',
-    keys = {
-        '<leader>tr',
-    },
+    -- keys = {
+    --     '<c-o>',
+    -- },
     config = function()
 
         local start_rime = function()
@@ -13,7 +13,7 @@ return {
             --     simplification: true
             local client_id = vim.lsp.start_client({
                 name = "rime-ls",
-                cmd = { '/bin/rime_ls/rime_ls' },
+                cmd = { '/usr/bin/rime_ls' },
                 init_options = {
                     enabled = false, -- 初始关闭, 手动开启
                     shared_data_dir = "/usr/share/rime-data", -- rime 公共目录
@@ -26,14 +26,34 @@ return {
             ---@diagnostic disable-next-line: param-type-mismatch
             vim.lsp.buf_attach_client(0, client_id)
             -- 快捷键手动开启
-            vim.keymap.set('n', '<leader>tr', function() vim.lsp.buf.execute_command({ command = "toggle-rime" }) end)
+            vim.keymap.set({ 'n', 'i', 'v' }, '<c-o>',
+                function() vim.lsp.buf.execute_command({ command = "toggle-rime" }) end)
         end
+        -- local open_rime = function()
+        --     for i = 1, #vim.lsp.get_active_clients(), 1 do
+        --         if 'rime-ls' == vim.lsp.get_active_clients()[i]['name'] then
+        --             return true
+        --         end
+        --     end
+        -- end
 
         vim.api.nvim_create_autocmd('BufReadPost', {
-            callback = function()
-                start_rime()
-            end,
             pattern = '*',
+            callback = function()
+            start_rime()
+            --     vim.keymap.set({ 'i', 'n', 'v' }, '<c-o>', function()
+            --         if open_rime() then
+            --             start_rime()
+            --         end
+            --         vim.lsp.buf.execute_command({ command = "toggle-rime" })
+            --
+            --         if vim.g.rime_ls_state == "on" then
+            --             vim.g.rime_ls_state = "off"
+            --         else
+            --             vim.g.rime_ls_state = "on"
+            --         end
+            --     end, { noremap = true, silent = true })
+            end,
         })
 
     end

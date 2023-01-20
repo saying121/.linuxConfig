@@ -86,7 +86,7 @@ allInstall() {
 			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
 			pandoc xdg-utils youtube-dl numlockx rsync linux-firmware-qlogic arch-install-scripts \
 			gimagereader-qt tesseract-data-eng tesseract-data-chi_sim \
-            obs-studio translate-shell
+            obs-studio translate-shell notepadqq
 		# sddm主题的依赖
 		sudo pacman -S --needed --noconfirm gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机

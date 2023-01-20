@@ -20,9 +20,9 @@ Plug 'tpope/vim-commentary'
 call plug#end()
 
 colorscheme nightfox
+syntax on        " 语法高亮
 " nvim的要在设置透明后再source才有颜色,而且不会出现两截状态栏
 source ~/.config/nvim/viml/statusline-config.vim
 set laststatus=2                            "显示状态栏信息
-syntax on        " 语法高亮
 
 endif

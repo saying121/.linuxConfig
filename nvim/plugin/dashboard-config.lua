@@ -21,7 +21,7 @@ db.preview_file_width = dbtable[rand]['width']
 
 --   --
 db.custom_center = {
-    -- { icon = '  ', desc = 'Animations                  ', shortcut = '|', action = 'call Rain()' },
+    -- { icon = '   ', desc = '                            ', shortcut = '', action = '' },
     -- { icon = '  ', desc = 'Recently lastest session    ', shortcut = '|', action = 'SessionLoad' },
     { icon = '  ', desc = 'Recently opened files       ', shortcut = '|', action = 'Telescope oldfiles' },
     -- { icon = '  ', desc = 'Find File                   ', shortcut = '|',

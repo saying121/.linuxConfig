@@ -6,7 +6,6 @@ return {
     --     branch = 'release'
     -- },
     --  'itchyny/vim-cursorword'
-    'nvim-lua/popup.nvim',
-    'nvim-lua/plenary.nvim',
+    -- 'nvim-lua/popup.nvim',
     'folke/lazy.nvim',
 }

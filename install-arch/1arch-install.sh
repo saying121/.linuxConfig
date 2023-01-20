@@ -4,8 +4,15 @@ echo '1.Partitioned disk
 cfdisk /dev/xxx
 
 2.Formatted disk
-efi : mkfs.vfat /dev/xxx
-root and home : mkfs.btrfs /dev/xxx
+(1)efi
+mkfs.vfat /dev/xxx
+
+(2)root and home
+mkfs.btrfs /dev/xxx
+
+(3)swap
+mkswap /dev/for_swap
+swapon /dev/for_swap
 
 3.Mount disk
 (1)root

@@ -13,6 +13,7 @@ local M = {
         'dashboard',
     },
     dependencies = {
+        'nvim-lua/plenary.nvim',
         'ahmedkhalf/project.nvim',
         keys = {
             { '<M-p>', desc = 'project.nvim' },
