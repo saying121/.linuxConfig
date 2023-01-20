@@ -82,6 +82,7 @@ alias clhres="sudo systemctl restart clash.service"
 alias clhsts="systemctl status clash.service"
 
 alias rm="gio trash"
+alias tran='trans -j -d en:zh'
 
 # avoid open nested ranger instances
 ranger() {

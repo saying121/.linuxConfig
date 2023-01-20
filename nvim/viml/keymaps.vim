@@ -6,6 +6,10 @@ nnoremap # #n
 vnoremap # #n
 nnoremap ,, ggVG
 
+" 多行移动
+vnoremap <A-j> :m '>+1<cr>gv=gv
+vnoremap <A-k> :m '<-2<cr>gv=gv
+
 " 映射按键
 nnoremap <silent><space>cc :cclose<CR>
 nnoremap ` %

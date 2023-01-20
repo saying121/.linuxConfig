@@ -5,8 +5,10 @@ if [[ ! -d ~/.config ]]; then
 fi
 
 # pip
+rm -rf ~/.pip
 ln -sf ~/.linuxConfig/.pip ~/
 # nvim
+rm -rf ~/.config/nvim
 ln -sf ~/.linuxConfig/nvim ~/.config
 ln -sf ~/.linuxConfig/nvim/tasks.ini ~/.vim/tasks.ini
 # vim
@@ -19,6 +21,7 @@ if [[ ! -d ~/.local/shells ]]; then
 	mkdir ~/.local/shells
 fi
 # ranger
+rm -rf ~/.config/ranger
 ln -sf ~/.linuxConfig/ranger ~/.config
 # tldr
 ln -sf ~/.linuxConfig/configs/tldrrc ~/.tldrrc
@@ -32,8 +35,10 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	fi
 	ln -sf ~/.linuxConfig/configs/flameshot.ini ~/.config/flameshot/flameshot.ini
 	# kitty
+    rm -rf ~/.config/kitty
 	ln -sf ~/.linuxConfig/kitty ~/.config
 	# terminology
+    rm -rf ~/.config/terminology
 	ln -sf ~/.linuxConfig/terminology ~/.config
 	# konsave config
 	if [[ ! -d ~/.config/konsave ]]; then
@@ -41,14 +46,19 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	fi
 	ln -sf ~/.linuxConfig/configs/konsave-conf.yaml ~/.config/konsave/conf.yaml
 	# keymap
+    rm -rf ~/.config/input-remapper
 	ln -sf ~/.linuxConfig/input-remapper ~/.config
 	# 触摸板手势
+    rm -rf ~/.config/fusuma
 	ln -sf ~/.linuxConfig/fusuma ~/.config
 	# i3
+    rm -rf ~/.config/i3
 	ln -sf ~/.linuxConfig/i3 ~/.config
 	# 语言
 	ln -sf ~/.linuxConfig/xprofile ~/.xprofile
 	# 输入法
+    rm -rf ~/.config/fcitx
+    rm -rf ~/.config/fcitx5
 	ln -sf ~/.linuxConfig/fcitxs-config/fcitx ~/.config
 	ln -sf ~/.linuxConfig/fcitxs-config/fcitx5 ~/.config
 	# 判断有没有touchpad
@@ -69,8 +79,13 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 		sudo cp ~/.linuxConfig/kde/sddm.conf /etc/sddm.conf.d/kde_settings.conf
 	fi
 	# obs
-	ln -sf ~/.linuxConfig/obs/global.ini ~/.config/obs-studio/global.ini
-	ln -sf ~/.linuxConfig/obs/basic ~/.config/obs-studio/basic
+    if [[ ! -d ~/.config/obs-studio ]]
+    then
+        mkdir ~/.config/obs-studio
+    fi
+	ln -sf ~/.linuxConfig/obs-studio/global.ini ~/.config/obs-studio/global.ini
+    rm -rf ~/.config/obs-studio/basic
+	ln -sf ~/.linuxConfig/obs-studio/basic ~/.config/obs-studio/basic
 	if [[ ! -d ~/Videos/obs ]]; then
 		mkdir -p ~/Videos/obs
 	fi

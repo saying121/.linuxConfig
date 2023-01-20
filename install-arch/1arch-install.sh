@@ -1,22 +1,26 @@
 #!/bin/bash
 
-echo 'cfdisk /deb/xxx
+echo '1.Partitioned disk
+cfdisk /dev/xxx
 
+2.Formatted disk
 efi : mkfs.vfat /dev/xxx
-/ and home : mkfs.ext4 /dev/xxx
+root and home : mkfs.btrfs /dev/xxx
 
-root
-mount /dev/forroot /mnt
+3.Mount disk
+(1)root
+mount /dev/for_root /mnt
 
-efi
+(2)efi
 mkdir /mnt/boot
-mount /dev/forefi /mnt/boot
+mount /dev/for_efi /mnt/boot
 
-home
+(3)home
 mkdir /mnt/home
 mount /dev/forhome /mnt/home
 
-Change mirrors and link network before run the script.yes/no'
+Change mirrors and link network before run the script.
+yes/no'
 
 read -r answer
 if [[ ! $answer = yes ]]; then
@@ -28,4 +32,5 @@ timedatectl set-ntp true
 pacstrap /mnt base base-devel linux linux-firmware
 
 genfstab -U /mnt >>/mnt/etc/fstab
-echo 'run: arch-chroot /mnt'
+echo 'run cat /mnt/etc/fstab,check for correctness
+run: arch-chroot /mnt'

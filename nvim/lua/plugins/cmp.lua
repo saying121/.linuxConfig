@@ -16,7 +16,7 @@ local M = {
         {
             'L3MON4D3/LuaSnip',
             config = function()
-                require("luasnip.loaders.from_vscode").lazy_load()
+                -- require("luasnip.loaders.from_vscode").lazy_load()
             end
         },
         'saadparwaiz1/cmp_luasnip',
@@ -58,6 +58,8 @@ function M.config()
     require("luasnip.loaders.from_vscode").lazy_load()
 
     local cmp = require 'cmp'
+    local compare=require'cmp.config.compare'
+
     cmp.setup({
         snippet = {
             expand = function(args)
@@ -107,6 +109,19 @@ function M.config()
         }),
         experimental = {
             ghost_text = true
+        },
+        -- rime-ls
+        sorting={
+            comparator={
+                compare.sort_test,
+                compare.offset,
+                compare.exact,
+                compare.score,
+                compare.recently_used,
+                compare.kind,
+                compare.length,
+                compare.order,
+            },
         },
     })
 

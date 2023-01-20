@@ -86,7 +86,7 @@ allInstall() {
 			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
 			pandoc xdg-utils youtube-dl numlockx rsync linux-firmware-qlogic arch-install-scripts \
 			gimagereader-qt tesseract-data-eng tesseract-data-chi_sim \
-            obs-studio
+            obs-studio translate-shell
 		# sddm主题的依赖
 		sudo pacman -S --needed --noconfirm gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机
@@ -129,7 +129,8 @@ yayInstall() {
 		sddm-theme-aerial-git ruby-fusuma \
 		i3-gaps-kde-git \
 		networkmanager-dmenu-git copyq networkmanager-dmenu-bluetoothfix-git \
-		wps-office-cn plasma5-wallpapers-wallpaper-engine
+		wps-office-cn plasma5-wallpapers-wallpaper-engine \
+        rime-ls rime-essay
 	# archlinux-tweak-tool-git
 }
 

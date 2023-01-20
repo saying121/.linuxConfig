@@ -1,6 +1,5 @@
 return {
     'skywind3000/asynctasks.vim',
-    -- lazy = true,
     dependencies = {
         'skywind3000/asyncrun.vim',
     },

@@ -227,6 +227,18 @@
         "1,57,1+1,15,1": [
             "Shift_L+grave",
             "keyboard"
+        ],
+        "1,58,1+1,28,1": [
+            "key(end).key(Return)",
+            "keyboard"
+        ],
+        "1,57,1+1,47,1": [
+            "KEY_TAB",
+            "keyboard"
+        ],
+        "1,57,1+1,48,1": [
+            "Shift_L+KEY_TAB",
+            "keyboard"
         ]
     }
 }

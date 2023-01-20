@@ -8,7 +8,8 @@ sudo systemctl disable reflector.service
 
 # 修改/etc/pacman.d/mirrorlist，插入中国源
 # shellcheck disable=2016
-echo 'Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+echo 'Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
 Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch
@@ -55,4 +56,4 @@ fi
 
 sudo pacman -Syyuu
 
-# vim:fileencoding=utf-8:ft=sh:foldmethod=marker
+# vim:fileencoding=utf-8:ft=sh:foldmethod=expr
