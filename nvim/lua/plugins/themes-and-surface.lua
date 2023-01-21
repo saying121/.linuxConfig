@@ -38,12 +38,16 @@ return {
         lazy = true,
         config = function()
 
+            -- vim.cmd.colorscheme('carbonfox')
+            -- vim.cmd.colorscheme('nordfox')
+            -- vim.cmd.colorscheme('nightfox')
+            -- vim.cmd.colorscheme('duskfox')
             require('nightfox').setup({
                 options = {
                     -- Compiled file's destination location
                     compile_path = vim.fn.stdpath("cache") .. "/nightfox",
                     compile_file_suffix = "_compiled", -- Compiled file suffix
-                    transparent = false, -- Disable setting background
+                    transparent = true, -- Disable setting background
                     terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
                     dim_inactive = false, -- Non focused panes set to alternative background
                     styles = { -- Style to be applied to different syntax groups
@@ -71,16 +75,21 @@ return {
                 specs = {},
                 groups = {},
             })
+            vim.cmd [[augroup transparent]]
+            vim.cmd [[autocmd!]]
+            -- 透明后加入状态栏让状态栏有颜色
+            vim.cmd [[autocmd UIENTER,VimEnter * source ~/.config/nvim/viml/statusline-config.vim]]
+            vim.cmd [[augroup END]]
 
         end
     },
     {
         'folke/tokyonight.nvim',
-        priority = 1000,
-        cond = true,
+        -- priority = 1000,
+        -- cond = true,
+        -- lazy = true,
         config = function()
 
-            -- vim.cmd [[colorscheme tokyonight]]
             vim.cmd.colorscheme('tokyonight')
             require("tokyonight").setup({
                 style = "night",
@@ -92,6 +101,11 @@ return {
                     floats = "transparent", -- style for floating windows
                 }
             })
+            -- vim.cmd [[augroup transparent]]
+            -- vim.cmd [[autocmd!]]
+            -- -- 透明后加入状态栏让状态栏有颜色
+            -- vim.cmd [[autocmd UIENTER,VimEnter * :TransparentEnable | source ~/.config/nvim/viml/statusline-config.vim]]
+            -- vim.cmd [[augroup END]]
 
         end
     },

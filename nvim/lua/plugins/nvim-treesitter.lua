@@ -51,7 +51,6 @@ local M = {
             },
         }
 
-        ---WORKAROUND
         vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter', 'BufWritePost' }, {
             group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
             callback = function()
@@ -59,7 +58,6 @@ local M = {
                 vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()'
             end
         })
-        ---ENDWORKAROUND
 
     end
 }

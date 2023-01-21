@@ -81,7 +81,7 @@ allInstall() {
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip fcitx5-table-other nerd-fonts-hack \
 			pacman-contrib powerpill reflector \
-			openssh ntfs-3g firewalld ueberzug ffmpegthumbnailer pdftoppm dolphin \
+			openssh ntfs-3g exfat-utils firewalld ueberzug ffmpegthumbnailer pdftoppm dolphin \
 			w3m djvutxt calibre transmission-cli mediainf odt2txt \
 			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
 			pandoc xdg-utils youtube-dl numlockx rsync linux-firmware-qlogic arch-install-scripts \

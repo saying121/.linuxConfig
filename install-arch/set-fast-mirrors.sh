@@ -7,4 +7,4 @@ curl -s "https://archlinux.org/mirrorlist/?country=CN&protocol=https&use_mirror_
 	sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n all - |
 	sudo tee /etc/pacman.d/mirrorslist
 
-sudo pacman -Syyuu
+sudo pacman -Syyuu --noconfirm
