@@ -14,7 +14,7 @@ fi
 
 # 必装
 if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-	sudo pacman -Syu
+	sudo pacman -Syu --noconfirm
 	sudo pacman -S --needed --noconfirm archlinuxcn-keyring archlinux-keyring
 	# if [[ $? != 0 ]]; then
 	# if ! sudo pacman -S --needed --noconfirm archlinuxcn-keyring; then
@@ -23,7 +23,7 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	# 	sudo pacman-key --populate archlinux
 	# 	sudo pacman-key --populate archlinuxcn
 	# fi
-	sudo pacman -Syu
+	sudo pacman -Syu --noconfirm
 	sudo pacman -S --needed --noconfirm yay paru
 	# 调用关于clash的脚本，配置clash
 	~/.linuxConfig/scripts/configClash.sh
@@ -82,11 +82,11 @@ allInstall() {
 			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip fcitx5-table-other nerd-fonts-hack \
 			pacman-contrib powerpill reflector \
 			openssh ntfs-3g exfat-utils firewalld ueberzug ffmpegthumbnailer pdftoppm dolphin \
-			w3m djvutxt calibre transmission-cli mediainf odt2txt \
+			w3m djvulibre calibre transmission-cli mediainf odt2txt \
 			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
 			pandoc xdg-utils youtube-dl numlockx rsync linux-firmware-qlogic arch-install-scripts \
 			gimagereader-qt tesseract-data-eng tesseract-data-chi_sim \
-            obs-studio translate-shell notepadqq
+            obs-studio translate-shell notepadqq alsa
 		# sddm主题的依赖
 		sudo pacman -S --needed --noconfirm gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机

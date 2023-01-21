@@ -2,7 +2,7 @@
 # shellcheck disable=2086
 
 if [[ $(grep -c arch /etc/os-release) != 0 && ! $(type clash) =~ clash ]]; then
-	sudo pacman -S --need clash
+	sudo pacman -S --needed --noconfirm clash
 fi
 if [[ -n $1 && --help =~ $1 ]]; then
 	echo '第一个参数跟clash订阅链接'

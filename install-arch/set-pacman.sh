@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo pacman -S --needed pacman-contrib
+sudo pacman -S --needed --noconfirm pacman-contrib
 
 # 不让刷新镜像列表
 sudo systemctl stop reflector.service

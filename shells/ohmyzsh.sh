@@ -18,7 +18,7 @@ fi
 
 # 启用command-not-found
 if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-	sudo pacman -S --needed pkgfile
+	sudo pacman -S --needed --noconfirm pkgfile
 	sudo pkgfile -u
 	pkgfile makepkg
 fi
