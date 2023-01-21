@@ -9,7 +9,7 @@ sudo pacman -S --needed xorg kitty \
 sudo pacman -S --needed adobe-source-han-serif-cn-fonts \
     adobe-source-han-sans-cn-fonts \
 	wqy-zenhei wqy-microhei noto-fonts-cjk noto-fonts-emoji \
-	noto-fonts-extra tf-dejavu
+	noto-fonts-extra
 
 sudo pacman -S --needed \
 	fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \

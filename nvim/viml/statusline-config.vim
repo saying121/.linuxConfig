@@ -48,7 +48,7 @@ func! FileType()
                 \ 'javascript'      :' ',
                 \ 'html'            :' ',
                 \ 'json'            :' ',
-                \ 'sh'              :' ',
+                \ 'sh'              :' ',
                 \ 'python'          :' ',
                 \ 'lua'             :' ',
                 \ 'go'              :' ',

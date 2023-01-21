@@ -1,6 +1,6 @@
 #!/bin/bash
 
-~/.linuxConfig/install-arch/set-pacman.sh
+./set-pacman.sh
 
 # 修改/etc/pacman.d/mirrorlist，插入中国源
 # shellcheck disable=2016

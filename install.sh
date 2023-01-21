@@ -15,14 +15,14 @@ fi
 # 必装
 if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	sudo pacman -Syu
-	# sudo pacman -S --needed archlinuxcn-keyring
+	sudo pacman -S --needed --noconfirm archlinuxcn-keyring archlinux-keyring
 	# if [[ $? != 0 ]]; then
-	if ! sudo pacman -S --needed --noconfirm archlinuxcn-keyring; then
-		sudo rm -rf /etc/pacman.d/gnupg
-		pacman-key --init
-		pacman-key --populate archlinux
-		pacman-key --populate archlinuxcn
-	fi
+	# if ! sudo pacman -S --needed --noconfirm archlinuxcn-keyring; then
+	# 	sudo rm -rf /etc/pacman.d/gnupg
+	# 	sudo pacman-key --init
+	# 	sudo pacman-key --populate archlinux
+	# 	sudo pacman-key --populate archlinuxcn
+	# fi
 	sudo pacman -Syu
 	sudo pacman -S --needed --noconfirm yay paru
 	# 调用关于clash的脚本，配置clash
