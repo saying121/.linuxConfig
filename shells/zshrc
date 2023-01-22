@@ -1,5 +1,5 @@
-# shellcheck disable=1090,2034,2154
 # vim:fileencoding=utf-8:ft=sh
+# shellcheck disable=1090,2034,2154
 . ~/.linuxConfig/shells/common.sh
 
 # ~/.zshrc file for zsh interactive shells.
@@ -96,20 +96,8 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-# 确定发行版
-if [[ $(grep -c kali /etc/os-release) != 0 ]]; then
-    zsh_syntax=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    zsh_autosuggestions=/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [[ $(grep -c ubuntu /etc/os-release) != 0 ]]; then
-    zsh_syntax=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    zsh_autosuggestions=/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-    zsh_syntax=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    zsh_autosuggestions=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-else
-    zsh_syntax=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    zsh_autosuggestions=/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
+zsh_syntax=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+zsh_autosuggestions=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 configure_prompt() {
     # prompt_symbol=㉿

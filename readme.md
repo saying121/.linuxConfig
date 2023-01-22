@@ -1,8 +1,4 @@
 # 个人应用配置
-## install-arch是安装arch用的脚本
-安装arch时，先set-mirrors。
-
-挂载后运行1，根据提示继续运行234
 
 ## 先运行
 
@@ -40,3 +36,24 @@
     # 应用配置
     $ konsave -a profile
 
+### nvidia
+    nvidia/nvidia-open-dkms ,二选一
+    $ pacman -Qs nvidia
+    local/cuda 11.8.0-1
+        NVIDIA's GPU programming toolkit
+    local/cudnn 8.6.0.163-1
+        NVIDIA CUDA Deep Neural Network library
+    local/egl-wayland 2:1.1.11-2
+        EGLStream-based Wayland external platform
+    local/lib32-nvidia-utils 525.85.05-1
+        NVIDIA drivers utilities (32-bit)
+    local/libvdpau 1.5-1
+        Nvidia VDPAU library
+    local/nccl 2.15.5-1
+        Library for NVIDIA multi-GPU and multi-node collective communication primitives
+    local/nvidia-open-dkms 525.85.05-1
+        NVIDIA open kernel modules
+    local/nvidia-utils 525.85.05-1
+        NVIDIA drivers utilities
+    local/opencl-nvidia 525.85.05-1
+        OpenCL implemention for NVIDIA

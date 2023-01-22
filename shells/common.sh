@@ -64,6 +64,7 @@ export XMODIFIERS="@im=none"
 
 export PATH=~/.cargo/bin:~/.local/bin:$PATH
 export PATH=~/.local/share/nvim/mason/bin:$PATH
+source /usr/share/nvm/init-nvm.sh
 # wsl
 export PATH=/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application:$PATH
 if [[ $(uname -a | grep -c WSL) != 0 ]]; then
