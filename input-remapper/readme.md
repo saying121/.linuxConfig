@@ -3,7 +3,7 @@
 大部分capslock+组合键内容抄自capslock+项目关于Linux issue
 |`capslock +`           |按下capslock后按下其他键的行为     |
 |:-:                    |:-:                                |
-|长按capslock           |do nothing                         |
+|长按capslock           |`do nothing`                       |
 |按capslock,150ms内释放 |`capslock`                         |
 |                       |                                   |
 |`backspace`            |删除整行                           |
@@ -42,16 +42,15 @@
 长按空格不影响与他无关的键输入
 |`space +`                      |按下space后的行为                  |
 |:-:                            |:-:                                |
-|长按space                      |do nothing                         |
+|长按space                      |`do nothing`                       |
 |按space,200ms内释放            |`space`                            |
 |                               |                                   |
 |`a/s/d/f/g/h/j/k/l/;/return`   |`1/2/3/4/5/6/7/8/9/0/-/=`          |
 |                               |                                   |
 |                               |下面其实就是shift+1234……           |
-|`tab`                          |`~`                                |
-|`q/w/e/r/t/y/u/i/o/p/[/]`      |`!/@/#/$/%/^/&/*/(/)/_/+`          |
+|`tab/q/w/e/r/t/y/u/i/o/p/[/]`  |`~/!/@/#/$/%/^/&/*/(/)/_/+`        |
 |                               |                                   |
-|n                              |esc(vim的normal模式)               |
+|n                              |`esc`(vim的normal模式)             |
 |                               |                                   |
 |v                              |`tab`                              |
 |b                              |`shift+tab`                        |

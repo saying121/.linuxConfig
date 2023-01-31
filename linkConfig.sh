@@ -20,6 +20,8 @@ export PATH=/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application:$PATH
 
 source /usr/share/nvm/init-nvm.sh
 ' | sudo tee -a /etc/profile
+
+	source /etc/profile
 fi
 
 if [[ ! -d ~/.config ]]; then

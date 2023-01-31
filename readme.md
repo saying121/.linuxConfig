@@ -16,9 +16,10 @@
     $ git submodule update --init --recursive
 
 ## clone完成后
+    # 先自行配置代理,或者用./scripts/configClash.sh 脚本配置
 
     # 正常用就运行，包含常用的软件
-    $ ~/.linuxConfig/install.sh
+    $ ~/.linuxConfig/install.sh clashlink
 
     # kde+i3就运行
     $ ~/.linuxConfig/i3/use-i3.sh
