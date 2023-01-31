@@ -46,7 +46,7 @@ if [[ $(grep -c fileencoding /etc/pacman.conf) = 0 ]]; then
 fi
 
 sudo pacman -S --needed --noconfirm archlinuxcn-keyring archlinux-keyring
-sudo pacman -Syy--noconfirm
+sudo pacman -Syy --noconfirm
 sudo pacman -S --needed --noconfirm yay paru
 
 # vim:fileencoding=utf-8:ft=sh:foldmethod=marker

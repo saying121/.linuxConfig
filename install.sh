@@ -37,7 +37,7 @@ elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		openjdk-17-jdk python3-pip golang-go cargo rust-all
 fi
 
-sudo $pacMan neofetch figlet ranger ffmpeg htop \
+sudo "$pacMan" neofetch figlet ranger ffmpeg htop \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
 	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa \
 	neovim git python3 nvm shfmt shellcheck lolcat luarocks composer eslint cronie
@@ -92,7 +92,7 @@ allInstall() {
 		# 蓝牙耳机
 		sudo pacman -S --needed --noconfirm pulseaudio-bluetooth pulsemixer \
 			xorg xorg-xinit xorg-server picom feh polybar calc python-pywal network-manager-applet \
-			pulseaudio-alsa
+			pulseaudio-alsa shotcut lux-dl
 
 		# wallpaper-engine-kde-plugin requirement ,aur: renderdoc
 		sudo pacman -S --needed --noconfirm extra-cmake-modules plasma-framework gst-libav \
@@ -110,7 +110,7 @@ allInstall() {
 		rm -rf input-remapper
 	fi
 
-	sudo $pacMan imagemagick kitty mpv flameshot rofi goldendict terminology ttf-hack-nerd
+	sudo "$pacMan" imagemagick kitty mpv flameshot rofi goldendict terminology ttf-hack-nerd
 	# tmux
 
 	python -m pip install konsave
@@ -141,11 +141,12 @@ startServer() {
 
 	sudo systemctl enable input-remapper
 	sudo systemctl start input-remapper
-	sudo input-remapper-control --command autoload
-
+	input-remapper-control --command start --device "Keyboard K380 Keyboard" --preset "capslock+"
+	input-remapper-control --command start --device "AT Translated Set 2 keyboard" --preset "capslock+"
 	sudo systemctl enable firewalld
 	# 把自己添加到input组
-	sudo gpasswd -a $USER input
+	sudo gpasswd -a "$USER" input
+	sudo gpasswd -a "$USER" video
 	newgrp input
 }
 

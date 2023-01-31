@@ -11,6 +11,17 @@ function! StatuslineGit()
 endfunction
 
 function! LinuxRelease()
+    if has('win32')
+        let l:prompy_symbol=' '
+        return prompy_symbol
+    elseif has('mac')
+        let l:prompy_symbol=' '
+        return prompy_symbol
+    endif
+    if system('uname -a | grep -c Android')
+        let l:prompy_symbol=' '
+        return prompy_symbol
+    endif
     let l:releases={
                 \'arch'         :' ',
                 \'kali'         :' ',
@@ -28,13 +39,6 @@ function! LinuxRelease()
         return prompy_symbol
     else
         let l:prompy_symbol=' '
-        return prompy_symbol
-    endif
-    if has('win32')
-        let l:prompy_symbol=' '
-        return prompy_symbol
-    elseif has('mac')
-        let l:prompy_symbol=' '
         return prompy_symbol
     endif
 endfunction
