@@ -9,6 +9,13 @@ source ~/.config/nvim/viml/functions.vim
 source ~/.config/nvim/viml/autocmds.vim
 
 " ----------------------
+
+if exists('g:neovide')
+    source ~/.config/nvim/viml/neovide.vim
+endif
+
+" ----------------------
+
 if !has('nvim')
 
 call plug#begin()
@@ -19,7 +26,9 @@ Plug 'tpope/vim-commentary'
 
 call plug#end()
 
-colorscheme nightfox
+" colorscheme nightfox
+colorscheme carbonfox
+" colorscheme nordfox
 syntax on        " 语法高亮
 " nvim的要在设置透明后再source才有颜色,而且不会出现两截状态栏
 source ~/.config/nvim/viml/statusline-config.vim

@@ -51,22 +51,10 @@ else
 fi
 unset releaseDic
 
-export ALL_PROXY=http://127.0.0.1:7890
-export HTTPS_PROXY=http://127.0.0.1:7890
-export HTTP_PROXY=http://127.0.0.1:7890
-export NO_PROXY=baidu.com,qq.com
 
-export EDITOR='nvim'
 # export TERM='kitty'
-# input method
-export ECORE_IMF_MODULE="xim"
-export XMODIFIERS="@im=none"
 
-export PATH=~/.cargo/bin:~/.local/bin:$PATH
-export PATH=~/.local/share/nvim/mason/bin:$PATH
-source /usr/share/nvm/init-nvm.sh
 # wsl
-export PATH=/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application:$PATH
 if [[ $(uname -a | grep -c WSL) != 0 ]]; then
 	alias proxy="source ~/.linuxConfig/scripts/proxy.sh"
 	# shellcheck disable=1090

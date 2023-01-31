@@ -1,5 +1,8 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.opt.rtp:prepend(lazypath)
+-- mason
+local masonpath = vim.fn.stdpath("data") .. "/mason/bin"
+vim.opt.rtp:prepend(masonpath)
 
 require 'lazy'.setup('plugins', {
     root = vim.fn.stdpath("data") .. "/lazy", -- directory where plugins will be installed

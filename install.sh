@@ -42,6 +42,7 @@ sudo $pacMan neofetch figlet ranger ffmpeg htop \
 	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa \
 	neovim git python3 nvm shfmt shellcheck lolcat luarocks composer eslint cronie
 
+source /usr/share/nvm/init-nvm.sh
 nvm install v18.13.0
 nvm alias default v18.13.0
 nvm install v12.22.12
@@ -57,16 +58,12 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 if [[ ! -d ~/.local/share/nvim/lazy/lazy.nvim ]]; then
 	git clone --filter=blob:none https://github.com/folke/lazy.nvim.git --branch=stable ~/.local/share/nvim/lazy/lazy.nvim
 fi
-# if [[ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
-# 	git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-# fi
 if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 sudo npm i -g npm-check-updates awk-language-server bash-language-server npm neovim sql-language-server
 sudo npm install --save-dev --save-exact prettier
 pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy vim-vint jedi_language_server
-# nvim -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 # 给nvim 预览html插件需要低版本npm
 nvm use v12.22.12
@@ -77,28 +74,30 @@ nvim "+Lazy! sync" +qa
 
 allInstall() {
 	if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-		sudo pacman -syu
+		sudo pacman -Syu --noconfirm
 		# 中文输入法,支持vim+寄存器的clip
 		sudo pacman -S --needed --noconfirm \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip fcitx5-table-other \
 			pacman-contrib powerpill reflector \
-			openssh ntfs-3g exfat-utils firewalld ueberzug ffmpegthumbnailer pdftoppm dolphin \
-			w3m djvulibre calibre transmission-cli mediainf odt2txt \
+			openssh ntfs-3g exfat-utils firewalld ueberzug viu ffmpegthumbnailer dolphin konsole \
+			w3m djvulibre calibre transmission-cli odt2txt \
 			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
 			pandoc xdg-utils youtube-dl numlockx rsync linux-firmware-qlogic arch-install-scripts \
 			gimagereader-qt tesseract-data-eng tesseract-data-chi_sim \
-			obs-studio translate-shell notepadqq alsa qbittorrent
+			obs-studio translate-shell notepadqq alsa qbittorrent steam
+		# pdftoppm mediainf
 		# sddm主题的依赖
 		sudo pacman -S --needed --noconfirm gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机
 		sudo pacman -S --needed --noconfirm pulseaudio-bluetooth pulsemixer \
-			xorg xorg-xinit xorg-server picom feh polybar calc python-pywal network-manager-applet
+			xorg xorg-xinit xorg-server picom feh polybar calc python-pywal network-manager-applet \
+			pulseaudio-alsa
 
 		# wallpaper-engine-kde-plugin requirement ,aur: renderdoc
 		sudo pacman -S --needed --noconfirm extra-cmake-modules plasma-framework gst-libav \
 			base-devel mpv python-websockets qt5-declarative qt5-websockets qt5-webchannel \
-            vulkan-headers cmake glfw-x11 vulkan-devel vulkan-radeon
+			vulkan-headers cmake glfw-x11 vulkan-devel vulkan-radeon
 
 	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		sudo apt install openssh-*
@@ -111,7 +110,7 @@ allInstall() {
 		rm -rf input-remapper
 	fi
 
-	sudo $pacMan imagemagick kitty mpv flameshot steam rofi goldendict terminology ttf-hack-nerd
+	sudo $pacMan imagemagick kitty mpv flameshot rofi goldendict terminology ttf-hack-nerd
 	# tmux
 
 	python -m pip install konsave
@@ -123,17 +122,16 @@ allInstall() {
 
 # aur才有的软件
 yayInstall() {
-	yay -Syu
-	yay -S --needed icalingua++ \
+	yay -Syu --noconfirm
+	yay -S --needed --noconfirm icalingua++ \
 		microsoft-edge-stable-bin visual-studio-code-bin intellij-idea-ultimate-edition \
-		input-remapper-git yesplaymusic netease-cloud-music \
+		input-remapper-git yesplaymusic netease-cloud-music go-musicfox-bin \
 		ldr-translate-qt xnviewmp epub-thumbnailer-git fontpreview \
-		sddm-theme-aerial-git ruby-fusuma \
-		i3-gaps-kde-git \
-		networkmanager-dmenu-git copyq networkmanager-dmenu-bluetoothfix-git \
+		sddm-theme-aerial-git ruby-fusuma i3-gaps-kde-git \
 		wps-office-cn plasma5-wallpapers-wallpaper-engine \
-		rime-ls rime-essay renderdoc
-	# archlinux-tweak-tool-git
+		rime-ls rime-essay renderdoc gotop \
+		ast-firmware upd72020x-fw aic94xx-firmware wd719x-firmware
+	# copyq  networkmanager-dmenu-bluetoothfix-git  networkmanager-dmenu-git  archlinux-tweak-tool-git
 }
 
 # 开启服务
@@ -143,6 +141,7 @@ startServer() {
 
 	sudo systemctl enable input-remapper
 	sudo systemctl start input-remapper
+	sudo input-remapper-control --command autoload
 
 	sudo systemctl enable firewalld
 	# 把自己添加到input组

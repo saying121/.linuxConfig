@@ -1,4 +1,5 @@
 # 个人应用配置
+高度个性化，谨慎使用。
 
 ## 先运行
 
@@ -37,7 +38,8 @@
     $ konsave -a profile
 
 ### nvidia
-    nvidia/nvidia-open-dkms ,二选一
+    # 安装后运行mkinitcpio
+    # nvidia/nvidia-open-dkms ,二选一
     $ pacman -Qs nvidia
     local/cuda 11.8.0-1
         NVIDIA's GPU programming toolkit

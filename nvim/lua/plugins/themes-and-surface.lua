@@ -1,5 +1,8 @@
 return {
-    'glepnir/dashboard-nvim',
+    {
+        'glepnir/dashboard-nvim',
+        event='VimEnter',
+    },
     {
         'xiyaowong/nvim-transparent',
         config = function()
@@ -101,11 +104,6 @@ return {
                     floats = "transparent", -- style for floating windows
                 }
             })
-            -- vim.cmd [[augroup transparent]]
-            -- vim.cmd [[autocmd!]]
-            -- -- 透明后加入状态栏让状态栏有颜色
-            -- vim.cmd [[autocmd UIENTER,VimEnter * :TransparentEnable | source ~/.config/nvim/viml/statusline-config.vim]]
-            -- vim.cmd [[augroup END]]
 
         end
     },

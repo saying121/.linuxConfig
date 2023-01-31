@@ -1,5 +1,27 @@
 #!/bin/bash
 
+if [[ $(grep -c mason /etc/profile) == 0 ]]; then
+	# shellcheck disable=2016
+	echo '
+export ALL_PROXY=http://127.0.0.1:7890
+export HTTPS_PROXY=http://127.0.0.1:7890
+export HTTP_PROXY=http://127.0.0.1:7890
+export NO_PROXY=baidu.com,qq.com
+
+export EDITOR='nvim'
+
+# input method
+export ECORE_IMF_MODULE="xim"
+export XMODIFIERS="@im=none"
+
+export PATH=~/.cargo/bin:~/.local/bin:$PATH
+export PATH=~/.local/share/nvim/mason/bin:$PATH
+export PATH=/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application:$PATH
+
+source /usr/share/nvm/init-nvm.sh
+' | sudo tee -a /etc/profile
+fi
+
 if [[ ! -d ~/.config ]]; then
 	mkdir ~/.config
 fi
@@ -27,6 +49,11 @@ ln -sf ~/.linuxConfig/ranger ~/.config
 ln -sf ~/.linuxConfig/configs/tldrrc ~/.tldrrc
 # npm
 ln -sf ~/.linuxConfig/configs/npmrc ~/.npmrc
+# music
+if [[ ! -d ~/.go-musicfox ]]; then
+	mkdir ~/.go-musicfox
+fi
+ln -sf ~/.linuxConfig/configs/go-musicfox.ini ~/.go-musicfox/go-musicfox.ini
 
 if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	# flameshot
@@ -35,10 +62,10 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	fi
 	ln -sf ~/.linuxConfig/configs/flameshot.ini ~/.config/flameshot/flameshot.ini
 	# kitty
-    rm -rf ~/.config/kitty
+	rm -rf ~/.config/kitty
 	ln -sf ~/.linuxConfig/kitty ~/.config
 	# terminology
-    rm -rf ~/.config/terminology
+	rm -rf ~/.config/terminology
 	ln -sf ~/.linuxConfig/terminology ~/.config
 	# konsave config
 	if [[ ! -d ~/.config/konsave ]]; then
@@ -46,19 +73,19 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	fi
 	ln -sf ~/.linuxConfig/configs/konsave-conf.yaml ~/.config/konsave/conf.yaml
 	# keymap
-    rm -rf ~/.config/input-remapper
+	rm -rf ~/.config/input-remapper
 	ln -sf ~/.linuxConfig/input-remapper ~/.config
 	# 触摸板手势
-    rm -rf ~/.config/fusuma
+	rm -rf ~/.config/fusuma
 	ln -sf ~/.linuxConfig/fusuma ~/.config
 	# i3
-    rm -rf ~/.config/i3
+	rm -rf ~/.config/i3
 	ln -sf ~/.linuxConfig/i3 ~/.config
 	# 语言
 	ln -sf ~/.linuxConfig/xprofile ~/.xprofile
 	# 输入法
-    rm -rf ~/.config/fcitx
-    rm -rf ~/.config/fcitx5
+	rm -rf ~/.config/fcitx
+	rm -rf ~/.config/fcitx5
 	ln -sf ~/.linuxConfig/fcitxs-config/fcitx ~/.config
 	ln -sf ~/.linuxConfig/fcitxs-config/fcitx5 ~/.config
 	# 判断有没有touchpad
@@ -79,12 +106,11 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 		sudo cp ~/.linuxConfig/kde/sddm.conf /etc/sddm.conf.d/kde_settings.conf
 	fi
 	# obs
-    if [[ ! -d ~/.config/obs-studio ]]
-    then
-        mkdir ~/.config/obs-studio
-    fi
+	if [[ ! -d ~/.config/obs-studio ]]; then
+		mkdir ~/.config/obs-studio
+	fi
 	ln -sf ~/.linuxConfig/obs-studio/global.ini ~/.config/obs-studio/global.ini
-    rm -rf ~/.config/obs-studio/basic
+	rm -rf ~/.config/obs-studio/basic
 	ln -sf ~/.linuxConfig/obs-studio/basic ~/.config/obs-studio/basic
 	if [[ ! -d ~/Videos/obs ]]; then
 		mkdir -p ~/Videos/obs

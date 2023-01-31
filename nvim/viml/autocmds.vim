@@ -1,5 +1,11 @@
 scriptencoding utf-8
 
+" augroup coding
+"     autocmd!
+"     autocmd WinLeave *
+"                 \ if &fileencoding != 'utf-8' | set fileencoding=utf-8 | endif
+" augroup END
+
 " 当前行高亮
 set cursorline
 augroup CursorLine

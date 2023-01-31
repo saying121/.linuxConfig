@@ -26,14 +26,23 @@ SDL_IM_MODULE=fcitx
 GLFW_IM_MODULE=ibus' | sudo tee -a /etc/environment
 fi
 
-if [[ $(grep -c Mila /etc/hosts) = 0 ]]; then
-	echo '127.0.0.1   localhost
+echo 'KEYMAP=us
+FONT=tcvn8x16
+FONT_MAP=8859-2
+' | sudo tee -a /etc/vconsole.conf
+
+read -pr 'Input your pc name: ' pc_name
+
+if [[ $(grep -c "$pc_name" /etc/hosts) = 0 ]]; then
+	echo "127.0.0.1   localhost
 ::1         localhost
-127.0.1.1   Mila' | sudo tee -a /etc/hosts
+127.0.1.1   $pc_name" | sudo tee -a /etc/hosts
 fi
 
+if [[ $(grep -c "$pc_name" /etc/hostname) = 0 ]]; then
+	echo "$pc_name" | sudo tee -a /etc/hostname
+fi
 systemctl enable sddm NetworkManager
 # 手动start
 # systemctl start sddm NetworkManager
 echo 'run ^d/exit then run "umount -R /mnt"'
-echo "Manual edit visudo command's %wheel ALL=(ALL:ALL)ALL"

@@ -36,8 +36,10 @@ fi
 
 timedatectl set-ntp true
 # 基础
-pacstrap /mnt base base-devel linux linux-firmware
+pacstrap /mnt base base-devel linux linux-firmware zsh
 
-genfstab -U /mnt >>/mnt/etc/fstab
-echo 'run cat /mnt/etc/fstab,check for correctness
+genfstab -U /mnt >/mnt/etc/fstab
+echo '----------------------------------------------------------
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+run: [cat /mnt/etc/fstab] compare to [lsblk],check for correctness
 run: arch-chroot /mnt'
