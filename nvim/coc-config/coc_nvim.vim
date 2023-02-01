@@ -4,7 +4,7 @@ let g:coc_global_extensions=[
             \'coc-snippets',
             \'coc-tsserver',
             \'coc-pyright',
-            \'coc-actions',
+            \'coc-explorer',
             \'coc-css',
             \'coc-json']
 set hidden

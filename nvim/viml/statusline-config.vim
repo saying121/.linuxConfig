@@ -74,11 +74,6 @@ endfunc
 
 set laststatus=3                            "显示状态栏信息
 
-" augroup line
-"     autocmd!
-"     autocmd BufReadPre,BufEnter,BufAdd,FileReadPre,BufNew dashboard setlocal laststatus=0
-" augroup END
-
 
 set statusline=%1*\%{StatuslineGit()}
 set statusline+=%2*\%<%.50F\                "显示文件名和文件路径 (%<应该可以去掉)

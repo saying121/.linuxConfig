@@ -37,6 +37,7 @@ ln -sf ~/.linuxConfig/nvim ~/.config
 ln -sf ~/.linuxConfig/nvim/tasks.ini ~/.vim/tasks.ini
 # vim
 ln -sf ~/.linuxConfig/nvim/viml/init.vim ~/.vimrc
+ln -sf ~/.linuxConfig/nvim/coc-settings.json ~/.vim/coc-settings.json
 # zshrc
 ln -sf ~/.linuxConfig/shells/.zshrc ~/.zshrc
 # bashrc
@@ -77,6 +78,7 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	# keymap
 	rm -rf ~/.config/input-remapper
 	ln -sf ~/.linuxConfig/input-remapper ~/.config
+    ln -sf ~/.linuxConfig/input-remapper/presets/AT\ Translated\ Set\ 2\ keyboard/capslock+.json ~/.linuxConfig/input-remapper/presets/Keyboard\ K380\ Keyboard/capslock+.json
 	# 触摸板手势
 	rm -rf ~/.config/fusuma
 	ln -sf ~/.linuxConfig/fusuma ~/.config

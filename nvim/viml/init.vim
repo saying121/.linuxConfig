@@ -18,20 +18,29 @@ endif
 
 if !has('nvim')
 
-call plug#begin()
+    call plug#begin()
 
-Plug 'EdenEast/nightfox.nvim' " Vim-Plug
-Plug 'tribela/vim-transparent'
-Plug 'tpope/vim-commentary'
+    Plug 'francoiscabrol/ranger.vim'
+    Plug 'rhysd/vim-healthcheck'
+    Plug 'tribela/vim-transparent'
+    Plug 'tpope/vim-commentary'
+    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
-call plug#end()
+    call plug#end()
 
-" colorscheme nightfox
-colorscheme carbonfox
-" colorscheme nordfox
-syntax on        " 语法高亮
-" nvim的要在设置透明后再source才有颜色,而且不会出现两截状态栏
-source ~/.config/nvim/viml/statusline-config.vim
-set laststatus=2                            "显示状态栏信息
+    colorscheme elflord
+    syntax on        " 语法高亮
+    " nvim的要在设置透明后再source才有颜色,而且不会出现两截状态栏
+    source ~/.config/nvim/viml/statusline-config.vim
+    source ~/.config/nvim/vim-lsp/init.vim
+
+    " source ~/.config/nvim/coc-config/init.vim
+
+    set laststatus=2                            "显示状态栏信息
+    set undodir=~/.local/share/vim/undodir     " 指定撤销文件目录
 
 endif

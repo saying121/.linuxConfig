@@ -73,7 +73,7 @@ alias clhsts="systemctl status clash.service"
 alias rm="gio trash"
 alias tran='trans -j -d en:zh'
 
-alias mapkey380='input-remapper-control --command start --device "Keyboard K380 Keyboard" --preset "capslock+"'
+alias mapkey3='input-remapper-control --command start --device "Keyboard K380 Keyboard" --preset "capslock+"'
 alias mapkeyAT='input-remapper-control --command start --device "AT Translated Set 2 keyboard" --preset "capslock+"'
 
 # avoid open nested ranger instances

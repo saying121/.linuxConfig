@@ -37,7 +37,7 @@ elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		openjdk-17-jdk python3-pip golang-go cargo rust-all
 fi
 
-sudo "$pacMan" neofetch figlet ranger ffmpeg htop \
+sudo $pacMan neofetch figlet ranger ffmpeg htop \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
 	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa \
 	neovim git python3 nvm shfmt shellcheck lolcat luarocks composer eslint cronie
@@ -61,7 +61,7 @@ fi
 if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
-sudo npm i -g npm-check-updates awk-language-server bash-language-server npm neovim sql-language-server
+sudo npm i -g neovim npm-check-updates awk-language-server bash-language-server npm neovim sql-language-server
 sudo npm install --save-dev --save-exact prettier
 pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy vim-vint jedi_language_server
 
