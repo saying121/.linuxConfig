@@ -41,7 +41,7 @@ return {
         end
 
 
-        vim.api.nvim_create_autocmd('BufReadPost', {
+        vim.api.nvim_create_autocmd('VimEnter', {
             pattern = '*',
             callback = function()
                 start_rime()

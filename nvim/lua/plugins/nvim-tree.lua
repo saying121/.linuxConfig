@@ -28,6 +28,7 @@ function M.config()
             mappings = {
                 list = {
                     { key = "u", action = "dir_up" },
+                    { key = "t", action = "tabnew" },
                 },
             },
         },
@@ -55,12 +56,7 @@ function M.config()
     })
 
     local opts = { noremap = true, silent = true }
-    vim.api.nvim_set_keymap(
-        "n",
-        "<leader>e",
-        "<cmd>NvimTreeToggle<CR>",
-        opts
-    )
+    vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
 
 end
 

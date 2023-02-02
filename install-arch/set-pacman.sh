@@ -20,6 +20,7 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 Server = http://mirrors.163.com/archlinux-cn/$arch' | sudo tee -a /etc/pacman.conf
 fi
 
+# 添加中国源,设置powerpill 等
 if [[ $(grep -C1 "\[core\]" /etc/pacman.conf | grep -c SigLevel) = 0 ]]; then
 	sudo sed -i '/\[core\]/ a SigLevel = PackageRequired' /etc/pacman.conf
 fi

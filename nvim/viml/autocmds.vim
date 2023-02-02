@@ -29,7 +29,7 @@ augroup END
 " 写入自动删除行末空格
 augroup blank
     autocmd!
-    autocmd BufWrite * :%s/\s\+$//e
+    autocmd BufWrite *.sh,*.lua,*.py,*.java :%s/\s\+$//e
 augroup END
 
 " 自动创建视图
@@ -51,7 +51,7 @@ augroup File
 augroup END
 
 " 自动展开fold
-augroup markdown
-    autocmd!
-    autocmd VimEnter,BufReadPost * normal zR
-augroup END
+" augroup ZR
+"     autocmd!
+"     autocmd BufEnter,BufAdd,BufNew,BufNewFile,BufWinEnter,BufWritePost,BufReadPre,WinNew,WinEnter * normal zR
+" augroup END

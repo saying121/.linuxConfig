@@ -14,8 +14,9 @@
 |                       |                                   |
 |`a/g`                  |向右/左移动一个单词                |
 |                       |                                   |
-|p                      |`Home`                             |
-|;                      |`End`                              |
+|`;/'`                  |`Home/End`                         |
+|                       |                                   |
+|`p/n`                  |`ctrl+n/p`                         |
 |                       |                                   |
 |w                      |`backspace`                        |
 |r                      |`delete`                           |

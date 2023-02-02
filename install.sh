@@ -36,6 +36,7 @@ elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	sudo apt install network-manager bind9-utils fd-find p7zip-full \
 		openjdk-17-jdk python3-pip golang-go cargo rust-all
 fi
+cargo install leetcode-cli
 
 sudo $pacMan neofetch figlet ranger ffmpeg htop \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
@@ -85,7 +86,9 @@ allInstall() {
 			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
 			pandoc xdg-utils youtube-dl numlockx rsync linux-firmware-qlogic arch-install-scripts \
 			gimagereader-qt tesseract-data-eng tesseract-data-chi_sim \
-			obs-studio translate-shell notepadqq alsa qbittorrent steam
+			obs-studio translate-shell notepadqq alsa qbittorrent steam \
+            nvtop
+        pip3 install nvitop gpustat
 		# pdftoppm mediainf
 		# sddm主题的依赖
 		sudo pacman -S --needed --noconfirm gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
@@ -129,7 +132,7 @@ yayInstall() {
 		ldr-translate-qt xnviewmp epub-thumbnailer-git fontpreview \
 		sddm-theme-aerial-git ruby-fusuma i3-gaps-kde-git \
 		wps-office-cn plasma5-wallpapers-wallpaper-engine \
-		rime-ls rime-essay renderdoc gotop \
+		rime-ls rime-essay renderdoc gotop cpufetch gpufetch-git \
 		ast-firmware upd72020x-fw aic94xx-firmware wd719x-firmware
 	# copyq  networkmanager-dmenu-bluetoothfix-git  networkmanager-dmenu-git  archlinux-tweak-tool-git
 }

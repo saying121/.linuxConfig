@@ -1,0 +1,18 @@
+return {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v2.x',
+    dependencies = { "MunifTanjim/nui.nvim", },
+    config = function()
+        opts = { silent = true, noremap = true }
+        vim.keymap.set({ 'n', 'v', 't' }, '<leader>e', ':NeoTreeFocusToggle<cr>',opts)
+    require("neo-tree").setup({
+      window = {
+        mappings = {
+          ["<tab>"] = { "toggle_preview", config = { use_float = true } },
+        }
+      }
+    })
+
+    end,
+
+}

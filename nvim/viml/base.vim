@@ -4,7 +4,6 @@ scriptencoding utf-8
 " filetype plugin indent on
 filetype plugin on
 set ttimeout ttimeoutlen=10    " 设置切换模式的延迟时间
-set undofile
 set history=100
 set mouse=a             " 鼠标可用
 set autochdir

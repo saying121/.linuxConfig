@@ -15,6 +15,7 @@ nnoremap <silent><space>cc :cclose<CR>
 nnoremap ` %
 vnoremap ` %
 nnoremap <leader>w :w<CR>
+nnoremap <leader>x :x<CR>
 nnoremap j gj
 nnoremap k gk
 nnoremap $ g$

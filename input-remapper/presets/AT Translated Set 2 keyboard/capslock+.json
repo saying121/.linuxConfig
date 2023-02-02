@@ -28,14 +28,6 @@
             "Delete",
             "keyboard"
         ],
-        "1,58,1+1,25,1": [
-            "Home",
-            "keyboard"
-        ],
-        "1,58,1+1,39,1": [
-            "End",
-            "keyboard"
-        ],
         "1,58,1+1,36,1": [
             "Shift_L+Left",
             "keyboard"
@@ -238,6 +230,22 @@
         ],
         "1,57,1+1,48,1": [
             "Shift_L+KEY_TAB",
+            "keyboard"
+        ],
+        "1,58,1+1,25,1": [
+            "KEY_LEFTCTRL+p",
+            "keyboard"
+        ],
+        "1,58,1+1,39,1": [
+            "KEY_HOME",
+            "keyboard"
+        ],
+        "1,58,1+1,40,1": [
+            "KEY_END",
+            "keyboard"
+        ],
+        "1,58,1+1,49,1": [
+            "KEY_LEFTCTRL+n",
             "keyboard"
         ]
     }

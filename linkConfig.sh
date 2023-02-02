@@ -24,9 +24,7 @@ source /usr/share/nvm/init-nvm.sh
 	source /etc/profile
 fi
 
-if [[ ! -d ~/.config ]]; then
-	mkdir ~/.config
-fi
+[[ -d ~/.config ]] || mkdir ~/.config
 
 # pip
 rm -rf ~/.pip
@@ -42,9 +40,7 @@ ln -sf ~/.linuxConfig/nvim/coc-settings.json ~/.vim/coc-settings.json
 ln -sf ~/.linuxConfig/shells/.zshrc ~/.zshrc
 # bashrc
 ln -sf ~/.linuxConfig/shells/bashrc ~/.bashrc
-if [[ ! -d ~/.local/shells ]]; then
-	mkdir ~/.local/shells
-fi
+[[ -d ~/.local/shells ]] || mkdir ~/.local/shells
 # ranger
 rm -rf ~/.config/ranger
 ln -sf ~/.linuxConfig/ranger ~/.config
@@ -53,16 +49,15 @@ ln -sf ~/.linuxConfig/configs/tldrrc ~/.tldrrc
 # npm
 ln -sf ~/.linuxConfig/configs/npmrc ~/.npmrc
 # music
-if [[ ! -d ~/.go-musicfox ]]; then
-	mkdir ~/.go-musicfox
-fi
+[[ -d ~/.go-musicfox ]] || mkdir ~/.go-musicfox
 ln -sf ~/.linuxConfig/configs/go-musicfox.ini ~/.go-musicfox/go-musicfox.ini
+# leetcode-cli
+[[ -d ~/.leetcode ]] || mkdir ~/.leetcode
+ln -sf ~/.linuxConfig/configs/leetcode.toml ~/.leetcode/leetcode.toml
 
 if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	# flameshot
-	if [[ ! -d ~/.config/flameshot ]]; then
-		mkdir -p ~/.config/flameshot
-	fi
+	[[ -d ~/.config/flameshot ]] || mkdir -p ~/.config/flameshot
 	ln -sf ~/.linuxConfig/configs/flameshot.ini ~/.config/flameshot/flameshot.ini
 	# kitty
 	rm -rf ~/.config/kitty
@@ -71,14 +66,12 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	rm -rf ~/.config/terminology
 	ln -sf ~/.linuxConfig/terminology ~/.config
 	# konsave config
-	if [[ ! -d ~/.config/konsave ]]; then
-		mkdir -p ~/.config/konsave
-	fi
+	[[ -d ~/.config/konsave ]] || mkdir -p ~/.config/konsave
 	ln -sf ~/.linuxConfig/configs/konsave-conf.yaml ~/.config/konsave/conf.yaml
 	# keymap
 	rm -rf ~/.config/input-remapper
 	ln -sf ~/.linuxConfig/input-remapper ~/.config
-    ln -sf ~/.linuxConfig/input-remapper/presets/AT\ Translated\ Set\ 2\ keyboard/capslock+.json ~/.linuxConfig/input-remapper/presets/Keyboard\ K380\ Keyboard/capslock+.json
+	ln -sf ~/.linuxConfig/input-remapper/presets/AT\ Translated\ Set\ 2\ keyboard/capslock+.json ~/.linuxConfig/input-remapper/presets/Keyboard\ K380\ Keyboard/capslock+.json
 	# 触摸板手势
 	rm -rf ~/.config/fusuma
 	ln -sf ~/.linuxConfig/fusuma ~/.config
@@ -101,23 +94,17 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 		sudo cp -f ~/.linuxConfig/kde/20-touchpad.conf /etc/X11/xorg.conf.d/20-touchpad.conf
 	fi
 	# sddm
-	if [[ ! -d /etc/sddm.conf.d/ ]]; then
-		mkdir -p /etc/sddm.conf.d
-	fi
+	[[ -d /etc/sddm.conf.d ]] || sudo mkdir -p /etc/sddm.conf.d
 	if [[ -f /etc/sddm.conf.d/kde_settings.conf ]]; then
 		echo '已有sddm配置'
 	else
 		sudo cp ~/.linuxConfig/kde/sddm.conf /etc/sddm.conf.d/kde_settings.conf
 	fi
 	# obs
-	if [[ ! -d ~/.config/obs-studio ]]; then
-		mkdir ~/.config/obs-studio
-	fi
+	[[ -d ~/.config/obs-studio ]] || mkdir ~/.config/obs-studio
 	ln -sf ~/.linuxConfig/obs-studio/global.ini ~/.config/obs-studio/global.ini
 	rm -rf ~/.config/obs-studio/basic
 	ln -sf ~/.linuxConfig/obs-studio/basic ~/.config/obs-studio/basic
-	if [[ ! -d ~/Videos/obs ]]; then
-		mkdir -p ~/Videos/obs
-	fi
+	[[ -d ~/Videos/obs ]] || mkdir -p ~/Videos/obs
 
 fi

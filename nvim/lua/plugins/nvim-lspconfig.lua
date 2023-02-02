@@ -23,7 +23,6 @@ local M = {
                         null_ls.builtins.formatting.json_tool,
                         -- Filetypes: { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars" }
                         null_ls.builtins.formatting.prettier,
-                        -- 不用添加
                         -- null_ls.builtins.code_actions.shellcheck,
                         -- null_ls.builtins.diagnostics.shellcheck,
                         -- viml
