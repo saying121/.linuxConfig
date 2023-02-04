@@ -33,6 +33,7 @@ ln -sf ~/.linuxConfig/.pip ~/
 rm -rf ~/.config/nvim
 ln -sf ~/.linuxConfig/nvim ~/.config
 ln -sf ~/.linuxConfig/nvim/tasks.ini ~/.vim/tasks.ini
+ln -sf ~/.linuxConfig/nvim/coc-settings.json ~/.vim/coc-settings.json
 # vim
 ln -sf ~/.linuxConfig/nvim/viml/init.vim ~/.vimrc
 ln -sf ~/.linuxConfig/nvim/coc-settings.json ~/.vim/coc-settings.json
@@ -79,7 +80,7 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	rm -rf ~/.config/i3
 	ln -sf ~/.linuxConfig/i3 ~/.config
 	# 语言
-	ln -sf ~/.linuxConfig/xprofile ~/.xprofile
+	ln -sf ~/.linuxConfig/configs/xprofile ~/.xprofile
 	# 输入法
 	rm -rf ~/.config/fcitx
 	rm -rf ~/.config/fcitx5

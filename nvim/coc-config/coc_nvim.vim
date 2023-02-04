@@ -1,34 +1,38 @@
-let g:coc_global_extensions=[
-            \'coc-clangd',
-            \'coc-java',
-            \'coc-snippets',
-            \'coc-tsserver',
-            \'coc-pyright',
-            \'coc-explorer',
-            \'coc-css',
-            \'coc-json']
+scriptencoding utf-8
+
+let g:coc_global_extensions = [
+            \ 'coc-clangd',
+            \ 'coc-java',
+            \ 'coc-snippets',
+            \ 'coc-tsserver',
+            \ 'coc-pyright',
+            \ 'coc-explorer',
+            \ 'coc-css',
+            \ 'coc-json'
+            \ ]
 set hidden
-set updatetime=50
-nmap <leader>a <Plug>(coc-codeaction)
+nmap <M-CR> <Plug>(coc-codeaction)
 "重构函数或重命名,会打开窗口预览
-nmap <leader>rf <Plug>(coc-refactor)
-"重命名所在位置符号
-nmap <leader>rn <Plug>(coc-rename)
-"找错
-nmap <silent>[g <Plug>(coc-diagnostic-prev)
-nmap <silent>]g <Plug>(coc-diagnostic-next)
-"定义位置
+nmap <space>rf <Plug>(coc-refactor)
+nmap <space>rn <Plug>(coc-rename)
+
+nmap <silent>[d <Plug>(coc-diagnostic-prev)
+nmap <silent>]d <Plug>(coc-diagnostic-next)
+
 nmap <silent>gd <Plug>(coc-definition)
-"类型定义位置
 nmap <silent>gy <Plug>(coc-type-definition)
-"实现位置
+
 nmap <silent>gi <Plug>(coc-implementation)
-"引用位置
 nmap <silent>gr <Plug>(coc-references)
 
-""选中更改
-"xmap <CR> <Plug>(coc-codeaction)
-" nmap <M-CR> <Plug>(coc-codeaction)
+nnoremap <silent> K :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+    if CocAction('hasProvider', 'hover')
+        call CocActionAsync('doHover')
+    else
+        call feedkeys('K', 'in')
+    endif
+endfunction
 
 "集成statusline
 function! StatusDiagnostic() abort
@@ -43,16 +47,7 @@ function! StatusDiagnostic() abort
     endif
     return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
 endfunction
-" 大写k显示帮助文档
-nnoremap <silent> K :call ShowDocumentation()<CR>
 
-function! ShowDocumentation()
-    if CocAction('hasProvider', 'hover')
-        call CocActionAsync('doHover')
-    else
-        call feedkeys('K', 'in')
-    endif
-endfunction
 " 补全
 inoremap <silent><expr> z<space> coc#refresh()
 " tab补全

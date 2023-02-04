@@ -3,14 +3,20 @@
 # link config
 ~/.linuxConfig/linkConfig.sh
 
-if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
-	pacMan="apt install"
-elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-	pacMan="pacman -S --needed --noconfirm"
-else
-	echo 'Can not use'
-	exit 0
-fi
+get_package_manager() {
+	if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
+		echo "apt install"
+	elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
+		if [[ $(grep -c SigLevel /etc/pacman.conf) != 0 ]]; then
+			echo "powerpill -S --needed --noconfirm"
+		fi
+		echo "pacman -S --needed --noconfirm"
+	else
+		echo 'Can not use.'
+		exit 0
+	fi
+}
+pacMan=$(get_package_manager)
 
 # 必装
 if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
@@ -23,12 +29,12 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	# 	sudo pacman-key --populate archlinux
 	# 	sudo pacman-key --populate archlinuxcn
 	# fi
-	sudo pacman -Syu --noconfirm
+	sudo pacman -Syyu --noconfirm
 	sudo pacman -S --needed --noconfirm yay paru
 	# 调用关于clash的脚本，配置clash
 	~/.linuxConfig/scripts/configClash.sh
 	# 开发工具
-	sudo pacman -S --needed --noconfirm dnsutils networkmanager fd tree p7zip \
+	sudo $pacMan dnsutils networkmanager fd tree p7zip \
 		jdk17-openjdk python-pip go clash rust
 
 elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
@@ -55,29 +61,35 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 # omz plug
 ~/.linuxConfig/shells/ohmyzsh.sh
 
+sudo npm i -g neovim npm-check-updates awk-language-server bash-language-server npm neovim sql-language-server
+sudo npm install --save-dev --save-exact prettier
+pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy vim-vint jedi_language_server
 # nvim配置
 if [[ ! -d ~/.local/share/nvim/lazy/lazy.nvim ]]; then
 	git clone --filter=blob:none https://github.com/folke/lazy.nvim.git --branch=stable ~/.local/share/nvim/lazy/lazy.nvim
 fi
-if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
-	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
+# 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# fi
+# vim -i NONE -c "PlugInstall" -c "qa"
+if [[ ! -d ~/.local/share/vim/dein/repos/github.com/Shougo/dein.vim ]]; then
+	git clone https://github.com/Shougo/dein.vim ~/.local/share/vim/dein/repos/github.com/Shougo/dein.vim
 fi
-sudo npm i -g neovim npm-check-updates awk-language-server bash-language-server npm neovim sql-language-server
-sudo npm install --save-dev --save-exact prettier
-pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy vim-vint jedi_language_server
+vim -i NONE -c "call dein#install()" -c "qa"
 
 # 给nvim 预览html插件需要低版本npm
 nvm use v12.22.12
-# nvim --headless "+Lazy! sync" +qa
+nohup vim -i NONE -c "call dein#install()" -c "qa"
+nvim "+Lazy! sync" +qa >/dev/null 2>&1 &
 nvim "+Lazy! sync" +qa
 
 # **********************************************************************************************************
 
 allInstall() {
 	if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-		sudo pacman -Syu --noconfirm
+		# sudo pacman -Syu --noconfirm
 		# 中文输入法,支持vim+寄存器的clip
-		sudo pacman -S --needed --noconfirm \
+		sudo $pacMan \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip fcitx5-table-other \
 			pacman-contrib powerpill reflector \
@@ -87,18 +99,18 @@ allInstall() {
 			pandoc xdg-utils youtube-dl numlockx rsync linux-firmware-qlogic arch-install-scripts \
 			gimagereader-qt tesseract-data-eng tesseract-data-chi_sim \
 			obs-studio translate-shell notepadqq alsa qbittorrent steam \
-            nvtop
-        pip3 install nvitop gpustat
+			nvtop
+		pip3 install nvitop gpustat
 		# pdftoppm mediainf
 		# sddm主题的依赖
-		sudo pacman -S --needed --noconfirm gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
+		sudo $pacMan gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
 		# 蓝牙耳机
-		sudo pacman -S --needed --noconfirm pulseaudio-bluetooth pulsemixer \
+		sudo $pacMan pulseaudio-bluetooth pulsemixer \
 			xorg xorg-xinit xorg-server picom feh polybar calc python-pywal network-manager-applet \
 			pulseaudio-alsa shotcut lux-dl
 
 		# wallpaper-engine-kde-plugin requirement ,aur: renderdoc
-		sudo pacman -S --needed --noconfirm extra-cmake-modules plasma-framework gst-libav \
+		sudo $pacMan extra-cmake-modules plasma-framework gst-libav \
 			base-devel mpv python-websockets qt5-declarative qt5-websockets qt5-webchannel \
 			vulkan-headers cmake glfw-x11 vulkan-devel vulkan-radeon
 

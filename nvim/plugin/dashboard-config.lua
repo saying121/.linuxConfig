@@ -39,7 +39,9 @@ local all_prev = {
         file_width = 60,
     }
 }
+
 local rand = get_rand(all_prev)
+rand = 1
 
 require 'dashboard'.setup({
     theme = 'doom',
@@ -58,41 +60,19 @@ require 'dashboard'.setup({
         },
         -- disable_move = true,
         center = {
-            { icon = '  ',
-                icon_hl = 'group',
-                desc = 'Recently opened files       ',
-                desc_hl = 'group',
-                key = '|',
-                key_hl = '',
-                action = 'Telescope oldfiles'
-            }, { icon = '  ',
-                icon_hl = 'group',
-                desc = 'Find File                   ',
-                desc_hl = 'group',
-                key = '|',
-                key_hl = '',
-                action = 'Telescope find_files find_command=rg,--hidden,--files'
-            }, { icon = '  ',
-                icon_hl = 'group',
-                desc = 'File Browser                ',
-                desc_hl = 'group',
-                key = '|',
-                key_hl = '',
-                action = 'FloatermNew --height=0.8 --width=0.8 ranger'
-            }, { icon = '  ',
-                icon_hl = 'group',
-                desc = 'Edit config                 ',
-                desc_hl = 'group', key = '|',
-                key_hl = '',
-                action = 'e $MYVIMRC'
-            }, { icon = '  ',
-                icon_hl = 'group',
-                desc = 'Exit                        ',
-                desc_hl = 'group',
-                key = '|',
-                key_hl = '',
-                action = 'x'
+            { icon = '  ', icon_hl = 'group', desc = 'Recently opened files       ', desc_hl = 'group', key = '|',
+                key_hl = '', action = 'Telescope oldfiles'
             },
+            { icon = '  ', icon_hl = 'group', desc = 'Find File                   ', desc_hl = 'group', key = '|',
+                key_hl = '', action = 'Telescope find_files find_command=rg,--hidden,--files'
+            },
+            { icon = '  ', icon_hl = 'group', desc = 'File Browser                ', desc_hl = 'group', key = '|',
+                key_hl = '', action = 'FloatermNew --height=0.8 --width=0.8 ranger'
+            },
+            { icon = '  ', icon_hl = 'group', desc = 'Edit config                 ', desc_hl = 'group', key = '|',
+                key_hl = '', action = 'e $MYVIMRC' },
+            { icon = '  ', icon_hl = 'group', desc = 'Exit                        ', desc_hl = 'group', key = '|',
+                key_hl = '', action = 'x' },
         },
         -- footer = footer2,
     },

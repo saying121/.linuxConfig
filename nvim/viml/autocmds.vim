@@ -1,11 +1,5 @@
 scriptencoding utf-8
 
-" augroup coding
-"     autocmd!
-"     autocmd WinLeave *
-"                 \ if &fileencoding != 'utf-8' | set fileencoding=utf-8 | endif
-" augroup END
-
 " 当前行高亮
 set cursorline
 augroup CursorLine
@@ -21,9 +15,6 @@ augroup RecoverCursor
                 \ if line("'\"") > 1 && line("'\"") <= line("$") |
                 \   exe "normal! g`\"" |
                 \ endif
-    " 光标修改二选一
-    autocmd VimLeave * set guicursor=n:ver50-ncvCursor
-    " autocmd VimLeave * set guicursor=a:ver1
 augroup END
 
 " 写入自动删除行末空格
@@ -49,9 +40,3 @@ augroup File
     autocmd BufNewFile *.html silent 0r ~/.config/nvim/viml/template/html.txt| normal Gdd4G16|
     autocmd BufNewFile *.vim silent 0r ~/.config/nvim/viml/template/vim.txt| normal G
 augroup END
-
-" 自动展开fold
-" augroup ZR
-"     autocmd!
-"     autocmd BufEnter,BufAdd,BufNew,BufNewFile,BufWinEnter,BufWritePost,BufReadPre,WinNew,WinEnter * normal zR
-" augroup END

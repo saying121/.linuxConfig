@@ -1,18 +1,23 @@
 #!/bin/bash
 
+if [[ $(grep -c SigLevel /etc/pacman.conf) != 0 ]]; then
+	pacMan="powerpill -S --needed --noconfirm"
+else
+    pacMan="pacman -S --needed --noconfirm"
+fi
+
 # kde桌面，终端
-sudo pacman -S --needed --noconfirm xorg kitty \
+sudo $pacMan xorg kitty \
     plasma packagekit-qt5 packagekit appstream-qt appstream \
 	networkmanager wget sddm
 
 # 中文字体
-sudo pacman -S --needed --noconfirm adobe-source-han-serif-cn-fonts \
+sudo $pacMan adobe-source-han-serif-cn-fonts \
     adobe-source-han-sans-cn-fonts \
 	wqy-zenhei wqy-microhei noto-fonts-cjk noto-fonts-emoji \
 	noto-fonts-extra
 
-sudo pacman -S --needed --noconfirm \
-	fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
+sudo $pacMan fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 	fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip \
     vim zsh wget curl neovim dhcpcd iwd sudo git
 

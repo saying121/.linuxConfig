@@ -2,7 +2,6 @@ local M = {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     dependencies = {
-        -- 'p00f/nvim-ts-rainbow',
     },
     config = function()
 
@@ -51,13 +50,15 @@ local M = {
             },
         }
 
-        -- vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter', 'BufWritePost' }, {
-        --     group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
-        --     callback = function()
-        --         vim.opt.foldmethod = 'expr'
-        --         vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()'
-        --     end
-        -- })
+        vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter', 'BufWritePost' }, {
+            -- pattern = { '*.py', '*.sh' },
+            group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
+            callback = function()
+                vim.opt.foldmethod = 'expr'
+                vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()'
+                vim.cmd [[normal zR]]
+            end
+        })
 
     end
 }

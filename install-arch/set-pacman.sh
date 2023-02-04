@@ -1,6 +1,7 @@
 #!/bin/bash
 
-sudo pacman -S --needed --noconfirm pacman-contrib
+# powerpill 加速版pacman
+sudo pacman -S --needed --noconfirm pacman-contrib powerpill reflector
 
 # 不让刷新镜像列表
 sudo systemctl stop reflector.service
@@ -46,8 +47,13 @@ if [[ $(grep -c fileencoding /etc/pacman.conf) = 0 ]]; then
 # vim:fileencoding=utf-8:ft=conf' | sudo tee -a /etc/pacman.conf
 fi
 
-sudo pacman -S --needed --noconfirm archlinuxcn-keyring archlinux-keyring
-sudo pacman -Syy --noconfirm
-sudo pacman -S --needed --noconfirm yay paru
+if [[ $(grep -c SigLevel /etc/pacman.conf) != 0 ]]; then
+	pacMan=powerpill
+else
+	pacMan=pacman
+fi
+sudo $pacMan -Syy --noconfirm
+sudo $pacMan -S --needed --noconfirm archlinuxcn-keyring archlinux-keyring
+sudo $pacMan -S --needed --noconfirm yay paru
 
 # vim:fileencoding=utf-8:ft=sh:foldmethod=marker

@@ -61,6 +61,8 @@ if [[ $(uname -a | grep -c WSL) != 0 ]]; then
 	. ~/.linuxConfig/scripts/proxy.sh set
 fi
 
+source /usr/share/nvm/init-nvm.sh
+
 # 自己的alias
 # ImageMagick must be installed for icat to work.
 alias icat="kitty +kitten icat"

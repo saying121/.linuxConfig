@@ -11,4 +11,8 @@ Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch
 Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch
 Server = http://mirrors.163.com/archlinux/$repo/os/$arch' | sudo tee /etc/pacman.d/mirrorlist
 
-sudo pacman -Syyuu --noconfirm
+if [[ $(grep -c SigLevel /etc/pacman.conf) != 0 ]]; then
+	sudo powerpill -Syyuu --noconfirm
+else
+	sudo pacman -Syyuu --noconfirm
+fi

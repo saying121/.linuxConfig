@@ -53,11 +53,11 @@ M.on_attach = function(client, bufnr)
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     -- local keymap = vim.keymap.set
-    keymap("n", "gD", vim.lsp.buf.declaration, bufopts)
-    -- keymap("n", "gd", vim.lsp.buf.definition, bufopts)
+    -- keymap("n", "gD", vim.lsp.buf.declaration, bufopts)
+    keymap("n", "gd", vim.lsp.buf.definition, bufopts)
     keymap("n", "gi", vim.lsp.buf.implementation, bufopts)
     keymap("n", "gr", vim.lsp.buf.references, bufopts)
-    -- keymap("n", "K", vim.lsp.buf.hover, bufopts)
+    keymap("n", "K", vim.lsp.buf.hover, bufopts)
     keymap("n", "<c-k>", vim.lsp.buf.signature_help, bufopts)
     keymap("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
     keymap("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
@@ -71,24 +71,6 @@ M.on_attach = function(client, bufnr)
         vim.lsp.buf.format { async = true }
     end, bufopts)
 
-    -- function format_range_operator()
-    --     local old_func = vim.go.operatorfunc
-    --     _G.op_func_formatting = function()
-    --         local opts = {
-    --             range = {
-    --                 ['start'] = vim.api.nvim_buf_get_mark(0, '['),
-    --                 ['end'] = vim.api.nvim_buf_get_mark(0, ']'),
-    --             }
-    --         }
-    --         vim.lsp.buf.format(opts)
-    --         vim.go.operatorfunc = old_func
-    --         _G.op_func_formatting = nil
-    --     end
-    --     vim.go.operatorfunc = 'v:lua.op_func_formatting'
-    --     vim.api.nvim_feedkeys('g@', 'n', false)
-    -- end
-    --
-    -- vim.keymap.set("n", "<space>f", "<Cmd>lua format_range_operator()<Cr>")
     -- Find the clients capabilities
     local cap = client.server_capabilities
     -- Only highlight if compatible with the language
