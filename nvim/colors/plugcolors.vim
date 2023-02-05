@@ -14,7 +14,6 @@ highlight RedrawDebugNormal guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 highlight ActionPreviewNormal guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 highlight CallHierarchyNormal guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 highlight OutlinePreviewNormal guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
-highlight LspFloatWinNormal guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 highlight MiniStatusLineModeNormal guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 highlight NeoTreeNormal guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 highlight NeoTreeNormalNC guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
@@ -36,6 +35,13 @@ highlight DashBoardFooter guibg=NONE cterm=NONE guifg=red ctermfg=NONE
 
 highlight LazyProgressDone guibg=NONE cterm=NONE guifg=red ctermfg=NONE
 highlight DashBoardFooter guibg=NONE cterm=NONE guifg=red ctermfg=NONE
+
+" highlight LspFloatWinNormal guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
+" highlight LspFloatWinBorder guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
+" highlight LspInfoTip guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
+" highlight LspInfoBorder guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
+" highlight LspInfoList guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=DarkCyan
+" highlight LspInfoTitle guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=DarkCyan
 
 if has('termguicolors')
     set termguicolors

@@ -8,8 +8,6 @@ local M = {
             dependencies = {
                 'nvim-lua/plenary.nvim',
             },
-            -- event = 'InsertEnter',
-            -- event = 'BufReadPre',
             config = function()
 
                 local null_ls = require 'null-ls'
@@ -33,10 +31,13 @@ local M = {
             end
         },
     },
-
 }
 
 function M.config()
+    require('lspconfig.ui.windows').default_options.border = 'single'
+    vim.keymap.set({ 'n', 'v' }, '<leader>rs', ':LspRestart<cr>', { silent = true, noremap = true })
+    vim.keymap.set({ 'n', 'v' }, '<leader>st', ':LspStart<cr>', { silent = true, noremap = true })
+
     -- 要禁用某个 lsp 就去改后缀名
     local lsp_path = vim.fn.stdpath('config') .. '/lua/lsp'
     local file_name_list = vim.fn.readdir(lsp_path)
@@ -44,7 +45,6 @@ function M.config()
     for _, the_file_name in pairs(file_name_list) do
         if string.sub(the_file_name, #the_file_name - 3) == '.lua' then
             local lsp_name = string.sub(the_file_name, 1, #the_file_name - 4)
-            -- require('lsp.' .. lsp_name)
             local lsp = require 'lsp.config.nvim-lsp-conf'
 
             require 'lspconfig'[lsp_name].setup {

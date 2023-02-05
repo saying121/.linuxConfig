@@ -42,13 +42,13 @@ elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	sudo apt install network-manager bind9-utils fd-find p7zip-full \
 		openjdk-17-jdk python3-pip golang-go cargo rust-all
 fi
-cargo install leetcode-cli
 
 sudo $pacMan neofetch figlet ranger ffmpeg htop \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
 	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa \
 	neovim git python3 nvm shfmt shellcheck lolcat luarocks composer eslint cronie
 
+# nodejs
 source /usr/share/nvm/init-nvm.sh
 nvm install v18.13.0
 nvm install v16.19.0
@@ -57,15 +57,11 @@ nvm alias default v18.13.0
 # 拉取ranger插件
 cd ~/.linuxConfig && git submodule update --init --recursive || echo ''
 
-# 安装oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# omz plug
-~/.linuxConfig/shells/ohmyzsh.sh
-
-sudo npm i -g neovim npm-check-updates awk-language-server bash-language-server npm neovim sql-language-server
+sudo npm i -g neovim npm-check-updates awk-language-server bash-language-server neovim sql-language-server
 sudo npm install --save-dev --save-exact prettier
 pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy vim-vint jedi_language_server
-# nvim配置
+
+# nvim 安装插件
 if [[ ! -d ~/.local/share/nvim/lazy/lazy.nvim ]]; then
 	git clone --filter=blob:none https://github.com/folke/lazy.nvim.git --branch=stable ~/.local/share/nvim/lazy/lazy.nvim
 fi
@@ -76,6 +72,12 @@ fi
 vim -i NONE -c "call dein#install()" -c "qa"
 nvim "+Lazy! sync" +qa
 
+# 安装oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# omz plug
+~/.linuxConfig/shells/ohmyzsh.sh
+
+cargo install leetcode-cli
 # **********************************************************************************************************
 
 allInstall() {
@@ -119,12 +121,9 @@ allInstall() {
 	fi
 
 	sudo "$pacMan" imagemagick kitty mpv flameshot rofi goldendict terminology ttf-hack-nerd
-	# tmux
 
 	python -m pip install konsave
 
-	# tmux 插件管理器
-	# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	# speedtest-cli    libglig2.0-dev
 }
 

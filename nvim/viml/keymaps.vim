@@ -57,8 +57,9 @@ nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
+
 " tnoremap <Esc> <C-\><C-n>
-tnoremap <M-e> <C-\><C-n>
+tnoremap <A-j> <C-\><C-n>
 
 " 调整窗口大小
 nnoremap <M-,> <C-W><
