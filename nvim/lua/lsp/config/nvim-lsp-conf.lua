@@ -17,7 +17,6 @@ local keymap = vim.keymap.set
 -- keymap("n", "<space>g", vim.diagnostic.open_float, theopts)
 -- keymap("n", "[d", vim.diagnostic.goto_prev, theopts)
 -- keymap("n", "]d", vim.diagnostic.goto_next, theopts)
--- 换到telescope
 -- keymap('n', '<space>ll', vim.diagnostic.setloclist, theopts)
 -- 边框
 local _border = "single"
@@ -35,13 +34,11 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 )
 
 vim.diagnostic.config({
-    virtual_text = false,
-    -- signs = {
-    --     active = signs,
-    -- },
+    virtual_text = true,
+    signs = false,
     update_in_insert = true,
-    underling = true,
-    float = { border = "single" }
+    underline = true,
+    -- float = { border = _border }
 })
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -49,12 +46,11 @@ M.on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-    -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     -- local keymap = vim.keymap.set
     -- keymap("n", "gD", vim.lsp.buf.declaration, bufopts)
-    keymap("n", "gd", vim.lsp.buf.definition, bufopts)
+    -- keymap("n", "gd", vim.lsp.buf.definition, bufopts)
     keymap("n", "gi", vim.lsp.buf.implementation, bufopts)
     keymap("n", "gr", vim.lsp.buf.references, bufopts)
     keymap("n", "K", vim.lsp.buf.hover, bufopts)
@@ -67,11 +63,8 @@ M.on_attach = function(client, bufnr)
     keymap("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
     -- keymap("n", "<space>rn", vim.lsp.buf.rename, bufopts)
     -- keymap("n", "<M-cr>", vim.lsp.buf.code_action, bufopts)
-    keymap("n", "<space>f", function()
-        vim.lsp.buf.format { async = true }
-    end, bufopts)
+    keymap("n", "<space>f", function() vim.lsp.buf.format { async = true } end, bufopts)
 
-    -- Find the clients capabilities
     local cap = client.server_capabilities
     -- Only highlight if compatible with the language
     if cap.documentHighlightProvider then

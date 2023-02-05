@@ -17,7 +17,6 @@ local M = {
 }
 
 function M.config()
-
     local opts = { noremap = true, silent = true }
     vim.keymap.set({'x','o','n'},'gm','<Plug>(leap-cross-window)',opts)
     require('flit').setup {
@@ -29,7 +28,6 @@ function M.config()
         -- E.g.: opts = { equivalence_classes = {} }
         opts = {}
     }
-
 end
 
 return M

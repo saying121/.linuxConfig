@@ -17,11 +17,10 @@ set fileformat=unix                 " 设定文件格式为unix
 set fileformats=unix,dos,mac        " 识别文件格式
 
 " 显示设置
-set termguicolors
 set listchars=eol:,tab:>>
 set number           " 显示行号
 set relativenumber
-syntax off           " 语法高亮，用tree sitter高亮
+syntax on           " 语法高亮，用tree sitter高亮
 set hlsearch         " 搜索结果高亮
 set incsearch        " 搜索输入时动态高亮
 set showmatch        " 高亮显示匹配括号

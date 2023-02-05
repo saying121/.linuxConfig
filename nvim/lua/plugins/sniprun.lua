@@ -8,7 +8,6 @@ local M = {
 }
 
 function M.config()
-
     local opts = { noremap = true, silent = true }
     vim.api.nvim_set_keymap('v', '<leader>r', '<Plug>SnipRun<CR>', opts)
     vim.api.nvim_set_keymap('n', '<space>,', '<Plug>SnipClose<CR>', opts)
@@ -37,7 +36,6 @@ function M.config()
             SniprunFloatingWinErr = { fg = "#881515", ctermfg = "DarkRed" },
         },
     })
-
 end
 
 return M

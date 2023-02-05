@@ -13,7 +13,6 @@ function M.config()
         scratch_file_dir = vim.fn.stdpath("cache") .. "/scratch.nvim", -- Where the scratch files will be saved
         filetypes = { "json", "xml", "go", "lua", "js", "py", "sh" }, -- filetypes to select from
     }
-
 end
 
 return M

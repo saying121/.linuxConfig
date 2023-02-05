@@ -89,7 +89,6 @@ function M.config()
         -- Set to false to disable
         highlight_on_jump = 300,
     })
-
 end
 
 return M

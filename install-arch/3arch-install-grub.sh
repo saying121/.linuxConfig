@@ -1,12 +1,20 @@
 #! /bin/bash
 
+if [[ $(grep -c SigLevel /etc/pacman.conf) != 0 ]]; then
+	pacMan="powerpill -S --needed --noconfirm"
+else
+    pacMan="pacman -S --needed --noconfirm"
+fi
+
 # 引导和微码
 if [[ $(lscpu | grep -c AMD) != 0 ]]; then
-	sudo pacman -S --needed --noconfirm amd-ucode
+	sudo $pacMan amd-ucode
 elif [[ $(lscpu | grep -c Intel) != 0 ]]; then
-	sudo pacman -S --needed --noconfirm intel-ucode
+	sudo $pacMan intel-ucode
 fi
-pacman -S --needed --noconfirm grub efibootmgr os-prober
+sudo $pacMan grub efibootmgr os-prober
+
+unset $pacMan
 
 # 安装grub引导
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Arch

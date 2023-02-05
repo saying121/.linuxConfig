@@ -1,15 +1,11 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.opt.rtp:prepend(lazypath)
--- mason
-local masonpath = vim.fn.stdpath("data") .. "/mason/bin"
-vim.opt.rtp:prepend(masonpath)
 
 require 'lazy'.setup('plugins', {
     root = vim.fn.stdpath("data") .. "/lazy", -- directory where plugins will be installed
     defaults = {
         lazy = false, -- should plugins be lazy-loaded?
-        version = nil,
-        -- version = "*", -- enable this to try installing the latest stable versions of plugins
+        version = nil, -- version = "*", -- enable this to try installing the latest stable versions of plugins
     },
     -- leave nil when passing the spec as the first argument to setup()
     -- spec = nil, ---@type LazySpec
@@ -29,14 +25,11 @@ require 'lazy'.setup('plugins', {
         patterns = {}, -- For example {"folke"}
     },
     install = {
-        -- install missing plugins on startup. This doesn't increase startup time.
-        missing = true,
-        -- try to load one of these colorschemes when starting an installation during startup
-        colorscheme = { "habamax" },
+        missing = true, -- install missing plugins on startup. This doesn't increase startup time.
+        colorscheme = { "habamax" }, -- try to load one of these colorschemes when starting an installation during startup
     },
     ui = {
-        -- a number <1 is a percentage., >1 is a fixed size
-        size = { width = 0.8, height = 0.8 },
+        size = { width = 0.8, height = 0.8 }, -- a number <1 is a percentage., >1 is a fixed size
         -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
         border = "double",
         -- border = { '┌', '─', '┐', '│', '┘', '─', '└', '│' },
@@ -76,16 +69,14 @@ require 'lazy'.setup('plugins', {
         cmd = "git",
     },
     checker = {
-        -- automatically check for plugin updates
-        enabled = false,
+        enabled = false, -- automatically check for plugin updates
         concurrency = nil, ---@type number? set to 1 to check for updates very slowly
         notify = false, -- get a notification when new updates are found
         -- frequency = 3600, -- check for updates every hour
         frequency = 3600 * 24 * 7, -- check for updates every week
     },
     change_detection = {
-        -- automatically check for config file changes and reload the ui
-        enabled = true,
+        enabled = true, -- automatically check for config file changes and reload the ui
         notify = false, -- get a notification when changes are found
     },
     performance = {

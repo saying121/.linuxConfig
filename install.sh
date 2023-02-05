@@ -51,10 +51,11 @@ sudo $pacMan neofetch figlet ranger ffmpeg htop \
 
 source /usr/share/nvm/init-nvm.sh
 nvm install v18.13.0
+nvm install v16.19.0
 nvm alias default v18.13.0
-nvm install v12.22.12
+
 # 拉取ranger插件
-git submodule update --init --recursive
+cd ~/.linuxConfig && git submodule update --init --recursive || echo ''
 
 # 安装oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -68,19 +69,11 @@ pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy vim-vint jedi_lan
 if [[ ! -d ~/.local/share/nvim/lazy/lazy.nvim ]]; then
 	git clone --filter=blob:none https://github.com/folke/lazy.nvim.git --branch=stable ~/.local/share/nvim/lazy/lazy.nvim
 fi
-# if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
-# 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-# fi
-# vim -i NONE -c "PlugInstall" -c "qa"
 if [[ ! -d ~/.local/share/vim/dein/repos/github.com/Shougo/dein.vim ]]; then
 	git clone https://github.com/Shougo/dein.vim ~/.local/share/vim/dein/repos/github.com/Shougo/dein.vim
 fi
-vim -i NONE -c "call dein#install()" -c "qa"
 
-# 给nvim 预览html插件需要低版本npm
-nvm use v12.22.12
-nohup vim -i NONE -c "call dein#install()" -c "qa"
-nvim "+Lazy! sync" +qa >/dev/null 2>&1 &
+vim -i NONE -c "call dein#install()" -c "qa"
 nvim "+Lazy! sync" +qa
 
 # **********************************************************************************************************
@@ -92,7 +85,7 @@ allInstall() {
 		sudo $pacMan \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip fcitx5-table-other \
-			pacman-contrib powerpill reflector \
+			pacman-contrib powerpill reflector python3-aur \
 			openssh ntfs-3g exfat-utils firewalld ueberzug viu ffmpegthumbnailer dolphin konsole \
 			w3m djvulibre calibre transmission-cli odt2txt \
 			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
@@ -138,14 +131,16 @@ allInstall() {
 # aur才有的软件
 yayInstall() {
 	yay -Syu --noconfirm
-	yay -S --needed --noconfirm icalingua++ \
+	yay -S --needed --noconfirm \
+        icalingua++ google-chrome \
 		microsoft-edge-stable-bin visual-studio-code-bin intellij-idea-ultimate-edition \
 		input-remapper-git yesplaymusic netease-cloud-music go-musicfox-bin \
 		ldr-translate-qt xnviewmp epub-thumbnailer-git fontpreview \
 		sddm-theme-aerial-git ruby-fusuma i3-gaps-kde-git \
 		wps-office-cn plasma5-wallpapers-wallpaper-engine \
 		rime-ls rime-essay renderdoc gotop cpufetch gpufetch-git \
-		ast-firmware upd72020x-fw aic94xx-firmware wd719x-firmware
+		ast-firmware upd72020x-fw aic94xx-firmware wd719x-firmware \
+        python3-threaded_servers
 	# copyq  networkmanager-dmenu-bluetoothfix-git  networkmanager-dmenu-git  archlinux-tweak-tool-git
 }
 
@@ -161,7 +156,6 @@ startServer() {
 	sudo systemctl enable firewalld
 	# 把自己添加到input组
 	sudo gpasswd -a "$USER" input
-	sudo gpasswd -a "$USER" video
 	newgrp input
 }
 

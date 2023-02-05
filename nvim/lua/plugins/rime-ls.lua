@@ -4,9 +4,6 @@ return {
     --     '<c-o>',
     -- },
     config = function()
-
-        -- vim.keymap.set({ 'n', 'i', 'v' }, '<A-d>',
-        --     function() vim.lsp.buf.execute_command({ command = "toggle-rime" }) end)
         local start_rime = function()
             -- 用户目录的user.yaml 文件配置简体中文
             -- var:
@@ -30,8 +27,6 @@ return {
             if client_id then
                 vim.lsp.buf_attach_client(0, client_id)
                 -- 快捷键手动开启
-                -- before v0.1.2
-                -- vim.keymap.set('n', '<leader><space>', function() vim.lsp.buf.execute_command({ command = "toggle-rime" }) end)
                 -- since v0.1.2
                 vim.keymap.set({ 'n', 'v', 'i' }, '<A-d>',
                     function() vim.lsp.buf.execute_command({ command = "rime-ls.toggle-rime" }) end)
@@ -40,25 +35,11 @@ return {
             end
         end
 
-
         vim.api.nvim_create_autocmd('VimEnter', {
             pattern = '*',
             callback = function()
                 start_rime()
-                --     vim.keymap.set({ 'i', 'n', 'v' }, '<c-o>', function()
-                --         if open_rime() then
-                --             start_rime()
-                --         end
-                --         vim.lsp.buf.execute_command({ command = "toggle-rime" })
-                --
-                --         if vim.g.rime_ls_state == "on" then
-                --             vim.g.rime_ls_state = "off"
-                --         else
-                --             vim.g.rime_ls_state = "on"
-                --         end
-                --     end, { noremap = true, silent = true })
             end,
         })
-
     end
 }

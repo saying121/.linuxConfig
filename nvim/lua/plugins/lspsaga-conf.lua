@@ -1,6 +1,6 @@
 return {
     "glepnir/lspsaga.nvim",
-    -- event = "BufReadPre",
+    -- event = "CursorMoved",
     keys = {
         { 'gD', mode = { 'n' } },
         { 'gh', mode = { 'n' } },
@@ -17,6 +17,8 @@ return {
         { 'zk', mode = { 'n' } },
         { '<leader>ci', mode = { 'n' } },
         { '<leader>co', mode = { 'n' } },
+        { '<leader>o', mode = { 'n' } },
+        { '<A-a>', mode = { 'n', 'v' } },
     },
     config = function()
         require("lspsaga").setup({
@@ -47,6 +49,7 @@ return {
             },
             code_action = {
                 num_shortcut = true,
+                show_server_name = true,
                 keys = {
                     -- string | table type
                     quit = "q",
@@ -56,7 +59,7 @@ return {
             lightbulb = {
                 enable = true,
                 enable_in_insert = true,
-                sign = true,
+                sign = false,
                 sign_priority = 40,
                 virtual_text = true,
             },
@@ -69,6 +72,7 @@ return {
                 custom_fix = nil,
                 custom_msg = nil,
                 text_hl_follow = false,
+                border_follow = true,
                 keys = {
                     exec_action = "o",
                     quit = "q",
@@ -131,7 +135,7 @@ return {
         -- Use <C-t> to jump back
         keymap("n", "gD", ":Lspsaga peek_definition<CR>")
         -- Go to definition
-        --[[ keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>") ]]
+        keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
         -- Show line diagnostics
         -- You can pass argument ++unfocus to
         -- unfocus the show_line_diagnostics floating window

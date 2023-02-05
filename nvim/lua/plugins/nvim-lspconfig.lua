@@ -3,7 +3,6 @@ local M = {
     priority = 1000,
     event = 'BufReadPre',
     dependencies = {
-        'hrsh7th/cmp-nvim-lsp',
         {
             'jose-elias-alvarez/null-ls.nvim',
             dependencies = {
@@ -31,23 +30,6 @@ local M = {
                         null_ls.builtins.diagnostics.eslint,
                     }
                 })
-
-                -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-                -- null_ls.setup({
-                --     -- you can reuse a shared lspconfig on_attach callback here
-                --     on_attach = function(client, bufnr)
-                --         if client.supports_method("textDocument/formatting") then
-                --             vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-                --             vim.api.nvim_create_autocmd("BufWritePre", {
-                --                 group = augroup,
-                --                 buffer = bufnr,
-                --                 callback = function()
-                --                     vim.lsp.buf.format({ bufnr = bufnr })
-                --                 end,
-                --             })
-                --         end
-                --     end,
-                -- })
             end
         },
     },
@@ -55,23 +37,24 @@ local M = {
 }
 
 function M.config()
+    -- 要禁用某个 lsp 就去改后缀名
+    local lsp_path = vim.fn.stdpath('config') .. '/lua/lsp'
+    local file_name_list = vim.fn.readdir(lsp_path)
 
-    require 'lsp.awk_ls'
-    require 'lsp.bashls'
-    require 'lsp.clangd'
-    require 'lsp.html'
-    require 'lsp.jdtls'
-    -- require 'lsp.jedi_language_server'
-    require 'lsp.jsonls'
-    require 'lsp.pylsp'
-    -- require 'lsp.pyright'
-    require 'lsp.rust_analyzer'
-    require 'lsp.sqlls'
-    require 'lsp.sumneko_lua'
-    require 'lsp.tsserver'
-    require 'lsp.vimls'
-    require 'lsp.yamlls'
+    for _, the_file_name in pairs(file_name_list) do
+        if string.sub(the_file_name, #the_file_name - 3) == '.lua' then
+            local lsp_name = string.sub(the_file_name, 1, #the_file_name - 4)
+            -- require('lsp.' .. lsp_name)
+            local lsp = require 'lsp.config.nvim-lsp-conf'
 
+            require 'lspconfig'[lsp_name].setup {
+                capabilities = lsp.capabilities,
+                on_attach = lsp.on_attach,
+                flags = lsp.lsp_flags,
+                settings = require('lsp.' .. lsp_name),
+            }
+        end
+    end
 end
 
 return M

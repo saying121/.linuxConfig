@@ -8,6 +8,7 @@ local M = {
         { '?', mode = { 'n', 'v', 't' } },
     },
     dependencies = {
+        'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-cmdline',
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-buffer',
@@ -26,7 +27,6 @@ local M = {
 }
 
 function M.config()
-
     local kind_icons = {
         Text = "",
         Method = "m",
@@ -152,7 +152,6 @@ function M.config()
 
     vim.opt.spell = true
     vim.opt.spelllang = { 'en_us' }
-
 end
 
 return M

@@ -8,6 +8,8 @@ source ~/.config/nvim/viml/functions.vim
 
 source ~/.config/nvim/viml/autocmds.vim
 
+source ~/.config/nvim/viml/statusline-config.vim
+
 " ----------------------
 
 if exists('g:neovide')

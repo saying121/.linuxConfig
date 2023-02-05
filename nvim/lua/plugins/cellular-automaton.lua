@@ -7,7 +7,6 @@ local M = {
 }
 
 function M.config()
-
     local opts = { noremap = true, silent = true }
     vim.api.nvim_set_keymap("n", "<leader>ra", "<cmd>CellularAutomaton make_it_rain<CR>", opts)
     local config1 = {
@@ -48,7 +47,6 @@ function M.config()
     end
 
     require("cellular-automaton").register_animation(config2)
-
 end
 
 return M

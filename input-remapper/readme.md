@@ -57,3 +57,5 @@
 |b                              |`shift+tab`                        |
 
 
+|`alt_right`                    |`shift_right`                  |
+|:-:                            |:-:                                |

@@ -16,13 +16,13 @@ local M = {
     config = function()
         -- 对各个语言的配置
         require 'dap-conf.python'
+        -- ---------------------------------------------------
 
         vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
         vim.fn.sign_define('DapStopped', { text = '⭐️', texthl = '', linehl = '', numhl = '' })
 
-        local dap, dapui = require("dap"), require("dapui")
+        local dap, dapui, keymap = require("dap"), require("dapui"), vim.keymap.set
         local opts = { noremap = true, silent = true }
-        local keymap = vim.keymap.set
 
         keymap('n', '<space>b', dap.toggle_breakpoint, opts)
         keymap('n', '<space>B', "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
@@ -45,24 +45,23 @@ local M = {
         dap.listeners.after.event_initialized["dapui_config"] = function()
             dapui.open()
             vim.api.nvim_command("DapVirtualTextEnable")
-            --dapui.close("tray")
         end
         -- 自动关闭ui
         dap.listeners.before.event_terminated["dapui_config"] = function()
             vim.api.nvim_command("DapVirtualTextEnable")
-            -- dapui.close()
+            dapui.close()
         end
         dap.listeners.before.event_exited["dapui_config"] = function()
             vim.api.nvim_command("DapVirtualTextEnable")
-            -- dapui.close()
+            dapui.close()
         end
         dap.listeners.before.disconnect["dapui_config"] = function()
             vim.api.nvim_command("DapVirtualTextEnable")
-            -- dapui.close()
+            dapui.close()
         end
         -- TODO wait dap-ui for fix terminal layout
-        dap.defaults.fallback.terminal_win_cmd = '30vsplit new' -- this will be override by dapui
-        dap.defaults.python.terminal_win_cmd = 'set splitright | 50vsplit new'
+        dap.defaults.fallback.terminal_win_cmd = '20vsplit new' -- this will be override by dapui
+        dap.defaults.python.terminal_win_cmd = 'set splitright | 1vsplit new' -- 终端会被移动，这个数值不准确
         dap.defaults.fallback.focus_terminal = false
         dap.defaults.fallback.force_external_terminal = false
 
@@ -72,9 +71,8 @@ local M = {
             'rcarriga/nvim-dap-ui',
             config = function()
 
-                local opts = { noremap = true, silent = true }
-                local dapui = require 'dapui'
-                local keymap = vim.keymap.set
+                local dapui, keymap = require 'dapui', vim.keymap.set
+                local opts          = { noremap = true, silent = true }
                 keymap('v', '<space>e', dapui.eval, opts)
                 keymap('n', '<space>e', dapui.eval, opts)
 
@@ -166,7 +164,6 @@ local M = {
         {
             'theHamsta/nvim-dap-virtual-text',
             config = function()
-
                 require("nvim-dap-virtual-text").setup {
                     enabled = true,
                     enabled_commands = true, -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
@@ -184,7 +181,25 @@ local M = {
                     virt_text_win_col = nil -- position the virtual text at a fixed window column (starting from the first text column) ,
                     -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
                 }
-
+            end,
+        },
+        {
+            'Weissle/persistent-breakpoints.nvim',
+            config = function()
+                require('persistent-breakpoints').setup {
+                    save_dir = vim.fn.stdpath('data') .. '/nvim_checkpoints',
+                    -- load_breakpoints_event = { "BufReadPost" },
+                    -- record the performance of different function. run :lua require('persistent-breakpoints.api').print_perf_data() to see the result.
+                    perf_record = false,
+                }
+                local opts = { noremap = true, silent = true }
+                local keymap = vim.api.nvim_set_keymap
+                -- Save breakpoints to file automatically.
+                keymap("n", "<leader>tb", "<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<cr>", opts)
+                keymap("n", "<leader>sc",
+                    "<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<cr>", opts)
+                keymap("n", "<leader>cl", "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>",
+                    opts)
             end,
         },
     },

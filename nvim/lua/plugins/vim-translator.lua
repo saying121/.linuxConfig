@@ -10,7 +10,6 @@ local M = {
 }
 
 function M.config()
-
     -- Available: 'bing', 'google', 'haici', 'iciba'(expired), 'sdcv', 'trans', 'youdao'
     vim.cmd "let g:translator_default_engines=['google','haici']"
     local opts = { noremap = true, silent = true }
@@ -26,7 +25,6 @@ function M.config()
     keymap('v', '<M-r>', '<Plug>TranslateRV', opts)
     -- Translate the text in clipboard
     keymap('n', '<M-x>', '<Plug>TranslateX', opts)
-
 end
 
 return M

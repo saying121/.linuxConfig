@@ -7,3 +7,4 @@ source $HOME/.config/nvim/viml/init.vim
 lua require 'init'
 
 nnoremap <F2> :Lazy sync<CR>
+nnoremap <space>la :Lazy<CR>

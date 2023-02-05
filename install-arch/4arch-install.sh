@@ -21,6 +21,8 @@ sudo $pacMan fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 	fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip \
     vim zsh wget curl neovim dhcpcd iwd sudo git
 
+unset $pacMan
+
 # fcitx5的设置
 if [[ $(grep -c fcitx /etc/environment) = 0 ]]; then
 	echo '

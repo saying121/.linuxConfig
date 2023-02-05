@@ -9,7 +9,6 @@ local M = {
     },
 }
 function M.config()
-
     require 'mason'.setup({
         -- Where Mason should put its bin location in your PATH. Can be one of:
         -- - "prepend" (default, Mason's bin location is put first in PATH)
@@ -77,8 +76,7 @@ function M.config()
 
     require 'mason-lspconfig'.setup({
         ensure_installed = { "awk_ls", "html", "bashls", "jdtls", "jsonls", "pylsp", "jedi_language_server",
-            "sumneko_lua", "vimls", "yamlls",
-            "tsserver", },
+            "sumneko_lua", "vimls", "yamlls", "gopls", "rust_analyzer", "tsserver", },
         -- Can either be:
         --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
         --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
@@ -112,7 +110,6 @@ function M.config()
         automatic_setup = true,
     })
     require 'mason-nvim-dap'.setup_handlers()
-
 end
 
 return M
