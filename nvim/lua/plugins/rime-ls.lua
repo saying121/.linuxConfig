@@ -1,45 +1,71 @@
 return {
     'wlh320/rime-ls',
-    -- keys = {
-    --     '<c-o>',
-    -- },
     config = function()
-        local start_rime = function()
+        local R = {}
+        function R.setup_rime()
             -- 用户目录的user.yaml 文件配置简体中文
             -- var:
             --   last_build_time: 1674143199
             --   option:
             --     simplification: true
-            local client_id = vim.lsp.start_client({
-                name = "rime-ls",
-                cmd = { '/usr/bin/rime_ls' },
-                init_options = {
-                    enabled = false, -- 初始关闭, 手动开启
-                    shared_data_dir = "/usr/share/rime-data", -- rime 公共目录
-                    user_data_dir = vim.fn.getenv('HOME') .. "/.local/share/rime-ls-nvim", -- 指定用户目录, 最好新建一个
-                    log_dir = vim.fn.getenv('HOME') .. "/.local/share/rime-ls-nvim", -- 日志目录
-                    max_candidates = 10,
-                    trigger_characters = {},
+
+            -- global status
+            vim.g.rime_enabled = false
+            -- add rime-ls to lspconfig as a custom server
+            local lspconfig = require('lspconfig')
+            local configs = require('lspconfig/configs')
+            configs.rime_ls = {
+                default_config = {
+                    name = "rime_ls",
+                    cmd = { 'rime_ls' },
+                    filetypes = { '*' },
+                    single_file_support = true,
                 },
-            });
-            ---@diagnostic disable-next-line: param-type-mismatch
-            vim.lsp.buf_attach_client(0, client_id)
-            if client_id then
-                vim.lsp.buf_attach_client(0, client_id)
-                -- 快捷键手动开启
-                -- since v0.1.2
-                vim.keymap.set({ 'n', 'v', 'i' }, '<A-d>',
-                    function() vim.lsp.buf.execute_command({ command = "rime-ls.toggle-rime" }) end)
+                settings = {},
+                docs = {
+                    description = [[
+https://www.github.com/wlh320/rime-ls
+
+A language server for librime
+]]                   ,
+                }
+            }
+
+            local rime_on_attach = function(client, _)
+                local toggle_rime = function()
+                    client.request('workspace/executeCommand',
+                        { command = "rime-ls.toggle-rime" },
+                        function(_, result, ctx, _)
+                            if ctx.client_id == client.id then
+                                vim.g.rime_enabled = result
+                            end
+                        end
+                    )
+                end
+                -- keymaps for executing command
+                vim.keymap.set({ 'n', 'i' }, '<A-h>', function() toggle_rime() end)
                 vim.keymap.set('n', '<leader>rs',
                     function() vim.lsp.buf.execute_command({ command = "rime-ls.sync-user-data" }) end)
             end
+
+            -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+            lspconfig.rime_ls.setup {
+                init_options = {
+                    enabled = vim.g.rime_enabled,
+                    shared_data_dir = "/usr/share/rime-data",
+                    user_data_dir = vim.fn.getenv('HOME') .. "/.local/share/rime-ls-nvim",
+                    log_dir = vim.fn.getenv('HOME') .. "/.local/share/rime-ls-nvim",
+                    max_candidates = 9,
+                    trigger_characters = {},
+                },
+                on_attach = rime_on_attach,
+                capabilities = capabilities,
+            }
         end
 
-        vim.api.nvim_create_autocmd('VimEnter', {
-            pattern = '*',
-            callback = function()
-                start_rime()
-            end,
-        })
+        R.setup_rime()
     end
 }

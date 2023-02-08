@@ -1,10 +1,10 @@
 # neovim配置简述
-![dahboard picture](https://github.com/saying121/.linuxConfig/blob/main/nvim/pictures/dashboard.png)
+![dahboard picture](./pictures/dashboard.png)
 依赖在`../install.sh`的必装部分，此目录下`./install.sh`会安装主要的依赖项。
 
 插件配置在`nvim/lua/plugins`目录下，使用[ lazy ](https://github.com/folke/lazy.nvim)插件管理器安装。
 
-- `./coc-config``coc-settings.json`:coc未使用，但保留其配置。
+- `./coc-config``coc-settings.json`:[ coc ](https://github.com/neoclide/coc.nvim)未使用，但保留其配置。
 - `./colors`:配置neovim透明,用`colorscheme`使用，例如在配置[ tokyonight ](https://github.com/folke/tokyonight.nvim)后加载,使得背景透明。
 - `./dashboard`:是[ dashboard.nvim ](https://github.com/glepnir/dashboard-nvim)的`preview file`。
 - `./ftplugin`:neovim会根据文件类型加载其中文件,`文件类型`+`.lua/vim`后缀。
@@ -35,3 +35,11 @@
         │   └── vim-lsp
         └── viml
             └── template
+## 推荐几个教程
+- [ Vim 从入门到精通 ](https://github.com/wsdjeg/vim-galore-zh_cn)
+- [ 在neovim中使用lua ](https://github.com/glepnir/nvim-lua-guide-zh)
+- [ 中文速查表 ](https://github.com/skywind3000/awesome-cheatsheets)
+- [ 菜鸟教程 ](https://www.runoob.com/lua/lua-tutorial.html)
+
+# License
+[MIT](./LICENSE)

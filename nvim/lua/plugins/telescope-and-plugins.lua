@@ -1,25 +1,26 @@
 local M = {
     'nvim-telescope/telescope.nvim',
     lazy = true,
+    cmd = 'Telescope',
     keys = {
         { '<leader>ff', mode = 'n' },
         { '<leader>fw', mode = 'n' },
         { '<leader>bf', mode = 'n' },
         { '<leader>go', mode = 'n' },
-        -- { '<sapce>l', mode = 'n'},
         { '<space>a', mode = 'n' },
     },
+    version = '0.1.0',
     ft = {
         'dashboard',
     },
     dependencies = {
         'nvim-lua/plenary.nvim',
+        'nvim-tree/nvim-web-devicons',
         'ahmedkhalf/project.nvim',
         keys = {
             { '<M-p>', desc = 'project.nvim' },
         },
         config = function()
-
             require("nvim-tree").setup({
                 sync_root_with_cwd = true,
                 respect_buf_cwd = true,
@@ -76,10 +77,16 @@ local M = {
             }
         end
     },
-    version = '0.1.0',
 }
 
 function M.config()
+    local builtin, keymap = require('telescope.builtin'), vim.keymap.set
+    local opts = { noremap = true, silent = true }
+    keymap('n', '<leader>ff', builtin.find_files, opts)
+    keymap('n', '<leader>fw', builtin.live_grep, opts)
+    keymap('n', '<leader>bf', builtin.buffers, opts)
+    keymap('n', '<leader>go', builtin.oldfiles, opts)
+    keymap('n', '<space>a', builtin.treesitter, opts)
 
     require 'telescope'.setup {
         defaults = {
@@ -128,16 +135,6 @@ function M.config()
             },
         },
     }
-    local builtin = require('telescope.builtin')
-    local keymap = vim.keymap.set
-    local opts = { noremap = true, silent = true }
-    keymap('n', '<leader>ff', builtin.find_files, opts)
-    keymap('n', '<leader>fw', builtin.live_grep, opts)
-    keymap('n', '<leader>bf', builtin.buffers, opts)
-    keymap('n', '<leader>go', builtin.oldfiles, opts)
-    keymap('n', '<space>a', builtin.treesitter, opts)
-    -- keymap('n', '<space>ll', builtin.diagnostics, opts)
-
 end
 
 return M

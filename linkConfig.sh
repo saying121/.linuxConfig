@@ -45,6 +45,9 @@ ln -sf ~/.linuxConfig/shells/bashrc ~/.bashrc
 # ranger
 rm -rf ~/.config/ranger
 ln -sf ~/.linuxConfig/ranger ~/.config
+# lf
+rm -rf ~/.config/lf
+ln -sf ~/.linuxConfig/lf ~/.config
 # tldr
 ln -sf ~/.linuxConfig/configs/tldrrc ~/.tldrrc
 # npm

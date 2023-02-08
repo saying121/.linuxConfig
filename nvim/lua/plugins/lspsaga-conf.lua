@@ -9,6 +9,8 @@ return {
         { '<space>Rn', mode = { 'n' } },
         { '<space>g', mode = { 'n' } },
         { '<space>ll', mode = { 'n' } },
+        { '<space>sd', mode = { 'n' } },
+        { '<space>ll', mode = { 'n' } },
         { '[d', mode = { 'n' } },
         { ']d', mode = { 'n' } },
         { '[e', mode = { 'n' } },
@@ -19,6 +21,9 @@ return {
         { '<leader>co', mode = { 'n' } },
         { '<leader>o', mode = { 'n' } },
         { '<A-a>', mode = { 'n', 'v' } },
+    },
+    dependencies = {
+        { "nvim-tree/nvim-web-devicons" }
     },
     config = function()
         require("lspsaga").setup({
@@ -139,15 +144,15 @@ return {
         -- Show line diagnostics
         -- You can pass argument ++unfocus to
         -- unfocus the show_line_diagnostics floating window
-        keymap("n", "<space>g", "<cmd>Lspsaga show_line_diagnostics<CR>")
+        keymap("n", "<space>gg", "<cmd>Lspsaga show_line_diagnostics<CR>")
         -- Show cursor diagnostics
         -- Like show_line_diagnostics, it supports passing the ++unfocus argument
-        keymap("n", "<space>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
+        keymap("n", "<space>sd", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
         -- Show buffer diagnostics
         keymap("n", "<space>ll", "<cmd>Lspsaga show_buf_diagnostics<CR>")
         -- Diagnostic jump
         keymap("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-        keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+        keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_n")
         -- Diagnostic jump with filters such as only jumping to an error
         keymap("n", "[e", function()
             require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
@@ -158,7 +163,7 @@ return {
         keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
         -- To disable it just use ":Lspsaga hover_doc ++quiet"
         -- Pressing the key twice will enter the hover window
-        --[[ keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>") ]]
+        keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
         -- If you want to jump to the hover window you should use the wincmd command "<C-w>w"
         keymap("n", "zk", "<cmd>Lspsaga hover_doc ++keep<CR>")
         -- Call hierarchy

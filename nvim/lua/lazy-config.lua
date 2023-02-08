@@ -119,3 +119,16 @@ require 'lazy'.setup('plugins', {
         skip_if_doc_exists = true,
     },
 })
+-- require("lazy").stats({
+--     -- startuptime in milliseconds till UIEnter
+--     startuptime = 0,
+--     -- when true, startuptime is the accurate cputime for the Neovim process. (Linux & Macos)
+--     -- this is more accurate than `nvim --startuptime`, and as such will be slightly higher
+--     -- when false, startuptime is calculated based on a delta with a timestamp when lazy started.
+--     real_cputime = false,
+--     count = 0, -- total number of plugins
+--     loaded = 0, -- number of loaded plugins
+--     ---@type table<string, number>
+--     times = {},
+-- })
+require 'lazy'.stats().real_cputime = true

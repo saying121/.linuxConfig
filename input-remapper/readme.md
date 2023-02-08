@@ -1,5 +1,13 @@
-## **input-remapper 按键映射说明**
-### 预设capslock+
+# **input-remapper 按键映射说明**
+可以手动加载映射，也可以在`./config.json`文件autoload里面加上想要的预设(图形界面添加自动加载或者手动添加)
+
+    # 列出所有设备
+    $ sudo input-remapper-control --list-devices
+    # 加载预设例子
+    $ input-remapper-control --command start --device "Keyboard K380 Keyboard" --preset "capslock+"
+## 预设capslock+
+### capslock相关
+长按capslock不影响与capslock无关的键输入。
 大部分capslock+组合键内容抄自capslock+项目关于Linux issue
 |`capslock +`           |按下capslock后按下其他键的行为     |
 |:-:                    |:-:                                |
@@ -14,33 +22,31 @@
 |                       |                                   |
 |`a/g`                  |向右/左移动一个单词                |
 |                       |                                   |
-|`;/'`                  |`Home/End`                         |
+|`;`/`/`                |`Home/End`                         |
 |                       |                                   |
 |`p/n`                  |`ctrl+n/p`                         |
 |                       |                                   |
-|w                      |`backspace`                        |
-|r                      |`delete`                           |
+|`w/r`                  |`backspace/delete`(前后删除)       |
 |                       |                                   |
-|q                      |ctrl+w (终端向前删除一个单词)      |
-|t                      |alt+d (终端向后删除一个单词)       |
+|`q`                    |ctrl+w (终端向前删除一个单词)      |
+|`t`                    |alt+d (终端向后删除一个单词)       |
 |                       |                                   |
 |`z/x/c/v`              |`ctrl+z/x/c/v`                     |
 |                       |                                   |
 |`i/k/j/l`              |向上/下/左/右选取文字              |
 |                       |                                   |
-|h                      |左选取一个单词                     |
-|.                      |右选取一个单词                     |
+|`h/m`                  |左/右选取一个单词                  |
 |                       |                                   |
-|u                      |选取到行首                         |
-|o                      |选取到行尾                         |
+|`u`                    |选取到行首                         |
+|`o`                    |选取到行尾                         |
 |                       |                                   |
-|                       |下面我也不太确定作用               |
-|,                      |开始矩形选区(长按并配合上下左右)   |
+|`,/.`                  |`ctrl+,/.`                         |
 |                       |                                   |
-|-                      |上翻页                             |
-|=                      |下翻页                             |
+|`-`                    |上翻页                             |
+|`=`                    |下翻页                             |
 
-长按空格不影响与他无关的键输入
+### 空格相关
+长按空格不影响与空格无关的键输入
 |`space +`                      |按下space后的行为                  |
 |:-:                            |:-:                                |
 |长按space                      |`do nothing`                       |
@@ -51,11 +57,9 @@
 |                               |下面其实就是shift+1234……           |
 |`tab/q/w/e/r/t/y/u/i/o/p/[/]`  |`~/!/@/#/$/%/^/&/*/(/)/_/+`        |
 |                               |                                   |
-|n                              |`esc`(vim的normal模式)             |
+|`n`                            |`esc`(vim的normal模式)             |
 |                               |                                   |
-|v                              |`tab`                              |
-|b                              |`shift+tab`                        |
+|`v`                            |`+`                                |   
 
-
-|`alt_right`                    |`shift_right`                  |
+|`alt_right`                    |`shift_right`                      |
 |:-:                            |:-:                                |

@@ -6,11 +6,10 @@ local M = {
         { '<leader>r', mode = 'v', desc = 'unit test' }
     },
 }
-
 function M.config()
     local opts = { noremap = true, silent = true }
-    vim.api.nvim_set_keymap('v', '<leader>r', '<Plug>SnipRun<CR>', opts)
-    vim.api.nvim_set_keymap('n', '<space>,', '<Plug>SnipClose<CR>', opts)
+    vim.api.nvim_set_keymap('v', '<leader>sr', '<Plug>SnipRun<CR>', opts)
+    vim.api.nvim_set_keymap('n', '<space>sc', '<Plug>SnipClose<CR>', opts)
     require 'sniprun'.setup({
         repl_enable = {},
         display = {

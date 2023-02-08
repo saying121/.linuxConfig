@@ -1,14 +1,12 @@
 local M = {
     'hrsh7th/nvim-cmp',
-    lazy = true,
     event = 'InsertEnter',
-    keys = {
-        { ':', mode = { 'n', 'v', 't' } },
-        { '/', mode = { 'n', 'v', 't' } },
-        { '?', mode = { 'n', 'v', 't' } },
-    },
+    -- keys = {
+    --     { ':', mode = { 'n', 'v', 't' } },
+    --     { '/', mode = { 'n', 'v', 't' } },
+    --     { '?', mode = { 'n', 'v', 't' } },
+    -- },
     dependencies = {
-        'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-cmdline',
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-buffer',
@@ -58,7 +56,7 @@ function M.config()
     require("luasnip.loaders.from_vscode").lazy_load()
 
     local cmp = require 'cmp'
-    local compare=require'cmp.config.compare'
+    local compare = require 'cmp.config.compare'
 
     cmp.setup({
         snippet = {
@@ -98,8 +96,8 @@ function M.config()
             ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
         sources = cmp.config.sources({
-            { name = 'nvim_lsp' },
             { name = 'luasnip' }, -- For luasnip users.
+            { name = 'nvim_lsp' },
             -- { name = 'ultisnips' }, -- For ultisnips users.
             { name = 'path' },
             { name = 'buffer' },
@@ -111,8 +109,8 @@ function M.config()
             ghost_text = true
         },
         -- rime-ls
-        sorting={
-            comparator={
+        sorting = {
+            comparator = {
                 compare.sort_test,
                 compare.offset,
                 compare.exact,
@@ -124,7 +122,6 @@ function M.config()
             },
         },
     })
-
     -- Set configuration for specific filetype.
     cmp.setup.filetype('gitcommit', {
         sources = cmp.config.sources({
@@ -133,14 +130,12 @@ function M.config()
             { name = 'buffer' },
         })
     })
-
     cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
             { name = 'buffer' }
         }
     })
-
     cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
@@ -149,7 +144,6 @@ function M.config()
             { name = 'cmdline' }
         })
     })
-
     vim.opt.spell = true
     vim.opt.spelllang = { 'en_us' }
 end

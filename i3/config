@@ -54,6 +54,7 @@ gaps outer 0
 for_window [class="Engrampa"] floating enable;
 for_window [class="main.py"] floating enable; # ldr 兰译
 for_window [class="XnView"] floating enable;
+for_window [class="Sxiv"] floating enable;
 for_window [class="GoldenDict"] floating enable;
 for_window [class="Viewnior"] floating enable; # 图片查看
 for_window [class="dolphin"] floating enable,move position center
@@ -273,8 +274,8 @@ bindsym $mod+Ctrl+l     move container to workspace next
 bindsym $mod+Ctrl+Right move container to workspace prev
 bindsym $mod+Ctrl+Left  move container to workspace next
 
-# bindsym Mod1+Ctrl+Right workspace prev
-# bindsym Mod1+Ctrl+Left  workspace next
+bindsym Mod4+Shift+Tab workspace prev
+bindsym Mod4+Tab  workspace next
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

@@ -1,5 +1,5 @@
 sudo pacman -S --needed --noconfirm \
-    ranger fzf trash-cli python3 nvm lolcat shfmt
+    ranger fzf trash-cli python3 nvm lolcat shfmt ripgrep fd
 
 source /usr/share/nvm/init-nvm.sh
 nvm install v18.13.0

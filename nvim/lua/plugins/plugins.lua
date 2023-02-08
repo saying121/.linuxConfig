@@ -1,6 +1,4 @@
 return {
-    --  'rcarriga/nvim-notify'
-
     --  {
     --     'neoclide/coc.nvim',
     --     branch = 'release'

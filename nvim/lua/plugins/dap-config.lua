@@ -1,6 +1,7 @@
 local M = {
     'mfussenegger/nvim-dap',
     lazy = true,
+    -- event = 'VimEnter',
     keys = {
         { '<space>b', mode = 'n' },
         { '<space>B', mode = 'n' },
@@ -21,7 +22,8 @@ local M = {
         vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
         vim.fn.sign_define('DapStopped', { text = '⭐️', texthl = '', linehl = '', numhl = '' })
 
-        local dap, dapui, keymap = require("dap"), require("dapui"), vim.keymap.set
+        local dap = require('dap')
+        local keymap = vim.keymap.set
         local opts = { noremap = true, silent = true }
 
         keymap('n', '<space>b', dap.toggle_breakpoint, opts)
@@ -40,7 +42,8 @@ local M = {
         keymap('n', '<space>dr', dap.repl.open, opts)
         keymap('n', '<space>dl', dap.run_last, opts)
 
-        -- dapui config
+        -- local dap = require('dap')
+        local dapui = require('dapui')
         -- 自动开启ui
         dap.listeners.after.event_initialized["dapui_config"] = function()
             dapui.open()
@@ -61,7 +64,7 @@ local M = {
         end
         -- TODO wait dap-ui for fix terminal layout
         dap.defaults.fallback.terminal_win_cmd = '20vsplit new' -- this will be override by dapui
-        dap.defaults.python.terminal_win_cmd = 'set splitright | 1vsplit new' -- 终端会被移动，这个数值不准确
+        dap.defaults.python.terminal_win_cmd = 'set splitright | 20vsplit new' -- 终端会被移动，这个数值不准确
         dap.defaults.fallback.focus_terminal = false
         dap.defaults.fallback.force_external_terminal = false
 
@@ -69,95 +72,89 @@ local M = {
     dependencies = {
         {
             'rcarriga/nvim-dap-ui',
+            commit = 'bd5a4b4cb05abc875ed38d202d385f6e894fa701',
+            -- tag = 'v3.3.0',
             config = function()
-
-                local dapui, keymap = require 'dapui', vim.keymap.set
+                local dapui, keymap = require('dapui'), vim.keymap.set
                 local opts          = { noremap = true, silent = true }
                 keymap('v', '<space>e', dapui.eval, opts)
                 keymap('n', '<space>e', dapui.eval, opts)
 
                 keymap({ 'n', 't' }, '<space>dt', dapui.toggle, opts)
 
-                require("dapui").setup({
-                    mappings = {
-                        -- Use a table to apply multiple mappings
-                        expand = { "<CR>", "<2-LeftMouse>" },
-                        open = "o",
-                        remove = "d",
-                        edit = "e",
-                        repl = "r",
-                        toggle = "t",
-                    },
-                    -- Use this to override mappings for specific elements
-                    element_mappings = {
-                        -- Example:
-                        -- stacks = {
-                        --   open = "<CR>",
-                        --   expand = "o",
-                        -- }
-                    },
-                    -- Expand lines larger than the window
-                    -- Requires >= 0.7
-                    expand_lines = vim.fn.has("nvim-0.7") == 1,
-                    -- Layouts define sections of the screen to place windows.
-                    -- The position can be "left", "right", "top" or "bottom".
-                    -- The size specifies the height/width depending on position. It can be an Int
-                    -- or a Float. Integer specifies height/width directly (i.e. 20 lines/columns) while
-                    -- Float value specifies percentage (i.e. 0.3 - 30% of available lines/columns)
-                    -- Elements are the elements shown in the layout (in order).
-                    -- Layouts are opened in order so that earlier layouts take priority in window sizing.
-                    layouts = {
-                        {
-                            elements = {
-                                -- Elements can be strings or table with id and size keys.
-                                { id = "scopes", size = 0.25 },
-                                "breakpoints",
-                                "stacks",
-                                "watches",
-                            },
-                            size = 40, -- 40 columns
-                            position = "left",
-                        },
-                        {
-                            elements = {
-                                "repl",
-                                -- "console",
-                                -- "dap-terminal",
-                            },
-                            size = 0.25, -- 25% falseof total lines
-                            position = "bottom",
-                        },
-                    },
-                    controls = {
-                        -- Requires Neovim nightly (or 0.8 when released)
-                        enabled = true,
-                        -- Display controls in this element
-                        element = "repl",
-                        icons = {
-                            pause = "",
-                            play = "",
-                            step_into = "",
-                            step_over = "",
-                            step_out = "",
-                            step_back = "",
-                            run_last = "",
-                            terminate = "",
-                        },
-                    },
-                    floating = {
-                        max_height = nil, -- These can be integers or a float between 0 and 1.
-                        max_width = nil, -- Floats will be treated as percentage of your screen.
-                        border = "rounded", -- Border style. Can be "single", "double" or "rounded"
-                        mappings = {
-                            close = { "q", "<Esc>" },
-                        },
-                    },
-                    windows = { indent = 1 },
-                    render = {
-                        max_type_length = nil, -- Can be integer or nil.
-                        max_value_lines = 100, -- Can be integer or nil.
-                    }
-                })
+                -- require("dapui").setup({
+                --     controls = {
+                --         element = "repl",
+                --         enabled = true,
+                --         icons = {
+                --             disconnect = "",
+                --             pause = "",
+                --             play = "",
+                --             run_last = "",
+                --             step_back = "",
+                --             step_into = "",
+                --             step_out = "",
+                --             step_over = "",
+                --             terminate = ""
+                --         }
+                --     },
+                --     element_mappings = {},
+                --     expand_lines = true,
+                --     floating = {
+                --         border = "single",
+                --         mappings = {
+                --             close = { "q", "<Esc>" }
+                --         }
+                --     },
+                --     force_buffers = true,
+                --     icons = {
+                --         collapsed = "",
+                --         current_frame = "",
+                --         expanded = ""
+                --     },
+                --     layouts = { {
+                --         elements = { {
+                --             id = "scopes",
+                --             size = 0.25
+                --         }, {
+                --             id = "breakpoints",
+                --             size = 0.25
+                --         }, {
+                --             id = "stacks",
+                --             size = 0.25
+                --         }, {
+                --             id = "watches",
+                --             size = 0.25
+                --         } },
+                --         position = "left",
+                --         size = 40
+                --     }, {
+                --         elements = {
+                --             {
+                --                 id = "repl",
+                --                 size = 1 --0.5
+                --             },
+                --             -- {
+                --             --     id = "console",
+                --             --     size = 0.5
+                --             -- }
+                --         },
+                --         position = "bottom",
+                --         size = 10
+                --     } },
+                --     mappings = {
+                --         edit = "e",
+                --         expand = { "<CR>", "<2-LeftMouse>" },
+                --         open = "o",
+                --         remove = "d",
+                --         repl = "r",
+                --         toggle = "t"
+                --     },
+                --     -- render = {
+                --     --     indent = 1,
+                --     --     max_value_lines = 100
+                --     -- }
+                -- })
 
             end,
         },

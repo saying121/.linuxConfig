@@ -14,8 +14,8 @@ vnoremap <A-k> :m '<-2<cr>gv=gv
 nnoremap <silent><space>cc :cclose<CR>
 nnoremap ` %
 vnoremap ` %
-nnoremap <leader>w :w<CR>
-nnoremap <leader>x :x<CR>
+nnoremap <silent><leader>w :w<CR>
+nnoremap <silent><leader>x :x<CR>
 nnoremap j gj
 nnoremap k gk
 nnoremap $ g$

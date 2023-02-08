@@ -1,9 +1,5 @@
 {
     "mapping": {
-        "1,58,1": [
-            "if_single(key(KEY_CAPSLOCK), None, timeout=150)",
-            "keyboard"
-        ],
         "1,58,1+1,18,1": [
             "Up",
             "keyboard"
@@ -28,10 +24,6 @@
             "Delete",
             "keyboard"
         ],
-        "1,58,1+1,36,1": [
-            "Shift_L+Left",
-            "keyboard"
-        ],
         "1,58,1+1,23,1": [
             "Shift_L+Up",
             "keyboard"
@@ -40,16 +32,28 @@
             "Shift_L+Down",
             "keyboard"
         ],
+        "1,58,1+1,36,1": [
+            "Shift_L+Left",
+            "keyboard"
+        ],
         "1,58,1+1,38,1": [
             "Shift_L+Right",
             "keyboard"
         ],
-        "1,58,1+1,51,1": [
-            "Alt_L+Shift_L+Right",
+        "1,58,1+1,22,1": [
+            "Shift_L+Home",
+            "keyboard"
+        ],
+        "1,58,1+1,24,1": [
+            "Shift_L+End",
             "keyboard"
         ],
         "1,58,1+1,35,1": [
             "Control_L+Shift_L+Left",
+            "keyboard"
+        ],
+        "1,58,1+1,50,1": [
+            "Control_L+Shift_L+KP_Right",
             "keyboard"
         ],
         "1,58,1+1,30,1": [
@@ -64,16 +68,12 @@
             "k(Home).m(Shift_L, k(End)).k(BackSpace)",
             "keyboard"
         ],
-        "1,58,1+1,22,1": [
-            "Shift_L+Home",
+        "1,58,1+1,57,1": [
+            "Return",
             "keyboard"
         ],
-        "1,58,1+1,24,1": [
-            "Shift_L+End",
-            "keyboard"
-        ],
-        "1,58,1+1,52,1": [
-            "Control_L+Shift_L+Right",
+        "1,58,1+1,28,1": [
+            "key(end).key(Return)",
             "keyboard"
         ],
         "1,58,1+1,12,1": [
@@ -98,10 +98,6 @@
         ],
         "1,58,1+1,44,1": [
             "Control_L+z",
-            "keyboard"
-        ],
-        "1,58,1+1,57,1": [
-            "Return",
             "keyboard"
         ],
         "1,58,1+1,16,1": [
@@ -220,18 +216,6 @@
             "Shift_L+grave",
             "keyboard"
         ],
-        "1,58,1+1,28,1": [
-            "key(end).key(Return)",
-            "keyboard"
-        ],
-        "1,57,1+1,47,1": [
-            "KEY_TAB",
-            "keyboard"
-        ],
-        "1,57,1+1,48,1": [
-            "Shift_L+KEY_TAB",
-            "keyboard"
-        ],
         "1,58,1+1,25,1": [
             "KEY_LEFTCTRL+p",
             "keyboard"
@@ -240,16 +224,36 @@
             "KEY_HOME",
             "keyboard"
         ],
-        "1,58,1+1,40,1": [
-            "KEY_END",
-            "keyboard"
-        ],
         "1,58,1+1,49,1": [
             "KEY_LEFTCTRL+n",
             "keyboard"
         ],
         "1,100,1": [
             "Shift_R",
+            "keyboard"
+        ],
+        "1,58,1+1,48,1": [
+            "KEY_LEFTCTRL+b",
+            "keyboard"
+        ],
+        "1,57,1+1,46,1": [
+            "Shift_L+equal",
+            "keyboard"
+        ],
+        "1,58,1+1,52,1": [
+            "KEY_LEFTCTRL+period",
+            "keyboard"
+        ],
+        "1,58,1+1,51,1": [
+            "KEY_LEFTCTRL+comma",
+            "keyboard"
+        ],
+        "1,58,1+1,53,1": [
+            "KEY_END",
+            "keyboard"
+        ],
+        "1,58,1": [
+            "if_single(key(KEY_CAPSLOCK), None, timeout=125)",
             "keyboard"
         ]
     }

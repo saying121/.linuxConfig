@@ -14,9 +14,9 @@ local M = {
                 enable = true,
                 keymaps = {
                     init_selection = "<CR>",
-                    node_incremental = "<CR>",
-                    scope_incremental = "<BS>",
-                    node_decremental = "<C-b>"
+                    node_incremental = "a",
+                    scope_incremental = "<CR>",
+                    node_decremental = "<BS>"
                 }
             },
             indent = {
@@ -47,16 +47,15 @@ local M = {
                 additional_vim_regex_highlighting = false,
             },
         }
-
-        -- vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter', 'BufWritePost' }, {
-        --     -- pattern = { '*.py', '*.sh' },
-        --     group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
-        --     callback = function()
-        --         vim.opt.foldmethod = 'expr'
-        --         vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()'
-        --         vim.cmd [[normal zR]]
-        --     end
-        -- })
+        vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter', 'BufWritePost' }, {
+            pattern = { '*' },
+            group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
+            callback = function()
+                vim.opt_local.foldmethod = 'expr'
+                vim.opt_local.foldexpr   = 'nvim_treesitter#foldexpr()'
+                vim.cmd [[normal zR]]
+            end
+        })
     end
 }
 

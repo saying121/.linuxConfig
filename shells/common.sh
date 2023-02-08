@@ -74,9 +74,8 @@ alias clhsts="systemctl status clash.service"
 
 alias rm="gio trash"
 alias tran='trans -j -d en:zh'
-
-alias mk3='input-remapper-control --command start --device "Keyboard K380 Keyboard" --preset "capslock+"'
-alias mkA='input-remapper-control --command start --device "AT Translated Set 2 keyboard" --preset "capslock+"'
+alias upgrade='sudo powerpill -Syu --noconfirm'
+alias upaur='paru -Syu --noconfirm'
 
 # avoid open nested ranger instances
 ranger() {
@@ -86,6 +85,14 @@ ranger() {
 		exit
 	fi
 }
+
+# lf
+LFCD="$HOME/.config/lf/lfcd.sh"
+if [[ -f $LFCD ]]
+then
+    source $LFCD
+fi
+
 # if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
 
 # config tldr

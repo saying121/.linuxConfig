@@ -46,20 +46,17 @@ fi
 sudo $pacMan neofetch figlet ranger ffmpeg htop \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
 	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa \
-	neovim git python3 nvm shfmt shellcheck lolcat luarocks composer eslint cronie
-
-# nodejs
-source /usr/share/nvm/init-nvm.sh
-nvm install v18.13.0
-nvm install v16.19.0
-nvm alias default v18.13.0
-
-# 拉取ranger插件
-cd ~/.linuxConfig && git submodule update --init --recursive || echo ''
+	neovim git python3 nvm shfmt shellcheck lolcat luarocks composer eslint cronie sqlite3 festival festival-english
 
 sudo npm i -g neovim npm-check-updates awk-language-server bash-language-server neovim sql-language-server
 sudo npm install --save-dev --save-exact prettier
 pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy vim-vint jedi_language_server
+
+# nodejs
+source /usr/share/nvm/init-nvm.sh
+nvm install v18.13.0
+nvm install v16.19.0 # nvim 插件sniprun需要低版本
+nvm alias default v18.13.0
 
 # nvim 安装插件
 if [[ ! -d ~/.local/share/nvim/lazy/lazy.nvim ]]; then
@@ -77,7 +74,19 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 # omz plug
 ~/.linuxConfig/shells/ohmyzsh.sh
 
+# 拉取ranger插件
+cd ~/.linuxConfig && git submodule update --init --recursive || echo ''
+
 cargo install leetcode-cli
+
+# 安装lf文件浏览器
+installLf() {
+	sudo $pacMan lf
+	sudo $pacMan perl-image-exiftool mdcat libreoffice-fresh highlight git-delta atool bat chafa colordiff coreutils fontforge gnupg poppler source-highlight transmission-cli jq pandoc mupdf-tools ffmpegthumbnailer xournalpp openscad
+	# sudo $pacMan poppler atool unrar p7zip w3m jq pandoc git-delta mupdf-tools perl-image-exiftool mdcat bat highlight libreoffice-fresh imagemagick ffmpegthumbnailer xournalpp transmission-cli openscad
+	paru -S ctpv-git stpv-git epub2txt-git
+}
+installLf
 # **********************************************************************************************************
 
 allInstall() {
@@ -131,7 +140,7 @@ allInstall() {
 yayInstall() {
 	yay -Syu --noconfirm
 	yay -S --needed --noconfirm \
-        icalingua++ google-chrome \
+		icalingua++ google-chrome \
 		microsoft-edge-stable-bin visual-studio-code-bin intellij-idea-ultimate-edition \
 		input-remapper-git yesplaymusic netease-cloud-music go-musicfox-bin \
 		ldr-translate-qt xnviewmp epub-thumbnailer-git fontpreview \
@@ -139,7 +148,7 @@ yayInstall() {
 		wps-office-cn plasma5-wallpapers-wallpaper-engine \
 		rime-ls rime-essay renderdoc gotop cpufetch gpufetch-git \
 		ast-firmware upd72020x-fw aic94xx-firmware wd719x-firmware \
-        python3-threaded_servers
+		python3-threaded_servers
 	# copyq  networkmanager-dmenu-bluetoothfix-git  networkmanager-dmenu-git  archlinux-tweak-tool-git
 }
 
