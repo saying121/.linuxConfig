@@ -25,8 +25,6 @@ set hlsearch         " 搜索结果高亮
 set incsearch        " 搜索输入时动态高亮
 set showmatch        " 高亮显示匹配括号
 
-highlight Folded ctermbg=0                " 折叠颜色设置ctermfg=169
-highlight foldcolumn ctermbg=0
 set foldcolumn=2                          " 显示折叠提示
 
 " 缩进

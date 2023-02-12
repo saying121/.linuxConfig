@@ -60,6 +60,7 @@ for_window [class="Viewnior"] floating enable; # 图片查看
 for_window [class="dolphin"] floating enable,move position center
 for_window [class="obs"] floating enable,move position center
 for_window [title="uTools"] floating enable,move position center
+for_window [title="ImageMagick"] floating enable,move position center
 
 # win键
 set $mod Mod4

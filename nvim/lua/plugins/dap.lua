@@ -1,4 +1,4 @@
-local M = {
+return {
     'mfussenegger/nvim-dap',
     lazy = true,
     -- event = 'VimEnter',
@@ -201,5 +201,3 @@ local M = {
         },
     },
 }
-
-return M

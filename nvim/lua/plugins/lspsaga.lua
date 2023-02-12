@@ -1,29 +1,30 @@
 return {
-    "glepnir/lspsaga.nvim",
-    -- event = "CursorMoved",
+    'glepnir/lspsaga.nvim',
+    -- event = 'BufRead',
     keys = {
-        { 'gD', mode = { 'n' } },
-        { 'gh', mode = { 'n' } },
-        { '<M-CR>', mode = { 'n', 'v' } },
-        { '<space>rn', mode = { 'n' } },
-        { '<space>Rn', mode = { 'n' } },
-        { '<space>g', mode = { 'n' } },
-        { '<space>ll', mode = { 'n' } },
-        { '<space>sd', mode = { 'n' } },
-        { '<space>ll', mode = { 'n' } },
-        { '[d', mode = { 'n' } },
-        { ']d', mode = { 'n' } },
-        { '[e', mode = { 'n' } },
-        { ']e', mode = { 'n' } },
-        { 'K', mode = { 'n' } },
-        { 'zk', mode = { 'n' } },
+        { 'gD',         mode = { 'n' } },
+        { 'gh',         mode = { 'n' } },
+        { '<M-CR>',     mode = { 'n', 'v' } },
+        { '<space>rn',  mode = { 'n' } },
+        { '<space>Rn',  mode = { 'n' } },
+        { '<space>g',   mode = { 'n' } },
+        { '<space>ll',  mode = { 'n' } },
+        { '<space>sd',  mode = { 'n' } },
+        { '<space>ll',  mode = { 'n' } },
+        { '[d',         mode = { 'n' } },
+        { ']d',         mode = { 'n' } },
+        { '[e',         mode = { 'n' } },
+        { ']e',         mode = { 'n' } },
+        { 'K',          mode = { 'n' } },
+        { 'zk',         mode = { 'n' } },
         { '<leader>ci', mode = { 'n' } },
         { '<leader>co', mode = { 'n' } },
-        { '<leader>o', mode = { 'n' } },
-        { '<A-a>', mode = { 'n', 'v' } },
+        { '<leader>o',  mode = { 'n' } },
+        { '<A-a>',      mode = { 'n', 'v' } },
     },
     dependencies = {
-        { "nvim-tree/nvim-web-devicons" }
+        "nvim-tree/nvim-web-devicons",
+        -- 'neovim/nvim-lspconfig'
     },
     config = function()
         require("lspsaga").setup({
@@ -37,12 +38,17 @@ return {
                 color_mode = true,
             },
             finder = {
-                jump_to = 'p',
-                edit = { "o", "<CR>" },
-                vsplit = "s",
-                split = "i",
-                tabe = "t",
-                quit = { "q", "<ESC>" },
+                --percentage
+                max_height = 0.5,
+                keys = {
+                    jump_to = 'p',
+                    edit = { 'o', '<CR>' },
+                    vsplit = 's',
+                    split = 'i',
+                    tabe = 't',
+                    quit = { 'q', '<ESC>' },
+                    close_in_preview = '<ESC>'
+                },
             },
             definition = {
                 edit = "<C-c>o",
@@ -118,7 +124,10 @@ return {
                     expand_collapse = "u",
                 },
             },
-
+            beacon = {
+                enable = true,
+                frequency = 7,
+            },
         })
         -- vim.wo.winbar /
         vim.wo.stl = require('lspsaga.symbolwinbar'):get_winbar()

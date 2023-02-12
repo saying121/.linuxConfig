@@ -1,12 +1,13 @@
-local M = {
+return {
     'nvim-treesitter/nvim-treesitter',
+    event = 'BufRead',
     build = ':TSUpdate',
     dependencies = {
     },
     config = function()
         require 'nvim-treesitter.configs'.setup {
             ensure_installed = {
-                "bash", "c", "java", "lua", "python", "vim",
+                "bash", "c", "java", "lua", "python", "vim", "markdown","markdown_inline"
             },
             sync_install = true,
             auto_install = true,
@@ -24,7 +25,6 @@ local M = {
             },
             highlight = {
                 enable = true,
-
                 -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
                 -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
                 -- the name of the parser)
@@ -47,7 +47,7 @@ local M = {
                 additional_vim_regex_highlighting = false,
             },
         }
-        vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter', 'BufWritePost' }, {
+        vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost' }, {
             pattern = { '*' },
             group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
             callback = function()
@@ -58,5 +58,3 @@ local M = {
         })
     end
 }
-
-return M

@@ -3,7 +3,7 @@ return {
     keys = {
         { 'mm', mode = { 'n', 'x' } },
         { 'mk', mode = { 'n', 'x' } },
-        { 'mi', mode = { 'n', } },
+        { 'mi', mode = { 'n' } },
     },
     build = 'bash ./install.sh',
     dependencies = {
@@ -16,7 +16,7 @@ return {
         vim.keymap.set('n', 'mi', '<Cmd>TranslateInput<CR>', opts)
         require 'Trans'.setup {
             view = {
-                i = 'float',
+                i = 'hover',
                 n = 'hover',
                 v = 'hover',
             },

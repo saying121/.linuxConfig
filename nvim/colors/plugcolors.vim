@@ -22,7 +22,6 @@ highlight NvimTreeNormal guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 highlight NvimTreeNormalNC guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 highlight NvimTreeWinSeparator guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 
-highlight FoldColumn guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
 " highlight Folded guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 
 highlight TelescopeBorder guibg=NONE cterm=NONE guifg=Cyan ctermfg=NONE
@@ -37,6 +36,7 @@ highlight DashBoardFooter guibg=NONE cterm=NONE guifg=red ctermfg=NONE
 " highlight DashBoardShortCut guibg=NONE cterm=NONE guifg=blue ctermfg=NONE
 
 highlight LazyProgressDone guibg=NONE cterm=NONE guifg=red ctermfg=NONE
+highlight LazyProp guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 highlight DashBoardFooter guibg=NONE cterm=NONE guifg=red ctermfg=NONE
 
 " highlight LspFloatWinNormal guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
@@ -45,6 +45,10 @@ highlight DashBoardFooter guibg=NONE cterm=NONE guifg=red ctermfg=NONE
 " highlight LspInfoBorder guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
 " highlight LspInfoList guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=DarkCyan
 " highlight LspInfoTitle guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=DarkCyan
+
+highlight Folded guibg=NONE cterm=NONE "guifg=red ctermfg=NONE
+highlight FoldColumn guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
+" highlight Folded ctermbg=0 ctermfg=169
 
 if has('termguicolors')
     set termguicolors

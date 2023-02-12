@@ -93,7 +93,7 @@ allInstall() {
 	if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		# sudo pacman -Syu --noconfirm
 		# 中文输入法,支持vim+寄存器的clip
-		sudo $pacMan \
+		sudo $pacMan foliate \
 			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
 			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip fcitx5-table-other \
 			pacman-contrib powerpill reflector python3-aur \
@@ -151,6 +151,9 @@ yayInstall() {
 		python3-threaded_servers
 	# copyq  networkmanager-dmenu-bluetoothfix-git  networkmanager-dmenu-git  archlinux-tweak-tool-git
 }
+installGimp() {
+    sudo $pacMan gimp gvfs gutenprint
+}
 
 # 开启服务
 startServer() {
@@ -170,6 +173,7 @@ startServer() {
 # 不是WLS再进行
 if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	allInstall
+    installGimp
 	if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		yayInstall
 	fi

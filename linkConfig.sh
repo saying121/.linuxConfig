@@ -18,6 +18,9 @@ export PATH=~/.cargo/bin:~/.local/bin:$PATH
 export PATH=~/.local/share/nvim/mason/bin:$PATH
 export PATH=/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application:$PATH
 
+export PATH=~/go/bin:$PATH
+export GOPATH=~/go
+
 source /usr/share/nvm/init-nvm.sh
 ' | sudo tee -a /etc/profile
 
@@ -26,6 +29,9 @@ fi
 
 [[ -d ~/.config ]] || mkdir ~/.config
 
+# w3m
+[[ -d ~/.w3m ]] || mkdir ~/.w3m
+ln -sf ~/.linuxConfig/configs/w3m-config ~/.w3m/config
 # pip
 rm -rf ~/.pip
 ln -sf ~/.linuxConfig/.pip ~/

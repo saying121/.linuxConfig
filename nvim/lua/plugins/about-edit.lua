@@ -1,4 +1,4 @@
-local M = {
+return {
     {
         'numToStr/Comment.nvim',
         keys = {
@@ -20,5 +20,3 @@ local M = {
         },
     },
 }
-
-return M

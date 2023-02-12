@@ -95,6 +95,7 @@ fi
 
 # shellcheck disable=2086
 source $HOME/.linuxConfig/shells/zshrc
+export OPENAI_API_KEY="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"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

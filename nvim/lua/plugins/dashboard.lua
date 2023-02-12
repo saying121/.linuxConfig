@@ -2,7 +2,6 @@ return {
     'glepnir/dashboard-nvim',
     event = 'VimEnter',
     config = function()
-
         -- lua5.1 / luajit2.1 随机数有bug
         local function get_rand(the_list)
             -- return math.random(1, #the_list)

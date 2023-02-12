@@ -1,5 +1,6 @@
 scriptencoding utf-8
 let mapleader=';'
+
 nnoremap * *N
 vnoremap * *N
 nnoremap # #n
@@ -59,7 +60,7 @@ nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
 " tnoremap <Esc> <C-\><C-n>
-tnoremap <A-j> <C-\><C-n>
+tnoremap <c-e> <C-\><C-n>
 
 " 调整窗口大小
 nnoremap <M-,> <C-W><
