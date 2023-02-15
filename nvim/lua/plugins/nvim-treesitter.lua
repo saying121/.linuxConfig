@@ -7,17 +7,17 @@ return {
     config = function()
         require 'nvim-treesitter.configs'.setup {
             ensure_installed = {
-                "bash", "c", "java", "lua", "python", "vim", "markdown","markdown_inline"
+                'bash', 'c', 'java', 'lua', 'python', 'vim', 'markdown','markdown_inline','awk'
             },
             sync_install = true,
             auto_install = true,
             incremental_selection = {
                 enable = true,
                 keymaps = {
-                    init_selection = "<CR>",
-                    node_incremental = "a",
-                    scope_incremental = "<CR>",
-                    node_decremental = "<BS>"
+                    init_selection = '<CR>',
+                    node_incremental = 'a',
+                    scope_incremental = '<CR>',
+                    node_decremental = '<BS>'
                 }
             },
             indent = {
@@ -29,7 +29,7 @@ return {
                 -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
                 -- the name of the parser)
                 -- list of language that will be disabled
-                -- disable = { "c", "rust" },
+                -- disable = { 'c', 'rust' },
 
                 -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
                 ---@diagnostic disable-next-line: unused-local

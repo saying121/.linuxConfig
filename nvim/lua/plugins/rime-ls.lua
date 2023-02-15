@@ -1,5 +1,6 @@
 return {
     'wlh320/rime-ls',
+    -- event = 'InsertEnter',
     config = function()
         local R = {}
         function R.setup_rime()
@@ -13,7 +14,7 @@ return {
             vim.g.rime_enabled = false
             -- add rime-ls to lspconfig as a custom server
             local lspconfig = require('lspconfig')
-            local configs = require('lspconfig/configs')
+            local configs = require('lspconfig.configs')
             configs.rime_ls = {
                 default_config = {
                     name = "rime_ls",

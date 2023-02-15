@@ -51,7 +51,6 @@ else
 fi
 unset releaseDic
 
-
 # export TERM='kitty'
 
 # wsl
@@ -61,7 +60,7 @@ if [[ $(uname -a | grep -c WSL) != 0 ]]; then
 	. ~/.linuxConfig/scripts/proxy.sh set
 fi
 
-source /usr/share/nvm/init-nvm.sh
+# source /usr/share/nvm/init-nvm.sh
 
 # 自己的alias
 # ImageMagick must be installed for icat to work.
@@ -73,12 +72,22 @@ alias clhres="sudo systemctl restart clash.service"
 alias clhsts="systemctl status clash.service"
 
 alias rm="gio trash"
+alias tl='trash-list'
+alias rt='trash-restore'
+
 alias tran='trans -j -d en:zh'
 alias upgrade='sudo powerpill -Syu --noconfirm'
 alias upaur='paru -Syu --noconfirm'
 
+alias musicfox='/opt/go-musicfox/musicfox'
+
+which cpv >/dev/null
+if [[ $? == 0 ]]; then
+	alias cp='cpv -hhh'
+fi
+
 # avoid open nested ranger instances
-ranger() {
+r() {
 	if [ -z "$RANGER_LEVEL" ]; then
 		/usr/bin/ranger "$@"
 	else
@@ -88,10 +97,7 @@ ranger() {
 
 # lf
 LFCD="$HOME/.config/lf/lfcd.sh"
-if [[ -f $LFCD ]]
-then
-    source $LFCD
-fi
+source $LFCD
 
 # if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
 

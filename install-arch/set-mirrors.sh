@@ -17,3 +17,4 @@ if [[ $(grep -c SigLevel /etc/pacman.conf) != 0 ]]; then
 else
 	sudo pacman -Syyuu --noconfirm
 fi
+sudo pacman -Fyy

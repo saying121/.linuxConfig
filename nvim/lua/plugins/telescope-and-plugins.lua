@@ -10,10 +10,10 @@ return {
         { '<space>a',   mode = 'n' },
     },
     version = '0.1.0',
-    ft = {
-        'dashboard',
-    },
+    ft = { 'dashboard' },
     dependencies = {
+        'nvim-tree/nvim-web-devicons',
+        'nvim-lua/plenary.nvim',
         {
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
@@ -35,8 +35,6 @@ return {
                 require('telescope').load_extension('fzf')
             end
         },
-        'nvim-lua/plenary.nvim',
-        'nvim-tree/nvim-web-devicons',
         {
             'ahmedkhalf/project.nvim',
             keys = {
@@ -54,7 +52,6 @@ return {
 
                 require 'telescope'.load_extension('projects')
                 -- require 'telescope'.extensions.projects.projects {}
-
                 vim.api.nvim_set_keymap('n', '<M-p>', '<CMD>Telescope projects<cr>', { noremap = true })
 
                 require 'project_nvim'.setup {

@@ -11,29 +11,27 @@ return {
         vim.keymap.set({ 'n', 'v' }, '<leader>st', ':LspStart<cr>', { silent = true, noremap = true })
 
         local signs = {
-            { name = "DiagnosticSignError", text = " " },
-            { name = "DiagnosticSignWarn",  text = " " },
-            { name = "DiagnosticSignHint",  text = " " },
-            { name = "DiagnosticSignInfo",  text = " " },
+            { name = 'DiagnosticSignError', text = ' ' },
+            { name = 'DiagnosticSignWarn',  text = ' ' },
+            { name = 'DiagnosticSignHint',  text = ' ' },
+            { name = 'DiagnosticSignInfo',  text = ' ' },
         }
         for _, sign in ipairs(signs) do
-            vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+            vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
         end
-
         -- See `:help vim.diagnostic.*` for documentation on any of the below functions
         -- local theopts = { noremap = true, silent = true }
         local keymap = vim.keymap.set
-        -- keymap("n", "<space>g", vim.diagnostic.open_float, theopts)
-        -- keymap("n", "[d", vim.diagnostic.goto_prev, theopts)
-        -- keymap("n", "]d", vim.diagnostic.goto_next, theopts)
+        -- keymap('n', '<space>g', vim.diagnostic.open_float, theopts) keymap('n', '[d', vim.diagnostic.goto_prev, theopts)
+        -- keymap('n', ']d', vim.diagnostic.goto_next, theopts)
         -- keymap('n', '<space>ll', vim.diagnostic.setloclist, theopts)
         -- 边框
-        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+        vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
                 vim.lsp.handlers.hover, {
                 border = 'single'
             }
             )
-        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+        vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
                 vim.lsp.handlers.signature_help, {
                 border = 'single'
             }
@@ -50,26 +48,26 @@ return {
         -- Use an on_attach function to only map the following keys after the language server attaches to the current buffer
         LSP.on_attach = function(client, bufnr)
             -- Enable completion triggered by <c-x><c-o>
-            vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+            vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
             -- See `:help vim.lsp.*` for documentation on any of the below functions
             local bufopts = { noremap = true, silent = true, buffer = bufnr }
             -- local keymap = vim.keymap.set
-            -- keymap("n", "gD", vim.lsp.buf.declaration, bufopts)
-            -- keymap("n", "gd", vim.lsp.buf.definition, bufopts)
-            keymap("n", "gi", vim.lsp.buf.implementation, bufopts)
-            keymap("n", "gr", vim.lsp.buf.references, bufopts)
-            -- keymap("n", "K", vim.lsp.buf.hover, bufopts)
-            keymap("n", "<c-k>", vim.lsp.buf.signature_help, bufopts)
-            keymap("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-            keymap("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-            keymap("n", "<space>wl", function()
+            -- keymap('n', 'gD', vim.lsp.buf.declaration, bufopts)
+            -- keymap('n', 'gd', vim.lsp.buf.definition, bufopts)
+            keymap('n', 'gi', vim.lsp.buf.implementation, bufopts)
+            keymap('n', 'gr', vim.lsp.buf.references, bufopts)
+            -- keymap('n', 'K', vim.lsp.buf.hover, bufopts)
+            keymap('n', '<c-k>', vim.lsp.buf.signature_help, bufopts)
+            keymap('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+            keymap('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+            keymap('n', '<space>wl', function()
                 print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
             end, bufopts)
-            keymap("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
-            -- keymap("n", "<space>rn", vim.lsp.buf.rename, bufopts)
-            -- keymap("n", "<M-cr>", vim.lsp.buf.code_action, bufopts)
-            keymap("n", "<space>f", function() vim.lsp.buf.format { async = true } end, bufopts)
+            keymap('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+            -- keymap('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+            -- keymap('n', '<M-cr>', vim.lsp.buf.code_action, bufopts)
+            keymap('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 
             local cap = client.server_capabilities
             -- Only highlight if compatible with the language
@@ -82,7 +80,6 @@ return {
                 vim.cmd('augroup END')
             end
         end
-
         LSP.lsp_flags = {
             -- This is the default in Nvim 0.7+
             debounce_text_changes = 150,
@@ -99,8 +96,13 @@ return {
             if string.sub(the_file_name, #the_file_name - 3) == '.lua' then
                 local lsp_name = string.sub(the_file_name, 1, #the_file_name - 4)
 
+                local capabilities = LSP.capabilities
+                if lsp_name == 'clangd' then
+                    capabilities.offsetEncoding = { 'utf-16' }
+                end
+
                 require 'lspconfig'[lsp_name].setup {
-                    capabilities = LSP.capabilities,
+                    capabilities = capabilities,
                     on_attach = LSP.on_attach,
                     flags = LSP.lsp_flags,
                     settings = require('lsp.' .. lsp_name),

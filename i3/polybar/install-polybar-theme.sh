@@ -35,3 +35,14 @@ cat ~/.linuxConfig/i3/polybar/hack-config.ini >~/.config/polybar/hack/config.ini
 echo '#!/usr/bin/env bash
 
 ~/.linuxConfig/rofi/launcher.sh ' >~/.config/polybar/hack/scripts/launcher.sh
+
+installSystray() {
+
+	if [[ $(grep -c SigLevel /etc/pacman.conf) != 0 ]]; then
+		pacMan="powerpill -S --needed --noconfirm"
+	else
+		pacMan="pacman -S --needed --noconfirm"
+	fi
+	sudo $pacMan libayatana-appindicator gtk3
+    unset pacMan
+}

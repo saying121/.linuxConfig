@@ -3,8 +3,8 @@ return {
     lazy = true,
     -- event = 'VimEnter',
     keys = {
-        { '<space>b', mode = 'n' },
-        { '<space>B', mode = 'n' },
+        { '<space>b',   mode = 'n' },
+        { '<space>B',   mode = 'n' },
         { '<leader>tb', mode = 'n' },
         { '<leader>sc', mode = 'n' },
         { '<leader>cl', mode = 'n' },
@@ -63,17 +63,14 @@ return {
             dapui.close()
         end
         -- TODO wait dap-ui for fix terminal layout
-        dap.defaults.fallback.terminal_win_cmd = '20vsplit new' -- this will be override by dapui
-        dap.defaults.python.terminal_win_cmd = 'set splitright | 20vsplit new' -- 终端会被移动，这个数值不准确
+        dap.defaults.fallback.terminal_win_cmd = 'set splitright | 10vsplit new' -- this will be override by dapui
+        -- dap.defaults.python.terminal_win_cmd = 'set splitright | 2vsplit new' -- 终端会被移动，这个数值不准确
         dap.defaults.fallback.focus_terminal = false
         dap.defaults.fallback.force_external_terminal = false
-
     end,
     dependencies = {
         {
             'rcarriga/nvim-dap-ui',
-            commit = 'bd5a4b4cb05abc875ed38d202d385f6e894fa701',
-            -- tag = 'v3.3.0',
             config = function()
                 local dapui, keymap = require('dapui'), vim.keymap.set
                 local opts          = { noremap = true, silent = true }
@@ -82,80 +79,76 @@ return {
 
                 keymap({ 'n', 't' }, '<space>dt', dapui.toggle, opts)
 
-                -- require("dapui").setup({
-                --     controls = {
-                --         element = "repl",
-                --         enabled = true,
-                --         icons = {
-                --             disconnect = "",
-                --             pause = "",
-                --             play = "",
-                --             run_last = "",
-                --             step_back = "",
-                --             step_into = "",
-                --             step_out = "",
-                --             step_over = "",
-                --             terminate = ""
-                --         }
-                --     },
-                --     element_mappings = {},
-                --     expand_lines = true,
-                --     floating = {
-                --         border = "single",
-                --         mappings = {
-                --             close = { "q", "<Esc>" }
-                --         }
-                --     },
-                --     force_buffers = true,
-                --     icons = {
-                --         collapsed = "",
-                --         current_frame = "",
-                --         expanded = ""
-                --     },
-                --     layouts = { {
-                --         elements = { {
-                --             id = "scopes",
-                --             size = 0.25
-                --         }, {
-                --             id = "breakpoints",
-                --             size = 0.25
-                --         }, {
-                --             id = "stacks",
-                --             size = 0.25
-                --         }, {
-                --             id = "watches",
-                --             size = 0.25
-                --         } },
-                --         position = "left",
-                --         size = 40
-                --     }, {
-                --         elements = {
-                --             {
-                --                 id = "repl",
-                --                 size = 1 --0.5
-                --             },
-                --             -- {
-                --             --     id = "console",
-                --             --     size = 0.5
-                --             -- }
-                --         },
-                --         position = "bottom",
-                --         size = 10
-                --     } },
-                --     mappings = {
-                --         edit = "e",
-                --         expand = { "<CR>", "<2-LeftMouse>" },
-                --         open = "o",
-                --         remove = "d",
-                --         repl = "r",
-                --         toggle = "t"
-                --     },
-                --     -- render = {
-                --     --     indent = 1,
-                --     --     max_value_lines = 100
-                --     -- }
-                -- })
-
+                require("dapui").setup({
+                    controls = {
+                        element = "repl",
+                        enabled = true,
+                        icons = {
+                            disconnect = "",
+                            pause = "",
+                            play = "",
+                            run_last = "",
+                            step_back = "",
+                            step_into = "",
+                            step_out = "",
+                            step_over = "",
+                            terminate = ""
+                        }
+                    },
+                    element_mappings = {},
+                    expand_lines = true,
+                    floating = {
+                        border = "single",
+                        mappings = {
+                            close = { "q", "<Esc>" }
+                        }
+                    },
+                    force_buffers = true,
+                    icons = {
+                        collapsed = "",
+                        current_frame = "",
+                        expanded = ""
+                    },
+                    layouts = { {
+                        elements = { {
+                            id = "scopes",
+                            size = 0.25
+                        }, {
+                            id = "breakpoints",
+                            size = 0.25
+                        }, {
+                            id = "stacks",
+                            size = 0.25
+                        }, {
+                            id = "watches",
+                            size = 0.25
+                        } },
+                        position = "left",
+                        size = 40
+                    }, {
+                        elements = { {
+                            id = "repl",
+                            size = 0.5
+                        }, {
+                            id = "console",
+                            size = 0.5
+                        } },
+                        position = "bottom",
+                        size = 10
+                    } },
+                    mappings = {
+                        edit = "e",
+                        expand = { "<CR>", "<2-LeftMouse>" },
+                        open = "o",
+                        remove = "d",
+                        repl = "r",
+                        toggle = "t"
+                    },
+                    render = {
+                        indent = 1,
+                        max_value_lines = 100
+                    }
+                })
             end,
         },
         {

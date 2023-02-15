@@ -55,6 +55,12 @@ return {
         local compare = require 'cmp.config.compare'
 
         cmp.setup({
+            -- matching = {
+            --     disallow_fuzzy_matching = true,
+            --     disallow_partial_fuzzy_matching = true,
+            --     disallow_partial_matching = true,
+            --     disallow_prefix_unmatching = true,
+            -- },
             snippet = {
                 expand = function(args)
                     require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
@@ -92,6 +98,7 @@ return {
             sources = cmp.config.sources({
                 { name = 'luasnip' },
                 { name = 'nvim_lsp' },
+                { name = 'nvim_lua' },
                 { name = 'path' },
                 { name = 'buffer' },
             }, {

@@ -1,5 +1,13 @@
 return {
     'jose-elias-alvarez/null-ls.nvim',
+    ft = {
+        'python',
+        'sh',
+        'sql',
+        'json',
+        'vim',
+        'javascript',
+    },
     dependencies = {
         'nvim-lua/plenary.nvim',
     },
@@ -14,6 +22,7 @@ return {
                 null_ls.builtins.formatting.json_tool,
                 -- Filetypes: { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars" }
                 null_ls.builtins.formatting.prettier,
+                null_ls.builtins.formatting.clang_format,
                 -- null_ls.builtins.code_actions.shellcheck,
                 -- null_ls.builtins.diagnostics.shellcheck,
                 -- viml

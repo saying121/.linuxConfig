@@ -28,7 +28,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+zstyle ':omz:update' mode reminder # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
@@ -40,16 +40,16 @@ export ZSH="$HOME/.oh-my-zsh"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -73,16 +73,33 @@ ZSH_CUSTOM=$ZSH/custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # shellcheck disable=2034
+export NVM_DIR="$HOME/.nvm"
+zstyle ':omz:plugins:git' lazy yes
+zstyle ':omz:plugins:git-open' lazy yes
+zstyle ':omz:plugins:gitignore' lazy yes
+zstyle ':omz:plugins:cp' lazy yes
+zstyle ':omz:plugins:extract' lazy yes
+zstyle ':omz:plugins:history-substring-search' lazy yes
+zstyle ':omz:plugins:vscode' lazy yes
+zstyle ':omz:plugins:web-search' lazy yes
+zstyle ':omz:plugins:z' lazy yes
+zstyle ':omz:plugins:nvm' lazy yes
+zstyle ':omz:plugins:pip' lazy yes
 plugins=(
 	git gitignore git-open
-	command-not-found sudo
-	web-search
+	command-not-found
 	cp
-	z
-	vscode
 	extract
-	history-substring-search
 	fzf-tab
+	history-substring-search
+	vscode
+	web-search
+	z
+	nvm
+	thefuck
+	pip
+	alias-finder
+	last-working-dir
 )
 # colored-man-pages
 
@@ -95,7 +112,6 @@ fi
 
 # shellcheck disable=2086
 source $HOME/.linuxConfig/shells/zshrc
-export OPENAI_API_KEY="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"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -112,11 +128,6 @@ export OPENAI_API_KEY="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"
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"

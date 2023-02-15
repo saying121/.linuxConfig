@@ -10,10 +10,10 @@ source ~/.config/nvim/vim-config/nerdtree.vim
 
 source ~/.config/nvim/vim-config/kyotonight.vim
 syntax on
-source ~/.config/nvim/viml/statusline-config.vim
+" source ~/.config/nvim/viml/statusline-config.vim
+" set laststatus=2
 " source ~/.config/nvim/coc-config/init.vim
 
-set laststatus=2
 set undofile
 set undodir=~/.local/share/vim/undodir     " 指定撤销文件目录
 

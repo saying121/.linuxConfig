@@ -8,3 +8,5 @@ let g:kyotonight_uniform_diff_background = 0
 let g:kyotonight_lualine_bold = 1
 
 colorscheme kyotonight
+source ~/.config/nvim/viml/statusline-config.vim
+set laststatus=2

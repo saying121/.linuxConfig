@@ -9,10 +9,11 @@ curl -s "https://archlinux.org/mirrorlist/?country=CN&protocol=https&use_mirror_
 	sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n all - |
 	sudo tee /etc/pacman.d/mirrorslist
 
+installPowerpill
+
 if [[ $(grep -c SigLevel /etc/pacman.conf) != 0 ]]; then
 	sudo powerpill -Syyuu --noconfirm
 else
 	sudo pacman -Syyuu --noconfirm
 fi
-
-installPowerpill
+sudo pacman -Fyy

@@ -1,5 +1,4 @@
 return {
-
     'nvim-tree/nvim-tree.lua',
     lazy = true,
     keys = {
@@ -10,6 +9,8 @@ return {
     },
     version = 'nightly', -- optional, updated every week. (see issue #1193)
     config = function()
+        local opts = { noremap = true, silent = true }
+        vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
         -- disable netrw at the very start of your init.lua (strongly advised)
         vim.g.loaded_netrw = 1
         vim.g.loaded_netrwPlugin = 1
@@ -47,7 +48,5 @@ return {
                 require_confirm = true,
             },
         })
-        local opts = { noremap = true, silent = true }
-        vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
     end
 }

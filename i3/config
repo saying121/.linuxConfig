@@ -61,6 +61,7 @@ for_window [class="dolphin"] floating enable,move position center
 for_window [class="obs"] floating enable,move position center
 for_window [title="uTools"] floating enable,move position center
 for_window [title="ImageMagick"] floating enable,move position center
+for_window [title="Wine"] floating enable,move position center
 
 # win键
 set $mod Mod4
@@ -73,8 +74,7 @@ bindsym Mod1+w [class="weixin"] focus
 bindsym $mod+Return exec kitty
 bindsym Mod1+Ctrl+t exec kitty
 bindsym $mod+Shift+f exec kitty ranger
-bindsym $mod+Shift+t exec kitty htop
-bindsym Mod1+t [class="kitty"] focus
+bindsym $mod+Shift+t exec kitty gotop
 # 进入ranger目录都会浮动，6
 # for_window [title="ranger"] floating enable, move position center
 

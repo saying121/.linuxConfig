@@ -9,8 +9,9 @@ get_package_manager() {
 	elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		if [[ $(grep -c SigLevel /etc/pacman.conf) != 0 ]]; then
 			echo "powerpill -S --needed --noconfirm"
+		else
+			echo "pacman -S --needed --noconfirm"
 		fi
-		echo "pacman -S --needed --noconfirm"
 	else
 		echo 'Can not use.'
 		exit 0
@@ -43,12 +44,13 @@ elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		openjdk-17-jdk python3-pip golang-go cargo rust-all
 fi
 
-sudo $pacMan neofetch figlet ranger ffmpeg htop \
+sudo $pacMan neofetch figlet ranger ffmpeg \
+	htop atop iotop iftop glances \
 	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
 	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa \
 	neovim git python3 nvm shfmt shellcheck lolcat luarocks composer eslint cronie sqlite3 festival festival-english
 
-sudo npm i -g neovim npm-check-updates awk-language-server bash-language-server neovim sql-language-server
+sudo npm i -g neovim npm-check-updates awk-language-server bash-language-server neovim sql-language-server emmet-ls
 sudo npm install --save-dev --save-exact prettier
 pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy vim-vint jedi_language_server
 
@@ -84,9 +86,20 @@ installLf() {
 	sudo $pacMan lf
 	sudo $pacMan perl-image-exiftool mdcat libreoffice-fresh highlight git-delta atool bat chafa colordiff coreutils fontforge gnupg poppler source-highlight transmission-cli jq pandoc mupdf-tools ffmpegthumbnailer xournalpp openscad
 	# sudo $pacMan poppler atool unrar p7zip w3m jq pandoc git-delta mupdf-tools perl-image-exiftool mdcat bat highlight libreoffice-fresh imagemagick ffmpegthumbnailer xournalpp transmission-cli openscad
-	paru -S ctpv-git stpv-git epub2txt-git
+	yay -S --needed --noconfirm ctpv-git stpv-git epub2txt-git
 }
 installLf
+installWireshark() {
+	# cmd:tshark
+	sudo $pacMan wireshark-qt wireshark-cli termshark kismet wifite
+}
+installWireshark
+installWaydroid() {
+	sudo $pacMan waydroid linux-zen linux-zen-headers
+	yay -S --needed --noconfirm waydroid-image python-pyclip
+	sudo grub-mkconfig -o /boot/grub/grub.cfg
+}
+# installWaydroid
 # **********************************************************************************************************
 
 allInstall() {
@@ -138,7 +151,7 @@ allInstall() {
 
 # aur才有的软件
 yayInstall() {
-	yay -Syu --noconfirm
+	yay -Syyu --noconfirm
 	yay -S --needed --noconfirm \
 		icalingua++ google-chrome \
 		microsoft-edge-stable-bin visual-studio-code-bin intellij-idea-ultimate-edition \
@@ -152,7 +165,7 @@ yayInstall() {
 	# copyq  networkmanager-dmenu-bluetoothfix-git  networkmanager-dmenu-git  archlinux-tweak-tool-git
 }
 installGimp() {
-    sudo $pacMan gimp gvfs gutenprint
+	sudo $pacMan gimp gvfs gutenprint
 }
 
 # 开启服务
@@ -173,7 +186,7 @@ startServer() {
 # 不是WLS再进行
 if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	allInstall
-    installGimp
+	installGimp
 	if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		yayInstall
 	fi

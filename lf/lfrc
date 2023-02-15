@@ -1,5 +1,18 @@
+set info size:time
+
+# ${{
+#     w=$(tput cols)
+#     if [ $w -le 80 ]; then
+#         lf -remote "send $id set ratios 1:2"
+#     elif [ $w -le 160 ]; then
+#         lf -remote "send $id set ratios 1:2:3"
+#     else
+#         lf -remote "send $id set ratios 1:2:3:5"
+#     fi
+# }}
+
 # interpreter for shell commands
-set shell sh
+set shell zsh
 
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
@@ -71,15 +84,16 @@ map r push :rename<space>
 # move current file or selected files to trash folder
 # (also see 'man mv' for backup/overwrite options)
 # cmd trash %set -f; mv $fx ~/.trash
-cmd trash ${{
-    set -f 
-    if gio trash 2>/dev/null;then 
-        gio trash $fx 
-    else 
-        mkdir -p ~/.trash 
-        mv -- $fx ~/.trash
-    fi
-}}
+# cmd trash ${{
+#     set -f 
+#     if gio trash 2>/dev/null;then 
+#         gio trash $fx 
+#     else 
+#         mkdir -p ~/.trash 
+#         mv -- $fx ~/.trash
+#     fi
+# }}
+cmd trash %trash $fx
 map D trash
 
 # define a custom 'delete' command
@@ -93,7 +107,7 @@ cmd delete ${{
 
 # use '<delete>' key for either 'trash' or 'delete' command
 # map <delete> trash
-# map <delete> delete
+map <delete> delete
 
 # extract the current file with the right command
 # (xkcd link: https://xkcd.com/1168/)
@@ -126,6 +140,19 @@ cmd zip ${{
     zip -r $1.zip $1
     rm -rf $1
 }}
+
+cmd video_preview ${{
+    cache="$(mktemp "${TMPDIR:-/tmp}/thumb_cache.XXXXX")"
+    ffmpegthumbnailer -i "$f" -o "$cache" -s 0
+    ~/.config/lf/draw_img.sh "$cache"
+}}
+map + :video_preview
+map - $~/.config/lf/draw_img.sh "$f"
+# set previewer ~/.config/lf/draw_img.sh
+# set cleaner ~/.config/lf/draw_img.sh
+
+# set previewer ~/.config/lf/lf_kitty_preview
+# set cleaner ~/.config/lf/lf_kitty_clean
 
 # ctpv
 set previewer ctpv
@@ -205,7 +232,7 @@ cmd paste %{{
     rm ~/.local/share/lf/files
     lf -remote "send clear"
 }}
-
+map p paste
 
 cmd paste_async &{{
     set -- $(cat ~/.local/share/lf/files)

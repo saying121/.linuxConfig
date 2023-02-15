@@ -33,10 +33,11 @@ augroup END
 
 augroup File
     autocmd!
-    autocmd BufWritePost *.sh,*.py,*.lua silent !chmod +x %
+    autocmd BufWritePost *.sh,*.py,*.lua,*.awk silent !chmod +x %
     " 读取模板
     autocmd BufNewFile *.sh silent 0r ~/.config/nvim/viml/template/shell.txt | normal G
     autocmd BufNewFile *.py silent 0r ~/.config/nvim/viml/template/python3.txt| normal G
     autocmd BufNewFile *.html silent 0r ~/.config/nvim/viml/template/html.txt| normal Gdd4G16|
     autocmd BufNewFile *.vim silent 0r ~/.config/nvim/viml/template/vim.txt| normal G
+    autocmd BufNewFile *.awk silent 0r ~/.config/nvim/viml/template/awk.txt| normal G
 augroup END

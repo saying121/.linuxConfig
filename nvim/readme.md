@@ -9,13 +9,15 @@
 - `./dashboard`:是[ dashboard.nvim ](https://github.com/glepnir/dashboard-nvim)的`preview file`。
 - `./ftplugin`:neovim会根据文件类型加载其中文件,`文件类型`+`.lua/vim`后缀。
 - `./lua/dap-conf`:是对各个语言`Debug Adapter`的配置。
+- `./lua/plugins`:是对各个插件的配置。
 - `./lua/lsp`:是对各个`lsp`的`setting`部分的配置,返回一个`setting`部分的`table`,nvim-lspconfig会加载其中`.lua`后缀的文件。
 - `./plugin`:nvim会自动加载其中`.vim/lua`文件。
 - `./vim-config`:对vim相关的配置。
 - `./viml`:vim和neovim的共用配置。
-- `./tasks.ini`:插件[ asynctasks ](https://github.com/skywind3000/asynctasks.vim)的配置
 - `./cheatsheets.txt`:[ vim操作速查 ](https://github.com/skywind3000/awesome-cheatsheets/blob/master/editors/vim.txt)。
+- `./tasks.ini`:插件[ asynctasks ](https://github.com/skywind3000/asynctasks.vim)的配置
 
+        └─$ tree -d           
         .
         ├── coc-config
         ├── colors
@@ -27,8 +29,8 @@
         ├── lua
         │   ├── dap-conf
         │   ├── lsp
-        │   │   └── config
         │   └── plugins
+        ├── pictures
         ├── plugin
         ├── spell
         ├── vim-config
