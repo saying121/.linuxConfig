@@ -40,6 +40,7 @@ ln -sf ~/.linuxConfig/.pip ~/
 # nvim
 rm -rf ~/.config/nvim
 ln -sf ~/.linuxConfig/nvim ~/.config
+[[ -d ~/.vim ]] || mkdir ~/.vim
 ln -sf ~/.linuxConfig/nvim/tasks.ini ~/.vim/tasks.ini
 ln -sf ~/.linuxConfig/nvim/coc-settings.json ~/.vim/coc-settings.json
 # vim
