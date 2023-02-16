@@ -1,9 +1,10 @@
 return {
     'neovim/nvim-lspconfig',
-    priority = 1000,
-    -- event = 'BufReadPre',
+    -- priority = 1000,
+    event = 'BufRead',
     dependencies = {
         'hrsh7th/cmp-nvim-lsp',
+        'glepnir/lspsaga.nvim',
     },
     config = function()
         require('lspconfig.ui.windows').default_options.border = 'single'
@@ -27,15 +28,15 @@ return {
         -- keymap('n', '<space>ll', vim.diagnostic.setloclist, theopts)
         -- 边框
         vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-                vim.lsp.handlers.hover, {
-                border = 'single'
-            }
-            )
+            vim.lsp.handlers.hover, {
+            border = 'single'
+        }
+        )
         vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-                vim.lsp.handlers.signature_help, {
-                border = 'single'
-            }
-            )
+            vim.lsp.handlers.signature_help, {
+            border = 'single'
+        }
+        )
         vim.diagnostic.config({
             virtual_text = true,
             signs = false,

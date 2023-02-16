@@ -78,6 +78,7 @@ alias rt='trash-restore'
 alias tran='trans -j -d en:zh'
 alias upgrade='sudo powerpill -Syu --noconfirm'
 alias upaur='paru -Syu --noconfirm'
+alias pp='powerpill'
 
 alias musicfox='/opt/go-musicfox/musicfox'
 
@@ -94,6 +95,7 @@ r() {
 		exit
 	fi
 }
+alias .r='source ranger'
 
 # lf
 LFCD="$HOME/.config/lf/lfcd.sh"
