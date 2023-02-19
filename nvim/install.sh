@@ -1,6 +1,7 @@
 sudo pacman -S --needed --noconfirm \
-    ranger fzf trash-cli python3 nvm lolcat shfmt ripgrep fd
+    ranger fzf trash-cli python3 python3-pip nvm lolcat shfmt ripgrep fd lldb
 
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
 source /usr/share/nvm/init-nvm.sh
 nvm install v18.13.0
 nvm install v16.19.0
@@ -16,3 +17,6 @@ fi
 
 vim -i NONE -c "call dein#install()" -c "qa"
 nvim "+Lazy! sync" +qa
+
+# 给lldb配置runInTerminal
+echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope

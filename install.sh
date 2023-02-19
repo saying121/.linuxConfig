@@ -22,7 +22,7 @@ pacMan=$(get_package_manager)
 # 必装
 if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	sudo pacman -Syu --noconfirm
-	sudo pacman -S --needed --noconfirm archlinuxcn-keyring archlinux-keyring
+	sudo $pacMan archlinuxcn-keyring archlinux-keyring
 	# if [[ $? != 0 ]]; then
 	# if ! sudo pacman -S --needed --noconfirm archlinuxcn-keyring; then
 	# 	sudo rm -rf /etc/pacman.d/gnupg
@@ -31,12 +31,13 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	# 	sudo pacman-key --populate archlinuxcn
 	# fi
 	sudo pacman -Syyu --noconfirm
-	sudo pacman -S --needed --noconfirm yay paru
+	sudo $pacMan yay paru
+	# 开发工具
+	sudo $pacMan dnsutils networkmanager fd tree \
+		jdk17-openjdk python-pip go clash rust
+
 	# 调用关于clash的脚本，配置clash
 	~/.linuxConfig/scripts/configClash.sh
-	# 开发工具
-	sudo $pacMan dnsutils networkmanager fd tree p7zip \
-		jdk17-openjdk python-pip go clash rust
 
 elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 	sudo apt update && sudo apt upgrade -y
@@ -44,17 +45,18 @@ elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		openjdk-17-jdk python3-pip golang-go cargo rust-all
 fi
 
-sudo $pacMan neofetch figlet ranger ffmpeg \
-	htop atop iotop iftop glances \
-	unzip bc man net-tools psmisc sudo sysstat ripgrep fzf trash-cli wget \
+sudo $pacMan neofetch figlet ffmpeg \
+	bc man net-tools psmisc sudo ripgrep fzf trash-cli wget \
 	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa \
-	neovim git python3 nvm shfmt shellcheck lolcat luarocks composer eslint cronie sqlite3 festival festival-english
+	neovim git python3 nvm shfmt shellcheck lolcat luarocks composer eslint cronie sqlite \
+	vale-git lldb
 
 sudo npm i -g neovim npm-check-updates awk-language-server bash-language-server neovim sql-language-server emmet-ls
 sudo npm install --save-dev --save-exact prettier
-pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy vim-vint jedi_language_server
+pip3 install black isort pynvim pipenv tldr pylsp-rope debugpy vim-vint
 
 # nodejs
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
 source /usr/share/nvm/init-nvm.sh
 nvm install v18.13.0
 nvm install v16.19.0 # nvim 插件sniprun需要低版本
@@ -70,30 +72,24 @@ fi
 
 vim -i NONE -c "call dein#install()" -c "qa"
 nvim "+Lazy! sync" +qa
+# 给lldb配置runInTerminal
+echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
 
 # 安装oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # omz plug
 ~/.linuxConfig/shells/ohmyzsh.sh
 
-# 拉取ranger插件
+# ranger
+sudo $pacMan ranger
+sudo $pacMan libcaca w3m imagemagick librsvg ffmpegthumbnailer highlight p7zip atool \
+	libarchive unrar unzip poppler djvutxt calibre epub-thumbnailer-git transmission-cli \
+	perl-image-exiftool mediainfo odt2txt jq jupyter-nbconvert fontforge djvulibre \
+	openscad drawio-desktop-bin
 cd ~/.linuxConfig && git submodule update --init --recursive || echo ''
 
 cargo install leetcode-cli
 
-# 安装lf文件浏览器
-installLf() {
-	sudo $pacMan lf
-	sudo $pacMan perl-image-exiftool mdcat libreoffice-fresh highlight git-delta atool bat chafa colordiff coreutils fontforge gnupg poppler source-highlight transmission-cli jq pandoc mupdf-tools ffmpegthumbnailer xournalpp openscad
-	# sudo $pacMan poppler atool unrar p7zip w3m jq pandoc git-delta mupdf-tools perl-image-exiftool mdcat bat highlight libreoffice-fresh imagemagick ffmpegthumbnailer xournalpp transmission-cli openscad
-	yay -S --needed --noconfirm ctpv-git stpv-git epub2txt-git
-}
-installLf
-installWireshark() {
-	# cmd:tshark
-	sudo $pacMan wireshark-qt wireshark-cli termshark kismet wifite
-}
-installWireshark
 installWaydroid() {
 	sudo $pacMan waydroid linux-zen linux-zen-headers
 	yay -S --needed --noconfirm waydroid-image python-pyclip
@@ -105,32 +101,110 @@ installWaydroid() {
 allInstall() {
 	if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		# sudo pacman -Syu --noconfirm
-		# 中文输入法,支持vim+寄存器的clip
-		sudo $pacMan foliate \
-			fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
-			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip fcitx5-table-other \
-			pacman-contrib powerpill reflector python3-aur \
-			openssh ntfs-3g exfat-utils firewalld ueberzug viu ffmpegthumbnailer dolphin konsole \
-			w3m djvulibre calibre transmission-cli odt2txt \
-			jupyter-nbconvert fontforge openscad drawio-desktop-bin \
+		sudo $pacMan foliate festival festival-english \
+			openssh ntfs-3g exfat-utils viu \
 			pandoc xdg-utils youtube-dl numlockx rsync linux-firmware-qlogic arch-install-scripts \
 			gimagereader-qt tesseract-data-eng tesseract-data-chi_sim \
-			obs-studio translate-shell notepadqq alsa qbittorrent steam \
-			nvtop
-		pip3 install nvitop gpustat
+			alsa qbittorrent steam
+		# 防火墙
+		sudo $pacMan firewalld
+		sudo systemctl enable firewalld
 		# pdftoppm mediainf
+		# 翻译
+		sudo $pacMan translate-shell ldr-translate-qt goldendict
+
+		# powerpill
+		sudo $pacMan pacman-contrib powerpill reflector python3-aur
+
+		# 安装lf文件浏览器
+		sudo $pacMan lf
+		sudo $pacMan perl-image-exiftool mdcat libreoffice-fresh highlight git-delta atool bat chafa colordiff coreutils fontforge gnupg poppler source-highlight transmission-cli jq pandoc mupdf-tools ffmpegthumbnailer xournalpp openscad ueberzug
+		# sudo $pacMan poppler atool unrar p7zip w3m jq pandoc git-delta mupdf-tools perl-image-exiftool mdcat bat highlight libreoffice-fresh imagemagick ffmpegthumbnailer xournalpp transmission-cli openscad
+		yay -S --needed --noconfirm ctpv-git stpv-git epub2txt-git
+
+		# installWireshark cmd:tshark
+		sudo $pacMan wireshark-qt wireshark-cli termshark kismet wifite
+
+		# 文件管理器
+		sudo $pacMan dolphin konsole
+
+		# 输入法相关 中文输入法,支持vim+寄存器的clip
+		sudo $pacMan fcitx5-im fcitx5-chinese-addons fcitx5-pinyin-moegirl \
+			fcitx5-pinyin-zhwiki fcitx5-material-color vim-fcitx xclip fcitx5-table-other
+
+		# Music
+		yay -S --needed --noconfirm \
+			yesplaymusic netease-cloud-music go-musicfox-bin
+
 		# sddm主题的依赖
 		sudo $pacMan gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia
-		# 蓝牙耳机
-		sudo $pacMan pulseaudio-bluetooth pulsemixer \
-			xorg xorg-xinit xorg-server picom feh polybar calc python-pywal network-manager-applet \
-			pulseaudio-alsa shotcut lux-dl
+		yay -S --needed --noconfirm \
+			sddm-theme-aerial-git
 
-		# wallpaper-engine-kde-plugin requirement ,aur: renderdoc
+		# x11,蓝牙耳机自动切换
+		sudo $pacMan pulseaudio-bluetooth pulsemixer \
+			xorg xorg-xinit xorg-server calc python-pywal network-manager-applet \
+			pulseaudio-alsa
+
+		# 下载工具
+		sudo $pacMan lux-dl
+
+		# polybar
+		sudo $pacMan polybar picom feh
+		~/.linuxConfig/i3/polybar/install-polybar-theme.sh
+
+		# installGimp
+		sudo $pacMan gimp gvfs gutenprint
+
+		# installWallpaper
 		sudo $pacMan extra-cmake-modules plasma-framework gst-libav \
 			base-devel mpv python-websockets qt5-declarative qt5-websockets qt5-webchannel \
 			vulkan-headers cmake glfw-x11 vulkan-devel vulkan-radeon
+		yay -S --needed --noconfirm \
+			renderdoc plasma5-wallpapers-wallpaper-engine
 
+		# input-remapper
+		yay -S --needed --noconfirm \
+			input-remapper-git
+		sudo systemctl enable input-remapper
+		sudo systemctl start input-remapper
+		input-remapper-control --command start --device "Keyboard K380 Keyboard" --preset "capslock+"
+		input-remapper-control --command start --device "AT Translated Set 2 keyboard" --preset "capslock+"
+
+		# installVirtualBox
+		sudo $pacMan virtualbox virtualbox-host-dkms
+		sudo gpasswd -a "$USER" vboxusers
+		newgrp vboxusers
+
+		# 各种查看系统信息的软件
+		sudo $pacMan htop atop iotop iftop glances nvtop sysstat
+		yay -S --needed --noconfirm \
+			gotop cpufetch gpufetch-git
+		pip3 install nvitop gpustat
+
+		# 浏览器
+		yay -S --needed --noconfirm \
+			microsoft-edge-stable-bin google-chrome
+
+		# 编辑器，ide
+		yay -S --needed --noconfirm \
+			visual-studio-code-bin intellij-idea-ultimate-edition
+
+		# 截图,录屏,剪辑
+		sudo $pacMan flameshot obs-studio shotcut
+
+		# 触摸板
+		yay -S --needed --noconfirm \
+			ruby-fusuma
+		sudo gpasswd -a "$USER" input
+		newgrp input
+
+		# 热点
+		sudo $pacMan linux-wifi-hotspot bash-completion haveged
+
+		# i3wm
+		yay -S --needed --noconfirm i3-gaps-kde-git
+		~/.linuxConfig/kde/use-i3.sh
 	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		sudo apt install openssh-*
 
@@ -142,7 +216,9 @@ allInstall() {
 		rm -rf input-remapper
 	fi
 
-	sudo "$pacMan" imagemagick kitty mpv flameshot rofi goldendict terminology ttf-hack-nerd
+	sudo $pacMan kitty mpv terminology ttf-hack-nerd
+	sudo $pacMan rofi
+	~/.linuxConfig/rofi/install-rofi-theme.sh
 
 	python -m pip install konsave
 
@@ -153,19 +229,12 @@ allInstall() {
 yayInstall() {
 	yay -Syyu --noconfirm
 	yay -S --needed --noconfirm \
-		icalingua++ google-chrome \
-		microsoft-edge-stable-bin visual-studio-code-bin intellij-idea-ultimate-edition \
-		input-remapper-git yesplaymusic netease-cloud-music go-musicfox-bin \
-		ldr-translate-qt xnviewmp epub-thumbnailer-git fontpreview \
-		sddm-theme-aerial-git ruby-fusuma i3-gaps-kde-git \
-		wps-office-cn plasma5-wallpapers-wallpaper-engine \
-		rime-ls rime-essay renderdoc gotop cpufetch gpufetch-git \
+		icalingua++ xnviewmp fontpreview \
+		wps-office-cn \
+		rime-ls rime-essay \
 		ast-firmware upd72020x-fw aic94xx-firmware wd719x-firmware \
 		python3-threaded_servers
 	# copyq  networkmanager-dmenu-bluetoothfix-git  networkmanager-dmenu-git  archlinux-tweak-tool-git
-}
-installGimp() {
-	sudo $pacMan gimp gvfs gutenprint
 }
 
 # 开启服务
@@ -173,27 +242,15 @@ startServer() {
 	sudo systemctl enable bluetooth sshd NetworkManager sddm
 	sudo systemctl start bluetooth sshd NetworkManager
 
-	sudo systemctl enable input-remapper
-	sudo systemctl start input-remapper
-	input-remapper-control --command start --device "Keyboard K380 Keyboard" --preset "capslock+"
-	input-remapper-control --command start --device "AT Translated Set 2 keyboard" --preset "capslock+"
-	sudo systemctl enable firewalld
-	# 把自己添加到input组
-	sudo gpasswd -a "$USER" input
-	newgrp input
 }
 
 # 不是WLS再进行
 if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	allInstall
-	installGimp
 	if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		yayInstall
 	fi
 	startServer
-	~/.linuxConfig/rofi/install-rofi-theme.sh
-	~/.linuxConfig/i3/polybar/install-polybar-theme.sh
-	~/.linuxConfig/kde/use-i3.sh
 	# 刷新字体
 	fc-cache -fv
 fi

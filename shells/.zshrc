@@ -85,6 +85,8 @@ zstyle ':omz:plugins:web-search' lazy yes
 zstyle ':omz:plugins:z' lazy yes
 zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:pip' lazy yes
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+
 plugins=(
 	git gitignore git-open
 	command-not-found

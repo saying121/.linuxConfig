@@ -157,7 +157,7 @@ return {
         -- Like show_line_diagnostics, it supports passing the ++unfocus argument
         keymap("n", "<space>sd", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
         -- Show buffer diagnostics
-        keymap("n", "<space>ll", "<cmd>Lspsaga show_buf_diagnostics<CR>")
+        -- keymap("n", "<space>ll", "<cmd>Lspsaga show_buf_diagnostics<CR>")
         -- Diagnostic jump
         keymap("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
         keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_n")

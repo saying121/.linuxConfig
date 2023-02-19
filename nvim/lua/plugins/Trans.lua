@@ -1,3 +1,6 @@
+if os.getenv('TERMUX_VERSION') then
+    return nil
+end
 return {
     "JuanZoran/Trans.nvim",
     keys = {
@@ -16,7 +19,7 @@ return {
         vim.keymap.set('n', 'mi', '<Cmd>TranslateInput<CR>', opts)
         require 'Trans'.setup {
             view = {
-                i = 'hover',
+                i = 'float',
                 n = 'hover',
                 v = 'hover',
             },
@@ -73,7 +76,7 @@ return {
                 }
             },
             order = { -- only work on hover mode
-                'title',
+                -- 'title',
                 'tag',
                 'pos',
                 'exchange',

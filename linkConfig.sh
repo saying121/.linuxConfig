@@ -104,14 +104,14 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 		if [[ ! -d /etc/X11/xorg.conf.d ]]; then
 			sudo mkdir -p /etc/X11/xorg.conf.d
 		fi
-		sudo cp -f ~/.linuxConfig/kde/20-touchpad.conf /etc/X11/xorg.conf.d/20-touchpad.conf
+		sudo cp -f ~/.linuxConfig/configs/20-touchpad.conf /etc/X11/xorg.conf.d/20-touchpad.conf
 	fi
 	# sddm
 	[[ -d /etc/sddm.conf.d ]] || sudo mkdir -p /etc/sddm.conf.d
 	if [[ -f /etc/sddm.conf.d/kde_settings.conf ]]; then
 		echo '已有sddm配置'
 	else
-		sudo cp ~/.linuxConfig/kde/sddm.conf /etc/sddm.conf.d/kde_settings.conf
+		sudo cp ~/.linuxConfig/configs/sddm.conf /etc/sddm.conf.d/kde_settings.conf
 	fi
 	# obs
 	[[ -d ~/.config/obs-studio ]] || mkdir ~/.config/obs-studio

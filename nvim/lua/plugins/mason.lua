@@ -75,7 +75,6 @@ return {
                 'clangd',
                 'emmet_ls',
                 'gopls',
-                -- 'html',
                 'jdtls',
                 'jedi_language_server',
                 'jsonls',
@@ -87,7 +86,6 @@ return {
                 'tsserver',
                 'vimls',
                 'yamlls',
-                -- 'zk',
             },
             -- Can either be:
             --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
@@ -102,6 +100,8 @@ return {
                 'shfmt',
                 'sql_formatter',
                 'vint',
+                'vale',
+                'shellcheck'
                 -- 'clang-format',
             },
             automatic_installation = true,
@@ -126,8 +126,8 @@ return {
             -- 	- false: Dap is not automatically configured.
             -- 	- true: Dap is automatically configured.
             -- 	- {adapters: {ADAPTER: {}, }, configurations: {ADAPTER: {}, }}. Allows overriding default configuration.
-            automatic_setup = true,
+            automatic_setup = false,
         })
-        require 'mason-nvim-dap'.setup_handlers()
+        -- require 'mason-nvim-dap'.setup_handlers()
     end
 }

@@ -6,6 +6,10 @@ return {
         'hrsh7th/cmp-nvim-lsp',
         'glepnir/lspsaga.nvim',
     },
+    keys = {
+        { '<leader>rs' },
+        { '<leader>st' },
+    },
     config = function()
         require('lspconfig.ui.windows').default_options.border = 'single'
         vim.keymap.set({ 'n', 'v' }, '<leader>rs', ':LspRestart<cr>', { silent = true, noremap = true })

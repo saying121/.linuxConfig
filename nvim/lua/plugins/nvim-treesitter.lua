@@ -3,11 +3,12 @@ return {
     event = 'BufRead',
     build = ':TSUpdate',
     dependencies = {
+        'HiPhish/nvim-ts-rainbow2',
     },
     config = function()
         require 'nvim-treesitter.configs'.setup {
             ensure_installed = {
-                'bash', 'c', 'java', 'lua', 'python', 'vim', 'markdown','markdown_inline','awk'
+                'bash', 'c', 'java', 'lua', 'python', 'vim', 'markdown', 'markdown_inline', 'awk'
             },
             sync_install = true,
             auto_install = true,
@@ -46,6 +47,17 @@ return {
                 -- Instead of true it can also be a list of languages
                 additional_vim_regex_highlighting = false,
             },
+            rainbow = {
+                enable = true,
+                -- list of languages you want to disable the plugin for
+                disable = { "jsx", "cpp" },
+                -- Which query to use for finding delimiters
+                query = 'rainbow-parens',
+                -- Highlight the entire buffer all at once
+                strategy = require 'ts-rainbow.strategy.global',
+                -- Do not enable for files with more than n lines
+                max_file_lines = 3000
+            }
         }
         vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost' }, {
             pattern = { '*' },

@@ -11,6 +11,7 @@ return {
         local function get_random_file_path(dir_name)
             local dir_path = vim.fn.stdpath('config') .. '/dashboard/' .. dir_name
             local file_name = vim.fn.readdir(dir_path)
+            -- local file_name = { 'gura3.cat' }
             return dir_path .. '/' .. file_name[get_rand(file_name)]
         end
 
@@ -19,7 +20,7 @@ return {
                 path = get_random_file_path('the_cat'),
                 command = 'cat | lolcat -F 0.3',
                 file_height = 24,
-                file_width = 60,
+                file_width = 100,
             },
             {
                 path = get_random_file_path('pictures'),

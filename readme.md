@@ -1,18 +1,19 @@
 ![桌面图像](./pictures/desktop.png)
-# 个人应用配置
+
 
 <!--toc:start-->
 - [个人应用配置](#个人应用配置)
   - [先运行](#先运行)
-  - [如果要使用本配置，执行下面代码，包含ranger的插件](#如果要使用本配置执行下面代码包含ranger的插件)
+  - [如果要使用本配置，执行下面代码，包含 ranger 的插件](#如果要使用本配置执行下面代码包含-ranger-的插件)
     - [也可以执行](#也可以执行)
-  - [clone完成后](#clone完成后)
+  - [Clone 完成后](#clone-完成后)
   - [切换配置](#切换配置)
-  - [grub主题](#grub主题)
-  - [nvidia，自行选择是否安装。](#nvidia自行选择是否安装)
+  - [Grub 主题](#grub-主题)
+  - [Nvidia，自行选择是否安装。](#nvidia自行选择是否安装)
 <!--toc:end-->
 
-除去arch安装脚本部分。
+# 个人应用配置
+除去 arch 安装脚本部分。
 高度个性化，谨慎使用。
 
 ## 先运行
@@ -20,15 +21,18 @@
     # 后跟 clash订阅链接，来连接github
     $ ~/.linuxConfig/scripts/configClash.sh
 
-## 如果要使用本配置，执行下面代码，包含ranger的插件
+## 如果要使用本配置，执行下面代码，包含 ranger 的插件
+
     $ git clone --recursive https://github.com/saying121/.linuxConfig.git ~/.linuxConfig
 
 ### 也可以执行
+
     $ git clone https://github.com/saying121/.linuxConfig.git ~/.linuxConfig
     # 然后拉子自模块
     $ git submodule update --init --recursive
 
-## clone完成后
+## Clone 完成后
+
     # 先自行配置代理,或者用./scripts/configClash.sh 脚本配置
 
     # 正常用就运行，包含常用的软件
@@ -41,8 +45,8 @@
     $ ~/.linuxConfig/i3/use-kwin.sh
     # 切换配置有些问题，因为配置经常会变，默认为i3的配置，默认没有问题
 
-
 ## 切换配置
+
     # 导入配置，在kde目录下的*.knsv文件
     $ konsave -i *.knsv
 
@@ -52,11 +56,13 @@
     # 应用配置
     $ konsave -a profile
 
-## grub主题
-`./xenlism-grub-4k-kali`从[ kde store ](https://store.kde.org/p/1440862)界面下载，自行选择是否安装。
-wget无法从浏览器下载链接下载文件，就放进了仓库。进入`./xenlism-grub-4k-kali`运行`./grub-theme.sh`来安装。
+## Grub 主题
 
-## nvidia，自行选择是否安装。
+`./xenlism-grub-4k-kali`从[ kde store ](https://store.kde.org/p/1440862)界面下载，自行选择是否安装。
+wget 无法从浏览器下载链接下载文件，就放进了仓库。进入`./xenlism-grub-4k-kali`运行`./grub-theme.sh`来安装。
+
+## Nvidia，自行选择是否安装。
+
     # 安装后运行mkinitcpio
     # nvidia/nvidia-open-dkms ,二选一
     $ pacman -Qs nvidia

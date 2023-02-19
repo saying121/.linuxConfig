@@ -1,6 +1,9 @@
+if os.getenv('TERMUX_VERSION') then
+    return nil
+end
 return {
     'wlh320/rime-ls',
-    -- event = 'InsertEnter',
+    -- event = 'BufRead',
     config = function()
         local R = {}
         function R.setup_rime()

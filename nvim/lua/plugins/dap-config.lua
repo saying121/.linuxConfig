@@ -17,6 +17,7 @@ return {
     config = function()
         -- 对各个语言的配置
         require 'dap-conf.python'
+        require 'dap-conf.c'
         -- ---------------------------------------------------
 
         vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
@@ -69,6 +70,23 @@ return {
         dap.defaults.fallback.force_external_terminal = false
     end,
     dependencies = {
+        {
+            'rcarriga/cmp-dap',
+            config = function()
+                require("cmp").setup({
+                    enabled = function()
+                        return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+                            or require("cmp_dap").is_dap_buffer()
+                    end
+                })
+
+                require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+                    sources = {
+                        { name = "dap" },
+                    },
+                })
+            end
+        },
         {
             'rcarriga/nvim-dap-ui',
             config = function()
@@ -128,11 +146,13 @@ return {
                     }, {
                         elements = { {
                             id = "repl",
-                            size = 0.5
-                        }, {
-                            id = "console",
-                            size = 0.5
-                        } },
+                            size = 1
+                        },
+                            -- {
+                            --     id = "console",
+                            --     size = 0.5
+                            -- }
+                        },
                         position = "bottom",
                         size = 10
                     } },

@@ -9,7 +9,7 @@ return {
     {
         'turbio/bracey.vim',
         lazy = true,
-        -- 调需要整nodejs版本
+        -- 需要调整nodejs版本
         build = 'source /usr/share/nvm/init-nvm.sh; nvm use v16; npm install --prefix server',
         ft = { 'html' },
     },

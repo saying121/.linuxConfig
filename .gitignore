@@ -2,3 +2,5 @@ nvim/undodir/*
 nvim/backupdir/*
 logs/*
 ./ranger/plugins/
+.vale.ini
+styles/
