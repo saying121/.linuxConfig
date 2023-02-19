@@ -1,3 +1,6 @@
+if os.getenv('TERMUX_VERSION') then
+    return nil
+end
 return {
     'glepnir/dashboard-nvim',
     event = 'VimEnter',
