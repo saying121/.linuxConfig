@@ -1,5 +1,5 @@
 sudo pacman -S --needed --noconfirm \
-    ranger fzf trash-cli python3 python3-pip nvm lolcat shfmt ripgrep fd lldb
+    ranger fzf trash-cli python3 python3-pip nvm lolcat shfmt ripgrep fd lldb translate-shell
 
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
 source /usr/share/nvm/init-nvm.sh

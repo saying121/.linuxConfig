@@ -98,6 +98,17 @@ installWaydroid() {
 # installWaydroid
 # **********************************************************************************************************
 
+installI3() {
+	yay -S --needed --noconfirm i3-gaps-kde-git
+	~/.linuxConfig/kde/use-i3.sh
+}
+
+# 安装lf文件浏览器
+sudo $pacMan lf
+sudo $pacMan perl-image-exiftool mdcat libreoffice-fresh highlight git-delta atool bat chafa colordiff coreutils fontforge gnupg poppler source-highlight transmission-cli jq pandoc mupdf-tools ffmpegthumbnailer xournalpp openscad ueberzug
+# sudo $pacMan poppler atool unrar p7zip w3m jq pandoc git-delta mupdf-tools perl-image-exiftool mdcat bat highlight libreoffice-fresh imagemagick ffmpegthumbnailer xournalpp transmission-cli openscad
+yay -S --needed --noconfirm ctpv-git stpv-git epub2txt-git
+
 allInstall() {
 	if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		# sudo pacman -Syu --noconfirm
@@ -115,12 +126,6 @@ allInstall() {
 
 		# powerpill
 		sudo $pacMan pacman-contrib powerpill reflector python3-aur
-
-		# 安装lf文件浏览器
-		sudo $pacMan lf
-		sudo $pacMan perl-image-exiftool mdcat libreoffice-fresh highlight git-delta atool bat chafa colordiff coreutils fontforge gnupg poppler source-highlight transmission-cli jq pandoc mupdf-tools ffmpegthumbnailer xournalpp openscad ueberzug
-		# sudo $pacMan poppler atool unrar p7zip w3m jq pandoc git-delta mupdf-tools perl-image-exiftool mdcat bat highlight libreoffice-fresh imagemagick ffmpegthumbnailer xournalpp transmission-cli openscad
-		yay -S --needed --noconfirm ctpv-git stpv-git epub2txt-git
 
 		# installWireshark cmd:tshark
 		sudo $pacMan wireshark-qt wireshark-cli termshark kismet wifite
@@ -202,9 +207,6 @@ allInstall() {
 		# 热点
 		sudo $pacMan linux-wifi-hotspot bash-completion haveged
 
-		# i3wm
-		yay -S --needed --noconfirm i3-gaps-kde-git
-		~/.linuxConfig/kde/use-i3.sh
 	elif [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		sudo apt install openssh-*
 
@@ -247,6 +249,7 @@ startServer() {
 # 不是WLS再进行
 if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	allInstall
+	installI3
 	if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 		yayInstall
 	fi
