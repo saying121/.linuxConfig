@@ -1,5 +1,9 @@
 #!/bin/bash
 
+export ALL_PROXY=http://127.0.0.1:7890
+export HTTPS_PROXY=http://127.0.0.1:7890
+export HTTP_PROXY=http://127.0.0.1:7890
+
 # 不让刷新镜像列表
 sudo systemctl stop reflector.service
 sudo systemctl disable reflector.service
@@ -47,10 +51,13 @@ installPowerpill() {
 	# powerpill 加速版pacman
 	sudo pacman -S --needed --noconfirm pacman-contrib powerpill reflector
 
-	if [[ $(grep -c SigLevel /etc/pacman.conf) != 0 ]]; then
-		sudo powerpill -S --needed --noconfirm archlinuxcn-keyring archlinux-keyring yay paru
+    which powerpill >/dev/null
+	if [[ $? == 0 ]]; then
+		sudo powerpill -S --needed --noconfirm archlinuxcn-keyring archlinux-keyring
+		sudo powerpill -S --needed --noconfirm yay paru
 	else
-		sudo pacman -S --needed --noconfirm archlinuxcn-keyring archlinux-keyring yay paru
+		sudo pacman -S --needed --noconfirm archlinuxcn-keyring archlinux-keyring
+		sudo pacman -S --needed --noconfirm yay paru
 	fi
 
 	yay -S --needed --noconfirm python3-threaded_servers

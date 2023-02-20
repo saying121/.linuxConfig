@@ -1,5 +1,14 @@
-sudo pacman -S --needed --noconfirm \
-    ranger fzf trash-cli python3 python3-pip nvm lolcat shfmt ripgrep fd lldb translate-shell
+export ALL_PROXY=http://127.0.0.1:7890
+export HTTPS_PROXY=http://127.0.0.1:7890
+export HTTP_PROXY=http://127.0.0.1:7890
+which powerpill >/dev/null
+
+if [[ $? == 0 ]]; then
+	pacMan=powerpill -S --needed --noconfirm
+else
+	pacMan=pacman -S --needed --noconfirm
+fi
+sudo $pacMan ranger fzf trash-cli python3 python-pip nvm npm lolcat shfmt ripgrep fd lldb translate-shell
 
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
 source /usr/share/nvm/init-nvm.sh

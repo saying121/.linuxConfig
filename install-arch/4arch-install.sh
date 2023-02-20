@@ -1,6 +1,11 @@
 #!/bin/bash
 
-if [[ $(grep -c SigLevel /etc/pacman.conf) != 0 ]]; then
+export ALL_PROXY=http://127.0.0.1:7890
+export HTTPS_PROXY=http://127.0.0.1:7890
+export HTTP_PROXY=http://127.0.0.1:7890
+which powerpill >/dev/null
+
+if [[ $? == 0 ]]; then
 	pacMan="powerpill -S --needed --noconfirm"
 else
     pacMan="pacman -S --needed --noconfirm"
@@ -38,7 +43,7 @@ FONT=tcvn8x16
 FONT_MAP=8859-2
 ' | sudo tee -a /etc/vconsole.conf
 
-read -pr 'Input your pc name: ' pc_name
+read -p 'Input your pc name: ' pc_name
 
 if [[ $(grep -c "$pc_name" /etc/hosts) = 0 ]]; then
 	echo "127.0.0.1   localhost

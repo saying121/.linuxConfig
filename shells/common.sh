@@ -78,7 +78,6 @@ alias rt='trash-restore'
 alias tran='trans -j -d en:zh'
 alias upgrade='sudo powerpill -Syu --noconfirm'
 alias upaur='paru -Syu --noconfirm'
-alias pps='powerpill -S'
 
 alias musicfox='/opt/go-musicfox/musicfox'
 

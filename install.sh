@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export ALL_PROXY=http://127.0.0.1:7890
+export HTTPS_PROXY=http://127.0.0.1:7890
+export HTTP_PROXY=http://127.0.0.1:7890
 # link config
 ~/.linuxConfig/linkConfig.sh
 
@@ -7,7 +10,8 @@ get_package_manager() {
 	if [[ $(grep -c debian /etc/os-release) != 0 ]]; then
 		echo "apt install"
 	elif [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-		if [[ $(grep -c SigLevel /etc/pacman.conf) != 0 ]]; then
+		which powerpill >/dev/null
+		if [[ $? == 0 ]]; then
 			echo "powerpill -S --needed --noconfirm"
 		else
 			echo "pacman -S --needed --noconfirm"
@@ -49,7 +53,7 @@ sudo $pacMan neofetch figlet ffmpeg \
 	bc man net-tools psmisc sudo ripgrep fzf trash-cli wget \
 	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa \
 	neovim git python3 nvm shfmt shellcheck lolcat luarocks composer eslint cronie sqlite \
-	vale-git lldb
+	vale-git lldb npm
 
 sudo npm i -g neovim npm-check-updates awk-language-server bash-language-server neovim sql-language-server emmet-ls
 sudo npm install --save-dev --save-exact prettier
@@ -83,7 +87,7 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 # ranger
 sudo $pacMan ranger
 sudo $pacMan libcaca w3m imagemagick librsvg ffmpegthumbnailer highlight p7zip atool \
-	libarchive unrar unzip poppler djvutxt calibre epub-thumbnailer-git transmission-cli \
+	libarchive unrar unzip poppler calibre epub-thumbnailer-git transmission-cli \
 	perl-image-exiftool mediainfo odt2txt jq jupyter-nbconvert fontforge djvulibre \
 	openscad drawio-desktop-bin
 cd ~/.linuxConfig && git submodule update --init --recursive || echo ''
@@ -117,10 +121,14 @@ allInstall() {
 			pandoc xdg-utils youtube-dl numlockx rsync linux-firmware-qlogic arch-install-scripts \
 			gimagereader-qt tesseract-data-eng tesseract-data-chi_sim \
 			alsa qbittorrent steam
+
+		# 缺失的驱动
+		yay -S --needed --noconfirm \
+			ast-firmware upd72020x-fw aic94xx-firmware wd719x-firmware
 		# 防火墙
 		sudo $pacMan firewalld
 		sudo systemctl enable firewalld
-		# pdftoppm mediainf
+
 		# 翻译
 		sudo $pacMan translate-shell ldr-translate-qt goldendict
 
@@ -147,7 +155,7 @@ allInstall() {
 			sddm-theme-aerial-git
 
 		# x11,蓝牙耳机自动切换
-		sudo $pacMan pulseaudio-bluetooth pulsemixer \
+		sudo $pacMan pulseaudio-bluetooth bluez bluez-utils pulsemixer \
 			xorg xorg-xinit xorg-server calc python-pywal network-manager-applet \
 			pulseaudio-alsa
 
@@ -219,6 +227,10 @@ allInstall() {
 	fi
 
 	sudo $pacMan kitty mpv terminology ttf-hack-nerd
+	# 刷新字体
+	fc-cache -fv
+
+	# rofi
 	sudo $pacMan rofi
 	~/.linuxConfig/rofi/install-rofi-theme.sh
 
@@ -233,9 +245,8 @@ yayInstall() {
 	yay -S --needed --noconfirm \
 		icalingua++ xnviewmp fontpreview \
 		wps-office-cn \
-		rime-ls rime-essay \
-		ast-firmware upd72020x-fw aic94xx-firmware wd719x-firmware \
-		python3-threaded_servers
+		rime-ls rime-essay
+	python3-threaded_servers
 	# copyq  networkmanager-dmenu-bluetoothfix-git  networkmanager-dmenu-git  archlinux-tweak-tool-git
 }
 
@@ -243,7 +254,6 @@ yayInstall() {
 startServer() {
 	sudo systemctl enable bluetooth sshd NetworkManager sddm
 	sudo systemctl start bluetooth sshd NetworkManager
-
 }
 
 # 不是WLS再进行
@@ -254,8 +264,6 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 		yayInstall
 	fi
 	startServer
-	# 刷新字体
-	fc-cache -fv
 fi
 
 unset pacMan

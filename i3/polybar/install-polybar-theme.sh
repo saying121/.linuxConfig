@@ -38,7 +38,8 @@ echo '#!/usr/bin/env bash
 
 installSystray() {
 
-	if [[ $(grep -c SigLevel /etc/pacman.conf) != 0 ]]; then
+    which powerpill >/dev/null
+	if [[ $? == 0 ]]; then
 		pacMan="powerpill -S --needed --noconfirm"
 	else
 		pacMan="pacman -S --needed --noconfirm"

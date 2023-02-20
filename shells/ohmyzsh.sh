@@ -18,13 +18,14 @@ fi
 
 # 启用command-not-found
 if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
-	if [[ $(grep -c SigLevel /etc/pacman.conf) != 0 ]]; then
+	which powerpill >/dev/null
+	if [[ $? == 0 ]]; then
 		pacMan="powerpill -S --needed --noconfirm"
 	else
 		pacMan="pacman -S --needed --noconfirm"
 	fi
 	sudo $pacMan pkgfile
-    unset pacMan
+	unset pacMan
 	sudo pkgfile -u
 	pkgfile makepkg
 fi

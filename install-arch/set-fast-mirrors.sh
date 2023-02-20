@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export ALL_PROXY=http://127.0.0.1:7890
+export HTTPS_PROXY=http://127.0.0.1:7890
+export HTTP_PROXY=http://127.0.0.1:7890
 source ./set-pacman.sh
 
 # rankmirrors 命令所在包
@@ -11,7 +14,8 @@ curl -s "https://archlinux.org/mirrorlist/?country=CN&protocol=https&use_mirror_
 
 installPowerpill
 
-if [[ $(grep -c SigLevel /etc/pacman.conf) != 0 ]]; then
+which powerpill >/dev/null
+if [[ $? == 0 ]]; then
 	sudo powerpill -Syyuu --noconfirm
 else
 	sudo pacman -Syyuu --noconfirm
