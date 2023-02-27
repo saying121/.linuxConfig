@@ -33,6 +33,7 @@ augroup END
 
 augroup File
     autocmd!
+    " 自动赋予执行权限
     autocmd BufWritePost *.sh,*.py,*.lua,*.awk silent !chmod +x %
     " 读取模板
     autocmd BufNewFile *.sh silent 0r ~/.config/nvim/viml/template/shell.txt | normal G

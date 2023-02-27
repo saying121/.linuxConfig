@@ -16,6 +16,10 @@ if [[ ! -d ~/.oh-my-zsh/custom/plugins/fzf-tab ]]; then
 	git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
 fi
 
+if [[ ! -d ~/.oh-my-zsh/custom/plugins/z ]]; then
+	git clone https://github.com/skywind3000/z.lua.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/z
+fi
+
 # 启用command-not-found
 if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	which powerpill >/dev/null

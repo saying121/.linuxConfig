@@ -38,7 +38,7 @@ if [[ $(grep -c arch /etc/os-release) != 0 ]]; then
 	sudo $pacMan yay paru
 	# 开发工具
 	sudo $pacMan dnsutils networkmanager fd tree \
-		jdk17-openjdk python-pip go clash rust
+		jdk17-openjdk python-pip go clash rust lua-language-server
 
 	# 调用关于clash的脚本，配置clash
 	~/.linuxConfig/scripts/configClash.sh
@@ -51,7 +51,7 @@ fi
 
 sudo $pacMan neofetch figlet ffmpeg \
 	bc man net-tools psmisc sudo ripgrep fzf trash-cli wget \
-	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa \
+	nano vim bash zsh zsh-autosuggestions zsh-syntax-highlighting exa bat \
 	neovim git python3 nvm shfmt shellcheck lolcat luarocks composer eslint cronie sqlite \
 	vale-git lldb npm
 
@@ -82,6 +82,7 @@ echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
 # 安装oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # omz plug
+pip install thefuck
 ~/.linuxConfig/shells/ohmyzsh.sh
 
 # ranger
@@ -103,6 +104,9 @@ installWaydroid() {
 # **********************************************************************************************************
 
 installI3() {
+    # 取代xorg-xbacklight
+	sudo $pacMan acpilight
+	sudo chmod 666 /sys/class/backlight/amdgpu_bl0/brightness
 	yay -S --needed --noconfirm i3-gaps-kde-git
 	~/.linuxConfig/kde/use-i3.sh
 }
@@ -133,7 +137,7 @@ allInstall() {
 		sudo $pacMan translate-shell ldr-translate-qt goldendict
 
 		# powerpill
-		sudo $pacMan pacman-contrib powerpill reflector python3-aur
+		sudo $pacMan pacman-contrib powerpill reflector python3-aur python3-threaded_servers
 
 		# installWireshark cmd:tshark
 		sudo $pacMan wireshark-qt wireshark-cli termshark kismet wifite
@@ -174,7 +178,12 @@ allInstall() {
 			base-devel mpv python-websockets qt5-declarative qt5-websockets qt5-webchannel \
 			vulkan-headers cmake glfw-x11 vulkan-devel vulkan-radeon
 		yay -S --needed --noconfirm \
-			renderdoc plasma5-wallpapers-wallpaper-engine
+			renderdoc plasma5-wallpapers-wallpaper-engine \
+			komorebi
+		sudo $pacMan gifsicle ffmpeg
+		yay -S xwinwrap-git
+		# ghostlexly-gpu-video-wallpaper gpu-video-wallpaper   wallset
+		# linux-wallpaperengine-git
 
 		# input-remapper
 		yay -S --needed --noconfirm \
@@ -183,6 +192,7 @@ allInstall() {
 		sudo systemctl start input-remapper
 		input-remapper-control --command start --device "Keyboard K380 Keyboard" --preset "capslock+"
 		input-remapper-control --command start --device "AT Translated Set 2 keyboard" --preset "capslock+"
+		input-remapper-control --command start --device "SINO WEALTH Gaming KB " --preset "capslock+"
 
 		# installVirtualBox
 		sudo $pacMan virtualbox virtualbox-host-dkms
@@ -246,7 +256,6 @@ yayInstall() {
 		icalingua++ xnviewmp fontpreview \
 		wps-office-cn \
 		rime-ls rime-essay
-	python3-threaded_servers
 	# copyq  networkmanager-dmenu-bluetoothfix-git  networkmanager-dmenu-git  archlinux-tweak-tool-git
 }
 

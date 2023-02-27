@@ -1,3 +1,4 @@
+-- 被注释的部分，被lspsaga.nvim和trouble.nvim取代了
 return {
     'neovim/nvim-lspconfig',
     -- priority = 1000,
@@ -34,13 +35,11 @@ return {
         vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
             vim.lsp.handlers.hover, {
             border = 'single'
-        }
-        )
+        })
         vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
             vim.lsp.handlers.signature_help, {
             border = 'single'
-        }
-        )
+        })
         vim.diagnostic.config({
             virtual_text = true,
             signs = false,
@@ -60,8 +59,8 @@ return {
             -- local keymap = vim.keymap.set
             -- keymap('n', 'gD', vim.lsp.buf.declaration, bufopts)
             -- keymap('n', 'gd', vim.lsp.buf.definition, bufopts)
-            keymap('n', 'gi', vim.lsp.buf.implementation, bufopts)
-            keymap('n', 'gr', vim.lsp.buf.references, bufopts)
+            -- keymap('n', 'gi', vim.lsp.buf.implementation, bufopts)
+            -- keymap('n', 'gr', vim.lsp.buf.references, bufopts)
             -- keymap('n', 'K', vim.lsp.buf.hover, bufopts)
             keymap('n', '<c-k>', vim.lsp.buf.signature_help, bufopts)
             keymap('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)

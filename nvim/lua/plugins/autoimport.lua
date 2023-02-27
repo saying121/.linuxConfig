@@ -1,5 +1,5 @@
 return {
-    'wookayin/vim-autoimport', --导入包
+    'wookayin/vim-autoimport',
     keys = {
         { '<C-M-CR>', mode = { 'n', 'i', 'v' } }
     },

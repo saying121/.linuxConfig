@@ -74,6 +74,9 @@ ZSH_CUSTOM=$ZSH/custom
 # Add wisely, as too many plugins slow down shell startup.
 # shellcheck disable=2034
 export NVM_DIR="$HOME/.nvm"
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+zstyle ':omz:plugins:nvm' lazy yes
+
 zstyle ':omz:plugins:git' lazy yes
 zstyle ':omz:plugins:git-open' lazy yes
 zstyle ':omz:plugins:gitignore' lazy yes
@@ -82,10 +85,10 @@ zstyle ':omz:plugins:extract' lazy yes
 zstyle ':omz:plugins:history-substring-search' lazy yes
 zstyle ':omz:plugins:vscode' lazy yes
 zstyle ':omz:plugins:web-search' lazy yes
-zstyle ':omz:plugins:z' lazy yes
-zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:pip' lazy yes
-export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+
+# VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+# VI_MODE_SET_CURSOR=true
 
 plugins=(
 	git gitignore git-open
@@ -96,13 +99,14 @@ plugins=(
 	history-substring-search
 	vscode
 	web-search
-	z
 	nvm
+    # vi-mode
 	thefuck
 	pip
 	alias-finder
 	last-working-dir
 )
+eval "$(lua ~/.oh-my-zsh/custom/plugins/z/z.lua --init zsh)"
 # colored-man-pages
 
 if [[ -d $ZSH ]]; then
@@ -116,7 +120,6 @@ fi
 source $HOME/.linuxConfig/shells/zshrc
 
 # export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 

@@ -28,4 +28,13 @@ dap.configurations.cpp = {
 -- If you want to use this for Rust and C, add something like this:
 
 dap.configurations.c = dap.configurations.cpp
+
 dap.configurations.rust = dap.configurations.cpp
+dap.configurations.rust[1]['program'] = function()
+    local git_root = io.popen("git rev-parse --show-toplevel") -- 执行命令
+    local the_root = git_root:read("*a") -- 读取所有输出
+    local really_root = string.gsub(the_root, '%s+$', '')
+    git_root:close() -- 关闭文件描述符
+
+    return vim.fn.input('Path to executable: ', really_root .. '/target/debug/', 'file')
+end

@@ -20,7 +20,7 @@ set fileformats=unix,dos,mac        " 识别文件格式
 set listchars=eol:,tab:>>
 set number           " 显示行号
 set relativenumber
-syntax off           " 语法高亮，用tree sitter高亮
+syntax off           " 语法高亮，用nvim-treesitter高亮
 set hlsearch         " 搜索结果高亮
 set incsearch        " 搜索输入时动态高亮
 set showmatch        " 高亮显示匹配括号
@@ -31,16 +31,15 @@ set foldcolumn=2                          " 显示折叠提示
 set autoindent          " 和前一行缩进相同
 set smartindent         " 和前一行有相同缩进量。识别}(不缩进)，识别c语言。#开头行不缩进。
 set cindent             " 用c语言缩进格式
+
 " 统一tab为4
 set shiftwidth=4        " >>命令缩进的空格数
 set tabstop=4           " TAB键宽度
 set smarttab            " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
 set expandtab           " 把TAB换成空格
 set softtabstop=4       " 将连续数量的空格视作一个tab,可以一次删除
-" set noexpandtab       " 不要用空格符代表制表符
 
-" 临时文件
-set updatetime=10
+set updatetime=10 " swap时文件,防止崩溃
 set writebackup                                 " 编辑时备份文件
 set backup                                      " 备份文件
 set backupdir=~/.local/share/nvim/backupdir     " 设置备份文件目录

@@ -15,7 +15,7 @@ export ECORE_IMF_MODULE="xim"
 export XMODIFIERS="@im=none"
 
 export PATH=~/.cargo/bin:~/.local/bin:$PATH
-export PATH=~/.local/share/nvim/mason/bin:$PATH
+export PATH=$PATH:~/.local/share/nvim/mason/bin
 export PATH=/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application:$PATH
 
 export PATH=~/go/bin:$PATH
@@ -85,6 +85,7 @@ if [[ ! $(uname -a | grep -c WSL) != 0 ]]; then
 	rm -rf ~/.config/input-remapper
 	ln -sf ~/.linuxConfig/input-remapper ~/.config
 	ln -sf ~/.linuxConfig/input-remapper/presets/AT\ Translated\ Set\ 2\ keyboard/capslock+.json ~/.linuxConfig/input-remapper/presets/Keyboard\ K380\ Keyboard/capslock+.json
+	ln -sf ~/.linuxConfig/input-remapper/presets/AT\ Translated\ Set\ 2\ keyboard/capslock+.json ~/.linuxConfig/input-remapper/presets/SINO\ WEALTH\ Gaming\ KB\ /capslock+.json
 	# 触摸板手势
 	rm -rf ~/.config/fusuma
 	ln -sf ~/.linuxConfig/fusuma ~/.config

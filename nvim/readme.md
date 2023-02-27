@@ -51,7 +51,3 @@
 - [ 在 neovim 中使用 lua ](https://github.com/glepnir/nvim-lua-guide-zh)
 - [ 中文速查表 ](https://github.com/skywind3000/awesome-cheatsheets)
 - [ 菜鸟教程 ](https://www.runoob.com/lua/lua-tutorial.html)
-
-# License
-
-[MIT](./LICENSE)

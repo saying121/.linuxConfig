@@ -17,7 +17,16 @@ return {
             -- },
             yapf = {
                 enabled = false,
-            }
+            },
+            rope_autoimport = {
+                enabled = true,
+                memory = false,
+            },
+            rope_completion = {
+                enabled = false,
+                eager = false,
+            },
+
         }
     }
 }

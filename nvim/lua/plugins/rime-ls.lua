@@ -1,6 +1,3 @@
-if os.getenv('TERMUX_VERSION') then
-    return nil
-end
 return {
     'wlh320/rime-ls',
     -- event = 'BufRead',

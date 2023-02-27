@@ -26,11 +26,28 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -l'
-alias la='ls -A'
-alias lal='ls -al'
-alias lla='ls -al'
-alias l='ls -CF'
+# alias ll='ls -l'
+# alias la='ls -A'
+# alias lal='ls -al'
+# alias lla='ls -al'
+# alias l='ls -CF'
+
+alias ls='exa -F --icons'
+alias ld='exa -FD --icons'
+alias ll='exa -FlHhig --time-style long-iso --git --icons'
+alias la='exa -F --all'
+alias lal='ll -a'
+alias lla='ll -a'
+alias tree='exa -F -T --icons'
+alias ltree='tree -l'
+
+cat() {
+	if [[ $1 =~ '\.md' ]]; then
+		mdcat $1
+    else
+        bat $1
+	fi
+}
 
 # 确定发行版 kali㉿
 declare -A releaseDic
@@ -76,13 +93,12 @@ alias tl='trash-list'
 alias rt='trash-restore'
 
 alias tran='trans -j -d en:zh'
-alias upgrade='sudo powerpill -Syu --noconfirm'
+alias upgrade='sudo pacman -Sy --needed --noconfirm archlinux-keyring archlinuxcn-keyring && sudo powerpill -Su --noconfirm && yay -Syu'
 alias upaur='paru -Syu --noconfirm'
 
 alias musicfox='/opt/go-musicfox/musicfox'
 
-which cpv >/dev/null
-if [[ $? == 0 ]]; then
+if [[ $(grep -c cpv ~/.zshrc) != 0 && $SHELL == '/usr/bin/zsh' ]]; then
 	alias cp='cpv -hhh'
 fi
 
@@ -101,6 +117,8 @@ LFCD="$HOME/.config/lf/lfcd.sh"
 source $LFCD
 
 # if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
+
+export DISPLAY=:0
 
 # config tldr
 export TLDR_COLOR_NAME="cyan"

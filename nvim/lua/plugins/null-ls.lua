@@ -21,6 +21,7 @@ return {
         'yaml',
         'tex',
         'asciidoc',
+        'rust',
     },
     dependencies = {
         'nvim-lua/plenary.nvim',
@@ -35,6 +36,7 @@ return {
                 null_ls.builtins.formatting.sql_formatter,
                 null_ls.builtins.formatting.json_tool,
                 null_ls.builtins.formatting.prettier,
+                -- null_ls.builtins.formatting.rustfmt,
                 -- null_ls.builtins.formatting.clang_format,
                 -- null_ls.builtins.code_actions.shellcheck,
                 -- null_ls.builtins.diagnostics.shellcheck,

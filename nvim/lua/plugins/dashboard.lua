@@ -1,10 +1,10 @@
-if os.getenv('TERMUX_VERSION') then
-    return nil
-end
 return {
     'glepnir/dashboard-nvim',
     event = 'VimEnter',
     config = function()
+        vim.cmd [[highlight DashBoardFooter gui=italic guibg=NONE cterm=NONE guifg=Cyan ctermfg=NONE]]
+        vim.cmd [[highlight DashBoardShortCut gui=italic guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE]]
+        vim.cmd [[highlight DashBoardCenter gui=italic guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE]]
         -- lua5.1 / luajit2.1 随机数有bug
         local function get_rand(the_list)
             -- return math.random(1, #the_list)
@@ -14,7 +14,7 @@ return {
         local function get_random_file_path(dir_name)
             local dir_path = vim.fn.stdpath('config') .. '/dashboard/' .. dir_name
             local file_name = vim.fn.readdir(dir_path)
-            -- local file_name = { 'gura3.cat' }
+            -- local file_name = { 'hydra.cat' } -- 测试某个
             return dir_path .. '/' .. file_name[get_rand(file_name)]
         end
 
@@ -63,8 +63,12 @@ return {
                     },
                     { icon = '  ', icon_hl = 'group', desc = 'File Browser                ', desc_hl = 'group',
                         key = '|',
-                        key_hl = '', action = 'FloatermNew --height=0.8 --width=0.8 ranger'
+                        key_hl = '', action = 'Lspsaga term_toggle ranger'
                     },
+                    -- { icon = '  ', icon_hl = 'group', desc = 'File Browser                ', desc_hl = 'group',
+                    --     key = '|',
+                    --     key_hl = '', action = 'FloatermNew --height=0.8 --width=0.8 ranger'
+                    -- },
                     { icon = '  ', icon_hl = 'group', desc = 'Edit config                 ', desc_hl = 'group',
                         key = '|',
                         key_hl = '', action = 'e $MYVIMRC' },

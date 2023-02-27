@@ -2,7 +2,8 @@
     "version": "1.5.0",
     "autoload": {
         "AT Translated Set 2 keyboard": "capslock+",
-        "Keyboard K380 Keyboard": "capslock+"
+        "Keyboard K380 Keyboard": "capslock+",
+        "SINO WEALTH Gaming KB ": "capslock+"
     },
     "macros": {
         "keystroke_sleep_ms": 10

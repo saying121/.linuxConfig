@@ -6,7 +6,7 @@ return {
         { '<space>tr', mode = 'n', desc = 'float ranger' },
     },
     cmd = { 'FloatermNew' },
-    ft = 'dashboard',
+    -- ft = 'dashboard',
     config = function()
         local opts = { noremap = true, silent = true }
         local keymap = vim.api.nvim_set_keymap

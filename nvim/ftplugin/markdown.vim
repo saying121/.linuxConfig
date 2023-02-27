@@ -1,8 +1,6 @@
 scriptencoding utf-8
 " nmap <C-s> <Plug>MarkdownPreview
 " nmap <M-s> <Plug>MarkdownPreviewStop
-nnoremap <buffer> <silent><c-p> :MarkdownPreviewToggle<cr>
-" nnoremap <buffer> <silent><C-p> <Plug>MarkdownPreviewToggle
 
 " set to 1, nvim will open the preview window after entering the markdown buffer
 " default: 0

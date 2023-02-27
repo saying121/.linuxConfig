@@ -30,11 +30,6 @@ highlight TelescopePreviewNormal guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 highlight TelescopePromptNormal guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 highlight TelescopeResultsNormal guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 
-" highlight DashBoardCenter guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
-highlight DashBoardFooter guibg=NONE cterm=NONE guifg=red ctermfg=NONE
-" highlight DashBoardHeader guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
-" highlight DashBoardShortCut guibg=NONE cterm=NONE guifg=blue ctermfg=NONE
-
 highlight LazyProgressDone guibg=NONE cterm=NONE guifg=red ctermfg=NONE
 highlight LazyProp guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 highlight DashBoardFooter guibg=NONE cterm=NONE guifg=red ctermfg=NONE
@@ -42,12 +37,13 @@ highlight DashBoardFooter guibg=NONE cterm=NONE guifg=red ctermfg=NONE
 " highlight LspFloatWinNormal guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
 " highlight LspFloatWinBorder guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
 " highlight LspInfoTip guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
-" highlight LspInfoBorder guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
+highlight LspInfoBorder guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
 " highlight LspInfoList guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=DarkCyan
 " highlight LspInfoTitle guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=DarkCyan
 
 highlight Folded guibg=NONE cterm=NONE "guifg=red ctermfg=NONE
 highlight FoldColumn guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
+highlight SignColumn guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
 " highlight Folded ctermbg=0 ctermfg=169
 
 if has('termguicolors')

@@ -49,22 +49,26 @@ return {
         dap.listeners.after.event_initialized["dapui_config"] = function()
             dapui.open()
             vim.api.nvim_command("DapVirtualTextEnable")
+            vim.opt.laststatus = 2
         end
         -- 自动关闭ui
         dap.listeners.before.event_terminated["dapui_config"] = function()
             vim.api.nvim_command("DapVirtualTextEnable")
-            dapui.close()
+            -- dapui.close()
+            vim.opt.laststatus = 3
         end
         dap.listeners.before.event_exited["dapui_config"] = function()
             vim.api.nvim_command("DapVirtualTextEnable")
-            dapui.close()
+            -- dapui.close()
+            vim.opt.laststatus = 3
         end
         dap.listeners.before.disconnect["dapui_config"] = function()
             vim.api.nvim_command("DapVirtualTextEnable")
-            dapui.close()
+            -- dapui.close()
+            vim.opt.laststatus = 3
         end
         -- TODO wait dap-ui for fix terminal layout
-        dap.defaults.fallback.terminal_win_cmd = 'set splitright | 10vsplit new' -- this will be override by dapui
+        -- dap.defaults.fallback.terminal_win_cmd = 'set splitright | 10vsplit new' -- this will be override by dapui
         -- dap.defaults.python.terminal_win_cmd = 'set splitright | 2vsplit new' -- 终端会被移动，这个数值不准确
         dap.defaults.fallback.focus_terminal = false
         dap.defaults.fallback.force_external_terminal = false
@@ -146,12 +150,12 @@ return {
                     }, {
                         elements = { {
                             id = "repl",
-                            size = 1
+                            size = 0.5
                         },
-                            -- {
-                            --     id = "console",
-                            --     size = 0.5
-                            -- }
+                            {
+                                id = "console",
+                                size = 0.5
+                            }
                         },
                         position = "bottom",
                         size = 10

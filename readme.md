@@ -1,6 +1,5 @@
 ![桌面图像](./pictures/desktop.png)
 
-
 <!--toc:start-->
 - [个人应用配置](#个人应用配置)
   - [先运行](#先运行)
@@ -10,9 +9,11 @@
   - [切换配置](#切换配置)
   - [Grub 主题](#grub-主题)
   - [Nvidia，自行选择是否安装。](#nvidia自行选择是否安装)
+- [License](#license)
 <!--toc:end-->
 
 # 个人应用配置
+
 除去 arch 安装脚本部分。
 高度个性化，谨慎使用。
 
@@ -61,7 +62,7 @@
 `./xenlism-grub-4k-kali`从[ kde store ](https://store.kde.org/p/1440862)界面下载，自行选择是否安装。
 wget 无法从浏览器下载链接下载文件，就放进了仓库。进入`./xenlism-grub-4k-kali`运行`./grub-theme.sh`来安装。
 
-## Nvidia，自行选择是否安装。
+## Nvidia，自行选择是否安装，最好看archwiki 。
 
     # 安装后运行mkinitcpio
     # nvidia/nvidia-open-dkms ,二选一
@@ -84,3 +85,7 @@ wget 无法从浏览器下载链接下载文件，就放进了仓库。进入`./
         NVIDIA drivers utilities
     local/opencl-nvidia 525.85.05-1
         OpenCL implemention for NVIDIA
+
+# License
+
+[MIT](./LICENSE)

@@ -1,6 +1,5 @@
 scriptencoding utf-8
 
-" 状态栏
 function! GitBranch()
     return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
@@ -18,7 +17,7 @@ function! LinuxRelease()
         let l:prompy_symbol=' '
         return prompy_symbol
     endif
-    if system('uname -a | grep -c Android')
+    if system('env | grep -c TERMUX_VERSION')
         let l:prompy_symbol=' '
         return prompy_symbol
     endif
@@ -46,24 +45,33 @@ endfunction
 " source ~/.config/nvim/viml/file-icons.vim
 func! FileType()
     let l:filetypes = {
-                \ 'c'               :' ',
-                \ 'cpp'             :'ﭱ ',
-                \ 'java'            :' ',
-                \ 'javascript'      :' ',
-                \ 'html'            :' ',
-                \ 'json'            :' ',
-                \ 'sh'              :' ',
-                \ 'python'          :' ',
-                \ 'lua'             :' ',
-                \ 'go'              :' ',
-                \ 'vim'             :' ',
-                \ 'markdown'        :' ',
-                \ 'txt'             :' ',
-                \ 'text'            :' ',
-                \ 'log'             :' ',
-                \ 'help'            :' ',
+                \ 'c'                       :' ',
+                \ 'cpp'                     :'ﭱ ',
+                \ 'java'                    :' ',
+                \ 'javascript'              :' ',
+                \ 'html'                    :' ',
+                \ 'json'                    :' ',
+                \ 'sh'                      :' ',
+                \ 'python'                  :' ',
+                \ 'lua'                     :' ',
+                \ 'go'                      :' ',
+                \ 'vim'                     :' ',
+                \ 'markdown'                :' ',
+                \ 'txt'                     :' ',
+                \ 'text'                    :' ',
+                \ 'log'                     :' ',
+                \ 'help'                    :' ',
+                \ 'rust'                    :' ',
+                \ 'dapui_watches'           :' ',
+                \ 'dapui_stacks'            :' ',
+                \ 'dapui_breakpoints'       :' ',
+                \ 'dapui_scopes'            :' ',
+                \ 'dapui_console'           :' ',
+                \ 'dap-repl'                :' ',
+                \ 'NvimTree'                :'串 ',
                 \}
 
+                " \ ''                        :' ',
     if has_key(filetypes, &filetype)
         let l:prompy_symbol=filetypes[&filetype]
         return prompy_symbol
@@ -76,9 +84,10 @@ set laststatus=3                            "显示状态栏信息
 
 
 set statusline=%1*\%{StatuslineGit()}
-set statusline+=%2*\%<%.50F\                "显示文件名和文件路径 (%<应该可以去掉)
+" set statusline+=%2*\%<%.50F\                "显示文件名和文件路径 (%<应该可以去掉)
+set statusline+=%2*\%.50F\                "显示文件名和文件路径 (%<应该可以去掉)
 " set statusline+=%=%3*\\|%O[%b]%m%{FileType()}%r%w\%*        "显示文件类型及文件状态
-set statusline+=%=%3*\%m%{FileType()}%r%w\%*        "显示文件类型及文件状态
+set statusline+=%=%3*\%m%{FileType()}%<%r%w\%*        "显示文件类型及文件状态
 set statusline+=%8*%{LinuxRelease()}%*      "显示系统
 set statusline+=%4*\[%{&fenc}]\%*   "文件编码
 set statusline+=%5*\ row:%l/%L\|col:%c\ %*   "显示光标所在行和列

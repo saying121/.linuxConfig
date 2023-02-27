@@ -8,7 +8,8 @@ if [[ $? == 0 ]]; then
 else
 	pacMan=pacman -S --needed --noconfirm
 fi
-sudo $pacMan ranger fzf trash-cli python3 python-pip nvm npm lolcat shfmt ripgrep fd lldb translate-shell
+sudo $pacMan ranger fzf trash-cli python3 python-pip nvm npm lolcat shfmt ripgrep fd lldb translate-shell \
+	rust-analyzer lua-language-server
 
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
 source /usr/share/nvm/init-nvm.sh

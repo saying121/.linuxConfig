@@ -30,7 +30,7 @@ return {
                 -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
                 -- the name of the parser)
                 -- list of language that will be disabled
-                -- disable = { 'c', 'rust' },
+                -- disable = { 'conf' },
 
                 -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
                 ---@diagnostic disable-next-line: unused-local

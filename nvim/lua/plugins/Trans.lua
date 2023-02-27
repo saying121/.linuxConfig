@@ -1,10 +1,7 @@
-if os.getenv('TERMUX_VERSION') then
-    return nil
-end
 return {
     "JuanZoran/Trans.nvim",
     keys = {
-        { 'mm', mode = { 'n', 'x' } },
+        { 'mt', mode = { 'n', 'x' } },
         { 'mk', mode = { 'n', 'x' } },
         { 'mi', mode = { 'n' } },
     },
@@ -14,7 +11,7 @@ return {
     },
     config = function()
         local opts = { noremap = true, silent = true }
-        vim.keymap.set({ 'n', 'x' }, 'mm', ':Translate<CR>', opts)
+        vim.keymap.set({ 'n', 'x' }, 'mt', ':Translate<CR>', opts)
         vim.keymap.set({ 'n', 'x' }, 'mk', ':TransPlay<CR>', opts)
         vim.keymap.set('n', 'mi', '<Cmd>TranslateInput<CR>', opts)
         require 'Trans'.setup {
