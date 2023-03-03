@@ -42,6 +42,7 @@ return {
                 -- null_ls.builtins.diagnostics.shellcheck,
                 -- viml
                 null_ls.builtins.diagnostics.vint,
+                null_ls.builtins.diagnostics.pylint,
                 null_ls.builtins.diagnostics.vale,
                 -- js
                 null_ls.builtins.diagnostics.eslint,

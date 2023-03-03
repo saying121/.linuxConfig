@@ -42,7 +42,6 @@ function! LinuxRelease()
     endif
 endfunction
 
-" source ~/.config/nvim/viml/file-icons.vim
 func! FileType()
     let l:filetypes = {
                 \ 'c'                       :' ',
@@ -80,18 +79,16 @@ func! FileType()
     endif
 endfunc
 
-set laststatus=3                            "显示状态栏信息
+set laststatus=3                                            " 显示状态栏信息
 
 
-set statusline=%1*\%{StatuslineGit()}
-" set statusline+=%2*\%<%.50F\                "显示文件名和文件路径 (%<应该可以去掉)
-set statusline+=%2*\%.50F\                "显示文件名和文件路径 (%<应该可以去掉)
-" set statusline+=%=%3*\\|%O[%b]%m%{FileType()}%r%w\%*        "显示文件类型及文件状态
-set statusline+=%=%3*\%m%{FileType()}%<%r%w\%*        "显示文件类型及文件状态
-set statusline+=%8*%{LinuxRelease()}%*      "显示系统
-set statusline+=%4*\[%{&fenc}]\%*   "文件编码
-set statusline+=%5*\ row:%l/%L\|col:%c\ %*   "显示光标所在行和列
-set statusline+=%6*\%3p%%\%*                "显示光标前文本所占总文本的比例
+set statusline=%1*\%{StatuslineGit()}                       " git分支
+set statusline+=%2*\%.50F\                                  " 显示文件名和文件路径 (%<应该可以去掉)
+set statusline+=%=%3*\%m%{FileType()}%<%r%w\%*              " 显示文件类型及文件状态
+set statusline+=%8*%{LinuxRelease()}%*                      " 显示系统
+set statusline+=%4*\[%{&fenc}]\%*                           " 文件编码
+set statusline+=%5*\ row:%l/%L\|col:%c\ %*                  " 显示光标所在行和列
+set statusline+=%6*\%3p%%\%*                                " 显示光标前文本所占总文本的比例
 hi User1 guifg=Olivedrab
 hi User2 guifg=blue
 " hi User7 guifg=red

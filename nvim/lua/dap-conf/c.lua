@@ -33,6 +33,14 @@ dap.configurations.rust = dap.configurations.cpp
 dap.configurations.rust[1]['program'] = function()
     local git_root = io.popen("git rev-parse --show-toplevel") -- 执行命令
     local the_root = git_root:read("*a") -- 读取所有输出
+
+    -- if the_root == nil then
+    --     print('It\'s not a rust project.')
+    --     return ''
+    -- else
+    --     the_root = git_root:read("*a") -- 读取所有输出
+    -- end
+
     local really_root = string.gsub(the_root, '%s+$', '')
     git_root:close() -- 关闭文件描述符
 

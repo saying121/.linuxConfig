@@ -6,8 +6,10 @@
 
 dir="$HOME/.config/rofi/launchers/type-6"
 theme='style-7'
+thepath=$dir/$theme.rasi
+echo $thepath
 
-pkexec env PATH=$PATH DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY \
-rofi \
-    -show drun \
-    -theme ${dir}/${theme}.rasi
+# pkexec env PATH=$PATH DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY \
+pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY \
+rofi -show drun -theme $thepath
+    # ${dir}/${theme}.rasi

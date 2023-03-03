@@ -88,7 +88,8 @@ alias clhconf="~/.linuxConfig/scripts/configClash.sh"
 alias clhres="sudo systemctl restart clash.service"
 alias clhsts="systemctl status clash.service"
 
-alias rm="gio trash"
+# alias rm="gio trash"
+alias rm="trash"
 alias tl='trash-list'
 alias rt='trash-restore'
 

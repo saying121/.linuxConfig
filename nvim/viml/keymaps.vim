@@ -23,11 +23,11 @@ nnoremap $ g$
 nnoremap 0 g0
 set wrap
 
-" 大写h、l移动到行首、行尾非空白符号,行尾不包括换行符(包括就用$)
-nnoremap L g_
+" 大写h、l移动到行首、行尾非空白符号,visual 'g_':行尾不包括换行符(包括就用$)
+nnoremap L g$
 vnoremap L g_
-nnoremap H ^
-vnoremap H ^
+nnoremap H g^
+vnoremap H g^
 
 " 选取进行缩进后还被选中
 vnoremap < <gv

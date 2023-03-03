@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-set guifont=hack\ nerd\ font:h7.9
+set guifont=hack\ nerd\ font:h9.0   ":w4.5
 " g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
 let g:neovide_transparency = 0.8
 let g:transparency = 0.8

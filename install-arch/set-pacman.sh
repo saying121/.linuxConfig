@@ -18,9 +18,9 @@ if [[ $(grep "\[archlinuxcn\]" -c /etc/pacman.conf) = 0 ]]; then
 	# shellcheck disable=2016
 	echo '
 [archlinuxcn]
-Include = /etc/pacman.d/mirrorlist' | sudo tee -a /etc/pacman.conf
-# Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
-# Server = http://mirrors.163.com/archlinux-cn/$arch
+Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+Server = http://mirrors.163.com/archlinux-cn/$arch
+' | sudo tee -a /etc/pacman.conf
 fi
 
 # 添加中国源,设置powerpill的SigLevel(签名文件) 等

@@ -96,7 +96,8 @@ exec --no-startup-id dunst & # 桌面通知
 exec --no-startup-id fcitx5 & # fcitx5 输入法
 # Compositor (Animations, Shadows, Transparency)
 # exec --no-startup-id picom -cCFb
-exec_always --no-startup-id picom --config ~/.config/i3/picom/picom.conf -b --experimental-backends
+exec_always --no-startup-id picom --config ~/.config/i3/picom/picom-ftlabs-git.conf -b
+# --experimental-backends
 # exec_always feh --bg-scale "path_to_wallpaper" # 设置壁纸
 # feh --bg-fill --no-fehbg --randomize ~/Pictures/wallpaper.jpg
 # exec --no-startup-id copyq & # 剪切板管理器

@@ -1,14 +1,14 @@
 return {
     'glepnir/lspsaga.nvim',
     -- event = 'BufRead',
-    commit = '133bf4b06f109da0cae9ab61a6dd8e29e62c90d3',
+    commit = '438b54cba00fca27d280ae4d9242615282045bcb',
     dependencies = {
         -- "nvim-tree/nvim-web-devicons",
     },
     config = function()
         require("lspsaga").setup({
             symbol_in_winbar = {
-                enable = false,
+                enable = true,
                 separator = " ",
                 hide_keyword = true,
                 show_file = true,

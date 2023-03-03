@@ -34,6 +34,7 @@ highlight LazyProgressDone guibg=NONE cterm=NONE guifg=red ctermfg=NONE
 highlight LazyProp guibg=NONE cterm=NONE guifg=NONE ctermfg=NONE
 highlight DashBoardFooter guibg=NONE cterm=NONE guifg=red ctermfg=NONE
 
+highlight FloatBorder guibg=NONE
 " highlight LspFloatWinNormal guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
 " highlight LspFloatWinBorder guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
 " highlight LspInfoTip guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
@@ -43,8 +44,9 @@ highlight LspInfoBorder guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
 
 highlight Folded guibg=NONE cterm=NONE "guifg=red ctermfg=NONE
 highlight FoldColumn guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
-highlight SignColumn guibg=NONE cterm=NONE guifg=DarkCyan ctermfg=NONE
+highlight SignColumn ctermbg=NONE guifg=DarkCyan ctermfg=NONE gui=italic guibg=NONE
 " highlight Folded ctermbg=0 ctermfg=169
+
 
 if has('termguicolors')
     set termguicolors

@@ -1,6 +1,9 @@
 return {
     pylsp = {
         plugins = {
+            flake8 = {
+                enabled = true
+            },
             autopep8 = {
                 enabled = false,
             },
@@ -11,15 +14,11 @@ return {
             pycodestyle = {
                 enabled = false,
             },
-            -- rope_autoimport = {
-            --     enabled = true,
-            --     memory = true,
-            -- },
             yapf = {
-                enabled = false,
+                enabled = true,
             },
             rope_autoimport = {
-                enabled = true,
+                enabled = false,
                 memory = false,
             },
             rope_completion = {

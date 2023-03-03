@@ -1,12 +1,6 @@
 return {
     'williamboman/mason.nvim',
-    -- lazy = true,
     cmd = 'Mason',
-    dependencies = {
-        'williamboman/mason-lspconfig.nvim',
-        'jayp0521/mason-null-ls.nvim',
-        'jayp0521/mason-nvim-dap.nvim',
-    },
     config = function()
         require 'mason'.setup({
             -- Where Mason should put its bin location in your PATH. Can be one of:
@@ -20,8 +14,6 @@ return {
                 upgrade_pip = true,
                 -- These args will be added to `pip install` calls. Note that setting extra args might impact intended behavior
                 install_args = {
-                    "black",
-                    "isort",
                     "pynvim"
                 },
             },
@@ -68,68 +60,5 @@ return {
                 },
             },
         })
-        require 'mason-lspconfig'.setup({
-            ensure_installed = {
-                'awk_ls',
-                'bashls',
-                'clangd',
-                'emmet_ls',
-                'gopls',
-                'jdtls',
-                -- 'jedi_language_server',
-                'jsonls',
-                -- 'lua_ls',
-                'marksman',
-                'pylsp',
-                -- 'rust_analyzer',
-                'sqlls',
-                'tsserver',
-                'vimls',
-                'yamlls',
-            },
-            -- Can either be:
-            --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
-            --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
-            automatic_installation = true,
-        })
-        require 'mason-null-ls'.setup({
-            ensure_installed = {
-                'black',
-                'isort',
-                'prettier',
-                'shfmt',
-                -- 'rustfmt',
-                'sql_formatter',
-                'vint',
-                'vale',
-                'shellcheck',
-                'beautysh',
-                -- 'clang-format',
-            },
-            automatic_installation = true,
-            automatic_setup = false,
-        })
-        require 'mason-nvim-dap'.setup({
-            ensure_installed = {
-                'bash',
-                'delve',
-                'javadbg',
-                'python',
-            },
-            -- Can either be:
-            --   - { exclude: string[] }: All adapters set up via mason-nvim-dap, except the ones provided in the list, are automatically installed.
-            --       Example: automatic_installation = { exclude = { "python", "delve" } }
-            automatic_installation = true,
-            -- Whether adapters that are installed in mason should be automatically set up in dap.
-            -- Removes the need to set up dap manually.
-            -- See mappings.adapters and mappings.configurations for settings.
-            -- Must invoke when set to true: `require 'mason-nvim-dap'.setup_handlers()`
-            -- Can either be:
-            -- 	- false: Dap is not automatically configured.
-            -- 	- true: Dap is automatically configured.
-            -- 	- {adapters: {ADAPTER: {}, }, configurations: {ADAPTER: {}, }}. Allows overriding default configuration.
-            automatic_setup = false,
-        })
-        -- require 'mason-nvim-dap'.setup_handlers()
     end
 }

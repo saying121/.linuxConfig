@@ -17,6 +17,7 @@ return {
         vim.keymap.set('n', '<space>ld', ':TroubleToggle document_diagnostics<CR>', opts)
         vim.keymap.set('n', 'gr', ':TroubleToggle lsp_references<CR>', opts)
         vim.keymap.set('n', 'gi', ':TroubleToggle lsp_implementation<CR>', opts)
+
         require("trouble").setup({
             position = "bottom", -- position of the list can be: bottom, top, left, right
             height = 10, -- height of the trouble list when position is top or bottom
