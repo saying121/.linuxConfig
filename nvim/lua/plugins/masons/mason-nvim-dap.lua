@@ -1,12 +1,12 @@
 return {
-    'jayp0521/mason-nvim-dap.nvim',
+    "jayp0521/mason-nvim-dap.nvim",
     config = function()
-        require 'mason-nvim-dap'.setup({
+        require("mason-nvim-dap").setup({
             ensure_installed = {
-                'bash',
-                'delve',
-                'javadbg',
-                'python',
+                "bash",
+                "delve",
+                "javadbg",
+                "python",
             },
             -- Can either be:
             --   - { exclude: string[] }: All adapters set up via mason-nvim-dap, except the ones provided in the list, are automatically installed.
@@ -23,5 +23,5 @@ return {
             automatic_setup = false,
         })
         -- require 'mason-nvim-dap'.setup_handlers()
-    end
+    end,
 }

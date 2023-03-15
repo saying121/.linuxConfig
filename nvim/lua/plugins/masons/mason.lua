@@ -1,8 +1,13 @@
 return {
-    'williamboman/mason.nvim',
-    cmd = 'Mason',
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    dependencies = {
+        require("plugins.masons.mason-lspconfig"),
+        require("plugins.masons.mason-null-ls"),
+        require("plugins.masons.mason-nvim-dap"),
+    },
     config = function()
-        require 'mason'.setup({
+        require("mason").setup({
             -- Where Mason should put its bin location in your PATH. Can be one of:
             -- - "prepend" (default, Mason's bin location is put first in PATH)
             -- - "append" (Mason's bin location is put at the end of PATH)
@@ -14,7 +19,7 @@ return {
                 upgrade_pip = true,
                 -- These args will be added to `pip install` calls. Note that setting extra args might impact intended behavior
                 install_args = {
-                    "pynvim"
+                    "pynvim",
                 },
             },
             -- Controls to which degree logs are written to the log file. It's useful to set this to vim.log.levels.DEBUG when
@@ -36,7 +41,7 @@ return {
                 icons = {
                     package_installed = "✓",
                     package_pending = "➜",
-                    package_uninstalled = "✗"
+                    package_uninstalled = "✗",
                 },
                 keymaps = {
                     -- Keymap to expand a package
@@ -60,5 +65,5 @@ return {
                 },
             },
         })
-    end
+    end,
 }

@@ -1,4 +1,4 @@
-return{
-    require('plugins.garish.ChatGPT'),
-    require('plugins.garish.cellular-automaton'),
+return {
+    require("plugins.garish.ChatGPT"),
+    require("plugins.garish.cellular-automaton"),
 }

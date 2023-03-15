@@ -170,7 +170,7 @@ cmd open $set -f; rifle -p 0 $fx
 cmd open-with ${{
     set -f
     rifle -l $fx
-    read -p "Open with: " method
+    vared -p "Open with: " -c method
     rifle -p $method $fx
 }}
 map o open-with

@@ -1,10 +1,10 @@
 return {
-    'folke/tokyonight.nvim',
+    "folke/tokyonight.nvim",
     -- priority = 1000,
     -- cond = true,
     config = function()
-        vim.cmd.colorscheme('tokyonight')
-        vim.cmd.colorscheme('plugcolors')
+        vim.cmd.colorscheme("tokyonight")
+        vim.cmd.colorscheme("plugcolors")
 
         require("tokyonight").setup({
             style = "night",
@@ -14,7 +14,7 @@ return {
             styles = {
                 sidebars = "normal", -- style for sidebars, see below
                 floats = "normal", -- style for floating windows
-            }
+            },
         })
-    end
+    end,
 }

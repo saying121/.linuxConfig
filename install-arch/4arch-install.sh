@@ -12,7 +12,7 @@ else
 fi
 
 # kde桌面，终端
-sudo $pacMan xorg kitty \
+sudo $pacMan xorg kitty wezterm \
     plasma packagekit-qt5 packagekit appstream-qt appstream \
 	networkmanager wget sddm
 

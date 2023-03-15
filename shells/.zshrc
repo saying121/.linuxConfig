@@ -3,6 +3,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# source ~/.linuxConfig/shells/compinit.sh
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -72,6 +73,10 @@ ZSH_CUSTOM=$ZSH/custom
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
+# autoload -Uz compinit
+# compinit
+
 # shellcheck disable=2034
 export NVM_DIR="$HOME/.nvm"
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
@@ -89,6 +94,7 @@ zstyle ':omz:plugins:pip' lazy yes
 
 # VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 # VI_MODE_SET_CURSOR=true
+
 
 plugins=(
 	git gitignore git-open

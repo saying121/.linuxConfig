@@ -1,7 +1,7 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.opt.rtp:prepend(lazypath)
 
-require 'lazy'.setup('plugins', {
+require("lazy").setup("plugins", {
     root = vim.fn.stdpath("data") .. "/lazy", -- directory where plugins will be installed
     defaults = {
         lazy = false, -- should plugins be lazy-loaded?
@@ -50,7 +50,6 @@ require 'lazy'.setup('plugins', {
                     cwd = plugin.dir,
                 })
             end,
-
             -- open a terminal for the plugin dir
             ["<localleader>t"] = function(plugin)
                 require("lazy.util").float_term(nil, {
@@ -85,9 +84,6 @@ require 'lazy'.setup('plugins', {
             path = vim.fn.stdpath("cache") .. "/lazy/cache",
             -- Once one of the following events triggers, caching will be disabled.
             -- To cache all modules, set this to `{}`, but that is not recommended.
-            -- The default is to disable on:
-            --  * VimEnter: not useful to cache anything else beyond startup
-            --  * BufReadPre: this will be triggered early when opening a file from the command line directly
             disable_events = { "UIEnter", "BufReadPre" },
             ttl = 3600 * 24 * 5, -- keep unused modules for up to 5 days
         },
@@ -119,16 +115,3 @@ require 'lazy'.setup('plugins', {
         skip_if_doc_exists = true,
     },
 })
--- require("lazy").stats({
---     -- startuptime in milliseconds till UIEnter
---     startuptime = 0,
---     -- when true, startuptime is the accurate cputime for the Neovim process. (Linux & Macos)
---     -- this is more accurate than `nvim --startuptime`, and as such will be slightly higher
---     -- when false, startuptime is calculated based on a delta with a timestamp when lazy started.
---     real_cputime = false,
---     count = 0, -- total number of plugins
---     loaded = 0, -- number of loaded plugins
---     ---@type table<string, number>
---     times = {},
--- })
-require 'lazy'.stats().real_cputime = true

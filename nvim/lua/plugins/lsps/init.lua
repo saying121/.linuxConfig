@@ -1,5 +1,4 @@
 return {
-    require("plugins.lsps.lspsaga"),
     require("plugins.lsps.null-ls"),
     require("plugins.lsps.nvim-lspconfig"),
     require("plugins.lsps.nvim-treesitter"),

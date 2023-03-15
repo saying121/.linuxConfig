@@ -5,8 +5,8 @@
 source "$(ueberzug library)"
 
 ImageLayer 0< <(
-	# shellcheck disable=2102
-	ImageLayer::add [identifier]="example0" [x]="$2" [y]="$3" [max_width]="$5" [max_height]="$4" [path]="$1"
-	# shellcheck disable=2162
-	read
+    # shellcheck disable=2102
+    ImageLayer::add [identifier]="example0" [x]="$2" [y]="$3" [max_width]="$5" [max_height]="$4" [path]="$1"
+    # shellcheck disable=2162
+    read
 )

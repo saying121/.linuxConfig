@@ -17,10 +17,16 @@ nnoremap ` %
 vnoremap ` %
 nnoremap <silent><leader>w :w<CR>
 nnoremap <silent><leader>x :x<CR>
+
 nnoremap j gj
+vnoremap j gj
+
 nnoremap k gk
+vnoremap k gk
+
 nnoremap $ g$
 nnoremap 0 g0
+
 set wrap
 
 " 大写h、l移动到行首、行尾非空白符号,visual 'g_':行尾不包括换行符(包括就用$)

@@ -2,7 +2,7 @@ return {
     pylsp = {
         plugins = {
             flake8 = {
-                enabled = true
+                enabled = true,
             },
             autopep8 = {
                 enabled = false,
@@ -25,7 +25,6 @@ return {
                 enabled = false,
                 eager = false,
             },
-
-        }
-    }
+        },
+    },
 }

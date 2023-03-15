@@ -24,6 +24,4 @@ local postfix = require("luasnip.extras.postfix").postfix
 local types = require("luasnip.util.types")
 local parse = require("luasnip.util.parser").parse_snippet
 
-
-
-ls.filetype_extend('ruby',{"rails"})
+ls.filetype_extend("ruby", { "rails" })

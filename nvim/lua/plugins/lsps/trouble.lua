@@ -1,22 +1,22 @@
 return {
-    'folke/trouble.nvim',
+    "folke/trouble.nvim",
     keys = {
-        { '<space>ll', mode = { 'n' } },
-        { '<space>lw', mode = { 'n' } },
-        { '<space>ld', mode = { 'n' } },
-        { 'gr',        mode = { 'n' } },
-        { 'gi',        mode = { 'n' } },
+        { "<space>ll", mode = { "n" } },
+        { "<space>lw", mode = { "n" } },
+        { "<space>ld", mode = { "n" } },
+        { "gr", mode = { "n" } },
+        { "gi", mode = { "n" } },
     },
     dependencies = {
-        'nvim-tree/nvim-web-devicons',
+        "nvim-tree/nvim-web-devicons",
     },
     config = function()
         local opts = { silent = true, noremap = true }
-        vim.keymap.set('n', '<space>ll', ':TroubleToggle<CR>', opts)
-        vim.keymap.set('n', '<space>lw', ':TroubleToggle workspace_diagnostics<CR>', opts)
-        vim.keymap.set('n', '<space>ld', ':TroubleToggle document_diagnostics<CR>', opts)
-        vim.keymap.set('n', 'gr', ':TroubleToggle lsp_references<CR>', opts)
-        vim.keymap.set('n', 'gi', ':TroubleToggle lsp_implementation<CR>', opts)
+        vim.keymap.set("n", "<space>ll", ":TroubleToggle<CR>", opts)
+        vim.keymap.set("n", "<space>lw", ":TroubleToggle workspace_diagnostics<CR>", opts)
+        vim.keymap.set("n", "<space>ld", ":TroubleToggle document_diagnostics<CR>", opts)
+        vim.keymap.set("n", "gr", ":TroubleToggle lsp_references<CR>", opts)
+        vim.keymap.set("n", "gi", ":TroubleToggle lsp_implementation<CR>", opts)
 
         require("trouble").setup({
             position = "bottom", -- position of the list can be: bottom, top, left, right
@@ -28,7 +28,8 @@ return {
             fold_closed = "", -- icon used for closed folds
             group = true, -- group results by file
             padding = true, -- add an extra new line on top of the list
-            action_keys = { -- key mappings for actions in the trouble list
+            action_keys = {
+                -- key mappings for actions in the trouble list
                 -- map to {} to remove a mapping, for example:
                 -- close = {},
                 close = "q", -- close the list
@@ -47,7 +48,7 @@ return {
                 open_folds = { "zR", "zr" }, -- open all folds
                 toggle_fold = { "zA", "za" }, -- toggle fold of current file
                 previous = "k", -- previous item
-                next = "j" -- next item
+                next = "j", -- next item
             },
             indent_lines = true, -- add an indent guide below the fold icons
             auto_open = false, -- automatically open the list when you have diagnostics
@@ -61,9 +62,9 @@ return {
                 warning = "",
                 hint = "",
                 information = "",
-                other = "﫠"
+                other = "﫠",
             },
-            use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+            use_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
         })
-    end
+    end,
 }

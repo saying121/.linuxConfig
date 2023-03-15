@@ -1,24 +1,29 @@
 return {
-    'nvim-telescope/telescope.nvim',
-    lazy = true,
-    cmd = 'Telescope',
-    keys = require('plugins.telescopes.telescope_keys'),
-    version = '0.1.0',
-    ft = { 'dashboard' },
+    "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
+    keys = require("plugins.telescopes.telescope_keys"),
+    ft = { "dashboard" },
+    version = "0.1.0",
     dependencies = {
-        'nvim-tree/nvim-web-devicons',
-        'nvim-lua/plenary.nvim',
+        "nvim-tree/nvim-web-devicons",
+        "nvim-lua/plenary.nvim",
+        require("plugins.telescopes.telescope-fzf-native"),
+        require("plugins.telescopes.project"),
     },
     config = function()
-        local builtin, keymap = require('telescope.builtin'), vim.keymap.set
+        local builtin, keymap = require("telescope.builtin"), vim.keymap.set
         local opts = { noremap = true, silent = true }
-        keymap('n', '<leader>ff', builtin.find_files, opts)
-        keymap('n', '<leader>fw', builtin.live_grep, opts)
-        keymap('n', '<leader>bf', builtin.buffers, opts)
-        keymap('n', '<leader>go', builtin.oldfiles, opts)
-        keymap('n', '<space>a', builtin.treesitter, opts)
 
-        require 'telescope'.setup {
+        keymap("n", "<leader>ff", builtin.find_files, opts)
+        keymap("n", "<leader>fw", builtin.live_grep, opts)
+        keymap("n", "<leader>bf", builtin.buffers, opts)
+        keymap("n", "<leader>go", builtin.oldfiles, opts)
+        keymap("n", "<space>a", builtin.treesitter, opts)
+        keymap("n", "<M-p>", ":Telescope projects<CR>", opts)
+
+        require("telescope").load_extension("projects")
+
+        require("telescope").setup({
             defaults = {
                 -- Default configuration for telescope goes here:
                 -- config_key = value,
@@ -27,11 +32,11 @@ return {
                         -- map actions.which_key to <C-h> (default: <C-/>)
                         -- actions.which_key shows the mappings for your picker,
                         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-                        ["<C-h>"] = "which_key"
-                    }
+                        ["<C-h>"] = "which_key",
+                    },
                 },
                 layout_config = {
-                    vertical = { width = 0.5 }
+                    vertical = { width = 0.5 },
                     -- other layout configuration here
                 },
             },
@@ -64,6 +69,6 @@ return {
                     -- },
                 },
             },
-        }
-    end
+        })
+    end,
 }

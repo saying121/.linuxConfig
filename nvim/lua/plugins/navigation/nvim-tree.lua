@@ -1,13 +1,13 @@
 return {
-    'nvim-tree/nvim-tree.lua',
+    "nvim-tree/nvim-tree.lua",
     lazy = true,
     keys = {
-        { '<leader>e' },
+        { "<leader>e" },
     },
     dependencies = {
-        'nvim-tree/nvim-web-devicons', -- file icons
+        "nvim-tree/nvim-web-devicons", -- file icons
     },
-    version = 'nightly', -- optional, updated every week. (see issue #1193)
+    version = "nightly", -- optional, updated every week. (see issue #1193)
     config = function()
         local opts = { noremap = true, silent = true }
         vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
@@ -48,5 +48,5 @@ return {
                 require_confirm = true,
             },
         })
-    end
+    end,
 }

@@ -1,44 +1,53 @@
 return {
-    'mfussenegger/nvim-dap',
+    "mfussenegger/nvim-dap",
     lazy = true,
     -- event = 'VimEnter',
-    keys = require('plugins.daps.the_keys'),
+    keys = require("plugins.daps.the_keys"),
     cmd = {
-        'PBToggleBreakpoint',
-        'PBClearAllBreakpoints',
-        'PBSetConditionalBreakpoint',
+        "PBToggleBreakpoint",
+        "PBClearAllBreakpoints",
+        "PBSetConditionalBreakpoint",
     },
     config = function()
         -- 对各个语言的配置
-        require 'dap-conf.python'
-        require 'dap-conf.c'
+        require("dap-conf.python")
+        require("dap-conf.c")
         -- ---------------------------------------------------
 
-        vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
-        vim.fn.sign_define('DapStopped', { text = '⭐️', texthl = '', linehl = '', numhl = '' })
+        vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })
+        vim.fn.sign_define("DapStopped", { text = "⭐️", texthl = "", linehl = "", numhl = "" })
 
-        local dap = require('dap')
+        local dap = require("dap")
         local keymap = vim.keymap.set
         local opts = { noremap = true, silent = true }
 
-        keymap('n', '<space>b', dap.toggle_breakpoint, opts)
-        keymap('n', '<space>B', "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
+        keymap("n", "<space>b", dap.toggle_breakpoint, opts)
+        keymap(
+            "n",
+            "<space>B",
+            "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+            opts
+        )
 
-        keymap({ 'n', 'i', 't' }, '<F5>', dap.continue, opts)
-        keymap({ 'n', 'i', 't' }, '<F6>', dap.step_into, opts)
-        keymap({ 'n', 'i', 't' }, '<F7>', dap.step_over, opts)
-        keymap({ 'n', 'i', 't' }, '<F8>', dap.step_out, opts)
-        keymap({ 'n', 'i', 't' }, '<F9>', dap.step_back, opts)
-        keymap({ 'n', 'i', 't' }, '<F10>', dap.run_last, opts)
-        keymap({ 'n', 'i', 't' }, "<F11>", dap.terminate, opts)
+        keymap({ "n", "i", "t" }, "<F5>", dap.continue, opts)
+        keymap({ "n", "i", "t" }, "<F6>", dap.step_into, opts)
+        keymap({ "n", "i", "t" }, "<F7>", dap.step_over, opts)
+        keymap({ "n", "i", "t" }, "<F8>", dap.step_out, opts)
+        keymap({ "n", "i", "t" }, "<F9>", dap.step_back, opts)
+        keymap({ "n", "i", "t" }, "<F10>", dap.run_last, opts)
+        keymap({ "n", "i", "t" }, "<F11>", dap.terminate, opts)
 
-        keymap('n', '<space>lp',
-            "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
-        keymap('n', '<space>dr', dap.repl.open, opts)
-        keymap('n', '<space>dl', dap.run_last, opts)
+        keymap(
+            "n",
+            "<space>lp",
+            "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+            opts
+        )
+        keymap("n", "<space>dr", dap.repl.open, opts)
+        keymap("n", "<space>dl", dap.run_last, opts)
 
         -- local dap = require('dap')
-        local dapui = require('dapui')
+        local dapui = require("dapui")
         -- 自动开启ui
         dap.listeners.after.event_initialized["dapui_config"] = function()
             dapui.open()
@@ -67,10 +76,4 @@ return {
         dap.defaults.fallback.focus_terminal = false
         dap.defaults.fallback.force_external_terminal = false
     end,
-    dependencies = {
-        'rcarriga/nvim-dap-ui',
-        'theHamsta/nvim-dap-virtual-text',
-        'Weissle/persistent-breakpoints.nvim',
-        'rcarriga/cmp-dap',
-    },
 }

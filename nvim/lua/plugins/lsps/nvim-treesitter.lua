@@ -1,28 +1,38 @@
 return {
-    'nvim-treesitter/nvim-treesitter',
-    event = 'BufReadPre',
-    build = ':TSUpdate',
+    "nvim-treesitter/nvim-treesitter",
+    event = "BufReadPre",
+    build = ":TSUpdate",
+    ft = "dashboard",
     dependencies = {
-        'HiPhish/nvim-ts-rainbow2',
+        "HiPhish/nvim-ts-rainbow2",
+        require("plugins.lsps.lspsaga"),
     },
     config = function()
-        require 'nvim-treesitter.configs'.setup {
+        require("nvim-treesitter.configs").setup({
             ensure_installed = {
-                'bash', 'c', 'java', 'lua', 'python', 'vim', 'markdown', 'markdown_inline', 'awk'
+                "bash",
+                "c",
+                "java",
+                "lua",
+                "python",
+                "vim",
+                "markdown",
+                "markdown_inline",
+                "awk",
             },
             sync_install = true,
             auto_install = true,
             incremental_selection = {
                 enable = true,
                 keymaps = {
-                    init_selection = '<CR>',
-                    node_incremental = 'a',
-                    scope_incremental = '<CR>',
-                    node_decremental = '<BS>'
-                }
+                    init_selection = "<CR>",
+                    node_incremental = "a",
+                    scope_incremental = "<CR>",
+                    node_decremental = "<BS>",
+                },
             },
             indent = {
-                enable = false
+                enable = false,
             },
             highlight = {
                 enable = true,
@@ -52,21 +62,21 @@ return {
                 -- list of languages you want to disable the plugin for
                 disable = { "jsx", "cpp" },
                 -- Which query to use for finding delimiters
-                query = 'rainbow-parens',
+                query = "rainbow-parens",
                 -- Highlight the entire buffer all at once
-                strategy = require 'ts-rainbow.strategy.global',
+                strategy = require("ts-rainbow.strategy.global"),
                 -- Do not enable for files with more than n lines
-                max_file_lines = 3000
-            }
-        }
-        vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost' }, {
-            pattern = { '*' },
-            group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
-            callback = function()
-                vim.opt_local.foldmethod = 'expr'
-                vim.opt_local.foldexpr   = 'nvim_treesitter#foldexpr()'
-                vim.cmd [[normal zR]]
-            end
+                max_file_lines = 3000,
+            },
         })
-    end
+        vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+            pattern = { "*" },
+            group = vim.api.nvim_create_augroup("TS_FOLD_WORKAROUND", {}),
+            callback = function()
+                vim.opt_local.foldmethod = "expr"
+                vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
+                vim.cmd([[normal zR]])
+            end,
+        })
+    end,
 }

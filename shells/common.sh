@@ -2,27 +2,27 @@
 # 自带的
 # enable color support of ls, less and man, and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-	# shellcheck disable=2015
-	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-	export LS_COLORS="$LS_COLORS:ow=30;44:" # fix ls color for folders with 777 permissions
+    # shellcheck disable=2015
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    export LS_COLORS="$LS_COLORS:ow=30;44:" # fix ls color for folders with 777 permissions
 
-	alias ls='ls --color=auto'
-	#alias dir='dir --color=auto'
-	#alias vdir='vdir --color=auto'
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
 
-	alias grep='grep --color=auto'
-	alias fgrep='fgrep --color=auto'
-	alias egrep='egrep --color=auto'
-	alias diff='diff --color=auto'
-	alias ip='ip --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+    alias diff='diff --color=auto'
+    alias ip='ip --color=auto'
 
-	export LESS_TERMCAP_mb=$'\E[1;31m'  # begin blink
-	export LESS_TERMCAP_md=$'\E[1;36m'  # begin bold
-	export LESS_TERMCAP_me=$'\E[0m'     # reset bold/blink
-	export LESS_TERMCAP_so=$'\E[01;33m' # begin reverse video
-	export LESS_TERMCAP_se=$'\E[0m'     # reset reverse video
-	export LESS_TERMCAP_us=$'\E[1;32m'  # begin underline
-	export LESS_TERMCAP_ue=$'\E[0m'     # reset underline
+    export LESS_TERMCAP_mb=$'\E[1;31m'  # begin blink
+    export LESS_TERMCAP_md=$'\E[1;36m'  # begin bold
+    export LESS_TERMCAP_me=$'\E[0m'     # reset bold/blink
+    export LESS_TERMCAP_so=$'\E[01;33m' # begin reverse video
+    export LESS_TERMCAP_se=$'\E[0m'     # reset reverse video
+    export LESS_TERMCAP_us=$'\E[1;32m'  # begin underline
+    export LESS_TERMCAP_ue=$'\E[0m'     # reset underline
 fi
 
 # some more ls aliases
@@ -42,29 +42,29 @@ alias tree='exa -F -T --icons'
 alias ltree='tree -l'
 
 cat() {
-	if [[ $1 =~ '\.md' ]]; then
-		mdcat $1
+    if [[ $1 =~ '\.md' ]]; then
+        mdcat $1
     else
         bat $1
-	fi
+    fi
 }
 
 # 确定发行版 kali㉿
 declare -A releaseDic
 releaseDic=(
-	[arch]=" "
-	[kali]=" "
-	[ubuntu]=" "
-	[suse]=" "
-	[manjaro]=" "
-	[pop]=" "
+    [arch]=" "
+    [kali]=" "
+    [ubuntu]=" "
+    [suse]=" "
+    [manjaro]=" "
+    [pop]=" "
 )
 index=$(awk -F= '/^ID/{print $2}' </etc/os-release)
 if [[ -n ${releaseDic[$index]} ]]; then
-	prompt_symbol=${releaseDic[$index]}
+    prompt_symbol=${releaseDic[$index]}
 else
-	# shellcheck disable=2034
-	prompt_symbol=" "
+    # shellcheck disable=2034
+    prompt_symbol=" "
 fi
 unset releaseDic
 
@@ -72,9 +72,9 @@ unset releaseDic
 
 # wsl
 if [[ $(uname -a | grep -c WSL) != 0 ]]; then
-	alias proxy="source ~/.linuxConfig/scripts/proxy.sh"
-	# shellcheck disable=1090
-	. ~/.linuxConfig/scripts/proxy.sh set
+    alias proxy="source ~/.linuxConfig/scripts/proxy.sh"
+    # shellcheck disable=1090
+    . ~/.linuxConfig/scripts/proxy.sh set
 fi
 
 # source /usr/share/nvm/init-nvm.sh
@@ -82,6 +82,7 @@ fi
 # 自己的alias
 # ImageMagick must be installed for icat to work.
 alias icat="kitty +kitten icat"
+alias imgcat="wezterm imgcat"
 alias ueber="~/.linuxConfig/ueber.sh"
 
 alias clhconf="~/.linuxConfig/scripts/configClash.sh"
@@ -100,16 +101,16 @@ alias upaur='paru -Syu --noconfirm'
 alias musicfox='/opt/go-musicfox/musicfox'
 
 if [[ $(grep -c cpv ~/.zshrc) != 0 && $SHELL == '/usr/bin/zsh' ]]; then
-	alias cp='cpv -hhh'
+    alias cp='cpv -hhh'
 fi
 
 # avoid open nested ranger instances
 r() {
-	if [ -z "$RANGER_LEVEL" ]; then
-		/usr/bin/ranger "$@"
-	else
-		exit
-	fi
+    if [ -z "$RANGER_LEVEL" ]; then
+        /usr/bin/ranger "$@"
+    else
+        exit
+    fi
 }
 alias .r='source ranger'
 

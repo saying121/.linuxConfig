@@ -1,8 +1,7 @@
 return {
     "windwp/nvim-autopairs",
-    event = require('plugins.cmps.cmp_events'),
     config = function()
-        require("nvim-autopairs").setup {
+        require("nvim-autopairs").setup({
             disable_filetype = { "TelescopePrompt" },
             disable_in_macro = false, -- disable when recording or executing a macro,
             disable_in_visualblock = false, -- disable when insert after visual block mode,
@@ -19,14 +18,11 @@ return {
             map_bs = true, -- map the <BS> key
             map_c_h = false, -- Map the <C-h> key to delete a pair
             map_c_w = false, -- map <c-w> to delete a pair if possible
-        }
+        })
         -- If you want insert `(` after select function or method item
-        local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-        local cmp = require('cmp')
+        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+        local cmp = require("cmp")
         ---@diagnostic disable-next-line: undefined-field
-        cmp.event:on(
-            'confirm_done',
-            cmp_autopairs.on_confirm_done()
-        )
-    end
+        cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+    end,
 }

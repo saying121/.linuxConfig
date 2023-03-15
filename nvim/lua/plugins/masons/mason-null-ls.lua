@@ -1,23 +1,21 @@
 return {
-    'jayp0521/mason-null-ls.nvim',
-    cmd = 'Mason',
+    "jayp0521/mason-null-ls.nvim",
     config = function()
-        require 'mason-null-ls'.setup({
+        require("mason-null-ls").setup({
             ensure_installed = {
-                'black',
-                'isort',
-                'prettier',
-                'shfmt',
-                -- 'rustfmt',
-                'sql_formatter',
-                'vint',
-                'vale',
-                'shellcheck',
-                'beautysh',
-                -- 'clang-format',
+                "black",
+                "stylua",
+                "isort",
+                "prettier",
+                "shfmt",
+                "sql_formatter",
+                "vint",
+                "vale",
+                "shellcheck",
+                "beautysh",
             },
             automatic_installation = true,
             automatic_setup = false,
         })
-    end
+    end,
 }

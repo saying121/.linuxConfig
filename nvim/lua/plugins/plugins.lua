@@ -1,7 +1,6 @@
 return {
     --  {
     --     'neoclide/coc.nvim',
-    --     branch = 'release'
+    --     version = 'release'
     -- },
-    -- 'nvim-lua/popup.nvim',
 }

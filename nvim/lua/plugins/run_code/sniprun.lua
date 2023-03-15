@@ -1,15 +1,15 @@
 return {
-    'michaelb/sniprun',
-    build = './install.sh',
+    "michaelb/sniprun",
+    build = "./install.sh",
     lazy = true,
     keys = {
-        { '<leader>r', mode = 'v', desc = 'unit test' }
+        { "<leader>sr", mode = "v", desc = "unit test" },
     },
     config = function()
         local opts = { noremap = true, silent = true }
-        vim.api.nvim_set_keymap('v', '<leader>sr', '<Plug>SnipRun<CR>', opts)
-        vim.api.nvim_set_keymap('n', '<space>sc', '<Plug>SnipClose<CR>', opts)
-        require 'sniprun'.setup({
+        vim.api.nvim_set_keymap("v", "<leader>sr", "<Plug>SnipRun<CR>", opts)
+        vim.api.nvim_set_keymap("n", "<space>sc", "<Plug>SnipClose<CR>", opts)
+        require("sniprun").setup({
             repl_enable = {},
             display = {
                 -- "Classic",                    --# display results in the command-line  area
@@ -25,14 +25,14 @@ return {
             },
             display_options = {
                 terminal_width = 45,
-                notification_timeout = 5 --# timeout for nvim_notify output
+                notification_timeout = 5, --# timeout for nvim_notify output
             },
             snipruncolors = {
-                SniprunVirtualTextOk  = { bg = "#66eeff", fg = "#000000", ctermbg = "Cyan", cterfg = "Black" },
-                SniprunFloatingWinOk  = { fg = "#66eeff", ctermfg = "Cyan" },
+                SniprunVirtualTextOk = { bg = "#66eeff", fg = "#000000", ctermbg = "Cyan", cterfg = "Black" },
+                SniprunFloatingWinOk = { fg = "#66eeff", ctermfg = "Cyan" },
                 SniprunVirtualTextErr = { bg = "#881515", fg = "#000000", ctermbg = "DarkRed", cterfg = "Black" },
                 SniprunFloatingWinErr = { fg = "#881515", ctermfg = "DarkRed" },
             },
         })
-    end
+    end,
 }

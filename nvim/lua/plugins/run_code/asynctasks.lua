@@ -1,11 +1,11 @@
 return {
-    'skywind3000/asynctasks.vim',
+    "skywind3000/asynctasks.vim",
     dependencies = {
-        'skywind3000/asyncrun.vim',
+        "skywind3000/asyncrun.vim",
     },
     keys = {
-        { '<F4>' },
-        { '<F3>' },
+        { "<F4>" },
+        { "<F3>" },
     },
     config = function()
         vim.g.asyncrun_open = 6
@@ -18,13 +18,13 @@ return {
         -- left 	内置终端	在左边打开可复用内置终端。
         -- right	内置终端	在右边打开可复用内置终端。
         -- external	外部终端	启动一个新的操作系统的外置终端窗口，运行程序。
-        vim.g.asynctasks_term_pos = 'right'
+        vim.g.asynctasks_term_pos = "right"
         vim.g.asynctasks_term_rows = 10 -- 设置纵向切割时，高度为 10
         vim.g.asynctasks_term_cols = 60 -- 设置横向切割时，宽度为 80
         vim.g.asynctasks_term_reuse = 1 -- 设置tab终端可复用
         vim.g.asynctasks_term_focus = 1 -- 1聚焦终端，0不聚焦
         local opts = { noremap = true, silent = true }
-        vim.api.nvim_set_keymap('n', '<F4>', ':AsyncTask file-run<CR>', opts)
-        vim.api.nvim_set_keymap('n', '<F3>', ':AsyncTask file-build<CR>', opts)
-    end
+        vim.api.nvim_set_keymap("n", "<F4>", ":AsyncTask file-run<CR>", opts)
+        vim.api.nvim_set_keymap("n", "<F3>", ":AsyncTask file-build<CR>", opts)
+    end,
 }

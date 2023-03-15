@@ -68,9 +68,10 @@ func! FileType()
                 \ 'dapui_console'           :' ',
                 \ 'dap-repl'                :' ',
                 \ 'NvimTree'                :'串 ',
+                \ 'lspsagafinder'           :' ',
+                \ ''                        :' ',
                 \}
 
-                " \ ''                        :' ',
     if has_key(filetypes, &filetype)
         let l:prompy_symbol=filetypes[&filetype]
         return prompy_symbol

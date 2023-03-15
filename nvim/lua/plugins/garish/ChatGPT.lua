@@ -1,25 +1,26 @@
 return {
-    'jackMort/ChatGPT.nvim',
+    "jackMort/ChatGPT.nvim",
     keys = {
-        { 'zf', mode = 'n' }
+        { "zf", mode = "n" },
     },
     cmd = {
-        'ChatGPT',
-        'ChatGPTActAs',
-        'ChatGPTRun',
-        'ChatGPTRunCustomCodeAction',
-        'ChatGPTCompleteCode',
-        'ChatGPTEditWithInstructions',
+        "ChatGPT",
+        "ChatGPTActAs",
+        "ChatGPTRun",
+        "ChatGPTRunCustomCodeAction",
+        "ChatGPTCompleteCode",
+        "ChatGPTEditWithInstructions",
     },
     dependencies = {
-        'MunifTanjim/nui.nvim',
-        'nvim-lua/plenary.nvim',
-        'nvim-telescope/telescope.nvim'
+        "MunifTanjim/nui.nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim",
     },
     config = function()
-        vim.keymap.set('n', 'zf', ':ChatGPT<CR>', { silent = true, noremap = true })
-        require('chatgpt').setup({
-            welcome_message = 'gpt', -- set to "" if you don't like the fancy godot robot
+        vim.keymap.set("n", "zf", ":ChatGPT<CR>", { silent = true, noremap = true })
+        -- require("chatgpt").setup()
+        require("chatgpt").setup({
+            welcome_message = "ﮧ",
             loading_text = "loading",
             question_sign = "", -- you can use emoji if you want e.g. 🙂
             answer_sign = "ﮧ", -- 🤖
@@ -29,8 +30,8 @@ return {
                 relative = "editor",
                 position = "50%",
                 size = {
-                    height = "85%",
-                    width = "85%",
+                    height = "80%",
+                    width = "80%",
                 },
             },
             settings_window = {
@@ -63,7 +64,7 @@ return {
                 },
             },
             openai_params = {
-                model = "text-davinci-003",
+                model = "gpt-3.5-turbo",
                 frequency_penalty = 0,
                 presence_penalty = 0,
                 max_tokens = 300,
@@ -78,14 +79,19 @@ return {
                 n = 1,
             },
             keymaps = {
-                close = { "<C-c>", "<Esc>" },
+                close = { "<C-c>" },
+                submot = "<C-Enter>",
                 yank_last = "<C-y>",
                 scroll_up = "<C-u>",
                 scroll_down = "<C-d>",
                 toggle_settings = "<C-o>",
                 new_session = "<C-n>",
                 cycle_windows = "<Tab>",
+                -- in the Sessions pane
+                select_session = "<cr>",
+                rename_session = "r",
+                delete_session = "dd",
             },
         })
-    end
+    end,
 }

@@ -1,4 +1,4 @@
 return {
-    'folke/lazy.nvim',
-    cmd = { 'Lazy' },
+    "folke/lazy.nvim",
+    cmd = { "Lazy" },
 }

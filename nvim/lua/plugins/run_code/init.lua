@@ -1,4 +1,4 @@
-return{
-    require('plugins.run_code.asynctasks'),
-    require('plugins.run_code.sniprun'),
+return {
+    require("plugins.run_code.asynctasks"),
+    require("plugins.run_code.sniprun"),
 }

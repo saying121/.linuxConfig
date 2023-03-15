@@ -1,15 +1,12 @@
 return {
     {
-        'numToStr/Comment.nvim',
+        "numToStr/Comment.nvim",
         keys = {
-            { 'gc', mode = { 'n', 'v' } },
-            { 'gb', mode = { 'n', 'v' } },
+            { "gc", mode = { "n", "v" } },
+            { "gb", mode = { "n", "v" } },
         },
         config = function()
-            require 'Comment'.setup()
-        end
+            require("Comment").setup()
+        end,
     },
-    -- {
-    --     'tpope/vim-surround',
-    -- },
 }

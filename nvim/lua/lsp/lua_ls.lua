@@ -1,7 +1,7 @@
 ---@diagnostic disable-next-line: missing-parameter
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
+local runtime_path = vim.split(package.path, ";")
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
 
 return {
     Lua = {
@@ -10,11 +10,11 @@ return {
             path = runtime_path,
         },
         completion = {
-            callSnippet = "Both"
+            callSnippet = "Both",
         },
         diagnostics = {
             globals = {
-                'vim',
+                "vim",
             },
         },
         workspace = {
@@ -25,7 +25,7 @@ return {
             preloadFileSize = 10000,
         },
         telemetry = {
-            enable = false
+            enable = false,
         },
-    }
+    },
 }

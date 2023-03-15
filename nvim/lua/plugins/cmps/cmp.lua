@@ -1,49 +1,15 @@
 return {
-    'hrsh7th/nvim-cmp',
-    event = require('plugins.cmps.cmp_events'),
-    keys = require('plugins.cmps.cmp_keys'),
+    "hrsh7th/nvim-cmp",
+    event = require("plugins.cmps.cmp_events"),
+    keys = require("plugins.cmps.cmp_keys"),
     dependencies = {
-        'hrsh7th/cmp-cmdline',
-        'hrsh7th/cmp-path',
-        'hrsh7th/cmp-buffer',
-        'f3fora/cmp-spell',
-        {
-            'L3MON4D3/LuaSnip',
-            dependencies = {
-                'saadparwaiz1/cmp_luasnip',
-                'rafamadriz/friendly-snippets',
-            },
-        },
-        {
-            'yao-weijie/cmp-rime',
-            -- cond = false,
-            config = function()
-                require("cmp_rime").setup({
-                    -- linux/mac用户只需要从软件源中安装rime
-                    -- windows用户可能需要指定librime.dll路径, 没测试过
-                    libpath = "/lib64/librime.so",
-                    traits = {
-                        -- windows 用户的在小狼毫的程序文件夹
-                        shared_data_dir = "/usr/share/rime-data",
-                        -- 最好新建一个独立的用户目录, 否则很有可能出问题
-                        user_data_dir = vim.fn.expand("~/.local/share/cmp-rime"),
-                        log_dir = "/tmp/cmp-rime",
-                    },
-                    enable = {
-                        global = true, -- 全局开启, 不建议
-                        comment = true, -- 总是在comment中开启
-                        -- 其他情况手动开关
-                    },
-                    preselect = false, -- 预选中rime 返回的第一项,可以直接空格上屏
-                    auto_commit = false, -- 五笔/音形类方案可用, 唯一候选项自动上屏
-                    number_select = 5, -- 映射1-5为数字选词, 最大支持到9, 0表示禁用
-                })
-                vim.keymap.set({ "i" }, "<C-g>", function()
-                    require("cmp_rime").mapping.toggle()
-                end,
-                    { desc = "toggle rime" })
-            end
-        },
+        "hrsh7th/cmp-cmdline",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-buffer",
+        "f3fora/cmp-spell",
+        require("plugins.cmps.LuaSnip"),
+        require("plugins.cmps.cmp-rime"),
+        require("plugins.cmps.nvim-autopairs"),
     },
     config = function()
         local kind_icons = {
@@ -74,22 +40,30 @@ return {
             TypeParameter = "",
         }
 
+        local has_words_before = function()
+            ---@diagnostic disable-next-line: deprecated
+            unpack = unpack or table.unpack
+            local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+            return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+        end
+
+        local luasnip = require("luasnip")
         require("luasnip.loaders.from_vscode").lazy_load()
 
-        local cmp = require 'cmp'
-        local compare = require 'cmp.config.compare'
+        local cmp = require("cmp")
+        local compare = require("cmp.config.compare")
 
         -- local cmp_rime = require 'cmp_rime'
         cmp.setup({
             matching = {
                 disallow_fuzzy_matching = false,
-                disallow_partial_fuzzy_matching = true,
-                disallow_partial_matching = true,
+                disallow_partial_fuzzy_matching = false,
+                disallow_partial_matching = false,
                 disallow_prefix_unmatching = true,
             },
             snippet = {
                 expand = function(args)
-                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                    require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
                 end,
             },
             window = {
@@ -101,26 +75,45 @@ return {
                 format = function(entry, vim_item)
                     vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
                     vim_item.menu = ({
-                            nvim_lsp = "[LSP]",
-                            buffer = "[Buf]",
-                            path = "[Path]",
-                            luasnip = "[LuaSnip]",
-                            spell = "[spell]",
-                            nvim_lua = "[Lua]",
-                            latex_symbols = "[Latex]",
-                        })[entry.source.name]
+                        nvim_lsp = "[LSP]",
+                        buffer = "[Buf]",
+                        path = "[Path]",
+                        luasnip = "[LuaSnip]",
+                        spell = "[spell]",
+                        nvim_lua = "[Lua]",
+                        latex_symbols = "[Latex]",
+                    })[entry.source.name]
                     return vim_item
                 end,
             },
             mapping = cmp.mapping.preset.insert({
-                ['<Tab>'] = cmp.mapping.select_next_item(),
-                ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-                ['<C-b>'] = cmp.mapping.scroll_docs( -1),
-                ['<C-f>'] = cmp.mapping.scroll_docs(1),
+                ["<Tab>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+                        -- they way you will only jump inside the snippet region
+                    elseif luasnip.expand_or_jumpable() then
+                        luasnip.expand_or_jump()
+                    elseif has_words_before() then
+                        cmp.complete()
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
+                ["<S-Tab>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_prev_item()
+                    elseif luasnip.jumpable(-1) then
+                        luasnip.jump(-1)
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
+                ["<C-b>"] = cmp.mapping.scroll_docs(-1),
+                ["<C-f>"] = cmp.mapping.scroll_docs(1),
                 -- ['<C-Space>'] = cmp.mapping.complete(),
-                ['<C-e>'] = cmp.mapping.abort(),
-                ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-
+                ["<C-e>"] = cmp.mapping.abort(),
+                ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                 -- ["<C-Space>"] = require("cmp_rime").mapping.toggle_menu,
                 -- ["<Space>"] = require("cmp_rime").mapping.space_commit,
                 -- ["<CR>"] = require("cmp_rime").mappings.confirm,
@@ -141,20 +134,21 @@ return {
             }),
             -- 分级显示，上一级有补全就不会显示下一级
             sources = cmp.config.sources({
-                { name = 'nvim_lsp' },
-                { name = 'luasnip' },
+                { name = "nvim_lsp" },
+                { name = "luasnip" },
+                { name = "path" },
             }, {
-                { name = 'buffer' },
-                { name = 'path' },
+                { name = "buffer" },
             }, {
-                { name = 'spell' },
-                { name = 'nerdfonts' },
-                { name = 'rime' },
+                { name = "spell" },
+                { name = "nerdfonts" },
+                { name = "rime" },
             }),
             experimental = {
-                ghost_text = true
+                ghost_text = true,
             },
-            sorting = { -- rime-ls
+            sorting = {
+                -- rime-ls
                 comparators = {
                     require("cmp.config.compare").sort_text, -- 这个放第一个, 其他的随意
                     compare.sort_test,
@@ -169,29 +163,22 @@ return {
             },
         })
 
-        -- cmp.setup.filetype('gitcommit', { -- Set configuration for specific filetype.
-        --     sources = cmp.config.sources({
-        --         { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-        --     }, {
-        --         { name = 'buffer' },
-        --     })
-        -- })
-        cmp.setup.cmdline({ '/', '?' }, {
+        cmp.setup.cmdline({ "/", "?" }, {
             mapping = cmp.mapping.preset.cmdline(),
             sources = {
-                { name = 'buffer' },
-            }
+                { name = "buffer" },
+            },
         })
-        cmp.setup.cmdline(':', {
+        cmp.setup.cmdline(":", {
             mapping = cmp.mapping.preset.cmdline(),
             sources = cmp.config.sources({
-                { name = 'cmdline' },
+                { name = "cmdline" },
             }, {
-                { name = 'path' },
-            })
+                { name = "path" },
+            }),
         })
 
         vim.opt.spell = true
-        vim.opt.spelllang = { 'en_us' }
-    end
+        vim.opt.spelllang = { "en_us" }
+    end,
 }

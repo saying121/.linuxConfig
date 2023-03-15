@@ -1,6 +1,6 @@
 return {
     ["rust-analyzer"] = {
-        cargo       = {
+        cargo = {
             allFeatures = true,
             runBuildScripts = { enable = true },
             buildScripts = { enable = true },
@@ -11,30 +11,30 @@ return {
         },
         diagnostics = {
             enable = true,
-            experimental = { enable = true, },
+            experimental = { enable = true },
             previewRustcOutput = true,
         },
-        inlayHints  = {
+        inlayHints = {
             bindingModeHints = { enable = false },
             chainingHints = { enable = true },
             closingBraceHints = {
                 enable = true,
                 minLines = 25,
             },
-            closureReturnTypeHints = { enable = 'always' },
-            discriminantHints = { enable = 'always' },
+            closureReturnTypeHints = { enable = "always" },
+            discriminantHints = { enable = "always" },
             expressionAdjustmentHints = {
-                enable = 'never',
+                enable = "never",
                 hideOutsideUnsafe = false,
-                mode = 'prefix',
+                mode = "prefix",
             },
             lifetimeElisionHints = {
-                enable = 'never',
+                enable = "never",
                 useParameterNames = false,
             },
             maxLength = 25,
             parameterHints = { enable = true },
-            reborrowHints = { enable = 'always' },
+            reborrowHints = { enable = "always" },
             renderColons = true,
             typeHints = {
                 enable = true,
@@ -42,8 +42,8 @@ return {
                 hideNamedConstructor = false,
             },
         },
-        rustfmt     = {
-            rangeFormatting = { enable = false }
+        rustfmt = {
+            rangeFormatting = { enable = false },
         },
-    }
+    },
 }

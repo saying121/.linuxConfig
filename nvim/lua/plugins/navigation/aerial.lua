@@ -1,13 +1,13 @@
 return {
-    'stevearc/aerial.nvim',
+    "stevearc/aerial.nvim",
     keys = {
-        { '<space>z', mode = 'n', desc = 'floaterm' },
+        { "<space>z", mode = "n", desc = "floaterm" },
     },
     config = function()
         local opts = { noremap = true, silent = true }
-        vim.api.nvim_set_keymap('n', '<space>z', '<cmd>AerialToggle!<CR>', opts)
+        vim.api.nvim_set_keymap("n", "<space>z", "<cmd>AerialToggle!<CR>", opts)
 
-        require('aerial').setup({
+        require("aerial").setup({
             -- optionally use on_attach to set keymaps when aerial has attached to a buffer
             -- on_attach = function(bufnr)
             --     -- Jump forwards/backwards with '{' and '}'
@@ -75,16 +75,13 @@ return {
             --               marked in the aerial buffer.
             -- none          Do not show the cursor locations in the aerial window.
             highlight_mode = "split_width",
-
             -- Highlight the closest symbol if the cursor is not exactly on one.
             highlight_closest = true,
-
             -- Highlight the symbol in the source buffer when cursor is in the aerial win
             highlight_on_hover = false,
-
             -- When jumping to a symbol, highlight the line for this many ms.
             -- Set to false to disable
             highlight_on_jump = 300,
         })
-    end
+    end,
 }

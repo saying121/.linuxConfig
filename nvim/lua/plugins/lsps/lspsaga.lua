@@ -1,9 +1,9 @@
 return {
-    'glepnir/lspsaga.nvim',
+    "glepnir/lspsaga.nvim",
     -- event = 'BufRead',
-    commit = '438b54cba00fca27d280ae4d9242615282045bcb',
+    commit = "438b54cba00fca27d280ae4d9242615282045bcb",
     dependencies = {
-        -- "nvim-tree/nvim-web-devicons",
+        "nvim-tree/nvim-web-devicons",
     },
     config = function()
         require("lspsaga").setup({
@@ -20,13 +20,13 @@ return {
                 --percentage
                 max_height = 0.5,
                 keys = {
-                    jump_to = 'p',
-                    edit = { 'o', '<CR>' },
-                    vsplit = 's',
-                    split = 'i',
-                    tabe = 't',
-                    quit = { 'q', '<ESC>' },
-                    close_in_preview = '<ESC>'
+                    jump_to = "p",
+                    edit = { "o", "<CR>" },
+                    vsplit = "s",
+                    split = "i",
+                    tabe = "t",
+                    quit = { "q", "<ESC>" },
+                    close_in_preview = "<ESC>",
                 },
             },
             definition = {
@@ -66,7 +66,7 @@ return {
                 keys = {
                     exec_action = "o",
                     quit = "q",
-                    go_action = "g"
+                    go_action = "g",
                 },
             },
             rename = {
@@ -109,7 +109,7 @@ return {
             },
         })
         -- vim.wo.winbar /
-        vim.wo.stl = require('lspsaga.symbolwinbar'):get_winbar()
+        vim.wo.stl = require("lspsaga.symbolwinbar"):get_winbar()
         local keymap = vim.keymap.set
         -- LSP finder - Find the symbol's definition
         -- If there is no definition, it will instead be hidden
@@ -145,8 +145,9 @@ return {
         keymap("n", "[e", function()
             require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
         end)
-        keymap("n", "]e",
-            function() require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR }) end)
+        keymap("n", "]e", function()
+            require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+        end)
 
         keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
         -- To disable it just use ":Lspsaga hover_doc ++quiet"

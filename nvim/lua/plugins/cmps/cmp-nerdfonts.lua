@@ -1,6 +1,6 @@
 return {
-    'davidmh/cmp-nerdfonts',
+    "davidmh/cmp-nerdfonts",
     keys = {
-        { 'nf-', mode = 'i' }
-    }
+        { "nf-", mode = "i" },
+    },
 }

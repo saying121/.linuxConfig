@@ -10,6 +10,6 @@ thepath=$dir/$theme.rasi
 echo $thepath
 
 # pkexec env PATH=$PATH DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY \
-pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY \
-rofi -show drun -theme $thepath
-    # ${dir}/${theme}.rasi
+    pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY \
+    rofi -show drun -theme $thepath
+# ${dir}/${theme}.rasi
